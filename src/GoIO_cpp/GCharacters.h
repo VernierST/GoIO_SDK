@@ -42,18 +42,18 @@ const unsigned short kSuperScriptTwo = 0xB2;
 
 #ifdef TARGET_OS_LINUX
 // These character literals are readable on a Mac with any standard font.
-const char kDeltaChar = 'Ã†';
-const char kCopyrightChar = 'Â©';
-const char kBulletChar = 'Â¥';
-const char kDegreeChar = 'Â¡';
-const char kMuChar = 'Âµ';
-const char kPiChar = 'Â¹';
-const char kSumChar = 'Â·';
-const char kOmegaChar = 'Â½';
-const char kMathrootChar = 'Ãƒ';
-const char kNotEqualChar = 'Â­';
-const char kPlusOrMinusChar = 'Â±';
-const char kIntegralChar = 'Âº';
+const char kDeltaChar = 'Æ';
+const char kCopyrightChar = '©';
+const char kBulletChar = '¥';
+const char kDegreeChar = '¡';
+const char kMuChar = 'µ';
+const char kPiChar = '¹';
+const char kSumChar = '·';
+const char kOmegaChar = '½';
+const char kMathrootChar = 'Ã';
+const char kNotEqualChar = '­';
+const char kPlusOrMinusChar = '±';
+const char kIntegralChar = 'º';
 const char kOSNewlineChar = '\r';
 const char kOSPathSeparatorChar = ':';
 const char kAmpersandChar = '&';
@@ -77,18 +77,18 @@ const cppstring kSuperScriptTwo = "^2";
 
 #ifdef TARGET_OS_MAC
 // These character literals are readable on a Mac with any standard font.
-const char kDeltaChar = 'Ã†';
-const char kCopyrightChar = 'Â©';
-const char kBulletChar = 'Â¥';
-const char kDegreeChar = 'Â¡';
-const char kMuChar = 'Âµ';
-const char kPiChar = 'Â¹';
-const char kSumChar = 'Â·';
-const char kOmegaChar = 'Â½';
-const char kMathrootChar = 'Ãƒ';
-const char kNotEqualChar = 'Â­';
-const char kPlusOrMinusChar = 'Â±';
-const char kIntegralChar = 'Âº';
+const char kDeltaChar = 'Æ';
+const char kCopyrightChar = '©';
+const char kBulletChar = '¥';
+const char kDegreeChar = '¡';
+const char kMuChar = 'µ';
+const char kPiChar = '¹';
+const char kSumChar = '·';
+const char kOmegaChar = '½';
+const char kMathrootChar = 'Ã';
+const char kNotEqualChar = '­';
+const char kPlusOrMinusChar = '±';
+const char kIntegralChar = 'º';
 const char kOSNewlineChar = '\r';
 const char kOSPathSeparatorChar = ':';
 const char kAmpersandChar = '&';
@@ -114,17 +114,17 @@ const cppstring kSuperScriptTwo = "^2";
 // Define windows special character equivalents here
 
 const gchar kDeltaChar = GSTD_S('d');
-const gchar kCopyrightChar = GSTD_S('Â©');
-const gchar kBulletChar = GSTD_S('â€¢');
-const gchar kDegreeChar = GSTD_S('Â°');
-const gchar kMuChar = GSTD_S('Âµ');
+const gchar kCopyrightChar = GSTD_S('©');
+const gchar kBulletChar = GSTD_S('•');
+const gchar kDegreeChar = GSTD_S('°');
+const gchar kMuChar = GSTD_S('µ');
 const gchar kPiChar = GSTD_S('x');
 const gchar kSumChar = GSTD_S('x');
 const gchar kOmegaChar = GSTD_S('x');
 const gchar kMathrootChar = GSTD_S('x');
 const gchar kNotEqualChar = GSTD_S('x');
-const gchar kPlusOrMinusChar = GSTD_S('Â±');
-const gchar kIntegralChar = GSTD_S('Æ’');
+const gchar kPlusOrMinusChar = GSTD_S('±');
+const gchar kIntegralChar = GSTD_S('ƒ');
 const gchar kOSNewlineChar = GSTD_S('\n'); // not CRLF, but it will work for text in dialogs and most edit-control situations
 const gchar kOSPathSeparatorChar = GSTD_S('\\');
 
@@ -132,14 +132,14 @@ const gchar kAmpersandChar = '&';
 const gchar kGreaterThanChar = GSTD_S('>');
 const gchar kLessThanChar = GSTD_S('<');
 
-const gchar kOneQuarter = GSTD_S('Â¼');
-const gchar kOneHalf = GSTD_S('Â½');
-const gchar kThreeQuarters = GSTD_S('Â¾');
-const gchar kCapYAcute = GSTD_S('Ã');
-const gchar kLwYAcute = GSTD_S('Ã½');
-const gchar kCapSCaron = GSTD_S('Å ');
-const gchar kLwSCaron = GSTD_S('Å¡');
-const gchar kSuperScriptTwo = GSTD_S('Â²');
+const gchar kOneQuarter = GSTD_S('¼');
+const gchar kOneHalf = GSTD_S('½');
+const gchar kThreeQuarters = GSTD_S('¾');
+const gchar kCapYAcute = GSTD_S('Ý');
+const gchar kLwYAcute = GSTD_S('ý');
+const gchar kCapSCaron = GSTD_S('Š');
+const gchar kLwSCaron = GSTD_S('š');
+const gchar kSuperScriptTwo = GSTD_S('²');
 
 #define kOSNewlineString GSTD_S("\n")
 #define kOSPathSeparatorString GSTD_S("\\")
