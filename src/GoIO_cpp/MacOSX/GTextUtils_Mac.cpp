@@ -73,10 +73,10 @@ void GTextUtils::OSInitResourceStrings(void)
 		// Replace special characters
 		sText = GTextUtils::StringReplace(sText, sDegreeCode, sDegree);
 
-		sText = GTextUtils::StringReplace(sText, GSTD_S("&#153;"), GSTD_S("Âª"));
+		sText = GTextUtils::StringReplace(sText, GSTD_S("&#153;"), GSTD_S("ª"));
 
-		// Now convert "..." to "Ã‰"
-		sText = GTextUtils::StringReplace(sText, GSTD_S("..."), GSTD_S("Ã‰"));
+		// Now convert "..." to "É"
+		sText = GTextUtils::StringReplace(sText, GSTD_S("..."), GSTD_S("É"));
 
 		// Replace %app (IDSX_APPNAME_SUB) with the actual application name
 		sText = GTextUtils::StringReplace(sText, sAppSub, sAppName);
@@ -383,25 +383,25 @@ cppstring  GTextUtils::OSGetNativeCharCodeForUTF8(unsigned short nUTF8Char)
 			nChar += '&';
 			break;
 		case GUTF8CharCode::kCopyright:
-			nChar += 'Â©';
+			nChar += '©';
 			break;
 		case GUTF8CharCode::kRegistered:
-			nChar += 'Â¨';
+			nChar += '¨';
 			break;
 		case GUTF8CharCode::kDegree:
-			nChar += 'Â¡';
+			nChar += '¡';
 			break;
 		case GUTF8CharCode::kPlusOrMinus:
-			nChar += 'Â±';
+			nChar += '±';
 			break;
 		case GUTF8CharCode::kMu:
-			nChar += 'Âµ';
+			nChar += 'µ';
 			break;
 		case GUTF8CharCode::kBullet:
-			nChar += 'Â¥';
+			nChar += '¥';
 			break;
 		case GUTF8CharCode::kLowerCasePi:
-			nChar += 'Â¹';
+			nChar += '¹';
 			break;
 		case GUTF8CharCode::kSuperScriptTwo:
 			nChar += kSuperScriptTwo;
@@ -421,25 +421,25 @@ unsigned short GTextUtils::OSGetUTF8CharCodeForNative(unsigned short nMacRomanCh
 		case '&':
 			nChar = GUTF8CharCode::kAmpersand;
 			break;
-		case 'Â©':
+		case '©':
 		 	nChar = GUTF8CharCode::kCopyright;
 			break;
-		case 'Â¨':
+		case '¨':
 		 	nChar = GUTF8CharCode::kRegistered;
 			break;
-		case 'Â¡':
+		case '¡':
 		 	nChar = GUTF8CharCode::kDegree;
 			break;
-		case 'Â±':	
+		case '±':	
 		 	nChar = GUTF8CharCode::kPlusOrMinus;
 			break;
-		case 'Âµ':
+		case 'µ':
 		 	nChar = GUTF8CharCode::kMu;
 			break;
-		case 'Â¥':
+		case '¥':
 		 	nChar = GUTF8CharCode::kBullet;
 			break;
-		case 'Â¹':
+		case '¹':
 		 	nChar = GUTF8CharCode::kLowerCasePi;
 			break;
 		default:
