@@ -1,0 +1,85 @@
+; GoIO_DLL.def : Declares the module parameters for the DLL.
+
+LIBRARY      "GoIO_DLL"
+DESCRIPTION  'GoIO_DLL Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	GoIO_GetNthAvailableDeviceName @1
+	GoIO_Init @2
+	GoIO_Sensor_CalibrateData @3
+	GoIO_Sensor_ClearIO @4
+	GoIO_Sensor_Close @5
+	GoIO_Sensor_ConvertToVoltage @6
+	GoIO_Sensor_DDSMem_CalculateChecksum @7
+	GoIO_Sensor_DDSMem_GetActiveCalPage @8
+	GoIO_Sensor_DDSMem_GetAveraging @9
+	GoIO_Sensor_DDSMem_GetCalPage @10
+	GoIO_Sensor_DDSMem_GetCalibrationEquation @11
+	GoIO_Sensor_DDSMem_GetChecksum @12
+	GoIO_Sensor_DDSMem_GetCurrentRequirement @13
+	GoIO_Sensor_DDSMem_GetExperimentType @14
+	GoIO_Sensor_DDSMem_GetHighestValidCalPageIndex @15
+	GoIO_Sensor_DDSMem_GetLongName @16
+	GoIO_Sensor_DDSMem_GetLotCode @17
+	GoIO_Sensor_DDSMem_GetManufacturerID @18
+	GoIO_Sensor_DDSMem_GetMemMapVersion @19
+	GoIO_Sensor_DDSMem_GetMinSamplePeriod @20
+	GoIO_Sensor_DDSMem_GetOperationType @21
+	GoIO_Sensor_DDSMem_GetRecord @22
+	GoIO_Sensor_DDSMem_GetSensorNumber @23
+	GoIO_Sensor_DDSMem_GetSerialNumber @24
+	GoIO_Sensor_DDSMem_GetShortName @25
+	GoIO_Sensor_DDSMem_GetSignificantFigures @26
+	GoIO_Sensor_DDSMem_GetTypNumberofSamples @27
+	GoIO_Sensor_DDSMem_GetTypSamplePeriod @28
+	GoIO_Sensor_DDSMem_GetUncertainty @29
+	GoIO_Sensor_DDSMem_GetWarmUpTime @30
+	GoIO_Sensor_DDSMem_GetYmaxValue @31
+	GoIO_Sensor_DDSMem_GetYminValue @32
+	GoIO_Sensor_DDSMem_GetYscale @33
+	GoIO_Sensor_DDSMem_ReadRecord @34
+	GoIO_Sensor_DDSMem_SetActiveCalPage @35
+	GoIO_Sensor_DDSMem_SetAveraging @36
+	GoIO_Sensor_DDSMem_SetCalPage @37
+	GoIO_Sensor_DDSMem_SetCalibrationEquation @38
+	GoIO_Sensor_DDSMem_SetChecksum @39
+	GoIO_Sensor_DDSMem_SetCurrentRequirement @40
+	GoIO_Sensor_DDSMem_SetExperimentType @41
+	GoIO_Sensor_DDSMem_SetHighestValidCalPageIndex @42
+	GoIO_Sensor_DDSMem_SetLongName @43
+	GoIO_Sensor_DDSMem_SetLotCode @44
+	GoIO_Sensor_DDSMem_SetManufacturerID @45
+	GoIO_Sensor_DDSMem_SetMemMapVersion @46
+	GoIO_Sensor_DDSMem_SetMinSamplePeriod @47
+	GoIO_Sensor_DDSMem_SetOperationType @48
+	GoIO_Sensor_DDSMem_SetRecord @49
+	GoIO_Sensor_DDSMem_SetSensorNumber @50
+	GoIO_Sensor_DDSMem_SetSerialNumber @51
+	GoIO_Sensor_DDSMem_SetShortName @52
+	GoIO_Sensor_DDSMem_SetSignificantFigures @53
+	GoIO_Sensor_DDSMem_SetTypNumberofSamples @54
+	GoIO_Sensor_DDSMem_SetTypSamplePeriod @55
+	GoIO_Sensor_DDSMem_SetUncertainty @56
+	GoIO_Sensor_DDSMem_SetWarmUpTime @57
+	GoIO_Sensor_DDSMem_SetYmaxValue @58
+	GoIO_Sensor_DDSMem_SetYminValue @59
+	GoIO_Sensor_DDSMem_SetYscale @60
+	GoIO_Sensor_DDSMem_WriteRecord @61
+	GoIO_Sensor_GetLatestRawMeasurement @62
+	GoIO_Sensor_GetMaximumMeasurementPeriod @63
+	GoIO_Sensor_GetMeasurementPeriod @64
+	GoIO_Sensor_GetMeasurementTickInSeconds @65
+	GoIO_Sensor_GetMinimumMeasurementPeriod @66
+	GoIO_Sensor_GetNumMeasurementsAvailable @67
+	GoIO_Sensor_GetOpenDeviceName @68
+	GoIO_Sensor_GetProbeType @69
+	GoIO_Sensor_Lock @70
+	GoIO_Sensor_Open @71
+	GoIO_Sensor_ReadRawMeasurements @72
+	GoIO_Sensor_SendCmdAndGetResponse @73
+	GoIO_Sensor_SetMeasurementPeriod @74
+	GoIO_Sensor_Unlock @75
+	GoIO_Uninit @76
+	GoIO_UpdateListOfAvailableDevices @77
+	GoIO_GetDLLVersion @78

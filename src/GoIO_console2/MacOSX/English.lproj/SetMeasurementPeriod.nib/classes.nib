@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {finishDialog = id; }; 
+            CLASS = SetMeasurementPeriod; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {measurementPeriodField = NSTextField; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

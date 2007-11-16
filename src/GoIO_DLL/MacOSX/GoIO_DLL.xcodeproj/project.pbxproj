@@ -1,0 +1,1073 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		37823F7C09CF5786006F5708 /* Build_All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 37823F8B09CF57A5006F5708 /* Build configuration list for PBXAggregateTarget "Build_All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				37823F7E09CF578C006F5708 /* PBXTargetDependency */,
+				37823F8009CF5790006F5708 /* PBXTargetDependency */,
+				37823F8209CF5793006F5708 /* PBXTargetDependency */,
+			);
+			name = Build_All;
+			productName = Build_All;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		375CF876082936A600E72754 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375CF875082936A600E72754 /* Carbon.framework */; };
+		375CF877082936A600E72754 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375CF875082936A600E72754 /* Carbon.framework */; };
+		375CF878082936A600E72754 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375CF875082936A600E72754 /* Carbon.framework */; };
+		377F450809CF113A00459310 /* GoIO_SDK_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3B23FD1607B149C500C0FC78 /* GoIO_SDK_Prefix.pch */; };
+		37D38D4E0829024D0040F9AB /* GMBLSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C5B07D772CF00AAA86F /* GMBLSensor.h */; };
+		37D38D50082902590040F9AB /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */; };
+		37D38D510829025A0040F9AB /* GCyclopsDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B8FCD7F07CED5DA003DDFBB /* GCyclopsDevice.h */; settings = {ATTRIBUTES = (); }; };
+		37D38D520829025B0040F9AB /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */; };
+		37D38D540829025C0040F9AB /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */; };
+		37D38D550829025D0040F9AB /* GMBLSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C5B07D772CF00AAA86F /* GMBLSensor.h */; };
+		37D38D560829025D0040F9AB /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */; };
+		37D38D570829025F0040F9AB /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66DC07BC5E0D005E35A3 /* GoIO_DLL_interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37D38D59082902600040F9AB /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA7E07B1749A0075EF6B /* GPortRef.cpp */; };
+		37D38D5B082902610040F9AB /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7707D7731100AAA86F /* GSensorDDSMem.h */; };
+		37D38D5C082902620040F9AB /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAF607B1781E0075EF6B /* GSkipBaseDevice.cpp */; };
+		37D38D5E082902630040F9AB /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAE107B178090075EF6B /* GSkipBaseDevice_Mac.cpp */; };
+		37D38D5F082902640040F9AB /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7907D7731100AAA86F /* GSkipCommExt.h */; };
+		37D38D60082902640040F9AB /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD607B177F10075EF6B /* GSkipDevice.cpp */; };
+		37D38D61082902650040F9AB /* GSkipDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C6507D772EA00AAA86F /* GSkipDevice.h */; };
+		37D38D62082902650040F9AB /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAB907B177340075EF6B /* GTextUtils.cpp */; };
+		37D38D64082902670040F9AB /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA6707B174820075EF6B /* GThread.cpp */; };
+		37D38D66082902680040F9AB /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA8D07B174AA0075EF6B /* GThread_Mac.cpp */; };
+		37D38D67082902690040F9AB /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B864A7A07BA788700A6A926 /* GTypes.h */; };
+		37D38D680829026A0040F9AB /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD007B177E70075EF6B /* GUSBDirectTempDevice.cpp */; };
+		37D38D690829026B0040F9AB /* GUSBDirectTempDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C6307D772E600AAA86F /* GUSBDirectTempDevice.h */; };
+		37D38D6A0829026B0040F9AB /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B468DFA07B14AC4003D06B9 /* GUtils.cpp */; };
+		37D38D6B0829026C0040F9AB /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B468DF607B14AB2003D06B9 /* GUtils.h */; };
+		37D38D6C0829026D0040F9AB /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */; };
+		37D38D6D0829026E0040F9AB /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7607D7731100AAA86F /* GVernierUSB.h */; };
+		37D38D6E082902750040F9AB /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */; };
+		37D38D700829027E0040F9AB /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0807B178820075EF6B /* VST_USB.h */; };
+		37D38D710829027E0040F9AB /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0907B178820075EF6B /* VST_USBTypes.h */; };
+		37D38D720829027F0040F9AB /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0607B178820075EF6B /* VST_Errors.h */; };
+		37D38D78082902DF0040F9AB /* libGoIO_DLL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37D38CB8082901EA0040F9AB /* libGoIO_DLL.framework */; };
+		37D38D7C082903B30040F9AB /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0607B178820075EF6B /* VST_Errors.h */; };
+		37D38D7D082903B40040F9AB /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0807B178820075EF6B /* VST_USB.h */; };
+		37D38D7E082903B40040F9AB /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0907B178820075EF6B /* VST_USBTypes.h */; };
+		37D38D8A0829058D0040F9AB /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
+		37DBA4BB09D1A1650045739A /* libGoIO_DLL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B68BA4007B1732A0075EF6B /* libGoIO_DLL.dylib */; };
+		3B68BA4A07B1736C0075EF6B /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B468DF607B14AB2003D06B9 /* GUtils.h */; };
+		3B68BE9907B3D9780075EF6B /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */; };
+		3B68BE9B07B3D9780075EF6B /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */; };
+		3B68BE9D07B3D9780075EF6B /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA7E07B1749A0075EF6B /* GPortRef.cpp */; };
+		3B68BE9F07B3D9780075EF6B /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAF607B1781E0075EF6B /* GSkipBaseDevice.cpp */; };
+		3B68BEA107B3D9780075EF6B /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAE107B178090075EF6B /* GSkipBaseDevice_Mac.cpp */; };
+		3B68BEA207B3D9780075EF6B /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD607B177F10075EF6B /* GSkipDevice.cpp */; };
+		3B68BEA507B3D9780075EF6B /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAB907B177340075EF6B /* GTextUtils.cpp */; };
+		3B68BEA707B3D9780075EF6B /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA6707B174820075EF6B /* GThread.cpp */; };
+		3B68BEA907B3D9780075EF6B /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA8D07B174AA0075EF6B /* GThread_Mac.cpp */; };
+		3B68BEAA07B3D9780075EF6B /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD007B177E70075EF6B /* GUSBDirectTempDevice.cpp */; };
+		3B68BEAD07B3D9780075EF6B /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B468DFA07B14AC4003D06B9 /* GUtils.cpp */; };
+		3B68BEAF07B3D9780075EF6B /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */; };
+		3B68BF4C07B3DA3D0075EF6B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */; };
+		3B6A62DF07BC4D48005E35A3 /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B468DF607B14AB2003D06B9 /* GUtils.h */; };
+		3B6A62E007BC4D48005E35A3 /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B864A7A07BA788700A6A926 /* GTypes.h */; };
+		3B6A62E207BC4D52005E35A3 /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */; };
+		3B6A62E307BC4D52005E35A3 /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */; };
+		3B6A62E407BC4D52005E35A3 /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA7E07B1749A0075EF6B /* GPortRef.cpp */; };
+		3B6A62E507BC4D52005E35A3 /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAF607B1781E0075EF6B /* GSkipBaseDevice.cpp */; };
+		3B6A62E607BC4D52005E35A3 /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAE107B178090075EF6B /* GSkipBaseDevice_Mac.cpp */; };
+		3B6A62E707BC4D52005E35A3 /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD607B177F10075EF6B /* GSkipDevice.cpp */; };
+		3B6A62E907BC4D52005E35A3 /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAB907B177340075EF6B /* GTextUtils.cpp */; };
+		3B6A62EA07BC4D52005E35A3 /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA6707B174820075EF6B /* GThread.cpp */; };
+		3B6A62EB07BC4D52005E35A3 /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA8D07B174AA0075EF6B /* GThread_Mac.cpp */; };
+		3B6A62EC07BC4D52005E35A3 /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BAD007B177E70075EF6B /* GUSBDirectTempDevice.cpp */; };
+		3B6A62EE07BC4D52005E35A3 /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B468DFA07B14AC4003D06B9 /* GUtils.cpp */; };
+		3B6A62EF07BC4D52005E35A3 /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */; };
+		3B6A641B07BC4D60005E35A3 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */; };
+		3B6A66B907BC5CD8005E35A3 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */; };
+		3B6A66C207BC5D25005E35A3 /* libGoIO_DLL.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B6A62D007BC4C44005E35A3 /* libGoIO_DLL.a */; };
+		3B6A66DD07BC5E0D005E35A3 /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66DC07BC5E0D005E35A3 /* GoIO_DLL_interface.h */; };
+		3B75919607C0247800E21BA7 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */; };
+		3B864A7B07BA788700A6A926 /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B864A7A07BA788700A6A926 /* GTypes.h */; };
+		3B8FCD8007CED5DA003DDFBB /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */; };
+		3B8FCD8107CED5DA003DDFBB /* GCyclopsDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B8FCD7F07CED5DA003DDFBB /* GCyclopsDevice.h */; };
+		3BB82C5C07D772CF00AAA86F /* GMBLSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C5B07D772CF00AAA86F /* GMBLSensor.h */; };
+		3BB82C6407D772E600AAA86F /* GUSBDirectTempDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C6307D772E600AAA86F /* GUSBDirectTempDevice.h */; };
+		3BB82C6607D772EA00AAA86F /* GSkipDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C6507D772EA00AAA86F /* GSkipDevice.h */; };
+		3BB82C7A07D7731100AAA86F /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7607D7731100AAA86F /* GVernierUSB.h */; };
+		3BB82C7B07D7731100AAA86F /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7707D7731100AAA86F /* GSensorDDSMem.h */; };
+		3BB82C7D07D7731100AAA86F /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BB82C7907D7731100AAA86F /* GSkipCommExt.h */; };
+		3BB82C8207D7737700AAA86F /* GCyclopsDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B8FCD7F07CED5DA003DDFBB /* GCyclopsDevice.h */; };
+		3BB82C8307D7737F00AAA86F /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */; };
+		A16F2DC707D37F4200C855E6 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
+		A16F2DC807D37F4200C855E6 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
+		C419BDB40CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */; };
+		C419BDB50CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */; };
+		C419BDB60CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */; };
+		C422A9170C0E176C005B8055 /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C422A9020C0E161F005B8055 /* VST_USB.c */; };
+		C422A9180C0E176D005B8055 /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C422A9020C0E161F005B8055 /* VST_USB.c */; };
+		C422A9190C0E176E005B8055 /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C422A9020C0E161F005B8055 /* VST_USB.c */; };
+		C422A9E40C0E18B3005B8055 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422A9E10C0E18B3005B8055 /* AppKit.framework */; };
+		C422A9E50C0E18B3005B8055 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422A9E10C0E18B3005B8055 /* AppKit.framework */; };
+		C422A9E60C0E18B3005B8055 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422A9E10C0E18B3005B8055 /* AppKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		377B86B109CF14F400553B4B /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+		377B86B609CF153900553B4B /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+		377F451409CF120800459310 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		37823F7D09CF578C006F5708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37D38CB7082901EA0040F9AB;
+			remoteInfo = libGoIO_DLL;
+		};
+		37823F7F09CF5790006F5708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B6A62CF07BC4C44005E35A3;
+			remoteInfo = "GoIO_DLL (static)";
+		};
+		37823F8109CF5793006F5708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B68BA3F07B1732A0075EF6B;
+			remoteInfo = "GoIO_DLL (dynamic)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37D38D77082902920040F9AB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
+			dstSubfolderSpec = 16;
+			files = (
+				37D38D78082902DF0040F9AB /* libGoIO_DLL.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6A66BF07BC5CE7005E35A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
+			dstSubfolderSpec = 16;
+			files = (
+				37DBA4BB09D1A1650045739A /* libGoIO_DLL.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6A66C107BC5D16005E35A3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
+			dstSubfolderSpec = 16;
+			files = (
+				3B6A66C207BC5D25005E35A3 /* libGoIO_DLL.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		375CF875082936A600E72754 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		37D38CB8082901EA0040F9AB /* libGoIO_DLL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libGoIO_DLL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B23FD1607B149C500C0FC78 /* GoIO_SDK_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GoIO_SDK_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		3B468DF607B14AB2003D06B9 /* GUtils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GUtils.h; path = ../../GoIO_cpp/GUtils.h; sourceTree = SOURCE_ROOT; };
+		3B468DFA07B14AC4003D06B9 /* GUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GUtils.cpp; path = ../../GoIO_cpp/GUtils.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BA4007B1732A0075EF6B /* libGoIO_DLL.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libGoIO_DLL.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GUtils_Mac.cpp; path = ../../GoIO_cpp/MacOSX/GUtils_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BA6707B174820075EF6B /* GThread.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GThread.cpp; path = ../../GoIO_cpp/GThread.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BA6807B174820075EF6B /* GThread.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GThread.h; path = ../../GoIO_cpp/GThread.h; sourceTree = SOURCE_ROOT; };
+		3B68BA7E07B1749A0075EF6B /* GPortRef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GPortRef.cpp; path = ../../GoIO_cpp/GPortRef.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BA7F07B1749A0075EF6B /* GPortRef.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GPortRef.h; path = ../../GoIO_cpp/GPortRef.h; sourceTree = SOURCE_ROOT; };
+		3B68BA8D07B174AA0075EF6B /* GThread_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GThread_Mac.cpp; path = ../../GoIO_cpp/MacOSX/GThread_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BAB907B177340075EF6B /* GTextUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GTextUtils.cpp; path = ../../GoIO_cpp/GTextUtils.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BABA07B177340075EF6B /* GTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GTextUtils.h; path = ../../GoIO_cpp/GTextUtils.h; sourceTree = SOURCE_ROOT; };
+		3B68BAD007B177E70075EF6B /* GUSBDirectTempDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GUSBDirectTempDevice.cpp; path = ../../GoIO_cpp/GUSBDirectTempDevice.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BAD607B177F10075EF6B /* GSkipDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipDevice.cpp; path = ../../GoIO_cpp/GSkipDevice.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BAE107B178090075EF6B /* GSkipBaseDevice_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipBaseDevice_Mac.cpp; path = ../../GoIO_cpp/MacOSX/GSkipBaseDevice_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BAF607B1781E0075EF6B /* GSkipBaseDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipBaseDevice.cpp; path = ../../GoIO_cpp/GSkipBaseDevice.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BAF707B1781E0075EF6B /* GSkipBaseDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipBaseDevice.h; path = ../../GoIO_cpp/GSkipBaseDevice.h; sourceTree = SOURCE_ROOT; };
+		3B68BB0607B178820075EF6B /* VST_Errors.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VST_Errors.h; path = ../../GoIO_cpp/MacOSX/VST_USB/VST_Errors.h; sourceTree = SOURCE_ROOT; };
+		3B68BB0807B178820075EF6B /* VST_USB.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VST_USB.h; path = ../../GoIO_cpp/MacOSX/VST_USB/VST_USB.h; sourceTree = SOURCE_ROOT; };
+		3B68BB0907B178820075EF6B /* VST_USBTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = VST_USBTypes.h; path = ../../GoIO_cpp/MacOSX/VST_USB/VST_USBTypes.h; sourceTree = SOURCE_ROOT; };
+		3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GDeviceIO.cpp; path = ../../GoIO_cpp/GDeviceIO.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BB2107B178EF0075EF6B /* GDeviceIO.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GDeviceIO.h; path = ../../GoIO_cpp/GDeviceIO.h; sourceTree = SOURCE_ROOT; };
+		3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GMBLSensor.cpp; path = ../../GoIO_cpp/GMBLSensor.cpp; sourceTree = SOURCE_ROOT; };
+		3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
+		3B6A62D007BC4C44005E35A3 /* libGoIO_DLL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGoIO_DLL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GoIO_DLL_interface.cpp; path = ../GoIO_DLL_interface.cpp; sourceTree = SOURCE_ROOT; };
+		3B6A66DC07BC5E0D005E35A3 /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../../../redist/include/GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
+		3B864A7A07BA788700A6A926 /* GTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GTypes.h; path = ../../GoIO_cpp/GTypes.h; sourceTree = SOURCE_ROOT; };
+		3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GCyclopsDevice.cpp; path = ../../GoIO_cpp/GCyclopsDevice.cpp; sourceTree = SOURCE_ROOT; };
+		3B8FCD7F07CED5DA003DDFBB /* GCyclopsDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GCyclopsDevice.h; path = ../../GoIO_cpp/GCyclopsDevice.h; sourceTree = SOURCE_ROOT; };
+		3BA657D707B151BE007165EA /* exported_symbols */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = exported_symbols; sourceTree = SOURCE_ROOT; };
+		3BB82C5B07D772CF00AAA86F /* GMBLSensor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GMBLSensor.h; path = ../../GoIO_cpp/GMBLSensor.h; sourceTree = SOURCE_ROOT; };
+		3BB82C6307D772E600AAA86F /* GUSBDirectTempDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GUSBDirectTempDevice.h; path = ../../GoIO_cpp/GUSBDirectTempDevice.h; sourceTree = SOURCE_ROOT; };
+		3BB82C6507D772EA00AAA86F /* GSkipDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipDevice.h; path = ../../GoIO_cpp/GSkipDevice.h; sourceTree = SOURCE_ROOT; };
+		3BB82C7607D7731100AAA86F /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../../redist/include/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
+		3BB82C7707D7731100AAA86F /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../../redist/include/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
+		3BB82C7907D7731100AAA86F /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipCommExt.h; path = ../../../redist/include/GSkipCommExt.h; sourceTree = SOURCE_ROOT; };
+		A16F2DC607D37F4200C855E6 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../GoIO_cpp/MacOSX/stdafx.h; sourceTree = SOURCE_ROOT; };
+		C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GDeviceToHostUSBTypes.h; path = ../../GoIO_cpp/MacOSX/VST_USB/GDeviceToHostUSBTypes.h; sourceTree = SOURCE_ROOT; };
+		C422A9020C0E161F005B8055 /* VST_USB.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = VST_USB.c; path = ../../GoIO_cpp/MacOSX/VST_USB/VST_USB.c; sourceTree = SOURCE_ROOT; };
+		C422A9E10C0E18B3005B8055 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		C49E70A50B6ED27000F26E93 /* libGoIO_DLL-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "libGoIO_DLL-Info.plist"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37D38CB6082901EA0040F9AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D38D6E082902750040F9AB /* IOKit.framework in Frameworks */,
+				375CF876082936A600E72754 /* Carbon.framework in Frameworks */,
+				C422A9E40C0E18B3005B8055 /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B68BA3E07B1732A0075EF6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B68BF4C07B3DA3D0075EF6B /* IOKit.framework in Frameworks */,
+				375CF878082936A600E72754 /* Carbon.framework in Frameworks */,
+				C422A9E60C0E18B3005B8055 /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6A62CE07BC4C44005E35A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B6A641B07BC4D60005E35A3 /* IOKit.framework in Frameworks */,
+				375CF877082936A600E72754 /* Carbon.framework in Frameworks */,
+				C422A9E50C0E18B3005B8055 /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* GoIO_DLL */ = {
+			isa = PBXGroup;
+			children = (
+				3BCB1D5607B1406E0067F878 /* Interface */,
+				3BCB1D5707B140760067F878 /* Implementation */,
+				08FB7795FE84155DC02AAC07 /* Other Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				3B68BEB207B3D9EE0075EF6B /* Frameworks */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				C49E70A50B6ED27000F26E93 /* libGoIO_DLL-Info.plist */,
+			);
+			name = GoIO_DLL;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Other Source */ = {
+			isa = PBXGroup;
+			children = (
+				3BA657D707B151BE007165EA /* exported_symbols */,
+				3B23FD1607B149C500C0FC78 /* GoIO_SDK_Prefix.pch */,
+			);
+			name = "Other Source";
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B68BA4007B1732A0075EF6B /* libGoIO_DLL.dylib */,
+				3B6A62D007BC4C44005E35A3 /* libGoIO_DLL.a */,
+				37D38CB8082901EA0040F9AB /* libGoIO_DLL.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B468DE007B14A77003D06B9 /* Cross-Platform */ = {
+			isa = PBXGroup;
+			children = (
+				3BB82C5B07D772CF00AAA86F /* GMBLSensor.h */,
+				3BB82C6507D772EA00AAA86F /* GSkipDevice.h */,
+				3BB82C6307D772E600AAA86F /* GUSBDirectTempDevice.h */,
+				3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */,
+				3B8FCD7F07CED5DA003DDFBB /* GCyclopsDevice.h */,
+				3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */,
+				3B68BB2107B178EF0075EF6B /* GDeviceIO.h */,
+				3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */,
+				3B68BA7E07B1749A0075EF6B /* GPortRef.cpp */,
+				3B68BA7F07B1749A0075EF6B /* GPortRef.h */,
+				3B68BAF607B1781E0075EF6B /* GSkipBaseDevice.cpp */,
+				3B68BAF707B1781E0075EF6B /* GSkipBaseDevice.h */,
+				3B68BAE107B178090075EF6B /* GSkipBaseDevice_Mac.cpp */,
+				3B68BAD607B177F10075EF6B /* GSkipDevice.cpp */,
+				3B68BAB907B177340075EF6B /* GTextUtils.cpp */,
+				3B68BABA07B177340075EF6B /* GTextUtils.h */,
+				3B68BA6707B174820075EF6B /* GThread.cpp */,
+				3B68BA6807B174820075EF6B /* GThread.h */,
+				3B68BA8D07B174AA0075EF6B /* GThread_Mac.cpp */,
+				3B864A7A07BA788700A6A926 /* GTypes.h */,
+				3B68BAD007B177E70075EF6B /* GUSBDirectTempDevice.cpp */,
+				3B468DFA07B14AC4003D06B9 /* GUtils.cpp */,
+				3B468DF607B14AB2003D06B9 /* GUtils.h */,
+				3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */,
+			);
+			name = "Cross-Platform";
+			sourceTree = "<group>";
+		};
+		3B468E0207B14AD6003D06B9 /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */,
+				3B68BB0807B178820075EF6B /* VST_USB.h */,
+				C422A9020C0E161F005B8055 /* VST_USB.c */,
+				3B68BB0607B178820075EF6B /* VST_Errors.h */,
+				3B68BB0907B178820075EF6B /* VST_USBTypes.h */,
+				A16F2DC607D37F4200C855E6 /* stdafx.h */,
+			);
+			name = MacOSX;
+			sourceTree = "<group>";
+		};
+		3B68BEB207B3D9EE0075EF6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C422A9E10C0E18B3005B8055 /* AppKit.framework */,
+				375CF875082936A600E72754 /* Carbon.framework */,
+				3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BCB1D5607B1406E0067F878 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				3B6A66DC07BC5E0D005E35A3 /* GoIO_DLL_interface.h */,
+				3BB82C7607D7731100AAA86F /* GVernierUSB.h */,
+				3BB82C7707D7731100AAA86F /* GSensorDDSMem.h */,
+				3BB82C7907D7731100AAA86F /* GSkipCommExt.h */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		3BCB1D5707B140760067F878 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */,
+				3B468E0207B14AD6003D06B9 /* MacOSX */,
+				3B468DE007B14A77003D06B9 /* Cross-Platform */,
+			);
+			name = Implementation;
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		37D38CB3082901EA0040F9AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D38D510829025A0040F9AB /* GCyclopsDevice.h in Headers */,
+				37D38D550829025D0040F9AB /* GMBLSensor.h in Headers */,
+				37D38D570829025F0040F9AB /* GoIO_DLL_interface.h in Headers */,
+				37D38D5B082902610040F9AB /* GSensorDDSMem.h in Headers */,
+				37D38D5F082902640040F9AB /* GSkipCommExt.h in Headers */,
+				37D38D61082902650040F9AB /* GSkipDevice.h in Headers */,
+				37D38D67082902690040F9AB /* GTypes.h in Headers */,
+				37D38D690829026B0040F9AB /* GUSBDirectTempDevice.h in Headers */,
+				37D38D6B0829026C0040F9AB /* GUtils.h in Headers */,
+				37D38D6D0829026E0040F9AB /* GVernierUSB.h in Headers */,
+				37D38D700829027E0040F9AB /* VST_USB.h in Headers */,
+				37D38D710829027E0040F9AB /* VST_USBTypes.h in Headers */,
+				37D38D720829027F0040F9AB /* VST_Errors.h in Headers */,
+				37D38D8A0829058D0040F9AB /* stdafx.h in Headers */,
+				C419BDB40CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B68BA3C07B1732A0075EF6B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B68BA4A07B1736C0075EF6B /* GUtils.h in Headers */,
+				3B864A7B07BA788700A6A926 /* GTypes.h in Headers */,
+				3B6A66DD07BC5E0D005E35A3 /* GoIO_DLL_interface.h in Headers */,
+				3B8FCD8107CED5DA003DDFBB /* GCyclopsDevice.h in Headers */,
+				A16F2DC707D37F4200C855E6 /* stdafx.h in Headers */,
+				3BB82C5C07D772CF00AAA86F /* GMBLSensor.h in Headers */,
+				3BB82C6407D772E600AAA86F /* GUSBDirectTempDevice.h in Headers */,
+				3BB82C6607D772EA00AAA86F /* GSkipDevice.h in Headers */,
+				3BB82C7A07D7731100AAA86F /* GVernierUSB.h in Headers */,
+				3BB82C7B07D7731100AAA86F /* GSensorDDSMem.h in Headers */,
+				3BB82C7D07D7731100AAA86F /* GSkipCommExt.h in Headers */,
+				37D38D7C082903B30040F9AB /* VST_Errors.h in Headers */,
+				37D38D7D082903B40040F9AB /* VST_USB.h in Headers */,
+				37D38D7E082903B40040F9AB /* VST_USBTypes.h in Headers */,
+				377F450809CF113A00459310 /* GoIO_SDK_Prefix.pch in Headers */,
+				C419BDB60CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6A62CC07BC4C44005E35A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB82C8207D7737700AAA86F /* GCyclopsDevice.h in Headers */,
+				3B6A62DF07BC4D48005E35A3 /* GUtils.h in Headers */,
+				3B6A62E007BC4D48005E35A3 /* GTypes.h in Headers */,
+				A16F2DC807D37F4200C855E6 /* stdafx.h in Headers */,
+				37D38D4E0829024D0040F9AB /* GMBLSensor.h in Headers */,
+				C419BDB50CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		37D38CB7082901EA0040F9AB /* libGoIO_DLL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 377F44ED09CF0FFE00459310 /* Build configuration list for PBXNativeTarget "libGoIO_DLL" */;
+			buildPhases = (
+				37D38CB3082901EA0040F9AB /* Headers */,
+				37D38CB4082901EA0040F9AB /* Resources */,
+				37D38CB5082901EA0040F9AB /* Sources */,
+				37D38CB6082901EA0040F9AB /* Frameworks */,
+				37D38D77082902920040F9AB /* CopyFiles */,
+			);
+			buildRules = (
+				377F451409CF120800459310 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = libGoIO_DLL;
+			productName = libGoIO_DLL;
+			productReference = 37D38CB8082901EA0040F9AB /* libGoIO_DLL.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3B68BA3F07B1732A0075EF6B /* GoIO_DLL (dynamic) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 377F44E509CF0FFE00459310 /* Build configuration list for PBXNativeTarget "GoIO_DLL (dynamic)" */;
+			buildPhases = (
+				3B68BA3C07B1732A0075EF6B /* Headers */,
+				3B68BA3D07B1732A0075EF6B /* Sources */,
+				3B68BA3E07B1732A0075EF6B /* Frameworks */,
+				3B6A66BF07BC5CE7005E35A3 /* CopyFiles */,
+			);
+			buildRules = (
+				377B86B609CF153900553B4B /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = "GoIO_DLL (dynamic)";
+			productName = "GoIO_DLL (dynamic)";
+			productReference = 3B68BA4007B1732A0075EF6B /* libGoIO_DLL.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		3B6A62CF07BC4C44005E35A3 /* GoIO_DLL (static) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 377F44E909CF0FFE00459310 /* Build configuration list for PBXNativeTarget "GoIO_DLL (static)" */;
+			buildPhases = (
+				3B6A62CC07BC4C44005E35A3 /* Headers */,
+				3B6A62CD07BC4C44005E35A3 /* Sources */,
+				3B6A62CE07BC4C44005E35A3 /* Frameworks */,
+				3B6A66C107BC5D16005E35A3 /* CopyFiles */,
+			);
+			buildRules = (
+				377B86B109CF14F400553B4B /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = "GoIO_DLL (static)";
+			productName = "GoIO_DLL (static)";
+			productReference = 3B6A62D007BC4C44005E35A3 /* libGoIO_DLL.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 377F44F109CF0FFE00459310 /* Build configuration list for PBXProject "GoIO_DLL" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* GoIO_DLL */;
+			projectDirPath = "";
+			targets = (
+				3B68BA3F07B1732A0075EF6B /* GoIO_DLL (dynamic) */,
+				3B6A62CF07BC4C44005E35A3 /* GoIO_DLL (static) */,
+				37D38CB7082901EA0040F9AB /* libGoIO_DLL */,
+				37823F7C09CF5786006F5708 /* Build_All */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37D38CB4082901EA0040F9AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37D38CB5082901EA0040F9AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D38D50082902590040F9AB /* GCyclopsDevice.cpp in Sources */,
+				37D38D520829025B0040F9AB /* GDeviceIO.cpp in Sources */,
+				37D38D540829025C0040F9AB /* GMBLSensor.cpp in Sources */,
+				37D38D560829025D0040F9AB /* GoIO_DLL_interface.cpp in Sources */,
+				37D38D59082902600040F9AB /* GPortRef.cpp in Sources */,
+				37D38D5C082902620040F9AB /* GSkipBaseDevice.cpp in Sources */,
+				37D38D5E082902630040F9AB /* GSkipBaseDevice_Mac.cpp in Sources */,
+				37D38D60082902640040F9AB /* GSkipDevice.cpp in Sources */,
+				37D38D62082902650040F9AB /* GTextUtils.cpp in Sources */,
+				37D38D64082902670040F9AB /* GThread.cpp in Sources */,
+				37D38D66082902680040F9AB /* GThread_Mac.cpp in Sources */,
+				37D38D680829026A0040F9AB /* GUSBDirectTempDevice.cpp in Sources */,
+				37D38D6A0829026B0040F9AB /* GUtils.cpp in Sources */,
+				37D38D6C0829026D0040F9AB /* GUtils_Mac.cpp in Sources */,
+				C422A9170C0E176C005B8055 /* VST_USB.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B68BA3D07B1732A0075EF6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B68BE9907B3D9780075EF6B /* GDeviceIO.cpp in Sources */,
+				3B68BE9B07B3D9780075EF6B /* GMBLSensor.cpp in Sources */,
+				3B68BE9D07B3D9780075EF6B /* GPortRef.cpp in Sources */,
+				3B68BE9F07B3D9780075EF6B /* GSkipBaseDevice.cpp in Sources */,
+				3B68BEA107B3D9780075EF6B /* GSkipBaseDevice_Mac.cpp in Sources */,
+				3B68BEA207B3D9780075EF6B /* GSkipDevice.cpp in Sources */,
+				3B68BEA507B3D9780075EF6B /* GTextUtils.cpp in Sources */,
+				3B68BEA707B3D9780075EF6B /* GThread.cpp in Sources */,
+				3B68BEA907B3D9780075EF6B /* GThread_Mac.cpp in Sources */,
+				3B68BEAA07B3D9780075EF6B /* GUSBDirectTempDevice.cpp in Sources */,
+				3B68BEAD07B3D9780075EF6B /* GUtils.cpp in Sources */,
+				3B68BEAF07B3D9780075EF6B /* GUtils_Mac.cpp in Sources */,
+				3B6A66B907BC5CD8005E35A3 /* GoIO_DLL_interface.cpp in Sources */,
+				3B8FCD8007CED5DA003DDFBB /* GCyclopsDevice.cpp in Sources */,
+				C422A9190C0E176E005B8055 /* VST_USB.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B6A62CD07BC4C44005E35A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB82C8307D7737F00AAA86F /* GCyclopsDevice.cpp in Sources */,
+				3B6A62E207BC4D52005E35A3 /* GDeviceIO.cpp in Sources */,
+				3B6A62E307BC4D52005E35A3 /* GMBLSensor.cpp in Sources */,
+				3B6A62E407BC4D52005E35A3 /* GPortRef.cpp in Sources */,
+				3B6A62E507BC4D52005E35A3 /* GSkipBaseDevice.cpp in Sources */,
+				3B6A62E607BC4D52005E35A3 /* GSkipBaseDevice_Mac.cpp in Sources */,
+				3B6A62E707BC4D52005E35A3 /* GSkipDevice.cpp in Sources */,
+				3B6A62E907BC4D52005E35A3 /* GTextUtils.cpp in Sources */,
+				3B6A62EA07BC4D52005E35A3 /* GThread.cpp in Sources */,
+				3B6A62EB07BC4D52005E35A3 /* GThread_Mac.cpp in Sources */,
+				3B6A62EC07BC4D52005E35A3 /* GUSBDirectTempDevice.cpp in Sources */,
+				3B6A62EE07BC4D52005E35A3 /* GUtils.cpp in Sources */,
+				3B6A62EF07BC4D52005E35A3 /* GUtils_Mac.cpp in Sources */,
+				3B75919607C0247800E21BA7 /* GoIO_DLL_interface.cpp in Sources */,
+				C422A9180C0E176D005B8055 /* VST_USB.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37823F7E09CF578C006F5708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37D38CB7082901EA0040F9AB /* libGoIO_DLL */;
+			targetProxy = 37823F7D09CF578C006F5708 /* PBXContainerItemProxy */;
+		};
+		37823F8009CF5790006F5708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B6A62CF07BC4C44005E35A3 /* GoIO_DLL (static) */;
+			targetProxy = 37823F7F09CF5790006F5708 /* PBXContainerItemProxy */;
+		};
+		37823F8209CF5793006F5708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B68BA3F07B1732A0075EF6B /* GoIO_DLL (dynamic) */;
+			targetProxy = 37823F8109CF5793006F5708 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		377F44E609CF0FFE00459310 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DEBUGGING_SYMBOLS = full;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				INSTALL_PATH = "@executable_path";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x10000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		377F44E709CF0FFE00459310 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "@executable_path";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x10000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		377F44E809CF0FFE00459310 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "@executable_path";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x10000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		377F44EA09CF0FFE00459310 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = GoIO_DLL;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		377F44EB09CF0FFE00459310 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = GoIO_DLL;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		377F44EC09CF0FFE00459310 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				CURRENT_PROJECT_VERSION = 2.11;
+				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = GoIO_DLL;
+				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		377F44EE09CF0FFE00459310 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				INFOPLIST_FILE = "libGoIO_DLL-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		377F44EF09CF0FFE00459310 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "libGoIO_DLL-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		377F44F009CF0FFE00459310 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = exported_symbols;
+				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "libGoIO_DLL-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = libGoIO_DLL;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		377F44F209CF0FFE00459310 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREFIX_HEADER = GoIO_SDK_Prefix.pch;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEVELOPMENT_TARGET_i386 = 10.4;
+				MACOSX_DEVELOPMENT_TARGET_ppc = 10.3;
+				PREBINDING = YES;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+			};
+			name = Development;
+		};
+		377F44F309CF0FFE00459310 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PREFIX_HEADER = GoIO_SDK_Prefix.pch;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEVELOPMENT_TARGET_i386 = 10.4;
+				MACOSX_DEVELOPMENT_TARGET_ppc = 10.3;
+				PREBINDING = YES;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+			};
+			name = Deployment;
+		};
+		377F44F409CF0FFE00459310 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREFIX_HEADER = GoIO_SDK_Prefix.pch;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 3.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEVELOPMENT_TARGET_i386 = 10.4;
+				MACOSX_DEVELOPMENT_TARGET_ppc = 10.3;
+				PREBINDING = YES;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+			};
+			name = Default;
+		};
+		37823F8C09CF57A5006F5708 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Build_All;
+			};
+			name = Development;
+		};
+		37823F8D09CF57A5006F5708 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = Build_All;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		37823F8E09CF57A5006F5708 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Build_All;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		377F44E509CF0FFE00459310 /* Build configuration list for PBXNativeTarget "GoIO_DLL (dynamic)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				377F44E609CF0FFE00459310 /* Development */,
+				377F44E709CF0FFE00459310 /* Deployment */,
+				377F44E809CF0FFE00459310 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		377F44E909CF0FFE00459310 /* Build configuration list for PBXNativeTarget "GoIO_DLL (static)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				377F44EA09CF0FFE00459310 /* Development */,
+				377F44EB09CF0FFE00459310 /* Deployment */,
+				377F44EC09CF0FFE00459310 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		377F44ED09CF0FFE00459310 /* Build configuration list for PBXNativeTarget "libGoIO_DLL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				377F44EE09CF0FFE00459310 /* Development */,
+				377F44EF09CF0FFE00459310 /* Deployment */,
+				377F44F009CF0FFE00459310 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		377F44F109CF0FFE00459310 /* Build configuration list for PBXProject "GoIO_DLL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				377F44F209CF0FFE00459310 /* Development */,
+				377F44F309CF0FFE00459310 /* Deployment */,
+				377F44F409CF0FFE00459310 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		37823F8B09CF57A5006F5708 /* Build configuration list for PBXAggregateTarget "Build_All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37823F8C09CF57A5006F5708 /* Development */,
+				37823F8D09CF57A5006F5708 /* Deployment */,
+				37823F8E09CF57A5006F5708 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

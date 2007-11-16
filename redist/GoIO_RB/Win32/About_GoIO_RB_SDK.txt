@@ -1,0 +1,7 @@
+MacOSX -
+
+To Debug under MacOSX you will need a copy of libGoIO_DLL.dylib in the same folder as your project file.   Your built application will also need a copy of this file in its folder OR (if the application is placed in a bundle) in the Resource folder inside its bundle.
+
+Win32 -
+
+To Debug under Win32 you will need a copy of GoIO_DLL.dll in the same folder as your project file.   Your built application will NOT need a copy of this file in its folder.

@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                changeCalibration = id; 
+                changeDevice = id; 
+                getSensorID = id; 
+                getStatus = id; 
+                readTimer = id; 
+                setLED = id; 
+                setMeasurementPeriod = id; 
+                startCollection = id; 
+                stopCollection = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                calibrationsMenu = NSMenu; 
+                devicesMenu = NSMenu; 
+                graphView = GraphView; 
+                mainWindow = NSWindow; 
+                measurementField = NSTextField; 
+                startButton = NSButton; 
+                stopButton = NSButton; 
+                unitsField = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = GraphView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}

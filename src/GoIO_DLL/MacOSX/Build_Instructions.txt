@@ -1,0 +1,22 @@
+Go IO Build Instructions: Mac
+-- the place to record information about requirements and assumptions needed to build the GoIO library on OS X.
+
+
+
+Environment: Xcode 2.2
+
+Note: The library is currently set up to build using "Cross Development" feature of xCode.  The 10.2.8 Xcode cross development SDK must be installed by choosing a custom install of Developer tools. This allows us to build against headers as they were in 10.2.8 instead of whatever current headers are on the build system.
+
+SJB 3-20-2006 - Compiler set to GCC 3.3 for PowerPC versions of libs so they will work back to 10.2.8
+
+
+20070129 (JK) -- upgraded to Xcode 2.4.1 -- includes the following changes: 
+Re-added libGoIO_DLL-Info.plist and referenced as "relative to project". 
+Removed libGoIO_DLL-Info.plist from resource copy stage of framework product.
+Upgraded the bundle version from 1.0 to 2.15.
+Conditionalized the use of __isnan and __ifinite based on cpu -- i.e. x386 uses std imp (isnan(), isfinite() defined in cmath), and ppc uses the __isnand() and __isfinited() impelemtnation (which I also had to declare explicitly, I'm guessing due to some header file layout changes between 2.3 and 2.4 [???])
+Removed a memory leak found by Keypress/Fathom (also in LP since long ago, although always in a latent state).
+
+Note about versions: the plist gets applied to the framework product, and there is a version on the console2 application. Do a Get Info on the target that builds the particular product to change the version string in the Properties tab. Also, set the version in the SDK's main file. I am not sure whether we can associate a version with the .dylib or the .a product.
+
+Note: the information about the 10.2.8 SDK is still applicable. You have to install the SDK as a "Custom" setting from the Xcode 2.4.1 tools installer.
