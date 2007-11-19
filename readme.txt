@@ -35,12 +35,13 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.20
+Fixed a Mac bug which resulted in failure to open a connection to a Go! device connected via a USB hub.
+
 Version 2.19
 In order to work around a serious Mac OS 10.4 kernel memory leak (related to HID report writes), I've had to upgrade to HID Interface 122 to get access to the setReport() call. This means we have removed support for 10.2. We now only support 10.3 and higher -- and for best results, we recommend 10.3.9.
 
 Also, upgraded Mac VST_USB to match the head of line logger pro. This includes dynamic HID report-cookie discovery, and better IO failure diagnostics.
-
-Fixed a Mac bug which resulted in failure to open a connection to a Go! device connected via a USB hub.
 
 Version 2.18
 Backed out a workaround for a known Apple memory leak when instantiating a USB plugin interface; the workaround might have been causing some instability, and furthermore was not thread safe. To minimize these leaks, we recommend that Apple clients open and close the device as few times as possible during a session. The Windows code has no known leaks.

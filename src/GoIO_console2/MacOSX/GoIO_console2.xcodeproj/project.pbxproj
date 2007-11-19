@@ -12,10 +12,6 @@
 		3B68B91D07B160E50075EF6B /* GraphView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68B91B07B160E50075EF6B /* GraphView.h */; };
 		3B68B91E07B160E50075EF6B /* GraphView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B91C07B160E50075EF6B /* GraphView.mm */; };
 		3B68BB1407B178D50075EF6B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BB1307B178D50075EF6B /* IOKit.framework */; };
-		3B6A66FE07BC5EFC005E35A3 /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66F907BC5EFC005E35A3 /* GoIO_DLL_interface.h */; };
-		3B6A66FF07BC5EFC005E35A3 /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66FA07BC5EFC005E35A3 /* GSensorDDSMem.h */; };
-		3B6A670107BC5EFC005E35A3 /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66FC07BC5EFC005E35A3 /* GSkipCommExt.h */; };
-		3B6A670207BC5EFC005E35A3 /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6A66FD07BC5EFC005E35A3 /* GVernierUSB.h */; };
 		3B6A670B07BC5F40005E35A3 /* GoIO_console2.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* GoIO_console2.app */; };
 		3B78684807B5A66100CD1EF5 /* SetMeasurementPeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B78684607B5A66100CD1EF5 /* SetMeasurementPeriod.h */; };
 		3B78684907B5A66100CD1EF5 /* SetMeasurementPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B78684707B5A66100CD1EF5 /* SetMeasurementPeriod.m */; };
@@ -24,6 +20,10 @@
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C453C8540CF244D500BF1789 /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C453C8530CF244D500BF1789 /* GoIO_DLL_interface.h */; };
+		C453C8560CF244E200BF1789 /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C453C8550CF244E200BF1789 /* GSensorDDSMem.h */; };
+		C453C8580CF244ED00BF1789 /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C453C8570CF244ED00BF1789 /* GSkipCommExt.h */; };
+		C453C85A0CF244FA00BF1789 /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C453C8590CF244FA00BF1789 /* GVernierUSB.h */; };
 		E422BE4B06501D05000EF976 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = E422BE4906501D05000EF976 /* AppController.h */; };
 		E422BE4C06501D05000EF976 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E422BE4A06501D05000EF976 /* AppController.mm */; };
 		E4AC756C065037CE00044E80 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4AC756B065037CE00044E80 /* Carbon.framework */; };
@@ -63,15 +63,15 @@
 		3B68B91B07B160E50075EF6B /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
 		3B68B91C07B160E50075EF6B /* GraphView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GraphView.mm; sourceTree = "<group>"; };
 		3B68BB1307B178D50075EF6B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		3B6A66F907BC5EFC005E35A3 /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../../../redist/include/GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
-		3B6A66FA07BC5EFC005E35A3 /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../../redist/include/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
-		3B6A66FC07BC5EFC005E35A3 /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipCommExt.h; path = ../../../redist/include/GSkipCommExt.h; sourceTree = SOURCE_ROOT; };
-		3B6A66FD07BC5EFC005E35A3 /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../../redist/include/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
 		3B78684607B5A66100CD1EF5 /* SetMeasurementPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMeasurementPeriod.h; sourceTree = "<group>"; };
 		3B78684707B5A66100CD1EF5 /* SetMeasurementPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMeasurementPeriod.m; sourceTree = "<group>"; };
 		3B78687E07B5A99A00CD1EF5 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/SetMeasurementPeriod.nib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* GoIO_console2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoIO_console2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C453C8530CF244D500BF1789 /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../../GoIO_DLL/GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
+		C453C8550CF244E200BF1789 /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../GoIO_cpp/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
+		C453C8570CF244ED00BF1789 /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipCommExt.h; path = ../../GoIO_cpp/GSkipCommExt.h; sourceTree = SOURCE_ROOT; };
+		C453C8590CF244FA00BF1789 /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../GoIO_cpp/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
 		E422BE4906501D05000EF976 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		E422BE4A06501D05000EF976 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
 		E4AC756B065037CE00044E80 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -96,10 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				379E2B1409D080060023286B /* libGoIO_DLL.dylib */,
-				3B6A66F907BC5EFC005E35A3 /* GoIO_DLL_interface.h */,
-				3B6A66FA07BC5EFC005E35A3 /* GSensorDDSMem.h */,
-				3B6A66FC07BC5EFC005E35A3 /* GSkipCommExt.h */,
-				3B6A66FD07BC5EFC005E35A3 /* GVernierUSB.h */,
+				C453C8530CF244D500BF1789 /* GoIO_DLL_interface.h */,
+				C453C8550CF244E200BF1789 /* GSensorDDSMem.h */,
+				C453C8570CF244ED00BF1789 /* GSkipCommExt.h */,
+				C453C8590CF244FA00BF1789 /* GVernierUSB.h */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -196,10 +196,10 @@
 				E422BE4B06501D05000EF976 /* AppController.h in Headers */,
 				3B68B91D07B160E50075EF6B /* GraphView.h in Headers */,
 				3B78684807B5A66100CD1EF5 /* SetMeasurementPeriod.h in Headers */,
-				3B6A66FE07BC5EFC005E35A3 /* GoIO_DLL_interface.h in Headers */,
-				3B6A66FF07BC5EFC005E35A3 /* GSensorDDSMem.h in Headers */,
-				3B6A670107BC5EFC005E35A3 /* GSkipCommExt.h in Headers */,
-				3B6A670207BC5EFC005E35A3 /* GVernierUSB.h in Headers */,
+				C453C8540CF244D500BF1789 /* GoIO_DLL_interface.h in Headers */,
+				C453C8560CF244E200BF1789 /* GSensorDDSMem.h in Headers */,
+				C453C8580CF244ED00BF1789 /* GSkipCommExt.h in Headers */,
+				C453C85A0CF244FA00BF1789 /* GVernierUSB.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
