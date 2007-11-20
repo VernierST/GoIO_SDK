@@ -19,6 +19,7 @@
 #define IDC_PACKET_BYTE8                1011
 #define IDC_SEND_PACKET                 1012
 #define IDC_UNITS                       1013
+#define IDC_LIB_VERSION                 1014
 #define IDM_DEVICE0                     32771
 #define IDM_DEVICE1                     32772
 #define IDM_DEVICE2                     32773
@@ -48,7 +49,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32792
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

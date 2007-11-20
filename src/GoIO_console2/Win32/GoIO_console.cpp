@@ -118,7 +118,7 @@ public:
 // Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
-		// No message handlers
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -138,7 +138,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -158,4 +157,24 @@ int CGoIO_consoleApp::ExitInstance()
 	GoIO_Uninit();
 
 	return CWinApp::ExitInstance();
+}
+
+BOOL CAboutDlg::OnInitDialog() 
+{
+	gtype_uint16 majorVersion = 1;
+	gtype_uint16 minorVersion = 0;
+	char tmpstring[100];
+
+	CDialog::OnInitDialog();
+	
+	GoIO_GetDLLVersion(&majorVersion, &minorVersion);
+	CWnd *pWnd = GetDlgItem(IDC_LIB_VERSION);
+	if (pWnd)
+	{
+		sprintf(tmpstring, "This app is linked to GoIO library version %d.%02d", majorVersion, minorVersion);
+		pWnd->SetWindowText(tmpstring);
+	}
+	
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
 }

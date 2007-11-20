@@ -6,30 +6,30 @@
 --------------------Configuration: GoIO_DLL - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_DLL.res" /d "NDEBUG" "C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_DLL\Win32\GoIO_DLL.rc"" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP18.tmp" with contents
+Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_DLL.res" /d "NDEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\GoIO_DLL.rc"" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSPEE.tmp" with contents
 [
 /nologo /MT /W3 /GR /GX /O2 /I "..\GoIO_cpp" /I "..\GoIO_cpp\Win32" /I "." /I ".." /I "..\..\GoIO_cpp" /I "..\..\GoIO_cpp\Win32" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_MBCS" /D "_USRDLL" /D "TARGET_OS_WIN" /D "_GOIO_DLL_SRC" /Fo"Release/" /Fd"Release/" /FD /c 
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GCyclopsDevice.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GDeviceIO.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GMBLSensor.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_DLL\Win32\GoIO_DLL.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_DLL\GoIO_DLL_interface.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GPortRef.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GSkipBaseDevice.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\Win32\GSkipBaseDevice_Win.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GSkipDevice.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GTextUtils.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GThread.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\Win32\GThread_Win.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GUSBDirectTempDevice.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\GUtils.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\Win32\GUtils_Win.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_DLL\Win32\StdAfx.cpp"
-"C:\depot\GoIO_SDK\GoIO_SDK_2_19\src\GoIO_cpp\Win32\WinEnumDevices.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GCyclopsDevice.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GDeviceIO.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GMBLSensor.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\GoIO_DLL.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\GoIO_DLL_interface.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GPortRef.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GSkipBaseDevice.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\GSkipBaseDevice_Win.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GSkipDevice.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GTextUtils.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GThread.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\GThread_Win.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GUSBDirectTempDevice.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GUtils.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\GUtils_Win.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\StdAfx.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\WinEnumDevices.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP18.tmp" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP19.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSPEE.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSPEF.tmp" with contents
 [
 /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/GoIO_DLL.pdb" /machine:I386 /def:".\GoIO_DLL.def" /out:"Release/GoIO_DLL.dll" /implib:"Release/GoIO_DLL.lib" 
 .\Release\GCyclopsDevice.obj
@@ -51,7 +51,7 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP19.tmp" with cont
 .\Release\WinEnumDevices.obj
 .\Release\GoIO_DLL.res
 ]
-Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP19.tmp"
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSPEF.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...
