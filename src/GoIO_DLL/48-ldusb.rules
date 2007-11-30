@@ -1,0 +1,2 @@
+# ldusb devices
+KERNEL=="ldusb*",		NAME="%k", GROUP="plugdev"
