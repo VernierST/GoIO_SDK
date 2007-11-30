@@ -9,3 +9,4 @@ enum { SKIP_DEFAULT_PRODUCT_ID = 0x0003 };
 enum { CYCLOPS_DEFAULT_PRODUCT_ID = 0x0004 };	
 
 #endif // _GVERNIERUSB_H_
+

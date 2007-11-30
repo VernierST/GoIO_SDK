@@ -30,7 +30,6 @@
 	#endif
 #endif
 
-
 class GFileRef;
 
 class GUtils

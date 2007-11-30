@@ -1477,3 +1477,4 @@ GDeviceRect GTextUtils::GetBestRectForText( cppstring sText, const GDeviceRect &
 	return bestRect;
 }
 */
+

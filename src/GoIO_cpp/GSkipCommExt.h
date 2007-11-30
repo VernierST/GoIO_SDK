@@ -36,7 +36,7 @@
 //Commands defined above are supported by Skip, Jonah, and Cyclops, except that Cyclops does not support the serial # or the NV_MEM cmds.
 //Skip extensions:
 #define SKIP_CMD_ID_SET_VIN_OFFSET_DAC 0x1F
-#define SKIP_CMD_ID_WRITE_REMOTE_NV_MEM_1BYTE 0x21	
+#define SKIP_CMD_ID_WRITE_REMOTE_NV_MEM_1BYTE 0x21
 #define SKIP_CMD_ID_WRITE_REMOTE_NV_MEM_2BYTES 0x22
 #define SKIP_CMD_ID_WRITE_REMOTE_NV_MEM_3BYTES 0x23
 #define SKIP_CMD_ID_WRITE_REMOTE_NV_MEM_4BYTES 0x24
@@ -58,11 +58,13 @@
 /***************************************************************************************************/
 //
 
-#ifdef TARGET_OS_WIN
+#if defined (TARGET_OS_WIN)
 #pragma pack(push)
 #pragma pack(1)
-#else
-#pragma options align=packed
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack(1)
 #endif
 
 // The structures below define the parameter and response blocks associated with the commands defined above.
@@ -94,7 +96,7 @@ typedef struct
 //then the SKIP_CMD_ID_INIT command is just ignored while the device is powering up.
 //The device is able to respond while it is still powering up because USB communication is established before the Go Link finishes
 //powering up its slave processor. All commands other than SKIP_CMD_ID_INIT are always ignored while the device is powering up.
-#define SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS 4000
+#define SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS 6000
 #define SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS 400
 //Go Link responds fast enough to set SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS to 100. PC's can be slow, so we use 400.
 
@@ -106,7 +108,7 @@ typedef struct
 	unsigned char msbyteMswordMeasurementPeriod;
 } GSkipSetMeasurementPeriodParams; //Parameter block passed into SendCmd() with SKIP_CMD_ID_SET_MEASUREMENT_PERIOD.
 
-typedef GSkipSetMeasurementPeriodParams GSkipGetMeasurementPeriodCmdResponsePayload;//This is the response payload returned by GetNextResponse() 
+typedef GSkipSetMeasurementPeriodParams GSkipGetMeasurementPeriodCmdResponsePayload;//This is the response payload returned by GetNextResponse()
 																					//after sending SKIP_CMD_ID_GET_MEASUREMENT_PERIOD.
 
 /***************************************************************************************************/
@@ -125,12 +127,12 @@ typedef enum
 	kLEDSettings_Orange
 } ELEDSettings;
 
-const unsigned char kLEDOff = SKIP_LED_COLOR_BLACK;
-const unsigned char kLEDRed = SKIP_LED_COLOR_RED;
-const unsigned char kLEDGreen = SKIP_LED_COLOR_GREEN;
-const unsigned char kLEDOrange = SKIP_LED_COLOR_RED_GREEN;
-const unsigned char kSkipMaxLedBrightness = SKIP_LED_BRIGHTNESS_MAX;
-const unsigned char kSkipOrangeLedBrightness = 4;
+static const unsigned char kLEDOff = SKIP_LED_COLOR_BLACK;
+static const unsigned char kLEDRed = SKIP_LED_COLOR_RED;
+static const unsigned char kLEDGreen = SKIP_LED_COLOR_GREEN;
+static const unsigned char kLEDOrange = SKIP_LED_COLOR_RED_GREEN;
+static const unsigned char kSkipMaxLedBrightness = SKIP_LED_BRIGHTNESS_MAX;
+static const unsigned char kSkipOrangeLedBrightness = 4;
 
 typedef struct
 {
@@ -154,7 +156,7 @@ typedef struct
 	unsigned char analogInputChannel; //See SKIP_ANALOG_INPUT_CHANNEL definitions.
 } GSkipSetAnalogInputChannelParams;//Parameter block passed into SendCmd() with SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL.
 
-typedef GSkipSetAnalogInputChannelParams GSkipGetAnalogInputChannelResponsePayload; //This is the response payload returned by GetNextResponse() 
+typedef GSkipSetAnalogInputChannelParams GSkipGetAnalogInputChannelResponsePayload; //This is the response payload returned by GetNextResponse()
 //after sending SKIP_CMD_ID_GET_ANALOG_INPUT_CHANNEL.
 
 /***************************************************************************************************/
@@ -163,7 +165,7 @@ typedef struct
 	char dacSetting;
 } GSkipSetVinOffsetDacParams;//Parameter block passed into SendCmd() with SKIP_CMD_ID_SET_VIN_OFFSET_DAC.
 
-typedef GSkipSetVinOffsetDacParams GSkipGetVinOffsetDacResponsePayload; //This is the response payload returned by GetNextResponse() 
+typedef GSkipSetVinOffsetDacParams GSkipGetVinOffsetDacResponsePayload; //This is the response payload returned by GetNextResponse()
 //after sending SKIP_CMD_ID_GET_VIN_OFFSET_DAC.
 
 /***************************************************************************************************/
@@ -218,10 +220,13 @@ typedef struct
 	unsigned char msbyteMswordSensorId;
 } GSkipGetSensorIdCmdResponsePayload; //This is the response payload returned by GetNextResponse() after sending SKIP_CMD_ID_GET_SENSOR_ID.
 
-#ifdef TARGET_OS_WIN
+#if defined (TARGET_OS_WIN) 
 #pragma pack(pop)
-#else
-#pragma options align=reset
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack()
 #endif
 
 #endif //_SKIP_COMMUNICATION_EXT_H_
+

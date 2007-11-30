@@ -1055,7 +1055,7 @@ void GUtils::AssertDialog(const gchar * cFile, // Source (cpp) file where assert
 
 bool GUtils::IsLogOpen(void)
 { // RETURN true if the log file is open and can be written to
-	return GUtils::pLogOStream != NULL;
+	return true;
 }
 
 /*
@@ -1347,3 +1347,4 @@ StStopMBLActivity::~StStopMBLActivity()
 	}
 }
 */
+

@@ -7,6 +7,35 @@
 #define _GSTDINCLUDES_H_
 
 
+#ifdef TARGET_OS_LINUX
+
+// C
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <cstring>
+#include <cctype>
+#include <ctime>
+#include <exception>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+
+// C++ - standard containers & related
+#include <vector>
+#include <list>
+#include <map>
+#include <deque>
+#include <algorithm>
+#include <limits>
+#include <locale>
+
+#endif // TARGET_OS_LINUX
+
+
+
 #ifdef TARGET_OS_MAC
 
 // Macintosh includes use include-guard constants from
@@ -82,6 +111,7 @@ namespace std {
 
 #endif // TARGET_OS_WIN
 
+
 // arrgh - the compiler particulars got us, we have to introduce
 // namespace std here...
 using namespace std;
@@ -95,7 +125,7 @@ using namespace std;
 #define kSQRT2PI 2.506628746
 #endif
 #ifndef kE
-#define kE 2.718281828	
+#define kE 2.718281828
 #endif
 
 

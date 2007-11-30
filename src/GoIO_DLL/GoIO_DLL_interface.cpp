@@ -1,7 +1,7 @@
 // GoIO_DLL_interface.cpp : Defines the exported methods for the GoIO_DLL .
 //
 
-#ifndef TARGET_OS_MAC
+#ifdef TARGET_OS_WIN
 	#include "stdafx.h"
 	#include "GoIO_DLL.h"
 	#include "WinEnumDevices.h"
@@ -17,11 +17,14 @@
 #include "GoIO_DLL_interface.h"
 
 #define SKIP_TIMEOUT_MS_READ_FLASH 2000
+#define SKIP_LIB_MNG_MUTEX_TIMEOUT_MS 500
 
 typedef std::vector<void *> GPtrVector;
 typedef GPtrVector::iterator GPtrVectorIterator;
 GPtrVector openSensorVector;//list of CGoIOSensors
 OSMutex openSensorVectorMutex = NULL;
+OSMutex multipleInstanceDeviceMutex = NULL;
+bool bMultipleInstanceDeviceMutexLocked = false;
 
 class CGoIOSensor
 {
@@ -71,7 +74,7 @@ static bool OpenSensorVector_FindAndLockSensor(GOIO_SENSOR_HANDLE hSensor)
 	bool bFound = false;
 	if (openSensorVectorMutex)
 	{
-		if (GThread::OSTryLockMutex(openSensorVectorMutex, 100))
+		if (GThread::OSTryLockMutex(openSensorVectorMutex, SKIP_LIB_MNG_MUTEX_TIMEOUT_MS))
 		{
 			GPtrVectorIterator iter = std::find(openSensorVector.begin(), openSensorVector.end(), hSensor);
 			if (iter != openSensorVector.end())
@@ -101,7 +104,7 @@ static bool OpenSensorVector_FindSensorByName(
 	bool bFound = false;
 	if (openSensorVectorMutex)
 	{
-		if (GThread::OSTryLockMutex(openSensorVectorMutex, 100))
+		if (GThread::OSTryLockMutex(openSensorVectorMutex, SKIP_LIB_MNG_MUTEX_TIMEOUT_MS))
 		{
 			cppstring deviceName = pDeviceName;
 			GPortRef oldPortRef;
@@ -134,7 +137,7 @@ static bool OpenSensorVector_AddSensor(GOIO_SENSOR_HANDLE hSensor)
 	bool bSuccess = false;
 	if (openSensorVectorMutex)
 	{
-		if (GThread::OSTryLockMutex(openSensorVectorMutex, 100))
+		if (GThread::OSTryLockMutex(openSensorVectorMutex, SKIP_LIB_MNG_MUTEX_TIMEOUT_MS))
 		{
 			bSuccess = true;
 			openSensorVector.push_back(hSensor);
@@ -152,7 +155,7 @@ static bool OpenSensorVector_RemoveSensor(GOIO_SENSOR_HANDLE hSensor)
 	bool bSuccess = false;
 	if (openSensorVectorMutex)
 	{
-		if (GThread::OSTryLockMutex(openSensorVectorMutex, 100))
+		if (GThread::OSTryLockMutex(openSensorVectorMutex, SKIP_LIB_MNG_MUTEX_TIMEOUT_MS))
 		{
 			GPtrVectorIterator iter = std::find(openSensorVector.begin(), openSensorVector.end(), hSensor);
 			if (iter != openSensorVector.end())
@@ -199,7 +202,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 20;
+	*pMinorVersion = 21;
 	return 0;
 }
 
@@ -220,18 +223,30 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 ****************************************************************************************************************************/
 GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init()
 {
-	#ifndef TARGET_OS_MAC // If this is Windows...
+	#ifdef TARGET_OS_WIN // If this is Windows...
 		if (!hWinSetupApiLibrary)
 			hWinSetupApiLibrary = WinLoadSetupApiLibrary();
 		if (!hWinHidDLibrary)
 			hWinHidDLibrary = WinLoadHidDLibrary();
 
 		if (!openSensorVectorMutex)
-			openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
+		{
+			if (!bMultipleInstanceDeviceMutexLocked)
+			{
+				if (!multipleInstanceDeviceMutex)
+					multipleInstanceDeviceMutex = GThread::OSCreateMutex(GSTD_S("MultipleInstanceDeviceMutex"));
+				if (multipleInstanceDeviceMutex)
+					bMultipleInstanceDeviceMutexLocked = GThread::OSTryLockMutex(multipleInstanceDeviceMutex, 1);
+			}
+			if (bMultipleInstanceDeviceMutexLocked)
+				openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
+		}
 
 		if ((!openSensorVectorMutex) || (!hWinSetupApiLibrary) || (!hWinHidDLibrary))
 			GoIO_Uninit();
-	#else // Or if this is Mac...
+	#endif
+
+	#if defined (TARGET_OS_MAC) || defined (TARGET_OS_LINUX)
 		if (!openSensorVectorMutex)
 			openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
 
@@ -261,7 +276,21 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Uninit()
 		GThread::OSDestroyMutex(openSensorVectorMutex);
 	openSensorVectorMutex = NULL;
 
-	#ifndef TARGET_OS_MAC
+	#ifdef TARGET_OS_WIN
+		if (bMultipleInstanceDeviceMutexLocked)
+		{
+			if (GThread::OSUnlockMutex(multipleInstanceDeviceMutex))
+				bMultipleInstanceDeviceMutexLocked = false;
+			else
+				nResult = -1;
+		}
+
+		if ((!bMultipleInstanceDeviceMutexLocked) && multipleInstanceDeviceMutex)
+		{
+			GThread::OSDestroyMutex(multipleInstanceDeviceMutex);
+			multipleInstanceDeviceMutex = NULL;
+		}
+
 		if (hWinHidDLibrary)
 			FreeLibrary(hWinHidDLibrary);
 		hWinHidDLibrary = NULL;
@@ -440,12 +469,17 @@ GOIO_DLL_INTERFACE_DECL GOIO_SENSOR_HANDLE GoIO_Sensor_Open(
         if (CYCLOPS_DEFAULT_PRODUCT_ID == productId)
         {
             memset(&initParams, 0, sizeof(initParams));
+#ifdef TARGET_HANDHELD
+	    initParams.hostType = SKIP_HOST_TYPE_CALCULATOR;
+#else
             initParams.hostType = SKIP_HOST_TYPE_COMPUTER;
+#endif
             pInitParams = &initParams;
             initParamsSize = sizeof(initParams);
         }
 
-		nResult = pNewSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_INIT, pInitParams, initParamsSize, 
+
+	nResult = pNewSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_INIT, pInitParams, initParamsSize, 
 								  NULL, NULL,((SKIP_DEFAULT_PRODUCT_ID == productId) ? 
 								  SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS :  
 								  SKIP_TIMEOUT_MS_DEFAULT));
@@ -644,12 +678,25 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_Lock(
 {
 	unsigned int nStartTime = GUtils::OSGetTimeStamp();
 	bool bLocked = false;
-	while ((GUtils::OSGetTimeStamp() - nStartTime) <= (unsigned int)timeoutMs)
+	do
 	{
 		bLocked = OpenSensorVector_FindAndLockSensor(hSensor);
 		if (bLocked)
 			break;
+		else
+		{
+			int sleepTimeMs = nStartTime + timeoutMs - 10 - GUtils::OSGetTimeStamp();
+			if (sleepTimeMs <= 0)
+				break;
+			else
+			{
+				if (sleepTimeMs > 50)
+					sleepTimeMs = 50;
+				GUtils::Sleep(sleepTimeMs);
+			}
+		}
 	}
+	while ((GUtils::OSGetTimeStamp() - nStartTime) <= (unsigned int)timeoutMs);
 
 	return bLocked ? 0 : -1;
 }

@@ -4,7 +4,7 @@
 //
 // We use 8 byte USB HID packets to exchange data between a host computer based application program
 // and the device. The USB HID layer is used simply as a transport layer on top of which the application
-// protocol rests - hopefully the HID layer is passive and allows us to send the packets defined by the 
+// protocol rests - hopefully the HID layer is passive and allows us to send the packets defined by the
 // application protocol.
 //
 // Communication is based on 3 logical unidirectional packet streams:
@@ -12,7 +12,7 @@
 //	2) Command Response input stream
 //	3) Measurement input stream
 //
-// The Command output stream is implemented by issuing Set_Report requests across the USB Control pipe 
+// The Command output stream is implemented by issuing Set_Report requests across the USB Control pipe
 // to endpoint 0.
 //
 // The two input streams share the USB Interrupt pipe attached to endpoint 1. The first byte in each
@@ -40,11 +40,13 @@
 // of the command set supported by Jonah. Ditto for Cyclops.
 //
 
-#ifdef TARGET_OS_WIN
+#if defined (TARGET_OS_WIN)
 #pragma pack(push)
 #pragma pack(1)
-#else
-#pragma options align=packed
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack(1)
 #endif
 
 /***************************************************************************************************/
@@ -256,8 +258,8 @@ typedef struct
 //	4)Any previously pending commands are aborted.
 //	5)The error flags in the status value returned by SKIP_CMD_ID_GET_STATUS are set to 0.
 //
-//Most commands are ignored by the device if they are sent before the device has responded to the 
-//previously issued command. SKIP_CMD_ID_INIT is the exception to the rule - the device will stop whatever 
+//Most commands are ignored by the device if they are sent before the device has responded to the
+//previously issued command. SKIP_CMD_ID_INIT is the exception to the rule - the device will stop whatever
 //it was doing and respond to SKIP_CMD_ID_INIT whenever it is detected.
 //
 //Command packet format: GSkipOutputPacket for Skip and Jonah.
@@ -458,9 +460,9 @@ typedef struct
 {
 	unsigned char cmd;		//SKIP_CMD_ID_GET_MEASUREMENTS
 	unsigned char lsbyteFirstMeasurementIndex;	//Int16 from 0 to (CYCLOPS_MAX_MEASUREMENT_COUNT-1)
-	unsigned char msbyteFirstMeasurementIndex;	
+	unsigned char msbyteFirstMeasurementIndex;
 	unsigned char lsbyteMeasurementCount;		//Int16 from 1 to CYCLOPS_MAX_MEASUREMENT_COUNT.
-	unsigned char msbyteMeasurementCount;	
+	unsigned char msbyteMeasurementCount;
 	unsigned char measType;	                    //CYCLOPS_MEAS_TYPE.
 	unsigned char filterType;                   //CYCLOPS_FILTER.
 	unsigned char reserved;
@@ -488,7 +490,7 @@ typedef GSkipReadNVMemCmdResponsePacket GSkipGetMeasurementsCmdResponsePacket;
 //
 //  Store the CYCLOPS_TEMPERATURE_COMP_TYPE_FIXED temperature.
 //
-//Command packet format: 
+//Command packet format:
 typedef struct
 {
 	unsigned char cmd;	//SKIP_CMD_ID_SET_TEMPERATURE
@@ -504,7 +506,7 @@ typedef struct
 /***************************************************************************************************/
 //SKIP_CMD_ID_GET_TEMPERATURE:
 //
-//Command packet format: 
+//Command packet format:
 typedef struct
 {
 	unsigned char cmd;	//SKIP_CMD_ID_GET_TEMPERATURE
@@ -604,10 +606,13 @@ typedef union
 #define SKIP_GET_MEASUREMENT_STATUS_CMD_RESP_HDR (SKIP_INPUT_PACKET_CMD_RESP | SKIP_MASK_CMD_RESP_1ST_PACKET_FLAG | SKIP_MASK_CMD_RESP_LAST_PACKET_FLAG | 7)
 #define SKIP_GET_TEMPERATURE_CMD_RESP_HDR (SKIP_INPUT_PACKET_CMD_RESP | SKIP_MASK_CMD_RESP_1ST_PACKET_FLAG | SKIP_MASK_CMD_RESP_LAST_PACKET_FLAG | 5)
 
-#ifdef TARGET_OS_WIN
+#if defined(TARGET_OS_WIN)
 #pragma pack(pop)
-#else
-#pragma options align=reset
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack()
 #endif
 
 #endif  //_SKIP_COMMUNICATION_H_
+

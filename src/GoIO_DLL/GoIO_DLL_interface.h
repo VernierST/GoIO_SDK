@@ -2,15 +2,24 @@
 #define _GOIO_DLL_INTERFACE_H_
 
 /***************************************************************************************************************************
+
 	This file documents the 'C' interface to GoIO_DLL.
 
 	This library is implemented as GoIO_DLL.dll on Windows and as libGoIO_DLL.dylib on the Mac.
 	
 ***************************************************************************************************************************/
+#ifdef TARGET_OS_LINUX
+#ifdef __cplusplus
+	#define GOIO_DLL_INTERFACE_DECL extern "C" __attribute__ ((visibility("default")))
+#else
+	#define GOIO_DLL_INTERFACE_DECL __attribute__ ((visibility("default")))
+#endif
+#else
 #ifdef __cplusplus
 	#define GOIO_DLL_INTERFACE_DECL extern "C"
 #else
 	#define GOIO_DLL_INTERFACE_DECL
+#endif
 #endif
 
 #include "GSkipCommExt.h"
@@ -19,7 +28,9 @@
 
 #ifdef TARGET_OS_MAC
 	#define GOIO_MAX_SIZE_DEVICE_NAME 255
-#else
+#endif
+
+#if defined (TARGET_OS_WIN) || defined (TARGET_OS_LINUX)
 	#define GOIO_MAX_SIZE_DEVICE_NAME 260
 #endif
 
@@ -30,9 +41,10 @@ typedef short gtype_int16;
 typedef unsigned short gtype_uint16;
 typedef int gtype_int32;
 
-#define SKIP_TIMEOUT_MS_DEFAULT 1000
+#define SKIP_TIMEOUT_MS_DEFAULT 2000
 #define SKIP_TIMEOUT_MS_READ_DDSMEMBLOCK 2000
 #define SKIP_TIMEOUT_MS_WRITE_DDSMEMBLOCK 4000
+
 
 /***************************************************************************************************************************
 	Function Name: GoIO_Init()

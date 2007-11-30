@@ -13,7 +13,7 @@
 #endif
 
 /////////////////////////////////////// EXPLICIT SYSTEM TYPES
-#ifdef TARGET_OS_MAC
+#if defined (TARGET_OS_MAC) || defined (TARGET_OS_LINUX)
 typedef struct SystemRect
 {
 	int x, y, w, h;
@@ -23,22 +23,21 @@ typedef struct SystemPoint
 {
 	int x, y;
 } SystemPoint;
-#else 
+#endif  //TARGET_OS_MAC | TARGET_OS_LINUX
+
 #ifdef TARGET_OS_WIN
 // Windows System types...
 #include "stdafx.h"
-#endif
 //
 typedef CRect SystemRect;
 typedef CPoint SystemPoint;
-//
-#endif // TARGET_OS_MAC || TARGET_OS_WIN
+#endif  //TARGET_OS_WIN
 //////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////// EXCEPTION OBJECT TYPES
 #ifdef TARGET_OS_WIN
-typedef CMemoryException * OSMemoryExceptionPtr; 
+typedef CMemoryException * OSMemoryExceptionPtr;
 typedef CFileException * OSFileExceptionPtr;
 typedef CException OSExceptionClass;
 #endif

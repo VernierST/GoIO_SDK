@@ -86,7 +86,7 @@ public:
 	static StringVector OSGetAvailableDevicesOfType(int nVendorID, int nProductID);
 
 protected:
-	long				GetInitCmdResponse(void *pRespBuf, long *pnRespBytes, long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual long				GetInitCmdResponse(void *pRespBuf, long *pnRespBytes, long nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
 	static real			kVoltsPerBit_ProbeTypeAnalog5V;
 	static real			kVoltsOffset_ProbeTypeAnalog5V;
@@ -102,3 +102,4 @@ private:
 };
 
 #endif // _GSKIPBASEDEVICE_H_
+

@@ -11,7 +11,7 @@
 //
 // The Cyclops extensions decribed here are not really necessary to take measurements. The commands described
 // in GSkipCommExt.h are all that you need to retrieve measurements when Cyclops is connected to the
-// host computer by a USB cable. However, if you want to gather measurements with Cyclops when it is 
+// host computer by a USB cable. However, if you want to gather measurements with Cyclops when it is
 // disconnected from the computer, and then send them to the computer later on, then you will need the
 // commands described here.
 //
@@ -23,7 +23,7 @@
 // the SKIP_CMD_ID_START_MEASUREMENTS command, then a fixed number of measurements are taken and stored on
 // Cyclops. These measurements remain on Cyclops until they are retrieved with a SKIP_CMD_ID_GET_MEASUREMENTS
 // command.
-// 
+//
 /***************************************************************************************************/
 
 //Cyclops specific commands:
@@ -37,11 +37,13 @@
 #define SKIP_LAST_CMD_ID SKIP_CMD_ID_GET_TEMPERATURE
 #endif
 
-#ifdef TARGET_OS_WIN
+#if defined (TARGET_OS_WIN)
 #pragma pack(push)
 #pragma pack(1)
-#else
-#pragma options align=packed
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack(1)
 #endif
 
 /***************************************************************************************************/
@@ -96,7 +98,7 @@ typedef struct
 	unsigned char msbyteMeasurementCount;	//count int16 <= CYCLOPS_MAX_MEASUREMENT_COUNT.
 	unsigned char realTimeMeasType;			//CYCLOPS_MEAS_TYPE.
 	unsigned char flags;					//CYCLOPS_TEMPERATURE_COMP ...
-	unsigned char filterType;               //CYCLOPS_FILTER. 
+	unsigned char filterType;               //CYCLOPS_FILTER.
 } GCyclopsStartMeasurementsParams; //Parameter block(optional) passed into SendCmd() with SKIP_CMD_ID_START_MEASUREMENTS for Cyclops.
                                    //Skip and Jonah never need parameters with SKIP_CMD_ID_START_MEASUREMENTS.
 								   //If you do not send this parameter block to Cyclops, then reasonable default values are used(real time measurements).
@@ -105,9 +107,9 @@ typedef struct
 typedef struct
 {
 	unsigned char lsbyteFirstMeasurementIndex;	//Int16 from 0 to (CYCLOPS_MAX_MEASUREMENT_COUNT-1)
-	unsigned char msbyteFirstMeasurementIndex;	
+	unsigned char msbyteFirstMeasurementIndex;
 	unsigned char lsbyteMeasurementCount;		//Int16 from 1 to CYCLOPS_MAX_MEASUREMENT_COUNT.
-	unsigned char msbyteMeasurementCount;	
+	unsigned char msbyteMeasurementCount;
 	unsigned char measType;	                    //CYCLOPS_MEAS_TYPE.
 	unsigned char filterType;                   //CYCLOPS_FILTER.
 } GSkipGetMeasurementsParams;//Parameter block passed into SendCmd() with SKIP_CMD_ID_GET_MEASUREMENTS.
@@ -135,7 +137,7 @@ typedef struct
 	unsigned char compensationType;//See CYCLOPS_TEMPERATURE_COMP_TYPE.
 } GSkipGetTemperatureParams;//Parameter block passed into SendCmd() with SKIP_CMD_ID_GET_TEMPERATURE.
 
-typedef GSkipSetTemperatureParams GSkipGetTemperatureCmdResponsePayload; //This is the response payload returned by GetNextResponse() 
+typedef GSkipSetTemperatureParams GSkipGetTemperatureCmdResponsePayload; //This is the response payload returned by GetNextResponse()
 //after sending SKIP_CMD_ID_GET_TEMPERATURE.
 
 /***************************************************************************************************/
@@ -159,10 +161,13 @@ typedef struct
 
 /***************************************************************************************************/
 
-#ifdef TARGET_OS_WIN
+#if defined (TARGET_OS_WIN)
 #pragma pack(pop)
-#else
-#pragma options align=reset
+#endif
+
+#ifdef TARGET_OS_MAC
+#pragma pack()
 #endif
 
 #endif //_CYCLOPS_COMMUNICATION_EXT_H_
+
