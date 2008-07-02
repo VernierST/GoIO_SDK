@@ -1,5 +1,5 @@
 AC_INIT(GoIO_DLL/GoIO_DLL_interface.cpp)
-AM_INIT_AUTOMAKE(GoIO_DLL,2.13.0)
+AM_INIT_AUTOMAKE(GoIO,2.22.0)
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_LIBTOOL
@@ -8,9 +8,32 @@ AC_PROG_INSTALL
 GIO_EXTRA_CFLAGS=-fvisibility=hidden
 AC_SUBST(GIO_EXTRA_CFLAGS)
 
+GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -DTARGET_OS_LINUX"
+
+AC_ARG_ENABLE(handheld,						      		    	       	    	#Feature
+	      AS_HELP_STRING([--enable-handheld],[Enabling the library for the handheld.]),		#Help Text
+  	      [enable_handheld=yes; GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -DTARGET_HANDHELD"], 		#If Given
+	      [enable_handheld=no;])		 		      					#If Not Given
+
+AC_ARG_ENABLE(log,						      		    	       	    	#Feature
+	      AS_HELP_STRING([--enable-log],[Enabling the library for logging.]), 			#Help Text
+  	      [enable_log=yes; GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -D_GOIO_LOGGING_ENABLED_"], 		#If Given
+	      [enable_log=no;])		 		      						#If Not Given
+
+
 AC_OUTPUT(Makefile
 	  GoIO_cpp/Makefile
 	  GoIO_cpp/Linux/Makefile
 	  GoIO_DLL/Makefile
 	  GoIO_DLL/GoIO.pc)
 
+
+dnl ==========================================================================
+echo "
+                           GoIO
+                  ==========================
+
+        prefix:                  ${prefix}
+        Enable for Handheld      ${enable_handheld}
+        Enable for Log           ${enable_log}
+"

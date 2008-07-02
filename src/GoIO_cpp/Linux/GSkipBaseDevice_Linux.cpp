@@ -140,6 +140,7 @@ struct LSkipMgr
 	GThread 			*m_pListeningThread;
 	LSkipPacketCircularBuffer 	*m_pMesBuf;
 	LSkipPacketCircularBuffer	*m_pCmdBuf;
+	unsigned char m_lastNumMeasurementsInPacket;
 };
 
 LSkipMgr::LSkipMgr()
@@ -147,6 +148,7 @@ LSkipMgr::LSkipMgr()
 	m_pQueueAccessMutex = NULL;
 	m_pListeningThread = NULL;
 	m_hDeviceID = -1;
+	m_lastNumMeasurementsInPacket = 0;
 
 	m_pMesBuf = new LSkipPacketCircularBuffer(2000);
 	m_pCmdBuf = new LSkipPacketCircularBuffer(2000);
@@ -279,12 +281,16 @@ long LSkipMgr::gListenForResponse(void *pParam)
 				if ((buf[0] & SKIP_MASK_INPUT_PACKET_TYPE))
 				{
 					if (pMgr->m_pCmdBuf)
-						pMgr->m_pCmdBuf->AddRec((GSkipPacket *) (&buf));
+						pMgr->m_pCmdBuf->AddRec((GSkipPacket *) (&buf[0]));
 				}
 				else
 				{
 					if (pMgr->m_pMesBuf)
-						pMgr->m_pMesBuf->AddRec((GSkipPacket *) (&buf));
+					{
+						pMgr->m_pMesBuf->AddRec((GSkipPacket *) (&buf[0]));
+						GSkipMeasurementPacket *pMeasRec = (GSkipMeasurementPacket *) (&buf[0]);
+						pMgr->m_lastNumMeasurementsInPacket = pMeasRec->nMeasurementsInPacket;
+					}
 				}
 			}
 			else
@@ -509,11 +515,11 @@ long GSkipBaseDevice::OSMeasurementPacketsAvailable(unsigned char *pNumMeasureme
 {
 	long nReturn = 0;
 
-	//Elliot not sure what this needs to be reporting back?  jentodo
-	( *pNumMeasurementsInLastPacket) = 1;
+	(*pNumMeasurementsInLastPacket) = 1;
 
 	if (m_pOSData && LockDevice(1) && IsOKToUse())
 	{
+		(*pNumMeasurementsInLastPacket) = ((LSkipMgr*)m_pOSData)->m_lastNumMeasurementsInPacket;
 		if (((LSkipMgr*)m_pOSData)->m_pMesBuf)
 			nReturn = ((LSkipMgr*)m_pOSData)->m_pMesBuf->NumRecsAvailable();
 
@@ -545,6 +551,7 @@ long GSkipBaseDevice::OSClearMeasurementPacketQueue()
 		if (LockDevice(1) && IsOKToUse())
 		{
 			((LSkipMgr*)m_pOSData)->m_pMesBuf->Clear();
+			((LSkipMgr*)m_pOSData)->m_lastNumMeasurementsInPacket = 0;
 			nResult = kResponse_OK;
 			UnlockDevice();
 		}

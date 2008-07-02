@@ -35,6 +35,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.22
+Fix a Linux bug that prevented GoLink data collection at rates > 60 hz.
+
 Version 2.20
 Fixed a Mac bug which resulted in failure to open a connection to a Go! device connected via a USB hub.
 

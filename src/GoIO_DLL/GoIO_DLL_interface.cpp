@@ -202,7 +202,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 21;
+	*pMinorVersion = 22;
 	return 0;
 }
 

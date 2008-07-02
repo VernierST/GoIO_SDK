@@ -1055,7 +1055,11 @@ void GUtils::AssertDialog(const gchar * cFile, // Source (cpp) file where assert
 
 bool GUtils::IsLogOpen(void)
 { // RETURN true if the log file is open and can be written to
+#ifdef _GOIO_LOGGING_ENABLED_
 	return true;
+#else
+	return false;
+#endif
 }
 
 /*
