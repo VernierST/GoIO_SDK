@@ -21,6 +21,8 @@ typedef enum
    	kSensorIdNumber_GoMotion  = 69
 } ESensorIdNumber;//This must be consistent with SensorMap.xml.
 
+#if !defined VST_EEQUATIONTYPE // To avoid multiply defined problems GoIO/NGIO/LoggerPro
+#define VST_EEQUATIONTYPE
 typedef enum
 {
 	kEquationType_None = 0,
@@ -41,7 +43,10 @@ typedef enum
 	kEquationType_HeatPulser = 15,
 	kEquationType_DropCounter = 16
 } EEquationType;
+#endif
 
+#if !defined VST_EPROBETYPE // To avoid multiply defined problems between GoIO/NGIO/LoggerPro 
+#define VST_EPROBETYPE
 typedef enum
 {
 	kProbeTypeNoProbe = 0,
@@ -60,6 +65,7 @@ typedef enum
 	kProbeTypeLabquestAudio,
 	kNumProbeTypes
 } EProbeType;
+#endif
 
 #if defined (TARGET_OS_WIN)
 #pragma pack(push)
@@ -133,4 +139,5 @@ typedef struct tagGSensorDDSRec GSensorDDSRec;
 #pragma pack()
 #endif
 
-#endif // _GSENSORDDSMEM_H_
+#endif
+
