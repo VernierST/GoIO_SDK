@@ -35,6 +35,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.23
+Add GoIO_Sensor_SendCmd() and GoIO_Sensor_GetNextResponse() API's. These are advanced API's that should almost never be used. It is generally better to use GoIO_Sensor_SendCmdAndGetResponse() instead.
+
 Version 2.22
 Fix a Linux bug that prevented GoLink data collection at rates > 60 hz.
 

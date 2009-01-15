@@ -83,3 +83,5 @@ EXPORTS
 	GoIO_Uninit @76
 	GoIO_UpdateListOfAvailableDevices @77
 	GoIO_GetDLLVersion @78
+	GoIO_Sensor_SendCmd @79
+	GoIO_Sensor_GetNextResponse @80

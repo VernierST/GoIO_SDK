@@ -1,5 +1,8 @@
 #! /bin/sh
 
+
+touch  NEWS README AUTHORS ChangeLog
+
 unset AUTOMAKE
 for am in automake-1.7 automake-1.8 automake-1.9 automake; do
 	which $am > /dev/null || continue

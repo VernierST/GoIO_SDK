@@ -202,7 +202,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 22;
+	*pMinorVersion = 23;
 	return 0;
 }
 
@@ -801,6 +801,80 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_SendCmdAndGetResponse(
 
 	return nResult;
 }
+
+/***************************************************************************************************************************
+	Function Name: GoIO_Sensor_SendCmd()
+	
+	Purpose:	GoIO_Sensor_SendCmd() is an advanced function. You should usually use 
+				GoIO_Sensor_SendCmdAndGetResponse() instead. After calling GoIO_Sensor_SendCmd(), you must call
+				GoIO_Sensor_GetNextResponse() before sending any more commands to the device.
+
+				The main reason that GoIO_Sensor_SendCmd() is made available to the user is to allow a program to send
+				SKIP_CMD_ID_START_MEASUREMENTS commands to several different devices as close together as possible so that
+				measurements start at about the same time on separate devices.
+	
+	Return:		0 if successful, else -1.
+
+****************************************************************************************************************************/
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_SendCmd(
+	GOIO_SENSOR_HANDLE hSensor,	//[in] handle to open sensor.
+	unsigned char cmd,	//[in] command code
+	void *pParams,			//[in] ptr to cmd specific parameter block, may be NULL. See GSkipCommExt.h.
+	gtype_int32 nParamBytes)//[in] # of bytes in (*pParams).
+{
+	gtype_int32 nResult = 0;
+	if (!OpenSensorVector_FindAndLockSensor(hSensor))
+		nResult = -1;
+	else
+	{
+		CGoIOSensor *pGoIOSensor = (CGoIOSensor *) hSensor;
+		GSTD_ASSERT(sizeof(gtype_int32) == sizeof(long));
+		nResult = pGoIOSensor->m_pInterface->SendCmd(cmd, pParams, nParamBytes);
+
+		UnlockSensor(hSensor);
+	}
+
+	return nResult;
+}
+
+/***************************************************************************************************************************
+	Function Name: GoIO_Sensor_GetNextResponse()
+	
+	Purpose:	GoIO_Sensor_GetNextResponse() is an advanced function. You should usually use 
+				GoIO_Sensor_SendCmdAndGetResponse() instead. After calling GoIO_Sensor_SendCmd(), you must call
+				GoIO_Sensor_GetNextResponse() before sending any more commands to the device.
+
+
+	Return:		0 if successful, else -1.
+
+****************************************************************************************************************************/
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_GetNextResponse(
+	GOIO_SENSOR_HANDLE hSensor,	//[in] handle to open sensor.
+	void *pRespBuf,				//[out] ptr to destination buffer, may be NULL. See GSkipCommExt.h.
+	gtype_int32 *pnRespBytes,	//[in, out] ptr to size of of pRespBuf buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
+	unsigned char *pCmd,		//[out] identifies which command this response is for. Ptr must NOT be NULL!
+	gtype_int32 *pErrRespFlag,	//[out] flag(1 or 0) indicating that the response contains error info. Ptr must NOT be NULL!
+	gtype_int32 nTimeoutMs)		//[in] # of milliseconds to wait before giving up.
+{
+	gtype_int32 nResult = 0;
+	if (!OpenSensorVector_FindAndLockSensor(hSensor))
+		nResult = -1;
+	else
+	{
+		CGoIOSensor *pGoIOSensor = (CGoIOSensor *) hSensor;
+		GSTD_ASSERT(sizeof(gtype_int32) == sizeof(long));
+		bool errRespFlag = false;
+		nResult = pGoIOSensor->m_pInterface->GetNextResponse(pRespBuf, (long *) pnRespBytes, pCmd, &errRespFlag, nTimeoutMs);
+		if (0 == nResult)
+			(*pErrRespFlag) = errRespFlag ? 1 : 0;
+
+
+		UnlockSensor(hSensor);
+	}
+
+	return nResult;
+}
+
 
 /***************************************************************************************************************************
 	Function Name: GoIO_Sensor_GetMeasurementTickInSeconds()
