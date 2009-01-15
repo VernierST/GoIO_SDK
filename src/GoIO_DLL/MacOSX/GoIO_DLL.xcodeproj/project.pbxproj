@@ -251,7 +251,7 @@
 		C419BDB30CB6ACBA00DF6351 /* GDeviceToHostUSBTypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GDeviceToHostUSBTypes.h; path = ../../GoIO_cpp/MacOSX/VST_USB/GDeviceToHostUSBTypes.h; sourceTree = SOURCE_ROOT; };
 		C422A9020C0E161F005B8055 /* VST_USB.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = VST_USB.c; path = ../../GoIO_cpp/MacOSX/VST_USB/VST_USB.c; sourceTree = SOURCE_ROOT; };
 		C422A9E10C0E18B3005B8055 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		C49E70A50B6ED27000F26E93 /* libGoIO_DLL-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "libGoIO_DLL-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C49E70A50B6ED27000F26E93 /* libGoIO_DLL-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "libGoIO_DLL-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,9 +535,11 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 377F44F109CF0FFE00459310 /* Build configuration list for PBXProject "GoIO_DLL" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 08FB7794FE84155DC02AAC07 /* GoIO_DLL */;
 			projectDirPath = "";
+			projectRoot = ../..;
 			targets = (
 				3B68BA3F07B1732A0075EF6B /* GoIO_DLL (dynamic) */,
 				3B6A62CF07BC4C44005E35A3 /* GoIO_DLL (static) */,

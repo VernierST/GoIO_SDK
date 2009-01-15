@@ -76,3 +76,5 @@ _GoIO_Sensor_Unlock
 _GoIO_Uninit
 _GoIO_UpdateListOfAvailableDevices
 _GoIO_GetDLLVersion
+_GoIO_Sensor_SendCmd
+_GoIO_Sensor_GetNextResponse
