@@ -14,7 +14,7 @@ libGoIO_la_SOURCES = GoIO_DLL_interface.cpp
 
 libGoIO_la_LIBADD= $(top_srcdir)/GoIO_cpp/libGoIOcpp.la $(top_srcdir)/GoIO_cpp/Linux/libGoIOcppLinux.la 
 
-libGoIO_la_LDFLAGS = -version-info 2:22:0
+libGoIO_la_LDFLAGS = -version-info 2:23:0
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = GoIO.pc

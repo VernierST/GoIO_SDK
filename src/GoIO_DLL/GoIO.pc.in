@@ -1,12 +1,10 @@
 prefix=@prefix@
-exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include
-
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
 
 Name: libGoIO
 Description: Vernier Go! Interface Library
-Version: 2.22.0
+Version: 2.23.0
 Libs: -L${libdir} -lGoIO -lstdc++ -lpthread
-Cflags: -I${includedir}/GoIO
-
+Cflags: -I${includedir}/GoIO -DTARGET_OS_LINUX
