@@ -37,6 +37,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.24
+Fixed bug in Mac SDK in which the measurement queue was cleared whenever a STOP command was issued. (RM2846, 20090323)
+
 Version 2.23
 Add GoIO_Sensor_SendCmd() and GoIO_Sensor_GetNextResponse() API's. These are advanced API's that should almost never be used. It is generally better to use GoIO_Sensor_SendCmdAndGetResponse() instead.
 

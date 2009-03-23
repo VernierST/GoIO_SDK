@@ -2809,7 +2809,7 @@ void local_input_hid_callback(void * target, IOReturn result, void * refcon, voi
 									printf("Skip measurement rolling counter ERROR - expected %u, got %u\n", nTestCounter, ((unsigned char *)event.longValue)[1]);
 							}
 							bWasMeas = true;
-							pTheDevice->nLastNumMeasurementsInPacket = ((unsigned char *)event.longValue)[0];
+							pTheDevice->nLastNumMeasurementsInPacket = ((unsigned char *)event.longValue)[0] & 0x07;	// (RM2846) JK 20090323.
 							pTheDevice->nLastMeasurementRollingCounter = ((unsigned char *)event.longValue)[1];
 							if (DIAGNOSTICS_ON)
 							{
@@ -2827,8 +2827,7 @@ void local_input_hid_callback(void * target, IOReturn result, void * refcon, voi
 							pMaxBytes = &pTheDevice->nCommandBufferMaxBytes;
 							pInputBuffer = pTheDevice->pCommandBuffer;
 							
-							if ((((unsigned char *)event.longValue)[1] == 0x19) || ((unsigned char *)event.longValue)[1] == 0x1A)
-								pTheDevice->nLastNumMeasurementsInPacket = 0;
+							// Do not perform any protocol specific action here -- i.e. don't clear the buffer, dammit. (RM2846) JK 20090323.
 						}
 					}
 					else	// NOTE: the non-filtered mode puts all data in the command buffer
