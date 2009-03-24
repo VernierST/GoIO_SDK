@@ -7,7 +7,7 @@
 </h3>
 <h3>Command Lines</h3>
 Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_console.res" /d "NDEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_console.rc"" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP188.tmp" with contents
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP140.tmp" with contents
 [
 /nologo /MT /W3 /GX /O2 /I "..\..\..\redist\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "TARGET_OS_WIN" /Fo"Release/" /Fd"Release/" /FD /c 
 "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_console.cpp"
@@ -17,8 +17,8 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP188.tmp" with con
 "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\SetMeasPeriodDlg.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\StdAfx.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP188.tmp" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP189.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP140.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP141.tmp" with contents
 [
 ..\..\..\redist\GoIO_DLL\Win32\GoIO_DLL.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/GoIO_console2.pdb" /machine:I386 /out:"Release/GoIO_console2.exe" 
 .\Release\GoIO_console.obj
@@ -29,7 +29,7 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP189.tmp" with con
 .\Release\StdAfx.obj
 .\Release\GoIO_console.res
 ]
-Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP189.tmp"
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP141.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...
