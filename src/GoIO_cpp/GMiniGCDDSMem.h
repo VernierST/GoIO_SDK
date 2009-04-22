@@ -25,7 +25,7 @@
 // and IEEE compliant.
 //
 
-//Get rid of POWERPC_MAC_BROKEN soon.
+//Get rid of POWERPC_MAC_BROKEN define after GC firmware is updated.
 #define POWERPC_MAC_BROKEN 1
 
 #include "GSensorDDSMem.h"
@@ -53,9 +53,11 @@
 
 struct tagGMiniGCDDSRec
 {
-	unsigned char	MemMapVersion;			//Change this after POWERPC_MAC_BROKEN is fixed???
-	unsigned char	SensorNumber;			//Identifies type of sensor. For GC, this is ????
-	unsigned char	SensorSerialNumber[3];	//[0][1][2] - serial number as 3-byte integer, Little-Endian (LSB first).
+	unsigned char	MemMapVersion;			//Should be 2?	
+	unsigned char	SensorNumber;			//Identifies type of sensor. For GC, this is 80.
+	unsigned char	SensorSerialNumber[3];	//SensorSerialNumber[0] is lsbyte of int16 serial number.
+											//SensorSerialNumber[1] is msbyte of int16 serial number.
+											//SensorSerialNumber[2] contains 2 BCD digits for GC firmware version(written by GC).
 	unsigned char	SensorLotCode[2];		//Lot code as 2-byte BCD date, [0] = YY, [1] == WW.
 	unsigned char	ManufacturerID;
 	char			SensorLongName[20];
