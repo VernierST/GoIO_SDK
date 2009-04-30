@@ -7,8 +7,9 @@ enum { LABPRO_DEFAULT_PRODUCT_ID = 0x0001,
 		USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID = 0x0002,	//aka GoTemp
 		SKIP_DEFAULT_PRODUCT_ID = 0x0003,				//aka GoLink
 		CYCLOPS_DEFAULT_PRODUCT_ID = 0x0004,			//aka GoMotion
-		NGI_DEFAULT_PRODUCT_ID = 0X0005,				//aka LabQuest
-		MINI_GC_DEFAULT_PRODUCT_ID = 0X0006				//aka Vernier Mini Gas Chromatograph
+		NGI_DEFAULT_PRODUCT_ID = 0x0005,				//aka LabQuest
+		MINI_GC_DEFAULT_PRODUCT_ID = 0x0006,			//aka Vernier Mini Gas Chromatograph
+		STANDALONE_DAQ_DEFAULT_PRODUCT_ID = 0x0007
 };	
 
 #endif // _GVERNIERUSB_H_
