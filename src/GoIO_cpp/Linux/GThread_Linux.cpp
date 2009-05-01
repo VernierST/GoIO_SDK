@@ -91,10 +91,7 @@ bool GThread::OSTryLockMutex(OSMutex pOSMutex, long nTimeoutMS)
 	}
 	if (!bResult)
 	{
-		char tmpstring[100];//spam
-		sprintf(tmpstring, "Trying to lock mutex %d on thread %d in GoIO_lib failed\n",
-				(unsigned int) pOSMutex, (unsigned int) pthread_self());
-		printf(tmpstring);
+		printf("Trying to lock mutex %p on thread %p in GoIO_lib failed\n", pOSMutex, pthread_self());
 	}
 
 	return bResult;
