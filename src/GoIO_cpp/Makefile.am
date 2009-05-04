@@ -8,7 +8,7 @@ AM_CFLAGS = $(GIO_EXTRA_CFLAGS)
 INCLUDES = -I$(top_srcdir) -I$(top_srcdir)/GoIO_cpp/ -I$(top_srcdir)/GoIO_cpp/Linux/ -I$(top_srcdir)/GoIO_DLL/ 
 
 library_includedir= $(includedir)/GoIO
-library_include_HEADERS = GSensorDDSMem.h GSkipCommExt.h GVernierUSB.h
+library_include_HEADERS = GSensorDDSMem.h GSkipCommExt.h GVernierUSB.h GMiniGCDDSMem.h
 
 noinst_LTLIBRARIES = libGoIOcpp.la
 
