@@ -193,7 +193,7 @@ CAPTION "About GoIO_console2"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "GoIO_console2 version 2.19",IDC_STATIC,40,21,119,8,
+    LTEXT           "GoIO_console2 version 2.25",IDC_STATIC,40,21,119,8,
                     SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,178,18,50,14,WS_GROUP
     LTEXT           "lib version",IDC_LIB_VERSION,40,39,160,8
@@ -230,8 +230,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,19,0,0
- PRODUCTVERSION 2,19,0,0
+ FILEVERSION 2,25,0,0
+ PRODUCTVERSION 2,25,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -249,14 +249,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "GoIO_console MFC Application\0"
-            VALUE "FileVersion", "2, 19, 0, 0\0"
+            VALUE "FileVersion", "2, 25, 0, 0\0"
             VALUE "InternalName", "GoIO_console\0"
             VALUE "LegalCopyright", "\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "GoIO_console.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "GoIO_console Application\0"
-            VALUE "ProductVersion", "2, 19, 0, 0\0"
+            VALUE "ProductVersion", "2, 25, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

@@ -160,6 +160,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 		int numSkips = GoIO_UpdateListOfAvailableDevices(VERNIER_DEFAULT_VENDOR_ID, SKIP_DEFAULT_PRODUCT_ID);
 		int numJonahs = GoIO_UpdateListOfAvailableDevices(VERNIER_DEFAULT_VENDOR_ID, USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID);
 		int numCyclopses = GoIO_UpdateListOfAvailableDevices(VERNIER_DEFAULT_VENDOR_ID, CYCLOPS_DEFAULT_PRODUCT_ID);
+		int numMiniGCs = GoIO_UpdateListOfAvailableDevices(VERNIER_DEFAULT_VENDOR_ID, MINI_GC_DEFAULT_PRODUCT_ID);
 		char openDeviceName[GOIO_MAX_SIZE_DEVICE_NAME];
 		char newDeviceName[GOIO_MAX_SIZE_DEVICE_NAME];
 		int iTemp1, iTemp2;
@@ -199,6 +200,17 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 		{
 			if (0 == GoIO_GetNthAvailableDeviceName(newDeviceName, GOIO_MAX_SIZE_DEVICE_NAME, VERNIER_DEFAULT_VENDOR_ID,
 						CYCLOPS_DEFAULT_PRODUCT_ID, j))
+			{
+				pPopupMenu->AppendMenu(MF_STRING, IDM_DEVICE0 + i, newDeviceName);
+				if (0 == lstrcmp(openDeviceName, newDeviceName))
+					pPopupMenu->CheckMenuItem(IDM_DEVICE0 + i, MF_BYCOMMAND | MF_CHECKED);
+				i++;
+			}
+		}
+		for (j = 0; j < numMiniGCs; j++)
+		{
+			if (0 == GoIO_GetNthAvailableDeviceName(newDeviceName, GOIO_MAX_SIZE_DEVICE_NAME, VERNIER_DEFAULT_VENDOR_ID,
+						MINI_GC_DEFAULT_PRODUCT_ID, j))
 			{
 				pPopupMenu->AppendMenu(MF_STRING, IDM_DEVICE0 + i, newDeviceName);
 				if (0 == lstrcmp(openDeviceName, newDeviceName))
