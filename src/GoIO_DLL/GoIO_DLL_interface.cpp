@@ -11,6 +11,7 @@
 
 #include "GSkipDevice.h"
 #include "GCyclopsDevice.h"
+#include "GMiniGCDevice.h"
 #include "GUSBDirectTempDevice.h"
 #include "GMBLSensor.h"
 #include "GUtils.h"
@@ -39,6 +40,9 @@ public:
 		else
 		if (CYCLOPS_DEFAULT_PRODUCT_ID == pPortRef->GetUSBProductID())
 			m_pInterface = new GCyclopsDevice(pPortRef);
+		else
+		if (MINI_GC_DEFAULT_PRODUCT_ID == pPortRef->GetUSBProductID())
+			m_pInterface = new GMiniGCDevice(pPortRef);
 		else
 			GSTD_ASSERT(false);
 		m_pMBLSensor = new GMBLSensor;
@@ -202,7 +206,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 24;
+	*pMinorVersion = 25;
 	return 0;
 }
 
@@ -338,6 +342,12 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_UpdateListOfAvailableDevices(
 			deviceVec = GCyclopsDevice::GetAvailableDevices();
 			GCyclopsDevice::StoreSnapshotOfAvailableDevices(deviceVec);
 		}
+		else
+		if (MINI_GC_DEFAULT_PRODUCT_ID == productId)
+		{
+			deviceVec = GMiniGCDevice::GetAvailableDevices();
+			GMiniGCDevice::StoreSnapshotOfAvailableDevices(deviceVec);
+		}
 		numDevices = deviceVec.size();
 	}
 
@@ -386,6 +396,13 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetNthAvailableDeviceName(
 			const StringVector &cyclopsDeviceVec = GCyclopsDevice::GetSnapshotOfAvailableDevices();
 			if ((gtype_int32)cyclopsDeviceVec.size() > N)
 				deviceName = cyclopsDeviceVec[N];
+		}
+        else
+		if (MINI_GC_DEFAULT_PRODUCT_ID == productId)
+		{
+			const StringVector &MiniGCDeviceVec = GMiniGCDevice::GetSnapshotOfAvailableDevices();
+			if ((gtype_int32)MiniGCDeviceVec.size() > N)
+				deviceName = MiniGCDeviceVec[N];
 		}
 		strncpy(pBuf, deviceName.c_str(), bufSize);
 		pBuf[bufSize - 1] = 0;
@@ -452,7 +469,7 @@ GOIO_DLL_INTERFACE_DECL GOIO_SENSOR_HANDLE GoIO_Sensor_Open(
 		nResult = -1;
 	else
 	if ((USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID != productId) && (SKIP_DEFAULT_PRODUCT_ID != productId) &&
-        (CYCLOPS_DEFAULT_PRODUCT_ID != productId))
+        (CYCLOPS_DEFAULT_PRODUCT_ID != productId) && (MINI_GC_DEFAULT_PRODUCT_ID != productId))
 		nResult = -1;
 
 	if (0 == nResult)
@@ -514,7 +531,7 @@ GOIO_DLL_INTERFACE_DECL GOIO_SENSOR_HANDLE GoIO_Sensor_Open(
 		}
 		else
 		{
-			//This is a Skip.
+			//This is a Skip or a Mini GC.
 			GSkipFlashMemoryRecord flashRec;
 			GSkipGetSensorIdCmdResponsePayload getSensorIdResponsePayload;
 

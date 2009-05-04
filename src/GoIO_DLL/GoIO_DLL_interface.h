@@ -6,6 +6,12 @@
 	This file documents the 'C' interface to GoIO_DLL.
 
 	This library is implemented as GoIO_DLL.dll on Windows and as libGoIO_DLL.dylib on the Mac.
+
+	Go! Link, Go! Temp, Go! Motion, and Vernier Mini GC	devices may be accessed by this library.
+
+	The Vernier Mini GC device is implemented internally as a Go! Link interface with a fixed GC sensor plugged in, so most
+	of the comments describing the Go! Link interface apply to the Mini GC as well. The Mini GC does have its own USB 
+	product id so it can be distinguished from a Go! Link.
 	
 ***************************************************************************************************************************/
 #ifdef TARGET_OS_LINUX
@@ -108,7 +114,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	Function Name: GoIO_UpdateListOfAvailableDevices()
 	
 	Purpose:	This routine queries the operating system to build a list of available devices
-				that have the specified USB vendor id and product id. Only Go! Link, Go! Temp, and Go! Motion
+				that have the specified USB vendor id and product id. Only Go! Link, Go! Temp, Go! Motion, and Vernier Mini GC
 				vendor and product id's are supported.
 
 	Return:		number of devices found.
@@ -152,11 +158,14 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetNthAvailableDeviceName(
 					SKIP_CMD_ID_INIT,
 					SKIP_CMD_ID_READ_LOCAL_NV_MEM. - read DDS record
 
-				The following commands are sent to Go! Link devices:
+				The following commands are sent to Go! Link and Vernier Mini GC devices:
 					SKIP_CMD_ID_INIT,
 					SKIP_CMD_ID_GET_SENSOR_ID,
 					SKIP_CMD_ID_READ_REMOTE_NV_MEM, - read DDS record if this is a 'smart' sensor
 					SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL. - based on sensor EProbeType
+
+				SKIP_CMD_ID_GET_SENSOR_ID is superfluous when sent to the Mini GC, but the Mini GC is implemented internally
+				as a Go! Link with a fixed sensor plugged in.
 
 				Only SKIP_CMD_ID_INIT is sent to Go! Motion. Go! Motion does not contain DDS memory, but this routine
 				initializes the sensor's associated DDS memory record with calibrations for both meters and feet.
@@ -425,6 +434,7 @@ GOIO_DLL_INTERFACE_DECL gtype_real64 GoIO_Sensor_GetMeasurementPeriod(
 				-----------------               --------------------------------
 				Go! Temp                        ~510 milliseconds
 				Go! Link                        ~10 milliseconds
+				Mini GC                         ~10 milliseconds
 				Go! Motion                      ~ measurement period + 10 milliseconds
 
 				The 10 millisecond delay specifed for Go! Link is just the approximate delay required for the
