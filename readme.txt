@@ -37,6 +37,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.25
+Support Vernier Mini Gas Chromatograph(GC).
+
 Version 2.24
 Fixed bug in Mac SDK in which the measurement queue was cleared whenever a STOP command was issued. (RM2846, 20090323)
 
