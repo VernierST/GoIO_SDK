@@ -233,9 +233,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 37823FB709CF5B2A006F5708 /* Build configuration list for PBXProject "GoIO_console2" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* GoIO_SDK */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* GoIO_console2 */,
 			);
@@ -313,7 +315,6 @@
 					../../../redist/GoIO_DLL/MacOSX,
 					"$(SRCROOT)/../../../redist/GoIO_DLL",
 				);
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GoIO_console2;

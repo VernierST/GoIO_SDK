@@ -100,6 +100,15 @@
 		3BB82C8307D7737F00AAA86F /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */; };
 		A16F2DC707D37F4200C855E6 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
 		A16F2DC807D37F4200C855E6 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
+		C4092C510FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C4E0FB0B6B400C0D9BE /* GMiniGCDDSMem.h */; };
+		C4092C520FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4092C4F0FB0B6B400C0D9BE /* GMiniGCDevice.cpp */; };
+		C4092C530FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C500FB0B6B400C0D9BE /* GMiniGCDevice.h */; };
+		C4092C540FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C4E0FB0B6B400C0D9BE /* GMiniGCDDSMem.h */; };
+		C4092C550FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4092C4F0FB0B6B400C0D9BE /* GMiniGCDevice.cpp */; };
+		C4092C560FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C500FB0B6B400C0D9BE /* GMiniGCDevice.h */; };
+		C4092C570FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C4E0FB0B6B400C0D9BE /* GMiniGCDDSMem.h */; };
+		C4092C580FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4092C4F0FB0B6B400C0D9BE /* GMiniGCDevice.cpp */; };
+		C4092C590FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4092C500FB0B6B400C0D9BE /* GMiniGCDevice.h */; };
 		C41681EB0CF241F6004D90BE /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C41681EA0CF241F6004D90BE /* GoIO_DLL_interface.h */; };
 		C41681EC0CF241F6004D90BE /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C41681EA0CF241F6004D90BE /* GoIO_DLL_interface.h */; };
 		C41681ED0CF241F6004D90BE /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C41681EA0CF241F6004D90BE /* GoIO_DLL_interface.h */; };
@@ -244,6 +253,9 @@
 		3BB82C6307D772E600AAA86F /* GUSBDirectTempDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GUSBDirectTempDevice.h; path = ../../GoIO_cpp/GUSBDirectTempDevice.h; sourceTree = SOURCE_ROOT; };
 		3BB82C6507D772EA00AAA86F /* GSkipDevice.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSkipDevice.h; path = ../../GoIO_cpp/GSkipDevice.h; sourceTree = SOURCE_ROOT; };
 		A16F2DC607D37F4200C855E6 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../GoIO_cpp/MacOSX/stdafx.h; sourceTree = SOURCE_ROOT; };
+		C4092C4E0FB0B6B400C0D9BE /* GMiniGCDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMiniGCDDSMem.h; path = ../../GoIO_cpp/GMiniGCDDSMem.h; sourceTree = SOURCE_ROOT; };
+		C4092C4F0FB0B6B400C0D9BE /* GMiniGCDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GMiniGCDevice.cpp; path = ../../GoIO_cpp/GMiniGCDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4092C500FB0B6B400C0D9BE /* GMiniGCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMiniGCDevice.h; path = ../../GoIO_cpp/GMiniGCDevice.h; sourceTree = SOURCE_ROOT; };
 		C41681EA0CF241F6004D90BE /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
 		C41681EE0CF2420B004D90BE /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../GoIO_cpp/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
 		C41681F20CF24222004D90BE /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../GoIO_cpp/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
@@ -348,6 +360,9 @@
 				3B468DFA07B14AC4003D06B9 /* GUtils.cpp */,
 				3B468DF607B14AB2003D06B9 /* GUtils.h */,
 				3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */,
+				C4092C4E0FB0B6B400C0D9BE /* GMiniGCDDSMem.h */,
+				C4092C4F0FB0B6B400C0D9BE /* GMiniGCDevice.cpp */,
+				C4092C500FB0B6B400C0D9BE /* GMiniGCDevice.h */,
 			);
 			name = "Cross-Platform";
 			sourceTree = "<group>";
@@ -425,6 +440,8 @@
 				C41681EF0CF2420B004D90BE /* GVernierUSB.h in Headers */,
 				C41681F30CF24222004D90BE /* GSensorDDSMem.h in Headers */,
 				C41681F70CF24230004D90BE /* GSkipCommExt.h in Headers */,
+				C4092C510FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */,
+				C4092C530FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +465,8 @@
 				C41681F10CF2420B004D90BE /* GVernierUSB.h in Headers */,
 				C41681F50CF24222004D90BE /* GSensorDDSMem.h in Headers */,
 				C41681F90CF24230004D90BE /* GSkipCommExt.h in Headers */,
+				C4092C570FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */,
+				C4092C590FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +484,8 @@
 				C41681F00CF2420B004D90BE /* GVernierUSB.h in Headers */,
 				C41681F40CF24222004D90BE /* GSensorDDSMem.h in Headers */,
 				C41681F80CF24230004D90BE /* GSkipCommExt.h in Headers */,
+				C4092C540FB0B6B400C0D9BE /* GMiniGCDDSMem.h in Headers */,
+				C4092C560FB0B6B400C0D9BE /* GMiniGCDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +600,7 @@
 				37D38D6A0829026B0040F9AB /* GUtils.cpp in Sources */,
 				37D38D6C0829026D0040F9AB /* GUtils_Mac.cpp in Sources */,
 				C422A9170C0E176C005B8055 /* VST_USB.c in Sources */,
+				C4092C520FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +623,7 @@
 				3B6A66B907BC5CD8005E35A3 /* GoIO_DLL_interface.cpp in Sources */,
 				3B8FCD8007CED5DA003DDFBB /* GCyclopsDevice.cpp in Sources */,
 				C422A9190C0E176E005B8055 /* VST_USB.c in Sources */,
+				C4092C580FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +646,7 @@
 				3B6A62EF07BC4D52005E35A3 /* GUtils_Mac.cpp in Sources */,
 				3B75919607C0247800E21BA7 /* GoIO_DLL_interface.cpp in Sources */,
 				C422A9180C0E176D005B8055 /* VST_USB.c in Sources */,
+				C4092C550FB0B6B400C0D9BE /* GMiniGCDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
