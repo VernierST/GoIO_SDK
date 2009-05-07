@@ -1,0 +1,240 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4B345590FB35F5B008D15F9 /* GoIO_DeviceCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4B345580FB35F5B008D15F9 /* GoIO_DeviceCheck.cpp */; };
+		C4B3456A0FB35FCF008D15F9 /* libGoIO_DLL.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B345650FB35FCF008D15F9 /* libGoIO_DLL.dylib */; };
+		C4B345980FB361D8008D15F9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B345970FB361D8008D15F9 /* Carbon.framework */; };
+		C4B346650FB36275008D15F9 /* libGoIO_DLL.dylib in Copy DLL */ = {isa = PBXBuildFile; fileRef = C4B345650FB35FCF008D15F9 /* libGoIO_DLL.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C4B346690FB36293008D15F9 /* Copy DLL */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				C4B346650FB36275008D15F9 /* libGoIO_DLL.dylib in Copy DLL */,
+			);
+			name = "Copy DLL";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DD76F6C0486A84900D96B5E /* DeviceCheck */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DeviceCheck; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B345580FB35F5B008D15F9 /* GoIO_DeviceCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GoIO_DeviceCheck.cpp; path = ../../GoIO_DeviceCheck.cpp; sourceTree = SOURCE_ROOT; };
+		C4B345650FB35FCF008D15F9 /* libGoIO_DLL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGoIO_DLL.dylib; path = ../../../../redist/GoIO_DLL/MacOSX/libGoIO_DLL.dylib; sourceTree = SOURCE_ROOT; };
+		C4B345660FB35FCF008D15F9 /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../../../GoIO_DLL/GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
+		C4B345670FB35FCF008D15F9 /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../../GoIO_cpp/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
+		C4B345680FB35FCF008D15F9 /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSkipCommExt.h; path = ../../../GoIO_cpp/GSkipCommExt.h; sourceTree = SOURCE_ROOT; };
+		C4B345690FB35FCF008D15F9 /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../../GoIO_cpp/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
+		C4B345970FB361D8008D15F9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F660486A84900D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B3456A0FB35FCF008D15F9 /* libGoIO_DLL.dylib in Frameworks */,
+				C4B345980FB361D8008D15F9 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* DeviceCheck */ = {
+			isa = PBXGroup;
+			children = (
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C4B345640FB35FCF008D15F9 /* SDK */,
+				C4B3466E0FB36350008D15F9 /* Frameworks and Libs */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = DeviceCheck;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C4B345580FB35F5B008D15F9 /* GoIO_DeviceCheck.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76F6C0486A84900D96B5E /* DeviceCheck */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4B345640FB35FCF008D15F9 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				C4B345660FB35FCF008D15F9 /* GoIO_DLL_interface.h */,
+				C4B345670FB35FCF008D15F9 /* GSensorDDSMem.h */,
+				C4B345680FB35FCF008D15F9 /* GSkipCommExt.h */,
+				C4B345690FB35FCF008D15F9 /* GVernierUSB.h */,
+			);
+			name = SDK;
+			sourceTree = "<group>";
+		};
+		C4B3466E0FB36350008D15F9 /* Frameworks and Libs */ = {
+			isa = PBXGroup;
+			children = (
+				C4B345970FB361D8008D15F9 /* Carbon.framework */,
+				C4B345650FB35FCF008D15F9 /* libGoIO_DLL.dylib */,
+			);
+			name = "Frameworks and Libs";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F620486A84900D96B5E /* DeviceCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "DeviceCheck" */;
+			buildPhases = (
+				8DD76F640486A84900D96B5E /* Sources */,
+				8DD76F660486A84900D96B5E /* Frameworks */,
+				C4B346690FB36293008D15F9 /* Copy DLL */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceCheck;
+			productInstallPath = "$(HOME)/bin";
+			productName = DeviceCheck;
+			productReference = 8DD76F6C0486A84900D96B5E /* DeviceCheck */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "DeviceCheck" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* DeviceCheck */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76F620486A84900D96B5E /* DeviceCheck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F640486A84900D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B345590FB35F5B008D15F9 /* GoIO_DeviceCheck.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB923208733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TARGET_OS_MAC=1",
+					"_GLIBCXX_DEBUG=1",
+					"_GLIBCXX_DEBUG_PEDANTIC=1",
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../redist/GoIO_DLL/MacOSX\"",
+				);
+				PRODUCT_NAME = DeviceCheck;
+			};
+			name = Debug;
+		};
+		1DEB923308733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = "TARGET_OS_MAC=1";
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../redist/GoIO_DLL/MacOSX\"",
+				);
+				PRODUCT_NAME = DeviceCheck;
+			};
+			name = Release;
+		};
+		1DEB923608733DC60010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB923708733DC60010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB923108733DC60010E9CD /* Build configuration list for PBXNativeTarget "DeviceCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923208733DC60010E9CD /* Debug */,
+				1DEB923308733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "DeviceCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB923608733DC60010E9CD /* Debug */,
+				1DEB923708733DC60010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

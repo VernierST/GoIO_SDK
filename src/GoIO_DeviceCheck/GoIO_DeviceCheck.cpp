@@ -12,6 +12,9 @@
 #ifdef TARGET_OS_LINUX
 #include <sys/time.h>
 #endif
+#ifdef TARGET_OS_MAC
+#include <Carbon/Carbon.h>
+#endif
 
 #define MAX_NUM_MEASUREMENTS 100
 
