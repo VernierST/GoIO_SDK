@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: GoIO_DeviceCheck - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP1DF.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "..\..\..\redist\include" /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "_MBCS" /D "TARGET_OS_WIN" /FR"Debug/" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\test\GoIO_SDK\src\GoIO_DeviceCheck\GoIO_DeviceCheck.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP1DF.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP1E0.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib GoIO_DLL.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/GoIO_DeviceCheck.pdb" /debug /machine:I386 /out:"Debug/GoIO_DeviceCheck.exe" /pdbtype:sept /libpath:"..\..\..\redist\GoIO_DLL\win32" 
+.\Debug\GoIO_DeviceCheck.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP1E0.tmp"
+<h3>Output Window</h3>
+Compiling...
+GoIO_DeviceCheck.cpp
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/GoIO_DeviceCheck.bsc"  .\Debug\GoIO_DeviceCheck.sbr"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+GoIO_DeviceCheck.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
