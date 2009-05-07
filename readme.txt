@@ -1,9 +1,9 @@
 GoIO Software Development Kit
 
-The GoIO SDK is intended to provide software developers with the ability to access Vernier Software & Technology Go! devices from their own applications. Supported devices include the Go! Motion detector, the Go! Temp thermometer, and the Go! Link sensor interface, which can connect to a variety of analog sensors.
+The GoIO SDK is intended to provide software developers with the ability to access Vernier Software & Technology Go! devices from their own applications. Supported devices include the Go! Motion detector, the Go! Temp thermometer, the Vernier Mini Gc, and the Go! Link sensor interface, which can connect to a variety of analog sensors.
 
 The heart of the SDK is the GoIO_DLL library.
-The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_interface.h.
+The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_interface.h. The sequence of function calls into the library is best illustrated by the GoIO_DeviceCheck sample code.
 
 The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java.
 
@@ -18,6 +18,10 @@ The SDK includes complete source code in C++. You are free to use this code howe
 VST does not guarantee that the code is bug free, but we try to make it so. If you find any bugs, please report them to http://www.vernier.com/tech/supportform.html .
 
 VST would prefer that you not modify GoIO_DLL.dll, libGoIO_DLL.dylib, or libGoIO_DLL.framework. If you do modify any of them, please give your modified version a different name, so we can easily distinguish your version from the VST version.
+
+====================================================================================================================
+
+GoIO_DeviceCheck is a very simple command line sample application that opens the first Go device that it finds, takes some measurements and printf's the results to STDOUT. It is written in C++(really just C) and its source code runs on Windows, MacOSX, and Linux. Looking at the sample code in \src\GoIO_DeviceCheck\GoIO_DeviceCheck.cpp is the best place to start if you are new to GoIO. Even if you are programming in a different language, eg. Basic or Java, GoIO_DeviceCheck.cpp is probably the first thing that you should look at.
 
 ====================================================================================================================
 
@@ -39,6 +43,7 @@ Release notes:
 
 Version 2.25
 Support Vernier Mini Gas Chromatograph(GC).
+Add GoIO_DeviceCheck sample code.
 
 Version 2.24
 Fixed bug in Mac SDK in which the measurement queue was cleared whenever a STOP command was issued. (RM2846, 20090323)
