@@ -206,7 +206,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 26;
+	*pMinorVersion = 27;
 	return 0;
 }
 
@@ -483,24 +483,27 @@ GOIO_DLL_INTERFACE_DECL GOIO_SENSOR_HANDLE GoIO_Sensor_Open(
         GCyclopsInitParams initParams;
         long initParamsSize = 0;
         void *pInitParams = NULL;
-        if (CYCLOPS_DEFAULT_PRODUCT_ID == productId)
-        {
-            memset(&initParams, 0, sizeof(initParams));
+		long timeoutMs = SKIP_TIMEOUT_MS_DEFAULT;
+		if (CYCLOPS_DEFAULT_PRODUCT_ID == productId)
+		{
+			memset(&initParams, 0, sizeof(initParams));
 #ifdef TARGET_HANDHELD
-	    initParams.hostType = SKIP_HOST_TYPE_CALCULATOR;
+			initParams.hostType = SKIP_HOST_TYPE_CALCULATOR;
 #else
-            initParams.hostType = SKIP_HOST_TYPE_COMPUTER;
+			initParams.hostType = SKIP_HOST_TYPE_COMPUTER;
 #endif
-            pInitParams = &initParams;
-            initParamsSize = sizeof(initParams);
+			pInitParams = &initParams;
+			initParamsSize = sizeof(initParams);
         }
+		else if (SKIP_DEFAULT_PRODUCT_ID == productId)
+			timeoutMs = SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS;
+		else if (MINI_GC_DEFAULT_PRODUCT_ID == productId)
+			timeoutMs = SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS;
 
 
-	nResult = pNewSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_INIT, pInitParams, initParamsSize, 
-								  NULL, NULL,((SKIP_DEFAULT_PRODUCT_ID == productId) ? 
-								  SKIP_TIMEOUT_MS_CMD_ID_INIT_WO_BUSY_STATUS :  
-								  SKIP_TIMEOUT_MS_DEFAULT));
-    }
+		nResult = pNewSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_INIT, pInitParams, initParamsSize, 
+								  NULL, NULL, timeoutMs);
+	}
 
 	if (0 == nResult)
 	{
