@@ -159,7 +159,7 @@ GDeviceIO *CGoIO_consoleDoc::OpenDevice(GPortRef *pPortRef)
 				}
 			}
 			else
-			if (SKIP_DEFAULT_PRODUCT_ID == pPortRef->GetUSBProductID())
+			if ((SKIP_DEFAULT_PRODUCT_ID == pPortRef->GetUSBProductID()) || (MINI_GC_DEFAULT_PRODUCT_ID == pPortRef->GetUSBProductID()))
 			{
 				GSkipDevice *pSkipDevice = new GSkipDevice(pPortRef);
 				if (kResponse_OK != pSkipDevice->Open(pPortRef))
@@ -267,7 +267,8 @@ GMBLSensor *CGoIO_consoleDoc::OpenSensor(int id)
 				pWnd->SetWindowText(sUnits.c_str());
 		}
 
-		if (SKIP_DEFAULT_PRODUCT_ID == m_pDevice->GetPortRefPtr()->GetUSBProductID())
+		if ((SKIP_DEFAULT_PRODUCT_ID == m_pDevice->GetPortRefPtr()->GetUSBProductID()) ||
+			(MINI_GC_DEFAULT_PRODUCT_ID == m_pDevice->GetPortRefPtr()->GetUSBProductID()))
 		{
 			//Setup the analog input channel based on the sensor's probe type.
 			GSkipGenericResponsePacket response;

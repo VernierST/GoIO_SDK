@@ -6,6 +6,7 @@
 #include "GSkipDevice.h"
 #include "GUSBDirectTempDevice.h"
 #include "GCyclopsDevice.h"
+#include "GMiniGCDevice.h"
 #include "GoIO_consoleDoc.h"
 #include "GoIO_consoleView.h"
 #include "SetMeasPeriodDlg.h"
@@ -168,6 +169,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 		StringVector skipVec = GSkipDevice::GetAvailableDevices();
 		StringVector jonahVec = GUSBDirectTempDevice::GetAvailableDevices();
 		StringVector cyclopsVec = GCyclopsDevice::GetAvailableDevices();
+		StringVector miniGCsVec = GMiniGCDevice::GetAvailableDevices();
 		cppstring openDeviceName;
 		if (pDoc->GetOpenDevicePtr())
 		{
@@ -198,6 +200,13 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 		{
 			pPopupMenu->AppendMenu(MF_STRING, IDM_DEVICE0 + i, cyclopsVec[j].c_str());
 			if (openDeviceName == cyclopsVec[j])
+				pPopupMenu->CheckMenuItem(IDM_DEVICE0 + i, MF_BYCOMMAND | MF_CHECKED);
+			i++;
+		}
+		for (j = 0; j < miniGCsVec.size(); j++)
+		{
+			pPopupMenu->AppendMenu(MF_STRING, IDM_DEVICE0 + i, miniGCsVec[j].c_str());
+			if (openDeviceName == miniGCsVec[j])
 				pPopupMenu->CheckMenuItem(IDM_DEVICE0 + i, MF_BYCOMMAND | MF_CHECKED);
 			i++;
 		}
@@ -256,6 +265,9 @@ void CMainFrame::OnDeviceN(unsigned int N)
 				else
 				if (strstr(tmpstring, "pid_0004"))
 					pPortRef = new GPortRef(kPortType_USB, tmpstring, tmpstring, VERNIER_DEFAULT_VENDOR_ID, CYCLOPS_DEFAULT_PRODUCT_ID);
+				else
+				if (strstr(tmpstring, "pid_0007"))
+					pPortRef = new GPortRef(kPortType_USB, tmpstring, tmpstring, VERNIER_DEFAULT_VENDOR_ID, MINI_GC_DEFAULT_PRODUCT_ID);
 				pDoc->OpenDevice(pPortRef);
 				delete pPortRef;
 			}
@@ -715,6 +727,8 @@ void CMainFrame::OnReadSensorMem()
 			    GSkipOutputPacket cmdPacket;
 			    memset(&cmdPacket, 0, sizeof(cmdPacket));
 			    if (pDevice->GetPortRefPtr()->GetUSBProductID() == SKIP_DEFAULT_PRODUCT_ID)
+				    cmdPacket.cmd = SKIP_CMD_ID_READ_REMOTE_NV_MEM;
+			    else if (pDevice->GetPortRefPtr()->GetUSBProductID() == MINI_GC_DEFAULT_PRODUCT_ID)
 				    cmdPacket.cmd = SKIP_CMD_ID_READ_REMOTE_NV_MEM;
 			    else
 				    cmdPacket.cmd = SKIP_CMD_ID_READ_LOCAL_NV_MEM;//USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID

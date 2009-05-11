@@ -104,6 +104,10 @@ SOURCE=..\..\GoIO_cpp\GMBLSensor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\GoIO_cpp\GMiniGCDevice.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GoIO_console.cpp
 # End Source File
 # Begin Source File
@@ -197,6 +201,10 @@ SOURCE=..\..\GoIO_cpp\GDeviceIO.h
 # Begin Source File
 
 SOURCE=..\..\GoIO_cpp\GMBLSensor.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\GoIO_cpp\GMiniGCDDSMem.h
 # End Source File
 # Begin Source File
 
