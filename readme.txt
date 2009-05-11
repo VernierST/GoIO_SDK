@@ -43,7 +43,7 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
-Version 2.25
+Version 2.27
 Support Vernier Mini Gas Chromatograph(GC).
 Add GoIO_DeviceCheck sample code.
 
