@@ -272,6 +272,9 @@ void CMainFrame::OnDeviceN(unsigned int N)
                 else
 				if (strstr(tmpstring, "pid_0004"))
 					productId = CYCLOPS_DEFAULT_PRODUCT_ID;
+                else
+				if (strstr(tmpstring, "pid_0007"))
+					productId = MINI_GC_DEFAULT_PRODUCT_ID;
 				pDoc->OpenDevice(VERNIER_DEFAULT_VENDOR_ID, productId, tmpstring);
 			}
 			m_bIsCollectingMeasurements = false;

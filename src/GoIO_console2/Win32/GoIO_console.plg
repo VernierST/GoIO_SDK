@@ -3,24 +3,43 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
---------------------Configuration: GoIO_console - Win32 Debug--------------------
+--------------------Configuration: GoIO_console - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x409 /fo"Debug/GoIO_console.res" /d "_DEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_console.rc"" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP546.tmp" with contents
+Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_console.res" /d "NDEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_console.rc"" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP44D.tmp" with contents
 [
-..\..\..\redist\GoIO_DLL\Win32\GoIO_DLL.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/GoIO_console2.pdb" /map:"Debug/GoIO_console2.map" /debug /machine:I386 /out:"Debug/GoIO_console2.exe" /pdbtype:sept 
-.\Debug\GoIO_console.obj
-.\Debug\GoIO_consoleDoc.obj
-.\Debug\GoIO_consoleView.obj
-.\Debug\MainFrm.obj
-.\Debug\SetMeasPeriodDlg.obj
-.\Debug\StdAfx.obj
-.\Debug\GoIO_console.res
+/nologo /MT /W3 /GX /O2 /I "..\..\..\redist\include" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "TARGET_OS_WIN" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_console.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_consoleDoc.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\GoIO_consoleView.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\MainFrm.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\SetMeasPeriodDlg.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_console2\Win32\StdAfx.cpp"
 ]
-Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP546.tmp"
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP44D.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP44E.tmp" with contents
+[
+..\..\..\redist\GoIO_DLL\Win32\GoIO_DLL.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/GoIO_console2.pdb" /machine:I386 /out:"Release/GoIO_console2.exe" 
+.\Release\GoIO_console.obj
+.\Release\GoIO_consoleDoc.obj
+.\Release\GoIO_consoleView.obj
+.\Release\MainFrm.obj
+.\Release\SetMeasPeriodDlg.obj
+.\Release\StdAfx.obj
+.\Release\GoIO_console.res
+]
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP44E.tmp"
 <h3>Output Window</h3>
 Compiling resources...
+Compiling...
+GoIO_console.cpp
+GoIO_consoleDoc.cpp
+GoIO_consoleView.cpp
+MainFrm.cpp
+SetMeasPeriodDlg.cpp
+StdAfx.cpp
+Generating Code...
 Linking...
 
 
