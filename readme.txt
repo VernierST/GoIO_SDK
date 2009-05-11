@@ -9,6 +9,8 @@ The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a sta
 
 The Apple version of the GoIO_DLL library comes in two different flavors: libGoIO_DLL.dylib and libGoIO_DLL.framework. Both flavors of the library implement exactly the same API. They are just packaged differently as a convenience to users. These libraries can also be accessed from a variety of languages. GoIO_DLL requires Mac OS 10.3.9 or later. Note that libGoIO_DLL.framework is stored in \GoIO_SDK\redist\GoIO_DLL\MacOSX\libGoIO_DLL.framework.zip . You will have to unzip it before you can use it.
 
+libGoIO_DLL.dylib has the install directory set to "@executable_path/libGoIO_DLL.dylib", which means it will only work if it is located in the same directory as the executable: e.g. for an application, this would be in the bundle folder: MyApp.app/Contents/MacOS. The libGoIO_DLL.framework, likewise, is expected to reside in /Library/Frameworks. To change the install location, you need to run /usr/bin/install_name_tool on the library executable -- libGoIO_DLL.dylib or libGoIO_DLL.framework/Versions/A/libGoIO_DLL. For more info, see "man install_name_tool".
+
 The Linux version of the GoIO library just contains the source and one test program to test the library functions, for now.  Follow the INSTALL instructions to get started.  
 
 ====================================================================================================================
