@@ -20,7 +20,7 @@
 
 #include "GoIO_DLL_interface.h"
 
-char *deviceDesc[7] = {"?", "?", "Go! Temp", "Go! Link", "Go! Motion", "?", "Mini GC"};
+char *deviceDesc[8] = {"?", "?", "Go! Temp", "Go! Link", "Go! Motion", "?", "?", "Mini GC"};
 
 bool GetAvailableDeviceName(char *deviceName, gtype_int32 nameLength, gtype_int32 *pVendorId, gtype_int32 *pProductId);
 static void OSSleep(unsigned long msToSleep);
