@@ -16,7 +16,6 @@ StringVector GMiniGCDevice::m_snapshotOfAvailableMiniGCDevices;
 GMiniGCDevice::GMiniGCDevice(GPortRef *pPortRef)
 : TBaseClass(pPortRef)
 {
-	if (!OSInitialize())
-		GUtils::Trace(GSTD_S("Error - GMiniGCDevice constructor, OSInitialize() returned false."));
+	//Do not call OSInitialize here because it is called in the GSkipDevice constructor.
 }
 
