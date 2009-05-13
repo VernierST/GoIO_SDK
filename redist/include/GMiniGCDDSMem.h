@@ -26,7 +26,7 @@
 //
 
 //Get rid of POWERPC_MAC_BROKEN define after GC firmware is updated.
-#define POWERPC_MAC_BROKEN 1
+//#define POWERPC_MAC_BROKEN 1
 
 #include "GSensorDDSMem.h"
 
