@@ -7,7 +7,7 @@
 </h3>
 <h3>Command Lines</h3>
 Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_DLL.res" /d "NDEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\GoIO_DLL.rc"" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41B.tmp" with contents
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP329.tmp" with contents
 [
 /nologo /MT /W3 /GR /GX /O2 /I "..\GoIO_cpp" /I "..\GoIO_cpp\Win32" /I "." /I ".." /I "..\..\GoIO_cpp" /I "..\..\GoIO_cpp\Win32" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_MBCS" /D "_USRDLL" /D "TARGET_OS_WIN" /D "_GOIO_DLL_SRC" /Fo"Release/" /Fd"Release/" /FD /c 
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GCyclopsDevice.cpp"
@@ -29,8 +29,8 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41B.tmp" with con
 "C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\StdAfx.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\WinEnumDevices.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41B.tmp" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41C.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP329.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP32A.tmp" with contents
 [
 /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/GoIO_DLL.pdb" /machine:I386 /def:".\GoIO_DLL.def" /out:"Release/GoIO_DLL.dll" /implib:"Release/GoIO_DLL.lib" 
 .\Release\GCyclopsDevice.obj
@@ -53,7 +53,7 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41C.tmp" with con
 .\Release\WinEnumDevices.obj
 .\Release\GoIO_DLL.res
 ]
-Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP41C.tmp"
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP32A.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...

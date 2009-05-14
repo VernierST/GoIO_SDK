@@ -66,8 +66,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,27,0,0
- PRODUCTVERSION 2,27,0,0
+ FILEVERSION 2,28,0,0
+ PRODUCTVERSION 2,28,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -85,14 +85,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "Vernier Software & Technology\0"
             VALUE "FileDescription", "GoIO_DLL\0"
-            VALUE "FileVersion", "2, 27, 0, 0\0"
+            VALUE "FileVersion", "2, 28, 0, 0\0"
             VALUE "InternalName", "GoIO_DLL\0"
             VALUE "LegalCopyright", "\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "GoIO_DLL.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "GoIO_DLL\0"
-            VALUE "ProductVersion", "2, 27, 0, 0\0"
+            VALUE "ProductVersion", "2, 28, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
         BLOCK "040904b0"
@@ -100,14 +100,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "Vernier Software & Technology\0"
             VALUE "FileDescription", "GoIO_DLL DLL\0"
-            VALUE "FileVersion", "2, 27, 0, 0\0"
+            VALUE "FileVersion", "2, 28, 0, 0\0"
             VALUE "InternalName", "GoIO_DLL\0"
             VALUE "LegalCopyright", "\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "GoIO_DLL.DLL\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "GoIO_DLL Dynamic Link Library\0"
-            VALUE "ProductVersion", "2, 27, 0, 0\0"
+            VALUE "ProductVersion", "2, 28, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END
