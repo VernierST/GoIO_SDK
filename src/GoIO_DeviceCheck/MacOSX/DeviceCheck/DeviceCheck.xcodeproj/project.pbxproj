@@ -108,6 +108,7 @@
 				8DD76F640486A84900D96B5E /* Sources */,
 				8DD76F660486A84900D96B5E /* Frameworks */,
 				C4B346690FB36293008D15F9 /* Copy DLL */,
+				C4D189710FBB81B100C13778 /* Zip and Copy to Redist */,
 			);
 			buildRules = (
 			);
@@ -135,6 +136,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4D189710FBB81B100C13778 /* Zip and Copy to Redist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Zip and Copy to Redist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# We'll zip up the app, and then copy it to the redist folder\n#\ncd \"${BUILT_PRODUCTS_DIR}\"\nZIP_NAME=\"DeviceCheckBinaries.zip\"\n\n#\n# First remove old zip files (if any)\n#\nrm -f *.zip\nrm -f -r *.dSYM\n\n#\n# And Zip\n#\nzip -D $ZIP_NAME *\n\n#\n# Now copy to redist\n#\nif [ $CONFIGURATION == \"Deployment\" ]; then\n\tREDIST_FOLDER=\"${PROJECT_DIR}/../../../../redist/GoIO_DeviceCheck/MacOSX\"\n\t#\n\t# Remove old file at destination:\n\t#\n\tif [ -f \"${REDIST_FOLDER}/${ZIP_NAME}\" ]; then\n\t\trm \"${REDIST_FOLDER}/${ZIP_NAME}\"\n\tfi\n\n\t#\n\t# And move the new file:\n\t#\n\tcp \"${ZIP_NAME}\" \"${REDIST_FOLDER}\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DD76F640486A84900D96B5E /* Sources */ = {
@@ -171,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		1DEB923308733DC60010E9CD /* Release */ = {
+		1DEB923308733DC60010E9CD /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -185,7 +203,7 @@
 				);
 				PRODUCT_NAME = DeviceCheck;
 			};
-			name = Release;
+			name = Deployment;
 		};
 		1DEB923608733DC60010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -201,7 +219,7 @@
 			};
 			name = Debug;
 		};
-		1DEB923708733DC60010E9CD /* Release */ = {
+		1DEB923708733DC60010E9CD /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -211,7 +229,7 @@
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
-			name = Release;
+			name = Deployment;
 		};
 /* End XCBuildConfiguration section */
 
@@ -220,19 +238,19 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB923208733DC60010E9CD /* Debug */,
-				1DEB923308733DC60010E9CD /* Release */,
+				1DEB923308733DC60010E9CD /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Deployment;
 		};
 		1DEB923508733DC60010E9CD /* Build configuration list for PBXProject "DeviceCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB923608733DC60010E9CD /* Debug */,
-				1DEB923708733DC60010E9CD /* Release */,
+				1DEB923708733DC60010E9CD /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Deployment;
 		};
 /* End XCConfigurationList section */
 	};

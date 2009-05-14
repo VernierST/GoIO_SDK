@@ -12,7 +12,6 @@
 		3B68B91D07B160E50075EF6B /* GraphView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68B91B07B160E50075EF6B /* GraphView.h */; };
 		3B68B91E07B160E50075EF6B /* GraphView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B91C07B160E50075EF6B /* GraphView.mm */; };
 		3B68BB1407B178D50075EF6B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BB1307B178D50075EF6B /* IOKit.framework */; };
-		3B6A670B07BC5F40005E35A3 /* GoIO_console2.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* GoIO_console2.app */; };
 		3B78684807B5A66100CD1EF5 /* SetMeasurementPeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B78684607B5A66100CD1EF5 /* SetMeasurementPeriod.h */; };
 		3B78684907B5A66100CD1EF5 /* SetMeasurementPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B78684707B5A66100CD1EF5 /* SetMeasurementPeriod.m */; };
 		3B78687F07B5A99A00CD1EF5 /* SetMeasurementPeriod.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3B78687D07B5A99A00CD1EF5 /* SetMeasurementPeriod.nib */; };
@@ -37,16 +36,6 @@
 			dstSubfolderSpec = 6;
 			files = (
 				3768F69509D0831F0098F9E5 /* libGoIO_DLL.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3B6A670A07BC5F2C005E35A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = ../../../../../redist/GoIO_console2/MacOSX;
-			dstSubfolderSpec = 16;
-			files = (
-				3B6A670B07BC5F40005E35A3 /* GoIO_console2.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +203,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				3B6A670A07BC5F2C005E35A3 /* CopyFiles */,
 				3768F69009D082890098F9E5 /* CopyFiles */,
+				C4D1893E0FBB7D4F00C13778 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -255,6 +244,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4D1893E0FBB7D4F00C13778 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# We'll zip up the app, and then copy it to the redist folder\n#\ncd \"${BUILT_PRODUCTS_DIR}\"\n\n#\n# First remove old zip \n#\nZIP_NAME=\"${EXECUTABLE_NAME}.zip\"\nif [ -f \"${ZIP_NAME}\" ]; then\n\trm \"${ZIP_NAME}\"\nfi\n\n#\n# And Zip\n#\nzip -r -y \"${ZIP_NAME}\" \"${FULL_PRODUCT_NAME}\"\n\n#\n# Now copy to redist\n#\nif [ $CONFIGURATION == \"Deployment\" ]; then\n\tREDIST_FOLDER=\"${PROJECT_DIR}/../../../redist/GoIO_Console2/MacOSX\"\n\t#\n\t# Remove old file at destination:\n\t#\n\tif [ -f \"${REDIST_FOLDER}/${ZIP_NAME}\" ]; then\n\t\trm \"${REDIST_FOLDER}/${ZIP_NAME}\"\n\tfi\n\n\t#\n\t# And move the new file:\n\t#\n\tmv \"${ZIP_NAME}\" \"${REDIST_FOLDER}\"\nfi\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {

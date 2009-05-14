@@ -11,6 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 37823F8B09CF57A5006F5708 /* Build configuration list for PBXAggregateTarget "Build_All" */;
 			buildPhases = (
+				C4D1890A0FBB64FA00C13778 /* Zip Framework + Copy To Redist */,
 			);
 			dependencies = (
 				37823F7E09CF578C006F5708 /* PBXTargetDependency */,
@@ -52,12 +53,10 @@
 		37D38D700829027E0040F9AB /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0807B178820075EF6B /* VST_USB.h */; };
 		37D38D710829027E0040F9AB /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0907B178820075EF6B /* VST_USBTypes.h */; };
 		37D38D720829027F0040F9AB /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0607B178820075EF6B /* VST_Errors.h */; };
-		37D38D78082902DF0040F9AB /* libGoIO_DLL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37D38CB8082901EA0040F9AB /* libGoIO_DLL.framework */; };
 		37D38D7C082903B30040F9AB /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0607B178820075EF6B /* VST_Errors.h */; };
 		37D38D7D082903B40040F9AB /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0807B178820075EF6B /* VST_USB.h */; };
 		37D38D7E082903B40040F9AB /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B68BB0907B178820075EF6B /* VST_USBTypes.h */; };
 		37D38D8A0829058D0040F9AB /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = A16F2DC607D37F4200C855E6 /* stdafx.h */; };
-		37DBA4BB09D1A1650045739A /* libGoIO_DLL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B68BA4007B1732A0075EF6B /* libGoIO_DLL.dylib */; };
 		3B68BA4A07B1736C0075EF6B /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B468DF607B14AB2003D06B9 /* GUtils.h */; };
 		3B68BE9907B3D9780075EF6B /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB2007B178EF0075EF6B /* GDeviceIO.cpp */; };
 		3B68BE9B07B3D9780075EF6B /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BB9C07B17FDD0075EF6B /* GMBLSensor.cpp */; };
@@ -88,7 +87,6 @@
 		3B6A62EF07BC4D52005E35A3 /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B68BA5E07B174760075EF6B /* GUtils_Mac.cpp */; };
 		3B6A641B07BC4D60005E35A3 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68BF4B07B3DA3D0075EF6B /* IOKit.framework */; };
 		3B6A66B907BC5CD8005E35A3 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */; };
-		3B6A66C207BC5D25005E35A3 /* libGoIO_DLL.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3B6A62D007BC4C44005E35A3 /* libGoIO_DLL.a */; };
 		3B75919607C0247800E21BA7 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A66B807BC5CD8005E35A3 /* GoIO_DLL_interface.cpp */; };
 		3B864A7B07BA788700A6A926 /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B864A7A07BA788700A6A926 /* GTypes.h */; };
 		3B8FCD8007CED5DA003DDFBB /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FCD7E07CED5DA003DDFBB /* GCyclopsDevice.cpp */; };
@@ -182,39 +180,6 @@
 			remoteInfo = "GoIO_DLL (dynamic)";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		37D38D77082902920040F9AB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
-			dstSubfolderSpec = 16;
-			files = (
-				37D38D78082902DF0040F9AB /* libGoIO_DLL.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3B6A66BF07BC5CE7005E35A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
-			dstSubfolderSpec = 16;
-			files = (
-				37DBA4BB09D1A1650045739A /* libGoIO_DLL.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3B6A66C107BC5D16005E35A3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = ../../../../../redist/GoIO_DLL/MacOSX;
-			dstSubfolderSpec = 16;
-			files = (
-				3B6A66C207BC5D25005E35A3 /* libGoIO_DLL.a in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		375CF875082936A600E72754 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -500,7 +465,6 @@
 				37D38CB4082901EA0040F9AB /* Resources */,
 				37D38CB5082901EA0040F9AB /* Sources */,
 				37D38CB6082901EA0040F9AB /* Frameworks */,
-				37D38D77082902920040F9AB /* CopyFiles */,
 			);
 			buildRules = (
 				377F451409CF120800459310 /* PBXBuildRule */,
@@ -519,7 +483,6 @@
 				3B68BA3C07B1732A0075EF6B /* Headers */,
 				3B68BA3D07B1732A0075EF6B /* Sources */,
 				3B68BA3E07B1732A0075EF6B /* Frameworks */,
-				3B6A66BF07BC5CE7005E35A3 /* CopyFiles */,
 			);
 			buildRules = (
 				377B86B609CF153900553B4B /* PBXBuildRule */,
@@ -538,7 +501,6 @@
 				3B6A62CC07BC4C44005E35A3 /* Headers */,
 				3B6A62CD07BC4C44005E35A3 /* Sources */,
 				3B6A62CE07BC4C44005E35A3 /* Frameworks */,
-				3B6A66C107BC5D16005E35A3 /* CopyFiles */,
 			);
 			buildRules = (
 				377B86B109CF14F400553B4B /* PBXBuildRule */,
@@ -579,6 +541,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4D1890A0FBB64FA00C13778 /* Zip Framework + Copy To Redist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Zip Framework + Copy To Redist";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# PROJECT_DIR /Development/ALL/SDK/GoIO_SDK/src/GoIO_DLL/MacOSX\n\necho -------------------------------------------------------------------------------------\n\nREDIST_FOLDER=\"${PROJECT_DIR}/../../../redist/GoIO_DLL/MacOSX\"\n\n# Zip Up the Framework Version\nFW_PATH=\"${BUILT_PRODUCTS_DIR}/libGoIO_DLL.framework\"\n\nZIP_FW_PATH=\"${FW_PATH}.zip\"\n\nif [ -f \"${ZIP_FW_PATH}\" ]; then\n\techo \"# Deleting ${ZIP_FW_PATH}.\"\n\trm \"${ZIP_FW_PATH}\"\nfi\n\necho \"# Zipping framework.\"\ncd \"${BUILT_PRODUCTS_DIR}\"\nzip -r -y libGoIO_DLL.framework.zip libGoIO_DLL.framework\n\nif [ $CONFIGURATION == \"Deployment\" ]; then\n\n\techo \"# copying files to redist (note: you should've already checked these out from the repository.)\"\n\n\tfor NAME in libGoIO_DLL.a libGoIO_DLL.dylib libGoIO_DLL.framework.zip\n\tdo\n\t\tDELETE_ME=\"${REDIST_FOLDER}/${NAME}\"\n\t\tif [ -f \"${DELETE_ME}\" ]; then\n\t\t\techo \"# deleting ${DELETE_ME}\"\n\t\t\trm \"${DELETE_ME}\"\n\t\tfi\n\n\t\tSRC_FILE=\"${BUILT_PRODUCTS_DIR}/${NAME}\"\n\t\techo \"# copying ${SRC_FILE} to ${REDIST_FOLDER}\"\n\t\tcp \"${SRC_FILE}\" \"${REDIST_FOLDER}\"\n\tdone\nfi \necho -------------------------------------------------------------------------------------\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37D38CB5082901EA0040F9AB /* Sources */ = {
