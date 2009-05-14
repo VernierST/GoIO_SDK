@@ -18,7 +18,7 @@ bool GSkipBaseDevice::OSInitialize(void)
 	SetOSData(NULL);
 	UInt32 nLocationID = strtoul(GetPortRefPtr()->GetDisplayName().c_str(), NULL, 0);
 	VST_USBSpec * pSpec = NULL;
-	VST_GetUSBSpecByLocation(GetVendorID(), GetProductID(), nLocationID, true, &pSpec);
+	VST_GetUSBSpecByLocation(GetPortRefPtr()->GetUSBVendorID(), GetPortRefPtr()->GetUSBProductID(), nLocationID, true, &pSpec);
 	if (pSpec != NULL)
 	{
 		TUSBBulkDevice usbDevice = VST_MakeUSBBulkDeviceFromSpec(pSpec);
