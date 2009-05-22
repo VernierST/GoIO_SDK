@@ -14,6 +14,40 @@ noinst_LTLIBRARIES = libGoIOcpp.la
 
 EXTRA_DIST = libGoIOcpp.la
 
-libGoIOcpp_la_SOURCES = GThread.cpp GTextUtils.cpp GUtils.cpp GUSBDirectTempDevice.cpp GSkipDevice.cpp GSkipBaseDevice.cpp GPortRef.cpp GMBLSensor.cpp GDeviceIO.cpp GCyclopsDevice.cpp GCharacters.h GDeviceIO.h GPlatformTypes.h  GSkipBaseDevice.h GSkipDevice.h   GTextUtils.h  GUSBDirectTempDevice.h GCyclopsCommExt.h  GMBLSensor.h      GPortRef.h        GSkipCommExt.h     GSkipErr.h      GThread.h     GUtils.h GCyclopsDevice.h   GPlatformDebug.h  GSensorDDSMem.h GSkipComm.h        GStdIncludes.h  GTypes.h      GVernierUSB.h
+libGoIOcpp_la_SOURCES = \
+	GThread.cpp \
+	GTextUtils.cpp \
+	GUtils.cpp \
+	GUSBDirectTempDevice.cpp \
+	GSkipDevice.cpp \
+	GSkipBaseDevice.cpp \
+	GPortRef.cpp \
+	GMiniGCDevice.cpp \
+	GMBLSensor.cpp \
+	GDeviceIO.cpp \
+	GCyclopsDevice.cpp \
+	GCharacters.h \
+	GDeviceIO.h \
+	GPlatformTypes.h  \
+	GSkipBaseDevice.h \
+	GSkipDevice.h   \
+	GTextUtils.h  \
+	GUSBDirectTempDevice.h \
+	GCyclopsCommExt.h  \
+	GMBLSensor.h      \
+	GPortRef.h        \
+	GMiniGCDevice.h \
+	GSkipCommExt.h     \
+	GSkipErr.h      \
+	GThread.h     \
+	GUtils.h \
+	GCyclopsDevice.h   \
+	GPlatformDebug.h  \
+	GSensorDDSMem.h \
+	GSkipComm.h        \
+	GStdIncludes.h  \
+	GTypes.h      \
+	GVernierUSB.h
+
 
 
