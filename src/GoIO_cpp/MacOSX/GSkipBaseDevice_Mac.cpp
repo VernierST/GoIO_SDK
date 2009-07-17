@@ -75,6 +75,7 @@ StringVector GSkipBaseDevice::OSGetAvailableDevicesOfType(int nVendorID, int nPr
 
 			ss << "0x" << hex;
 			ss << nLocationID;
+			ss << " (USB)";	// Legacy support: LP uses this suffix to distinguish the "location" from serial ports.
 			
 // debug
 //			cppstring temp; 

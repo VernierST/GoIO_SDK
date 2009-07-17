@@ -43,6 +43,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.29
+Fixed how we specify Mac location name in order to be compatible with Logger Pro.
+
 Version 2.28
 Fixed an initialization bug associated with the Vernier Mini Gas Chromatograph(GC) on the Mac.
 
