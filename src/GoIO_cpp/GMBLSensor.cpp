@@ -188,16 +188,23 @@ void GMBLSensor::UnMarshallDDSRec(
 
 	for (unsigned int i = 0; i < numCalPages; i++)
 	{
-		float *pFloat = &(pPlatformEndianOutputRec->CalibrationPage[i].CalibrationCoefficientA);
-		for (unsigned int j = 0; j < 3; j++)
-		{
-			pLSB = (unsigned char *) pFloat;
-			pLMidB = pLSB + 1;
-			pMMidB = pLMidB + 1;
-			pMSB = pMMidB + 1;
-			GUtils::OSConvertBytesToFloat(*pLSB, *pLMidB, *pMMidB, *pMSB, pFloat);
-			pFloat++;
-		}
+		pLSB = (unsigned char *) &(littleEndianInputRec.CalibrationPage[i].CalibrationCoefficientA);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertBytesToFloat(*pLSB, *pLMidB, *pMMidB, *pMSB, &(pPlatformEndianOutputRec->CalibrationPage[i].CalibrationCoefficientA));
+
+		pLSB = (unsigned char *) &(littleEndianInputRec.CalibrationPage[i].CalibrationCoefficientB);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertBytesToFloat(*pLSB, *pLMidB, *pMMidB, *pMSB, &(pPlatformEndianOutputRec->CalibrationPage[i].CalibrationCoefficientB));
+
+		pLSB = (unsigned char *) &(littleEndianInputRec.CalibrationPage[i].CalibrationCoefficientC);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertBytesToFloat(*pLSB, *pLMidB, *pMMidB, *pMSB, &(pPlatformEndianOutputRec->CalibrationPage[i].CalibrationCoefficientC));
 	}
 }
 
@@ -256,16 +263,23 @@ void GMBLSensor::MarshallDDSRec(
 
 	for (unsigned int i = 0; i < numCalPages; i++)
 	{
-		float *pFloat = &(pLittleEndianOutputRec->CalibrationPage[i].CalibrationCoefficientA);
-		for (unsigned int j = 0; j < 3; j++)
-		{
-			pLSB = (unsigned char *) pFloat;
-			pLMidB = pLSB + 1;
-			pMMidB = pLMidB + 1;
-			pMSB = pMMidB + 1;
-			GUtils::OSConvertFloatToBytes(*pFloat, pLSB, pLMidB, pMMidB, pMSB);
-			pFloat++;
-		}
+		pLSB = (unsigned char *) &(pLittleEndianOutputRec->CalibrationPage[i].CalibrationCoefficientA);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertFloatToBytes(platformEndianInputRec.CalibrationPage[i].CalibrationCoefficientA, pLSB, pLMidB, pMMidB, pMSB);
+
+		pLSB = (unsigned char *) &(pLittleEndianOutputRec->CalibrationPage[i].CalibrationCoefficientB);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertFloatToBytes(platformEndianInputRec.CalibrationPage[i].CalibrationCoefficientB, pLSB, pLMidB, pMMidB, pMSB);
+
+		pLSB = (unsigned char *) &(pLittleEndianOutputRec->CalibrationPage[i].CalibrationCoefficientC);
+		pLMidB = pLSB + 1;
+		pMMidB = pLMidB + 1;
+		pMSB = pMMidB + 1;
+		GUtils::OSConvertFloatToBytes(platformEndianInputRec.CalibrationPage[i].CalibrationCoefficientC, pLSB, pLMidB, pMMidB, pMSB);
 	}
 }
 

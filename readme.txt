@@ -43,6 +43,9 @@ Currently, we only provide a Windows version of GoIO_console. It was written in 
 
 Release notes:
 
+Version 2.30
+Tweak DDS memory marshalling logic to avoid memory alignment traps on CPU's that care about such things(eg. ARM).
+
 Version 2.29
 Fixed how we specify Mac location name in order to be compatible with Logger Pro.
 
