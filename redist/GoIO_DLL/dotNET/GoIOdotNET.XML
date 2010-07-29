@@ -1,0 +1,498 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoIOdotNET</name>
+    </assembly>
+    <members>
+        <member name="F:GoIOdotNET.GoIO.TIMEOUT_MS_DEFAULT">
+            <summary>
+            TIMEOUT_MS_DEFAULT is the recommended timeout in milliseconds for most commands sent to the hardware 
+            via GoIO_DeviceSendCmdAndGetResponse(). Note that this timeout is much longer than the expected execution time
+            of GoIO_DeviceSendCmdAndGetResponse() for most commands, which is about 50 milliseconds.
+            </summary>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Init">
+            <summary>
+            Call GoIO_Init() once before any other GoIO_ calls are made.
+            GoIO_Init() and GoIO_Uninit() should be called from the same thread.
+            <para>
+            Currently, only one application at a time may successfully communicate with LabQuests.
+            If separate apps call GoIO_Init() before calling GoIO_Uninit(), generally only the first one to 
+            invoke GoIO_Init() will find devices when it calls GoIO_UpdateListOfAvailableDevices() and GoIO_GetNthAvailableDeviceName().
+            </para>
+            </summary>
+            <returns> 0 iff successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Uninit">
+            <summary>
+            Call GoIO_Uninit() once to 'undo' GoIO_Init().
+            GoIO_Init() and GoIO_Uninit() should be called from the same thread.
+            </summary>
+            <returns>0 iff successful, else -1.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:GoIOdotNET.GoIO.GetDLLVersion(System.UInt16@,System.UInt16@)" -->
+        <member name="M:GoIOdotNET.GoIO.UpdateListOfAvailableDevices(System.Int32,System.Int32)">
+            <summary>
+            The GoIO library maintains a separate list of available devices for each supported device type.
+            GoIO_UpdateListOfAvailableDevices() updates the list for the specified device type.
+            
+            </summary>
+            <param name="vendorId">[in] USB vendor id</param>
+            <param name="productId">[in] USB product id</param>
+            <returns>0 iff successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.GetNthAvailableDeviceName(System.Text.StringBuilder,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return the Nth entry in the list created by UpdateListOfAvailableDevices().
+            A device is placed in the list snapshot even if it has already been opened.
+            
+            Pass the device name string placed in devnameBuf to GoIO_Sensor_Open() to open the device. Each
+            device name string uniquely identifies the device, so you can determine if a device is already open
+            by comparing devnameBuf with the string returned by GoIO_Sensor_GetOpenDeviceName() for each open
+            device handle.
+            </summary>
+            <param name="devnameBuf">[out] buffer to store device name string. Allocate this with a capacity of GoIO.MAX_SIZE_Sensor_NAME.</param>
+            <param name="bufSize">[in] Set this to the capacity of devnameBuf.</param>
+            <param name="vendorId">[in] USB vendor id</param>
+            <param name="productId">[in] USB product id</param>
+            <param name="N">[in] index into list of known devices, 0 => first device in list.</param>
+            <returns>0 iff successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_Open(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            <para>
+            Open a device with the name returned by GoIO_GetNthAvailableDeviceName.
+            </para>
+            </summary>
+            <param name="deviceName"></param>
+            <param name="vendorId">[in] USB vendor id</param>
+            <param name="productId">[in] USB product id</param>
+            <param name="strictDDSValidationFlag">[in] insist on exactly valid checksum if 1, else use a more lax validation test.</param>
+            <returns>handle to open sensor device if successful, else NULL.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_ClearIO(System.IntPtr)">
+            <summary>
+            GoIO_Sensor_ClearIO()
+            </summary>
+            <param name="hSensor"></param>
+            <param name="channel">-1 implies all channels</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_SendCmdAndGetResponse(System.IntPtr,System.Byte,System.IntPtr,System.UInt32,System.IntPtr,System.UInt32@,System.Int32)">
+            <summary>
+            GoIO_Sensor_SendCmdAndGetResponse() is a low level function that most .NET code should not use directly.
+            Use one of the GoIO_Sensor_SendCmdAndGetResponseN() helper functions instead.
+            </summary>
+            <param name="hSensor"></param>
+            <param name="cmd"></param>
+            <param name="parameters"></param>
+            <param name="nParamBytes"></param>
+            <param name="response"></param>
+            <param name="nRespBytes">size of of response buffer on input, # of bytes copied into response buffer on output</param>
+            <param name="timeoutMs"></param>
+            <returns>0 if successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_SendCmdAndGetResponse1(System.IntPtr,System.Byte,System.Object,System.Object@,System.UInt32@,System.Int32)">
+            <summary>
+            Send a command to the specified device hardware and wait for a response. 
+            <para>
+            Each device type has a command protocol that is unique to that device type. The command protocol used by
+            GoIO_DEVTYPE_LABQUEST_AUDIO devices is a subset of the protocol used by GoIO_DEVTYPE_LABQUEST devices. This
+            protocol is documented in the GoIOSourceCmds class. Additional documentation can be found in GoIOSourceCmds.h.
+            </para>
+            <para>
+            Note that GoIO_Sensor_SendCmdAndGetResponse() will fail if you send a CMD_ID_START_MEASUREMENTS
+            command while GoIO_Sensor_GetNumMeasurementsAvailable() says measurements are available. 
+            </para>
+            <para>
+            So...if you are restarting measurements, you should clear any old measurements in the GoIO Measurement 
+            Buffer first by reading in the measurements until the Buffer is empty, or you should call GoIO_Sensor_ClearIO().
+            </para>
+            <para>
+            Every command supported by GoIO_Sensor_SendCmdAndGetResponse() has an associated response. If no response
+            specific to a command is defined, then the format of the response is GoIODefaultCmdResponse. Some commands
+            have associated parameter blocks defined for them. 
+            </para>
+            <para>
+            If GoIO_Sensor_SendCmdAndGetResponse() returns -1, additional information about a GoIO_Sensor_SendCmdAndGetResponse() 
+            error may be obtained by calling GoIO_Sensor_GetLastCmdResponseStatus().
+            </para>
+            </summary>
+            <param name="hSensor">[in] handle to open device.</param>
+            <param name="cmd">[in] command code.</param>
+            <param name="parameters">[in] cmd specific parameter block</param>
+            <param name="response">[out] response block</param>
+            <param name="nRespBytes">[out] num of bytes passed back in the response block. 
+            Caller does not need to initialize this with the size of response block(as unmanaged code does) because the dotNET
+            wrapper does so.
+            </param>
+            <param name="timeoutMs">[in] # of milliseconds to wait for a reply before giving up. Most devices should reply to 
+            almost all the currently defined commands within GoIO.TIMEOUT_MS_DEFAULT milliseconds. In fact, typical response
+            times are less than 50 milliseconds. </param>
+            <returns>0 if successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_SendCmdAndGetResponse2(System.IntPtr,System.Byte,System.Object,System.Int32)">
+            <summary>
+            Sensor_SendCmdAndGetResponse2() is the same as Sensor_SendCmdAndGetResponse1() except that no response block is
+            returned by the function(even though some sort of response always comes back from the device unless there is a 
+            communication failure). This is reasonable if the caller only cares about when the function succeeds or fails, 
+            which can be determined from the return value.
+            </summary>
+            <param name="hSensor"></param>
+            <param name="cmd"></param>
+            <param name="parameters"></param>
+            <param name="timeoutMs"></param>
+            <returns>0 if successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_SendCmdAndGetResponse3(System.IntPtr,System.Byte,System.Object@,System.UInt32@,System.Int32)">
+            <summary>
+            Sensor_SendCmdAndGetResponse3() is the same as Sensor_SendCmdAndGetResponse1() except that no parameter block is sent
+            to the device. That works fine for commands that do not require parameters.
+            </summary>
+            <param name="hSensor"></param>
+            <param name="cmd"></param>
+            <param name="response"></param>
+            <param name="nRespBytes"></param>
+            <param name="timeoutMs"></param>
+            <returns>0 if successful, else -1.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_SendCmdAndGetResponse4(System.IntPtr,System.Byte,System.Int32)">
+            <summary>
+            Sensor_SendCmdAndGetResponse4() is the same as Sensor_SendCmdAndGetResponse1() except that no parameter block is sent
+            to the device and no response block is returned by the function. That works fine for commands that do not require 
+            parameters when the caller is only interested in success or failure.
+            
+            </summary>
+            <param name="hSensor"></param>
+            <param name="cmd"></param>
+            <param name="timeoutMs"></param>
+            <returns>0 if successful, else -1.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:GoIOdotNET.GoIO.Sensor_ReadRawMeasurements(System.IntPtr,System.Int32[],System.UInt32)" -->
+        <member name="M:GoIOdotNET.GoIO.Sensor_GetLatestRawMeasurement(System.IntPtr)">
+            <summary>
+            Report the most recent measurement put in the GoIO Measurement Buffer. If no 
+            measurements have been placed in the GoIO Measurement Buffer since it was
+            created byGoIO_Sensor_Open(), then report a value of 0. 
+            <para>
+            This routine also empties the GoIO Measurement Buffer, so GoIO_Sensor_GetNumMeasurementsAvailable()
+            will report 0 after calling GoIO_Sensor_GetLatestRawMeasurement().
+            </para>
+            <para>
+            After SKIP_CMD_ID_START_MEASUREMENTS has been sent to the sensor, the sensor starts
+            sending measurements to the host computer. These measurements are stored in the 
+            GoIO Measurement Buffer. A separate GoIO Measurement Buffer is maintained for each
+            open sensor. See the description of GoIO_Sensor_GetNumMeasurementsAvailable().
+            </para>
+            <para>
+            Note that for Go! Temp and Go! Link, raw measurements range from -32768 to 32767.
+            Go! Motion raw measurements are in microns and can range into the millions.
+            </para>
+            <para>
+            To convert a raw measurement to a voltage use GoIO_Sensor_ConvertToVoltage().
+            To convert a voltage to a sensor specific calibrated unit, use GoIO_Sensor_CalibrateData().
+            </para>
+            </summary>
+            <param name="hSensor"></param>
+            <returns>most recent measurement put in the GoIO Measurement Buffer. If no 
+            measurements have been placed in the GoIO Measurement Buffer since it was
+            created byGoIO_Sensor_Open(), then report a value of 0.</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_ConvertToVoltage(System.IntPtr,System.Int32)">
+            <summary>
+            Convert a raw measurement integer value into a real voltage value.
+            Depending on the type of sensor(see GoIO_Sensor_GetProbeType()), the voltage
+            may range from 0.0 to 5.0, or from -10.0 to 10.0 . For Go! Motion, voltage returned is simply distance
+            in meters.
+            </summary>
+            <param name="hSensor"></param>
+            <param name="rawMeasurement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_GetProbeType(System.IntPtr)">
+            <summary>
+            GoIO_Sensor_GetProbeType()
+            </summary>
+            <param name="hSensor"></param>
+            <param name="channel"></param>
+            <returns>VSTSensorDDSMemRec.kProbeType...</returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_DDSMem_ReadRecord(System.IntPtr,System.Byte,System.Int32)">
+            <summary>
+            GoIO_Sensor_DDSMem_ReadRecord().
+            </summary>
+            <param name="hSensor"></param>
+            <param name="channel"></param>
+            <param name="strictDDSValidationFlag">insist on exactly valid checksum if 1, else use a more lax validation test.</param>
+            <param name="timeoutMs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_DDSMem_GetSensorNumber(System.IntPtr,System.Byte@,System.Byte,System.Int32)">
+            <summary>
+            GoIO_Sensor_DDSMem_GetSensorNumber().
+            </summary>
+            <param name="hSensor"></param>
+            <param name="channel"></param>
+            <param name="SensorNumber"></param>
+            <param name="sendQueryToHardwareflag">If sendQueryToHardwareflag != 0, then send a CMD_ID_GET_SENSOR_ID to the sensor hardware.</param>
+            <param name="timeoutMs"># of milliseconds to wait for a reply before giving up. GoIO.TIMEOUT_MS_DEFAULT is recommended.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Sensor_DDSMem_SetOperationType(System.IntPtr,System.Byte)">
+            <summary>
+            GoIO_Sensor_DDSMem_SetOperationType() can change the probe type. See GoIO_Sensor_GetProbeType().
+            </summary>
+            <param name="hSensor"></param>
+            <param name="channel"></param>
+            <param name="OperationType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk">
+            <summary>
+            GoIO_ParmBlk defines the GoIO.Sensor_SendCmdAndGetResponse() protocol used with GoTemp, GoLink, and GoMotion devices.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_STATUS">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOGetStatusCmdResponsePayload
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_START_MEASUREMENTS">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_STOP_MEASUREMENTS">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_INIT">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            Direct use of this command by application programs is not recommended. This command gets sent automatically by the GoIO
+            library by GoIO_Sensor_Open().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_MEASUREMENT_PERIOD">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            Direct use of this command by application programs is not recommended. Instead, call
+            GoIO_Sensor_SetMeasurementPeriod().
+            <para>
+            parameters: GoIOSetMeasurementPeriodParams
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_MEASUREMENT_PERIOD">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            Direct use of this command by application programs is not recommended. Instead, call
+            GoIO_Sensor_GetMeasurementPeriod().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOSetMeasurementPeriodParams
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_LED_STATE">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: GoIOSetLedStateParams
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_LED_STATE">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOSetLedStateParams
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_SERIAL_NUMBER">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            This command is supported by GoTemp and GoLink, but not GoMotion.
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOSerialNumber
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_ANALOG_INPUT_CHANNEL">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: GoIOSetAnalogInputParams
+            </para>
+            <para>
+            response: GoIODefaultCmdResponse
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_ANALOG_INPUT_CHANNEL">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOSetAnalogInputParams
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_SENSOR_ID">
+            <summary>
+            Used with GoIO.Sensor_SendCmdAndGetResponseN().
+            Direct use of this command by application programs is not recommended. 
+            Instead, call GoIO_Sensor_DDSMem_GetSensorNumber(sendQueryToHardwareflag=1).
+            <para>
+            parameters: none
+            </para>
+            <para>
+            response: GoIOGetSensorIdCmdResponsePayload
+            </para>
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE">
+            <summary>
+            GoIO.GetErrorSentOverTheWire() returns GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE if the
+            most recent call to GoIO.SendCmdAndGetResponse() did not result in an error code being sent back from
+            the device.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIODefaultCmdResponse.status">
+            <summary>
+            GoIODefaultCmdResponse.STATUS_...
+            </summary>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetMeasurementPeriodParams">
+            <summary>
+            Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_MEASUREMENT_PERIOD.
+            This is also the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_MEASUREMENT_PERIOD.
+            Direct use of the GoIOSetMeasurementPeriodParams struct is not recommended. 
+            Use GoIO.Sensor_SetMeasurementPeriod() instead.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetMeasurementPeriodParams.lsbyteLswordMeasurementPeriod">
+            <summary>
+            Measurement period in device 'ticks', which are milliseconds for the GoLink.
+            </summary>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetLedStateParams">
+            <summary>
+            Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_LED_STATE.
+            This is also the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_LED_STATE.
+            </summary>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload">
+            <summary>
+            This is the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_STATUS.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_GOOD" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_WHILE_SAMPLING" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_ALWAYS" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_MISSING" -->
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.status">
+            <summary>
+            See MASK_STATUS_ .
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.minorVersionMasterCPU">
+            <summary>
+            Binary coded decimal.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.majorVersionMasterCPU">
+            <summary>
+            Binary coded decimal.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.minorVersionSlaveCPU">
+            <summary>
+            Binary coded decimal - updated by GoLink and GoMotion, but not by GoTemp.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.majorVersionSlaveCPU">
+            <summary>
+            Binary coded decimal - updated by GoLink and GoMotion, but not by GoTemp.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSerialNumber.ww">
+            <summary>
+            week in year(starting at 1) in BCD format
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSerialNumber.yy">
+            <summary>
+            last two digits of year in BCD format
+            </summary>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOGetSensorIdCmdResponsePayload">
+            <summary>
+            This is the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_SENSOR_ID.
+            </summary>
+        </member>
+        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams">
+            <summary>
+            Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_ANALOG_INPUT_CHANNEL.
+            This is also the response returned by SendCmdAndGetResponse() for CMD_ID_GET_ANALOG_INPUT_CHANNEL.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN">
+            <summary>
+            Used for +/- 10 volt probes.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN_LOW">
+            <summary>
+            Used for 5 volt probes.
+            </summary>
+        </member>
+        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.analogInputChannel">
+            <summary>
+            ANALOG_INPUT_... 
+            </summary>
+        </member>
+    </members>
+</doc>
