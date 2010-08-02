@@ -247,12 +247,12 @@
             <param name="OperationType"></param>
             <returns></returns>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk">
+        <member name="T:GoIOdotNET.GoIO_ParmBlk">
             <summary>
             GoIO_ParmBlk defines the GoIO.Sensor_SendCmdAndGetResponse() protocol used with GoTemp, GoLink, and GoMotion devices.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_STATUS">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_STATUS">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -263,7 +263,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_START_MEASUREMENTS">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_START_MEASUREMENTS">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -274,7 +274,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_STOP_MEASUREMENTS">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_STOP_MEASUREMENTS">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -285,7 +285,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_INIT">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_INIT">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             Direct use of this command by application programs is not recommended. This command gets sent automatically by the GoIO
@@ -298,7 +298,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_MEASUREMENT_PERIOD">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_SET_MEASUREMENT_PERIOD">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             Direct use of this command by application programs is not recommended. Instead, call
@@ -311,7 +311,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_MEASUREMENT_PERIOD">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_MEASUREMENT_PERIOD">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             Direct use of this command by application programs is not recommended. Instead, call
@@ -324,7 +324,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_LED_STATE">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_SET_LED_STATE">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -335,7 +335,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_LED_STATE">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_LED_STATE">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -346,7 +346,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_SERIAL_NUMBER">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_SERIAL_NUMBER">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             This command is supported by GoTemp and GoLink, but not GoMotion.
@@ -358,7 +358,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_SET_ANALOG_INPUT_CHANNEL">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_SET_ANALOG_INPUT_CHANNEL">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -369,7 +369,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_ANALOG_INPUT_CHANNEL">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_ANALOG_INPUT_CHANNEL">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             <para>
@@ -380,7 +380,7 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIO_ParmBlk.CMD_ID_GET_SENSOR_ID">
+        <member name="F:GoIOdotNET.GoIO_ParmBlk.CMD_ID_GET_SENSOR_ID">
             <summary>
             Used with GoIO.Sensor_SendCmdAndGetResponseN().
             Direct use of this command by application programs is not recommended. 
@@ -393,19 +393,19 @@
             </para>
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE">
+        <member name="F:GoIOdotNET.GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE">
             <summary>
             GoIO.GetErrorSentOverTheWire() returns GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE if the
             most recent call to GoIO.SendCmdAndGetResponse() did not result in an error code being sent back from
             the device.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIODefaultCmdResponse.status">
+        <member name="F:GoIOdotNET.GoIODefaultCmdResponse.status">
             <summary>
             GoIODefaultCmdResponse.STATUS_...
             </summary>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetMeasurementPeriodParams">
+        <member name="T:GoIOdotNET.GoIOSetMeasurementPeriodParams">
             <summary>
             Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_MEASUREMENT_PERIOD.
             This is also the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_MEASUREMENT_PERIOD.
@@ -413,83 +413,83 @@
             Use GoIO.Sensor_SetMeasurementPeriod() instead.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetMeasurementPeriodParams.lsbyteLswordMeasurementPeriod">
+        <member name="F:GoIOdotNET.GoIOSetMeasurementPeriodParams.lsbyteLswordMeasurementPeriod">
             <summary>
             Measurement period in device 'ticks', which are milliseconds for the GoLink.
             </summary>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetLedStateParams">
+        <member name="T:GoIOdotNET.GoIOSetLedStateParams">
             <summary>
             Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_LED_STATE.
             This is also the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_LED_STATE.
             </summary>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload">
+        <member name="T:GoIOdotNET.GoIOGetStatusCmdResponsePayload">
             <summary>
             This is the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_STATUS.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_GOOD" -->
-        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_WHILE_SAMPLING" -->
-        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_ALWAYS" -->
-        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_MISSING" -->
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.status">
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_GOOD" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_WHILE_SAMPLING" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_LOW_ALWAYS" -->
+        <!-- Badly formed XML comment ignored for member "F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.GO_MOTION_MASK_STATUS_BATTERY_STATE_MISSING" -->
+        <member name="F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.status">
             <summary>
             See MASK_STATUS_ .
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.minorVersionMasterCPU">
+        <member name="F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.minorVersionMasterCPU">
             <summary>
             Binary coded decimal.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.majorVersionMasterCPU">
+        <member name="F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.majorVersionMasterCPU">
             <summary>
             Binary coded decimal.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.minorVersionSlaveCPU">
+        <member name="F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.minorVersionSlaveCPU">
             <summary>
             Binary coded decimal - updated by GoLink and GoMotion, but not by GoTemp.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOGetStatusCmdResponsePayload.majorVersionSlaveCPU">
+        <member name="F:GoIOdotNET.GoIOGetStatusCmdResponsePayload.majorVersionSlaveCPU">
             <summary>
             Binary coded decimal - updated by GoLink and GoMotion, but not by GoTemp.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSerialNumber.ww">
+        <member name="F:GoIOdotNET.GoIOSerialNumber.ww">
             <summary>
             week in year(starting at 1) in BCD format
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSerialNumber.yy">
+        <member name="F:GoIOdotNET.GoIOSerialNumber.yy">
             <summary>
             last two digits of year in BCD format
             </summary>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOGetSensorIdCmdResponsePayload">
+        <member name="T:GoIOdotNET.GoIOGetSensorIdCmdResponsePayload">
             <summary>
             This is the response payload returned by SendCmdAndGetResponse() for CMD_ID_GET_SENSOR_ID.
             </summary>
         </member>
-        <member name="T:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams">
+        <member name="T:GoIOdotNET.GoIOSetAnalogInputParams">
             <summary>
             Parameter block passed into SendCmdAndGetResponse() with CMD_ID_SET_ANALOG_INPUT_CHANNEL.
             This is also the response returned by SendCmdAndGetResponse() for CMD_ID_GET_ANALOG_INPUT_CHANNEL.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN">
+        <member name="F:GoIOdotNET.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN">
             <summary>
             Used for +/- 10 volt probes.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN_LOW">
+        <member name="F:GoIOdotNET.GoIOSetAnalogInputParams.ANALOG_INPUT_CHANNEL_VIN_LOW">
             <summary>
             Used for 5 volt probes.
             </summary>
         </member>
-        <member name="F:GoIOdotNET.GoIOSourceCmds.GoIOSetAnalogInputParams.analogInputChannel">
+        <member name="F:GoIOdotNET.GoIOSetAnalogInputParams.analogInputChannel">
             <summary>
             ANALOG_INPUT_... 
             </summary>
