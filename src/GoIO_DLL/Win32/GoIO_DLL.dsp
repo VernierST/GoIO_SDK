@@ -92,6 +92,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\..\GoIO_cpp\GCalibrateDataFuncs.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\GoIO_cpp\GCyclopsDevice.cpp
 # End Source File
 # Begin Source File
@@ -164,6 +168,10 @@ SOURCE=..\..\GoIO_cpp\Win32\GUtils_Win.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\GoIO_cpp\NonSmartSensorDDSRecs.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
@@ -174,6 +182,10 @@ SOURCE=..\..\GoIO_cpp\Win32\WinEnumDevices.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=..\..\GoIO_cpp\GCalibrateDataFuncs.h
+# End Source File
 # Begin Source File
 
 SOURCE=..\..\GoIO_cpp\GCharacters.h
@@ -269,6 +281,10 @@ SOURCE=..\..\GoIO_cpp\GUtils.h
 # Begin Source File
 
 SOURCE=..\..\GoIO_cpp\GVernierUSB.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\GoIO_cpp\NonSmartSensorDDSRecs.h
 # End Source File
 # Begin Source File
 

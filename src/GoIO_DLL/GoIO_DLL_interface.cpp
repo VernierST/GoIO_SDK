@@ -15,6 +15,7 @@
 #include "GUSBDirectTempDevice.h"
 #include "GMBLSensor.h"
 #include "GUtils.h"
+#include "NonSmartSensorDDSRecs.h"
 #include "GoIO_DLL_interface.h"
 
 #define SKIP_TIMEOUT_MS_READ_FLASH 2000
@@ -206,7 +207,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 30;
+	*pMinorVersion = 35;
 	return 0;
 }
 
@@ -227,6 +228,8 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 ****************************************************************************************************************************/
 GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init()
 {
+	InitSensorDefaultDDSRecs();
+
 	#ifdef TARGET_OS_WIN // If this is Windows...
 		if (!hWinSetupApiLibrary)
 			hWinSetupApiLibrary = WinLoadSetupApiLibrary();
@@ -1595,7 +1598,9 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_SetSensorNumber(
 		if (!pSkip)
 			nResult = -1;
 		else
+		{
 			pGoIOSensor->m_pMBLSensor->SetID(SensorNumber);//This may cause GetDDSRecPtr()->OperationType to change also!
+		}
 		UnlockSensor(hSensor);
 	}
 
@@ -1655,8 +1660,9 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_GetSensorNumber(
 				else
 				if (nSensorId > 255)
 					nSensorId = 0;
+				
+				pGoIOSensor->m_pMBLSensor->SetID(nSensorId);
 				*pSensorNumber = (unsigned char) nSensorId;
-				pGoIOSensor->m_pMBLSensor->GetDDSRecPtr()->SensorNumber = *pSensorNumber;
 			}
 		}
 		UnlockSensor(hSensor);

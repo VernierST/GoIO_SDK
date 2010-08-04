@@ -108,8 +108,8 @@ void CGoIO_consoleView::OnDraw(CDC* pDC)
 
 		//Make sure that meas_y_range corresponds to a voltage delta of at least 0.1 volts.
 		double y_0_volts, y_dot1_volts, deltay_dot1_volts;
-		y_0_volts = GoIO_Sensor_CalibrateData(hDevice, 0.0);
-		y_dot1_volts = GoIO_Sensor_CalibrateData(hDevice, 0.1);
+		y_0_volts = GoIO_Sensor_CalibrateData(hDevice, 2.5);
+		y_dot1_volts = GoIO_Sensor_CalibrateData(hDevice, 2.6);
 		deltay_dot1_volts = y_dot1_volts - y_0_volts;
 		if (deltay_dot1_volts < 0.0)
 			deltay_dot1_volts = -deltay_dot1_volts;

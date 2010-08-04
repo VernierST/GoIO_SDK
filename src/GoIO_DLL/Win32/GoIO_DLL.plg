@@ -7,9 +7,10 @@
 </h3>
 <h3>Command Lines</h3>
 Creating command line "rc.exe /l 0x409 /fo"Release/GoIO_DLL.res" /d "NDEBUG" "C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\GoIO_DLL.rc"" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4B.tmp" with contents
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP2F7.tmp" with contents
 [
 /nologo /MT /W3 /GR /GX /O2 /I "..\GoIO_cpp" /I "..\GoIO_cpp\Win32" /I "." /I ".." /I "..\..\GoIO_cpp" /I "..\..\GoIO_cpp\Win32" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_WINDLL" /D "_MBCS" /D "_USRDLL" /D "TARGET_OS_WIN" /D "_GOIO_DLL_SRC" /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GCalibrateDataFuncs.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GCyclopsDevice.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GDeviceIO.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GMBLSensor.cpp"
@@ -26,13 +27,15 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4B.tmp" with cont
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GUSBDirectTempDevice.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\GUtils.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\GUtils_Win.cpp"
+"C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\NonSmartSensorDDSRecs.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_DLL\Win32\StdAfx.cpp"
 "C:\depot\SDK\GoIO_SDK\src\GoIO_cpp\Win32\WinEnumDevices.cpp"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4B.tmp" 
-Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4C.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP2F7.tmp" 
+Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP2F8.tmp" with contents
 [
 /nologo /subsystem:windows /dll /incremental:no /pdb:"Release/GoIO_DLL.pdb" /machine:I386 /def:".\GoIO_DLL.def" /out:"Release/GoIO_DLL.dll" /implib:"Release/GoIO_DLL.lib" 
+.\Release\GCalibrateDataFuncs.obj
 .\Release\GCyclopsDevice.obj
 .\Release\GDeviceIO.obj
 .\Release\GMBLSensor.obj
@@ -49,14 +52,16 @@ Creating temporary file "C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4C.tmp" with cont
 .\Release\GUSBDirectTempDevice.obj
 .\Release\GUtils.obj
 .\Release\GUtils_Win.obj
+.\Release\NonSmartSensorDDSRecs.obj
 .\Release\StdAfx.obj
 .\Release\WinEnumDevices.obj
 .\Release\GoIO_DLL.res
 ]
-Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP4C.tmp"
+Creating command line "link.exe @C:\DOCUME~1\eleonard\LOCALS~1\Temp\RSP2F8.tmp"
 <h3>Output Window</h3>
 Compiling resources...
 Compiling...
+GCalibrateDataFuncs.cpp
 GCyclopsDevice.cpp
 GDeviceIO.cpp
 GMBLSensor.cpp
@@ -73,6 +78,7 @@ GThread_Win.cpp
 GUSBDirectTempDevice.cpp
 GUtils.cpp
 GUtils_Win.cpp
+NonSmartSensorDDSRecs.cpp
 StdAfx.cpp
 WinEnumDevices.cpp
 Generating Code...

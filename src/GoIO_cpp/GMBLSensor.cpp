@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "GMBLSensor.h"
+#include "GCalibrateDataFuncs.h"
 
 //#include "GMBLDataCalibration.h"
 //#include "GMBLDataCalibMotion.h"
@@ -302,14 +303,40 @@ cppstring GMBLSensor::GetUnits(void)
 
 real GMBLSensor::CalibrateData(real fRawVolts)
 {
-	real fCalibratedMeasurement = fRawVolts;
-	if (kEquationType_Linear == m_sensorDDSRec.CalibrationEquation)
+	real fCalibratedMeasurement;
+
+	int nPage = m_sensorDDSRec.ActiveCalPage;
+	if (nPage > m_sensorDDSRec.HighestValidCalPageIndex)
+		nPage = 0;
+	GCalibrationPage *pActiveCalibration = &(m_sensorDDSRec.CalibrationPage[nPage]);
+
+	switch (m_sensorDDSRec.CalibrationEquation)
 	{
-		int nPage = m_sensorDDSRec.ActiveCalPage;
-		if (nPage > m_sensorDDSRec.HighestValidCalPageIndex)
-			nPage = 0;
-		GCalibrationPage *pActiveCalibration = &(m_sensorDDSRec.CalibrationPage[nPage]);
-		fCalibratedMeasurement = pActiveCalibration->CalibrationCoefficientB*fRawVolts + pActiveCalibration->CalibrationCoefficientA;
+		case kEquationType_Linear:
+			fCalibratedMeasurement = CalibrateData_Linear(fRawVolts, pActiveCalibration->CalibrationCoefficientA, 
+				pActiveCalibration->CalibrationCoefficientB);
+			break;
+		case kEquationType_Quadratic:
+			fCalibratedMeasurement = CalibrateData_Quadratic(fRawVolts, pActiveCalibration->CalibrationCoefficientA, 
+				pActiveCalibration->CalibrationCoefficientB, pActiveCalibration->CalibrationCoefficientC);
+			break;
+		case kEquationType_ModifiedPower:
+			fCalibratedMeasurement = CalibrateData_ModifiedPower(fRawVolts, pActiveCalibration->CalibrationCoefficientA, 
+				pActiveCalibration->CalibrationCoefficientB);
+			break;
+		case kEquationType_SteinhartHart:
+			{
+				char unit = pActiveCalibration->Units[0];
+				if ('(' == unit)
+					unit = pActiveCalibration->Units[1];
+				fCalibratedMeasurement = CalibrateData_SteinhartHart(fRawVolts, pActiveCalibration->CalibrationCoefficientA, 
+					pActiveCalibration->CalibrationCoefficientB, pActiveCalibration->CalibrationCoefficientC,
+					15000.0, 5.0, unit);
+			}
+			break;
+		default:
+			fCalibratedMeasurement = fRawVolts;
+			break;
 	}
 
 	return fCalibratedMeasurement;

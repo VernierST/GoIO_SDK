@@ -8,6 +8,7 @@
 
 #include "GTypes.h"
 #include "GSensorDDSMem.h"
+#include "NonSmartSensorDDSRecs.h"
 
 class GMBLSensor
 {
@@ -23,7 +24,6 @@ public:
 									UnMarshallDDSRec(&m_sensorDDSRec, rec);
 								else
 									m_sensorDDSRec = rec;
-								SetProbeType((2 == m_sensorDDSRec.OperationType) ? kProbeTypeAnalog10V : kProbeTypeAnalog5V);
 							}
 	void					GetDDSRec(GSensorDDSRec *pRec)
 							{
@@ -44,8 +44,15 @@ public:
 								else
 								if (id > 255)
 									id = 0;
-								m_sensorDDSRec.SensorNumber = (unsigned char) id;
-								SetProbeType((kSensorIdNumber_Voltage10 == id) ? kProbeTypeAnalog10V : kProbeTypeAnalog5V);
+								if (id != m_sensorDDSRec.SensorNumber)
+								{
+									if (0 == id)
+										m_sensorDDSRec.SensorNumber = 0;//Leave the rest of the record alone.
+									else if (id >= kSensorIdNumber_FirstSmartSensor)
+										m_sensorDDSRec.SensorNumber = id;//Caller needs to read DDS memory!
+									else	//Load default values that describe the non smart sensor.
+										m_sensorDDSRec = g_analogSensorDefaultDDSRecs[id];
+								}
 							}
 	bool					IsSmartSensor(void) { return (GetID() >= kSensorIdNumber_FirstSmartSensor); }
 
@@ -66,13 +73,13 @@ public:
 
 								return probeType;
 							}
-	void					SetProbeType(EProbeType probeType)
-							{
-								if ((probeType != GetProbeType()) && (kSensorIdNumber_GoMotion != m_sensorDDSRec.SensorNumber) 
-									&& (kSensorIdNumber_GoTemp != m_sensorDDSRec.SensorNumber))
-									//Make sure probeType is consistent with m_pSensorDDSRec->OperationType.
-									m_sensorDDSRec.OperationType = (kProbeTypeAnalog10V == probeType) ? 2 : 14;
-							}
+//	void					SetProbeType(EProbeType probeType)
+//							{
+//								if ((probeType != GetProbeType()) && (kSensorIdNumber_GoMotion != m_sensorDDSRec.SensorNumber) 
+//									&& (kSensorIdNumber_GoTemp != m_sensorDDSRec.SensorNumber))
+//									//Make sure probeType is consistent with m_pSensorDDSRec->OperationType.
+//									m_sensorDDSRec.OperationType = (kProbeTypeAnalog10V == probeType) ? 2 : 14;
+//							}
 	cppstring				GetUnits(void);
 
 	real					CalibrateData(real fRawVolts);
