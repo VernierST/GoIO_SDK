@@ -287,16 +287,11 @@ void GMBLSensor::MarshallDDSRec(
 cppstring GMBLSensor::GetUnits(void)
 {
 	cppstring s;
-	if (kEquationType_Linear == m_sensorDDSRec.CalibrationEquation)
-	{
-		int nPage = m_sensorDDSRec.ActiveCalPage;
-		if (nPage > m_sensorDDSRec.HighestValidCalPageIndex)
-			nPage = 0;
-		s = cppstring(&(m_sensorDDSRec.CalibrationPage[nPage].Units[0]), 
-				sizeof(m_sensorDDSRec.CalibrationPage[nPage].Units));
-	}
-	else
-		s = "Volts";
+	int nPage = m_sensorDDSRec.ActiveCalPage;
+	if (nPage > m_sensorDDSRec.HighestValidCalPageIndex)
+		nPage = 0;
+	s = cppstring(&(m_sensorDDSRec.CalibrationPage[nPage].Units[0]), 
+			sizeof(m_sensorDDSRec.CalibrationPage[nPage].Units));
 
 	return s;
 }
