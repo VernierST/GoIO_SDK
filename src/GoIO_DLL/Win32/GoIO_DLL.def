@@ -1,7 +1,7 @@
 ; GoIO_DLL.def : Declares the module parameters for the DLL.
 
 LIBRARY      "GoIO_DLL"
-DESCRIPTION  'GoIO_DLL Windows Dynamic Link Library'
+;DESCRIPTION  'GoIO_DLL Windows Dynamic Link Library'
 
 EXPORTS
     ; Explicit exports can go here
@@ -85,3 +85,13 @@ EXPORTS
 	GoIO_GetDLLVersion @78
 	GoIO_Sensor_SendCmd @79
 	GoIO_Sensor_GetNextResponse @80
+	GoIO_Sensor_DDSMem_ClearRecord	@81
+	GoIO_Sensor_GetLastCmdResponseStatus	@82
+	GoIO_Diags_SetIOTraceEnableFlag		@83
+	GoIO_Diags_GetIOTraceEnableFlag		@84
+	GoIO_Diags_GetNumInputTraceBytesAvailable	@85
+	GoIO_Diags_ReadInputTraceBytes		@86
+	GoIO_Diags_GetNumOutputTraceBytesAvailable	@87
+	GoIO_Diags_ReadOutputTraceBytes		@88
+	GoIO_Diags_SetDebugTraceThreshold	@89
+	GoIO_Diags_GetDebugTraceThreshold	@90

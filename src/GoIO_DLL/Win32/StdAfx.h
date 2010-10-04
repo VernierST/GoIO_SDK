@@ -6,6 +6,9 @@
 #if !defined(AFX_STDAFX_H__D2BFFAC8_59BB_4125_B211_C1637EC7A522__INCLUDED_)
 #define AFX_STDAFX_H__D2BFFAC8_59BB_4125_B211_C1637EC7A522__INCLUDED_
 
+#define WINVER 0x0500
+#pragma warning(disable: 4996)
+
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -34,7 +37,6 @@
 #ifndef _AFX_NO_AFXCMN_SUPPORT
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
-
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

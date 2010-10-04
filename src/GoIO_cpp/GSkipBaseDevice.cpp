@@ -19,6 +19,8 @@ real GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog10V = 0.0;
 
 #define NUM_PACKETS_IN_RETRIEVAL_BUFFER 25
 
+#define DIAGNOSTIC_IO_BUFFER_SIZE 10000
+
 /*******************************************************************************
  GSkipBaseDevice:
 *******************************************************************************/
@@ -27,6 +29,15 @@ GSkipBaseDevice::GSkipBaseDevice(GPortRef *pPortRef)
 {
 	m_nLatestRawMeasurement = 0;
     m_bIsMeasuring = false;
+	m_hostIOStatus = 0;
+	m_lastCmd = 0;
+	m_lastCmdRespStatus = 0;
+	m_lastCmdWithErrorRespSentOvertheWire = 0;
+	m_lastErrorSentOvertheWire = 0;
+	m_bDiagnosticsEnabled = false;
+	m_diagnosticInputBufferPtr = NULL;
+	m_diagnosticOutputBufferPtr = NULL;
+	m_pTraceQueueAccessMutex = NULL;
 }
 
 GSkipBaseDevice::~GSkipBaseDevice()
@@ -34,6 +45,46 @@ GSkipBaseDevice::~GSkipBaseDevice()
 	if (IsOpen())
 		Close();
 	OSDestroy();
+
+	if (m_diagnosticOutputBufferPtr)
+		delete m_diagnosticOutputBufferPtr;
+	m_diagnosticOutputBufferPtr = NULL;
+
+	if (m_diagnosticInputBufferPtr)
+		delete m_diagnosticInputBufferPtr;
+	m_diagnosticInputBufferPtr = NULL;
+
+	if (m_pTraceQueueAccessMutex)
+		delete m_pTraceQueueAccessMutex;
+	m_pTraceQueueAccessMutex = NULL;
+}
+
+long GSkipBaseDevice::Open(GPortRef *pPortRef)
+{
+	if (m_bDiagnosticsEnabled)
+	{
+		if (!m_pTraceQueueAccessMutex)
+			GSTD_NEW(m_pTraceQueueAccessMutex, (GPriorityMutex *), GPriorityMutex(kThreadPriority_TimeCritical, GSTD_S("")));
+
+		if (m_pTraceQueueAccessMutex->m_OSMutex)
+		{
+			if (!m_diagnosticInputBufferPtr)
+			{
+				GSTD_NEW(m_diagnosticInputBufferPtr, (GCircularBuffer *), GCircularBuffer(DIAGNOSTIC_IO_BUFFER_SIZE));
+				m_diagnosticInputBufferPtr->SetQueueAccessMutex(m_pTraceQueueAccessMutex);
+			}
+
+			if (!m_diagnosticOutputBufferPtr)
+			{
+				GSTD_NEW(m_diagnosticOutputBufferPtr, (GCircularBuffer *), GCircularBuffer(DIAGNOSTIC_IO_BUFFER_SIZE));
+				m_diagnosticOutputBufferPtr->SetQueueAccessMutex(m_pTraceQueueAccessMutex);
+			}
+		}
+	}
+
+	long nResult = TBaseClass::Open(pPortRef);
+
+	return nResult;
 }
 
 long GSkipBaseDevice::OSBytesAvailable(void)
@@ -160,6 +211,9 @@ long GSkipBaseDevice::SendCmd(
 
 	nResult = OSWriteCmdPackets(&packet, 1);
 
+	if (GetDiagnosticOutputBufferPtr())
+		GetDiagnosticOutputBufferPtr()->AddBytes((unsigned char *) &packet, sizeof(packet));
+
 	if (GUtils::IsLogOpen())
 	{
 		cppsstream ssCmd;
@@ -177,7 +231,7 @@ long GSkipBaseDevice::SendCmd(
 	if (kResponse_OK != nResult)
 	{
 		cppsstream ss;
-		ss << endl << GSTD_S("Error writing ") << ((unsigned short) cmd) << GSTD_S(" cmd to skip.") << endl;
+		ss << GSTD_S("Error writing ") << hex << ((unsigned short) cmd) << GSTD_S("h cmd to skip.");
 		GSTD_TRACE(ss.str());
 	}
 
@@ -252,6 +306,10 @@ long GSkipBaseDevice::GetNextResponse(
 					nRespSize = min(nBytesInPacket, nBufSize);
 					if (pRespCharBuf && (nRespSize > 0))
 						memcpy(pRespCharBuf, packetPayload, nRespSize);
+
+					m_lastCmdRespStatus = *packetPayload;
+					m_lastCmdWithErrorRespSentOvertheWire = m_lastCmd;
+					m_lastErrorSentOvertheWire = m_lastCmdRespStatus;
 				}
 				if ((!bResponseComplete) && (kResponse_OK == nResult))
 				{
@@ -335,8 +393,8 @@ long GSkipBaseDevice::GetInitCmdResponse(
 					{
 						nResult = kResponse_Error;
 						cppsstream sss;
-						sss << endl << GSTD_S("SKIP_CMD_ID_INIT failed with response ") << hex ;
-						sss << ((unsigned short) packet.errorStatus) << GSTD_S("h.") << endl;
+						sss << GSTD_S("SKIP_CMD_ID_INIT failed with response ") << hex ;
+						sss << ((unsigned short) packet.errorStatus) << GSTD_S("h.");
 						GSTD_TRACE(sss.str());
 					}
 				}
@@ -356,7 +414,7 @@ long GSkipBaseDevice::GetInitCmdResponse(
 	if (kResponse_Error == nResult)
 	{
 		cppsstream ss;
-		ss << endl << GSTD_S("Error waiting for response to SKIP_CMD_ID_INIT.") << endl;
+		ss << GSTD_S("Error waiting for response to SKIP_CMD_ID_INIT.");
 		GSTD_TRACE(ss.str());
 	}
 
@@ -377,8 +435,11 @@ long GSkipBaseDevice::SendCmdAndGetResponse(
 	long nResult = kResponse_Error;
 	bool bTimeout = false;
 
+	m_lastCmd = cmd;
+	m_lastCmdRespStatus = 0;
+
 	if (LockDevice(1) && IsOKToUse())
-	{ // Make sure we're the only thread that has acces to this device
+	{ // Make sure we're the only thread that has access to this device
 		nResult = SendCmd(cmd,	pParams, nParamBytes);
 
 		if (kResponse_OK == nResult)
@@ -394,24 +455,29 @@ long GSkipBaseDevice::SendCmdAndGetResponse(
 				if (kResponse_OK != nResult)
 				{
 					bTimeout = true;
-					ss << endl << GSTD_S("Error waiting for response to ") << hex << ((unsigned short) cmd) << GSTD_S("h cmd from Skip. Timeout??") << endl;
+					m_hostIOStatus = m_hostIOStatus | SKIP_HOST_IO_STATUS_TIMED_OUT;
+					ss << GSTD_S("Error waiting for response to ") << hex << ((unsigned short) cmd) << GSTD_S("h cmd from Skip. Timeout??");
 					GSTD_TRACE(ss.str());
+					if (pnRespBytes)
+						(*pnRespBytes) = 0;//Only 'over the wire' errors have response data.
 				}
 				else
 				if (bError)
 				{
-					ss << endl << GSTD_S("Skip reported an error over the wire. cmd sent = ") << hex << ((unsigned short) cmd) << GSTD_S("h. cmd returned = ");
-					ss << ((unsigned short) responseCmd) << "h." << endl;
+					ss << GSTD_S("Skip reported an error over the wire. cmd sent = ") << hex << ((unsigned short) cmd) << GSTD_S("h. Error returned = ");
+					ss << ((unsigned short) m_lastErrorSentOvertheWire) << GSTD_S("h.");
 					GSTD_TRACE(ss.str());
 					nResult = kResponse_Error;
 				}
 				else
 				if (cmd != responseCmd)
 				{
-					ss << endl << GSTD_S("Skip reported cmd response mismatch. cmd sent = ") << hex << ((unsigned short) cmd) << GSTD_S("h. cmd returned = ");
-					ss << ((unsigned short) responseCmd) << GSTD_S("h.") << endl;
+					ss << GSTD_S("Skip reported cmd response mismatch. cmd sent = ") << hex << ((unsigned short) cmd) << GSTD_S("h. cmd returned = ");
+					ss << ((unsigned short) responseCmd) << GSTD_S("h.");
 					GSTD_TRACE(ss.str());
 					nResult = kResponse_Error;
+					if (pnRespBytes)
+						(*pnRespBytes) = 0;//Only 'over the wire' errors have response data.
 				}
 			}
 		}
@@ -464,7 +530,22 @@ long GSkipBaseDevice::SendCmdAndGetResponse(
 		}
 	}
 
+	if ((kResponse_OK != nResult) && (0 == m_lastCmdRespStatus))
+		m_lastCmdRespStatus = SKIP_STATUS_ERROR_COMMUNICATION;
+
 	return nResult;
+}
+
+void GSkipBaseDevice::GetLastCmdResponseStatus(
+	unsigned char *pLastCmd, 
+	unsigned char *pLastCmdStatus,
+	unsigned char *pLastCmdWithErrorRespSentOvertheWire, 
+	unsigned char *pLastErrorSentOvertheWire)
+{
+	*pLastCmd = m_lastCmd;
+	*pLastCmdStatus = m_lastCmdRespStatus;
+	*pLastCmdWithErrorRespSentOvertheWire = m_lastCmdWithErrorRespSentOvertheWire;
+	*pLastErrorSentOvertheWire = m_lastErrorSentOvertheWire;
 }
 
 long GSkipBaseDevice::ReadNonVolatileMemory(

@@ -22,7 +22,7 @@ GThread::GThread(StdThreadFunctionPtr pFunction,
 {
 	m_bThreadAlive = true;
 
-	m_pThreadRef = NULL;	// only used on Mac
+	m_pThreadRef = NULL;
 
 	m_pFunction = pFunction;
 	m_pStopFunction = pStopFunction;
@@ -34,6 +34,7 @@ GThread::GThread(StdThreadFunctionPtr pFunction,
 	m_bKillThread = bOneShot;
 
 	m_bStop = m_bStart = false;
+	m_bOneShot = bOneShot;
 }
 
 GThread::~GThread()
@@ -62,24 +63,29 @@ int GThread::Main(void *pGThreadObject) // pointer to this GThread object
 				do
 				{
 					// Test for thread death before calling function (brain and such may not exist during shutdown)
-					if (pThread->IsKillThread())	
+					if (! pThread->IsOneShot() && pThread->IsKillThread() )	
 						break;
-
+					
+					// Call SetStop(true) if you need the stop function to execute. It is seperate from OSStopThread.
 					if (pThread->IsStop())
 					{
-						pStopFunction(pParam);
+						if (pStopFunction != NULL)
+							pStopFunction(pParam);
 						pThread->SetStop(false);
 					}
 
+					// Call SetStart(true) if you need the start function to execute. It is seperate from OSStartThread.
 					if (pThread->IsStart())
 					{
-						pStartFunction(pParam);
+						if (pStartFunction != NULL)
+							pStartFunction(pParam);
 						pThread->SetStart(false);
 					}
 
 					// Call worker thread function
-					nResult = (int) pStdFunction(pParam);
-					if (nResult == kResponse_Error)	// exit thread on error
+					if (pStdFunction != NULL)
+						nResult = (int) pStdFunction(pParam);
+					if (nResult == kResponse_Error || pThread->IsOneShot())	// exit thread on error
 						break;
 
 					// Let other threads have a crack at the CPU
@@ -101,3 +107,42 @@ int GThread::Main(void *pGThreadObject) // pointer to this GThread object
 	return nResult;
 }
 
+GLiteThread::GLiteThread(StdThreadFunctionPtr pFunction, 
+				 StdThreadFunctionPtr pStopFunction,
+				 void * pThreadParam)
+{
+	m_bThreadAlive = false;
+
+	m_pThreadRef = NULL;
+
+	m_pFunction = pFunction;
+	m_pStopFunction = pStopFunction;
+	m_pThreadParam = pThreadParam;
+}
+
+GLiteThread::~GLiteThread()
+{
+	OSStopThread();
+}
+
+int GLiteThread::Main(void *pGLiteThreadObject) // pointer to this GLiteThread object
+{ // "main" routine for this thread
+	GLiteThread * pLiteThread = static_cast<GLiteThread *> (pGLiteThreadObject);
+	int nResult = 0;
+	
+	if (pLiteThread != NULL)
+	{
+		StdThreadFunctionPtr pStdFunction = pLiteThread->GetThreadFunction();
+		void * pParam = pLiteThread->GetThreadParam();
+
+		if (pStdFunction != NULL)
+		{
+			// Call worker thread function
+			pLiteThread->SetThreadAlive(true);
+			nResult = (int) pStdFunction(pParam);
+			pLiteThread->SetThreadAlive(false);
+		}
+	}
+
+	return nResult;
+}

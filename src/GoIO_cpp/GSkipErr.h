@@ -1,8 +1,10 @@
 //==================================================================================
 // STATUS values returned in the errorStatus field of a GSkipDefaultResponsePacket.
 //
-// Note that if the SKIP_MASK_INPUT_PACKET_ERROR_FLAG bit is set in the header of
-// a command response packet, then the errorStatus field is used.
+// If SendCmdAndGetResponse() returns -1 and (1 == *pnRespBytes), then *pRespBuf contains
+// NGIODefaultCmdResponse, even if a different response structure is defined for the command.
+// Note that if you only need to know whether or not SendCmdAndGetResponse() fails, but you do not care about why,
+// then you can always set the pRespBuf paramter to NULL.
 //==================================================================================
 #define SKIP_STATUS_SUCCESS 0
 #define SKIP_STATUS_NOT_READY_FOR_NEW_CMD 0x30

@@ -73,6 +73,7 @@ struct CWinSkipMgr
 	unsigned int m_lastMeasurementTimeMs;			//diagnostic
 	unsigned int m_totalMeasurementsCount;			//diagnostic
 	unsigned int m_maxDeltaTimeMs;
+	GSkipBaseDevice *m_pDevice;
 };
 
 CWinSkipPacketCircularBuffer::CWinSkipPacketCircularBuffer(int numRecs)
@@ -213,6 +214,10 @@ DWORD WINAPI InterruptPipeListenCallback(void * pParam)
 
 		if (ReadFile(pSkipMgr->m_hHidDeviceFile, buf, sizeof(buf), &nNumberOfBytesRead, &HIDOverlapped))
 		{
+			if (pSkipMgr->m_pDevice->GetDiagnosticInputBufferPtr())
+				pSkipMgr->m_pDevice->GetDiagnosticInputBufferPtr()->AddBytes(
+					&buf[FIRST_PAYLOAD_BYTE_INDEX_IN_MICROSOFT_HID_PACKET], sizeof(GSkipPacket));
+
 			//Add packet to appropriate queue.
 			if (buf[FIRST_PAYLOAD_BYTE_INDEX_IN_MICROSOFT_HID_PACKET] & SKIP_MASK_INPUT_PACKET_TYPE)
 				pSkipMgr->AddCmdRespPacket((GSkipPacket *) (&buf[FIRST_PAYLOAD_BYTE_INDEX_IN_MICROSOFT_HID_PACKET]));
@@ -242,6 +247,10 @@ DWORD WINAPI InterruptPipeListenCallback(void * pParam)
 						//See if it was successful.
 						if (GetOverlappedResult(pSkipMgr->m_hHidDeviceFile, &HIDOverlapped, &nNumberOfBytesRead, false))
 						{
+							if (pSkipMgr->m_pDevice->GetDiagnosticInputBufferPtr())
+								pSkipMgr->m_pDevice->GetDiagnosticInputBufferPtr()->AddBytes(
+									&buf[FIRST_PAYLOAD_BYTE_INDEX_IN_MICROSOFT_HID_PACKET], sizeof(GSkipPacket));
+
 							//Add packet to appropriate queue.
 							if (buf[FIRST_PAYLOAD_BYTE_INDEX_IN_MICROSOFT_HID_PACKET] & SKIP_MASK_INPUT_PACKET_TYPE)
 								pSkipMgr->AddCmdRespPacket(
@@ -292,6 +301,7 @@ CWinSkipMgr::CWinSkipMgr()
 	m_startMeasurementTimeMs = 0;
 	m_lastMeasurementTimeMs = 0;
 	m_totalMeasurementsCount = 0;
+	m_pDevice = NULL;
 }
 
 CWinSkipMgr::~CWinSkipMgr()
@@ -520,6 +530,9 @@ void CWinSkipMgr::AddCmdRespPacket(GSkipPacket *pRec)
 bool GSkipBaseDevice::OSInitialize()
 {
 	GSTD_NEW(m_pOSData, (OSPtr), CWinSkipMgr());
+
+	CWinSkipMgr *pSkipMgr = (CWinSkipMgr *) m_pOSData;
+	pSkipMgr->m_pDevice = this;
 
 	return true;
 }

@@ -11,6 +11,9 @@
 #include "GSkipComm.h"
 #include "GMBLSensor.h"
 #include "GVernierUSB.h"
+#include "GCircularBuffer.h"
+
+#define SKIP_HOST_IO_STATUS_TIMED_OUT	1
 
 class GSkipBaseDevice : public GDeviceIO
 {
@@ -21,6 +24,8 @@ public:
 
 	virtual int			GetVendorID(void) = 0;
 	virtual int			GetProductID(void) = 0;
+
+	long 				Open(GPortRef *pPortRef);// override from GDeviceIO
 
 	// Platform specific routines:
 
@@ -54,6 +59,9 @@ public:
 	virtual long		SendCmdAndGetResponse(unsigned char cmd, void *pParams, long nParamBytes, void *pRespBuf, long *pnRespBytes, 
 							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
+	void				GetLastCmdResponseStatus(unsigned char *pLastCmd, unsigned char *pLastCmdStatus,
+							unsigned char *pLastCmdWithErrorRespSentOvertheWire, unsigned char *pLastErrorSentOvertheWire);
+
 	long				ReadNonVolatileMemory(bool bLocal, void *pBuf, unsigned long addr, unsigned long nBytesToRead,
 							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
 	long				WriteNonVolatileMemory(bool bLocal, void *pBuf, unsigned long addr, unsigned long nBytesToRead,
@@ -81,7 +89,14 @@ public:
 
 	int					GetLatestRawMeasurement(void);
 
+	unsigned int		GetHostIOStatus() { return m_hostIOStatus;}
+
 	virtual real		ConvertToVoltage(int raw, EProbeType eProbeType, bool bCalibrateADCReading = true) = 0;
+
+	void				SetDiagnosticsFlag(bool bFlag) { m_bDiagnosticsEnabled = bFlag; }
+	bool				GetDiagnosticsFlag() { return m_bDiagnosticsEnabled; }
+	GCircularBuffer		*GetDiagnosticInputBufferPtr() { return m_diagnosticInputBufferPtr; }
+	GCircularBuffer		*GetDiagnosticOutputBufferPtr() { return m_diagnosticOutputBufferPtr; }
 
 	static StringVector OSGetAvailableDevicesOfType(int nVendorID, int nProductID);
 
@@ -95,6 +110,15 @@ protected:
 
 	int					m_nLatestRawMeasurement;
     bool                m_bIsMeasuring;
+	unsigned int		m_hostIOStatus;
+	unsigned char		m_lastCmd;
+	unsigned char		m_lastCmdRespStatus;
+	unsigned char		m_lastCmdWithErrorRespSentOvertheWire;
+	unsigned char		m_lastErrorSentOvertheWire;
+	bool				m_bDiagnosticsEnabled;
+	GCircularBuffer		*m_diagnosticInputBufferPtr;
+	GCircularBuffer		*m_diagnosticOutputBufferPtr;
+	GPriorityMutex		*m_pTraceQueueAccessMutex;
 		
 private:
 	typedef GDeviceIO TBaseClass;

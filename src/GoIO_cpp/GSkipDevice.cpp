@@ -75,6 +75,9 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 	unsigned char initStatus;
 	long initStatusLength = sizeof(initStatus);
 
+	m_lastCmd = SKIP_CMD_ID_INIT;
+	m_lastCmdRespStatus = 0;
+
 	if (LockDevice(1) && IsOKToUse())
 	{
 		nResult = kResponse_OK; 
@@ -111,7 +114,7 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 				{
 					unsigned int nTimeNow = GUtils::OSGetTimeStamp();
 					unsigned int nElapsedTimeMs = nTimeNow - nTimeCmdSent;
-					if (nElapsedTimeMs < nTimeoutMs)
+					if (nElapsedTimeMs < ((unsigned int) nTimeoutMs))
 						GUtils::Sleep(nTimeoutMs - nElapsedTimeMs);
 				}
 			}
@@ -120,7 +123,10 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 		}
 
 		if (!bSuccess)
+		{
 			nResult = kResponse_Error;
+			m_hostIOStatus = m_hostIOStatus | SKIP_HOST_IO_STATUS_TIMED_OUT;
+		}
 
 		UnlockDevice();
 	}
@@ -137,6 +143,9 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 		else
 			(*pnRespBytes) = 0;
 	}
+
+	if ((kResponse_OK != nResult) && (0 == m_lastCmdRespStatus))
+		m_lastCmdRespStatus = SKIP_STATUS_ERROR_COMMUNICATION;
 
 	return nResult;
 }

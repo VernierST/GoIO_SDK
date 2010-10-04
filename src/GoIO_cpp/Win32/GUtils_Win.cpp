@@ -251,10 +251,12 @@ void GUtils::OSTrace(const gchar * pString)
 		gchar msg[512];
 		memcpy(msg, pString, 511);
 		msg[511] = 0;
-		TRACE(msg);
+		OutputDebugString(msg);
+//		TRACE(msg);
 	}
 	else
-		TRACE(pString);
+		OutputDebugString(pString);
+//		TRACE(pString);
 }
 
 /*

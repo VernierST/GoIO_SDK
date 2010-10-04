@@ -1,243 +1,289 @@
 // GThread_Mac.cpp
 
 #include "GThread.h"
-
-#include <Carbon/Carbon.h>
-#undef TARGET_OS_MAC
+#include <CoreServices/CoreServices.h>
 
 #include "GUtils.h"
 
-typedef struct
+#ifdef _DEBUG
+#include "GPlatformDebug.h" // for DEBUG_NEW definition
+#endif
+
+extern "C" {					// Gotta extern C to prevent name mangling on mach / posix symbols (this happens when I move the project to Xcode 3.0)
+#include <pthread.h>			// Yay pthreads!
+#include <mach/semaphore.h>
+#include <sys/stat.h>
+#include <mach/mach.h>
+#include <mach/task.h>
+};
+
+//
+// The defines for min and max priority seem to be part of the internal POSIX build, but 
+// are not to be found in the public headers. But by word of mouth, they seem to be
+// 0 (min) and 31 (max). There are also accessor functions in sched.h but they are not
+// documented.
+//
+#ifndef PTHREAD_MIN_PRIORITY
+	#define PTHREAD_MIN_PRIORITY 0
+#endif
+
+#ifndef PTHREAD_MAX_PRIORITY
+	#define PTHREAD_MAX_PRIORITY 31
+#endif
+
+bool local_SetThreadPriority(pthread_t, EThreadPriority);
+EThreadPriority local_GetThreadPriority(pthread_t);
+void local_AllPurposeMPThreadProc(void * pGThreadObject);
+
+bool local_SetThreadPriority(pthread_t t, EThreadPriority ePriority)	// Set priority ePriority on thread t. Return true if successful.
 {
-	MPSemaphoreID nSemaphoreID;
-	MPTaskID nTaskID;
-	int nRefCount;
-} MPMutex;
+	long nResult = 0;
+	struct sched_param stParam;
+	int nPolicy;
+	// Get the thread's scheduling info:
+	pthread_getschedparam(t, &nPolicy, &stParam);
+	// Compute a new priority according to ePriority:
+	stParam.sched_priority = ceil((((float)ePriority/(float) kThreadPriority_TimeCritical - (float) kThreadPriority_BelowNormal) * (float) (PTHREAD_MAX_PRIORITY - PTHREAD_MIN_PRIORITY)) + PTHREAD_MIN_PRIORITY);
 
-typedef struct
-{
-	MPTaskID nTaskID;
-	MPQueueID nQueueID;
-} MPThread;
-
-namespace { // local namespace
-
-bool		g_bUsingMPThreads = true;
-
-OSStatus local_AllPurposeMPThreadProc(void * pGThreadObject);
-OSStatus local_AllPurposeMPThreadProc(void * pGThreadObject)
-{
-	return (OSStatus)GThread::Main(pGThreadObject);
+	// For priorities High and Time Critical, use a Round Robin scheduling policy:
+	if (ePriority >= kThreadPriority_High)
+		nPolicy = SCHED_RR;
+	else
+		nPolicy = SCHED_OTHER;	// this is the default policy, which is called "Time Shared" scheduling.
+	
+	// Now set the priority:
+	nResult = pthread_setschedparam(t, nPolicy, &stParam);
+//	if (nResult != 0)
+//		NSLog(@"*** Could not set thread priority, result 0x%x!", nResult);
+	return (nResult == 0);
 }
 
+EThreadPriority local_GetThreadPriority(pthread_t t)	// Get the priority for thread t.
+{
+	int result = 0;
+	struct sched_param stParam; 
+	int nPolicy;
+	// Get the priority:
+	if (pthread_getschedparam(t, &nPolicy, &stParam) == 0)
+	{
+		// Compute the EThreadPriority:
+		result = ((float)(stParam.sched_priority - PTHREAD_MIN_PRIORITY) / (float) (PTHREAD_MAX_PRIORITY - PTHREAD_MIN_PRIORITY)) * (float) kThreadPriority_TimeCritical - (float) kThreadPriority_BelowNormal;
+	}
+	return (EThreadPriority) result;
 }
 
-bool GThread::OSStartThread(void)
+void local_AllPurposeMPThreadProc(void * pGThreadObject)	// This is the thread entry point.
+{
+//	id			pool = [[NSAutoreleasePool alloc] init];	// Non-NSThreads must wrap their innards in an autorelease pool.
+	OSStatus	aStatus;
+
+	// All callbacks must also be wrapped in a C++ exception handling:
+	try
+	{
+		// Call into the main cross platform routine:
+		aStatus = (OSStatus)GThread::Main(pGThreadObject);	
+//		if (aStatus != 0)
+//			NSLog(@"*** GThread::Main() exited with status %d", (int) aStatus);
+	}
+	catch(...)
+	{
+		GSTD_ASSERT(L"GThread_Mac: all purpose thread proc caught exception!!!");
+	}
+//	[pool release];
+}
+
+bool GThread::OSStartThread(EThreadPriority priority)
 {
 	bool bResult = false;
-	if(g_bUsingMPThreads)
-	{
-		OSStatus err;
-		MPThread * pThread = NULL;
-		pThread = new MPThread;
-		
-		// create queue for result code
-		err = ::MPCreateQueue(&pThread->nQueueID);
-		GSTD_ASSERT(err == noErr);
-
-		err = ::MPCreateTask(local_AllPurposeMPThreadProc,
-										(void *)this,
-										0, // default stack size
-										pThread->nQueueID, // use notify queue
-										NULL,
-										NULL,
-										(MPTaskOptions) NULL, // default task options
-										&pThread->nTaskID);
-		GSTD_ASSERT(err == noErr);
-		
-		bResult = (err == noErr);
-		if (bResult)
-			m_pThreadRef = static_cast<OSThreadReference>(pThread);
-										
+	pthread_t threadRef;
+	int nThreadErr = pthread_create(&threadRef,											// Thread ref out
+									NULL,												// NULL = use default attr.
+									(void* (*)(void*)) local_AllPurposeMPThreadProc,	// the thread entry function
+									this);												// and the context info / refcon.
+	if (nThreadErr == 0)
+	{	// Thread created successfully
+		if (local_SetThreadPriority(threadRef, priority))	// Set priority
+		{	// Priority succeeded
+			m_pThreadRef = static_cast<OSThreadReference>(threadRef);
+			bResult = true;
+			SetThreadAlive(true);
+		}
 	}
 	return bResult;
 }
 
 void GThread::OSStopThread(void)
 {
-	if ((m_pThreadRef != NULL) && g_bUsingMPThreads)
+	if (m_pThreadRef != NULL)
 	{
-		OSStatus err, threadErr;
-		MPThread * pThread = static_cast<MPThread *>(m_pThreadRef);
-		if(pThread != NULL)
+		pthread_t threadRef = (pthread_t) m_pThreadRef;
+		m_bKillThread = true;
+		while (true)
 		{
-			m_bKillThread = true;
-			threadErr = noErr;
-			
-			// wait for notification that thread is dead
-			err = ::MPWaitOnQueue(pThread->nQueueID, NULL, NULL, (void**) &threadErr, kDurationMillisecond * 3000);
-			if (err != noErr)
-			{
-				cppsstream ss;
-				ss << "ERROR " << err << " waiting for thread to shutdown" << endl;
-				GSTD_TRACE(ss.str());
-			}
-			delete pThread;
+			if (!IsThreadAlive())
+				break;
+			GUtils::OSSleep(100);
 		}
+		pthread_detach(threadRef);
 		m_pThreadRef = NULL;
 	}
-	// add classic Thread mgr or POSIX thread support here
+}
+
+void GThread::OSSetPriority(EThreadPriority ePriority)
+{
+	if (m_pThreadRef)
+		local_SetThreadPriority((pthread_t) m_pThreadRef, ePriority);
+}
+
+EThreadPriority GThread::OSGetPriority(void)
+{	
+	EThreadPriority eResult = kThreadPriority_Normal;
+	if (m_pThreadRef)
+		eResult = local_GetThreadPriority((pthread_t) m_pThreadRef);
+	return eResult;
+}
+
+void GThread::OSSetCurrentThreadPriority(EThreadPriority priority)
+{
+	local_SetThreadPriority(pthread_self(), priority);
+}
+
+EThreadPriority GThread::OSGetCurrentThreadPriority(void)
+{
+	return local_GetThreadPriority(pthread_self());
 }
 
 OSMutex GThread::OSCreateMutex(const cppstring &/*sMutexName*/)
 {
-	if(g_bUsingMPThreads)
-	{
-		MPMutex * pMutex = NULL;
-		MPSemaphoreID pSemaphore = NULL;
-		OSErr err = ::MPCreateSemaphore(1, 1, &pSemaphore);
-		//GSTD_TRACE("MPCreateSemaphore   <*>");
-		if(err != noErr)
-		{
-			if(pSemaphore != NULL)
-			{
-				//GSTD_TRACE("MPDeleteSemaphore   <0>");
-				::MPDeleteSemaphore(pSemaphore);
-				pSemaphore = NULL;
-			}
-		}
-		else
-		{
-			// create and initialize mutex object
-			pMutex = new MPMutex;
-			pMutex->nSemaphoreID = pSemaphore;
-			pMutex->nTaskID = 0;
-			pMutex->nRefCount = 0;
-		}
-		
-		return (OSMutex) pMutex;
-	}
-	// add classic Thread mgr or POSIX thread support here
+	pthread_mutex_t* pMutexRef = OPUS_NEW pthread_mutex_t;
+	GSTD_ASSERT(pMutexRef != NULL);
+	pthread_mutexattr_t attr;
+	GSTD_ASSERT(pthread_mutexattr_init(&attr) == 0);								// create mutex attributes
+	GSTD_ASSERT(pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE) == 0);	// this allows the mutex to be locked multiple times on the same thread.
+	GSTD_ASSERT(pthread_mutex_init(pMutexRef, &attr) == 0);							// create mutex
+	GSTD_ASSERT(pthread_mutexattr_destroy(&attr) == 0);								// destroy attributes.
 	
-	return NULL;
+	return (OSMutex) pMutexRef;
 }
 
 bool GThread::OSLockMutex(OSMutex pOSMutex)
-{	
-	bool bResult = false;
-	if(g_bUsingMPThreads)
-	{
-		MPMutex * pMutex = static_cast<MPMutex *>(pOSMutex);
-		if (pMutex != NULL)
-		{
-			if (pMutex->nTaskID == MPCurrentTaskID())
-			{
-				pMutex->nRefCount++;
-				bResult = true;
-			}
-			else
-			{
-				//GSTD_TRACE("MPWaitOnSemaphore   <+>");
-				OSStatus err = ::MPWaitOnSemaphore(pMutex->nSemaphoreID, kDurationForever);
-				bResult = (err == noErr);
-				bool bBad = (pMutex->nRefCount != 0 || pMutex->nTaskID != 0);
-				GSTD_ASSERT(!bBad);
-				pMutex->nTaskID = MPCurrentTaskID();
-				pMutex->nRefCount++;
-			}
-		}
-	}
-	// add classic Thread mgr or POSIX thread support here
-	return bResult;
+{
+	GSTD_ASSERT(pOSMutex != NULL);
+	pthread_mutex_t* pMutexRef = (pthread_mutex_t*) pOSMutex;
+	return (pthread_mutex_lock(pMutexRef)==0);
 }
 
 bool GThread::OSTryLockMutex(OSMutex pOSMutex, long nTimeoutMS)
 {
-	bool bResult = false;
-	if(g_bUsingMPThreads)
+	GSTD_ASSERT(pOSMutex != NULL);
+	pthread_mutex_t* pMutexRef = (pthread_mutex_t*) pOSMutex;
+	int nLockErr;
+	int nCt = 0;
+	do
 	{
-		MPMutex * pMutex = static_cast<MPMutex *>(pOSMutex);
-		if (pMutex != NULL)
+		nLockErr = pthread_mutex_trylock(pMutexRef);
+		if (nLockErr != 0)
 		{
-			if (pMutex->nTaskID == MPCurrentTaskID())
-			{
-				pMutex->nRefCount++;
-				bResult = true;
-			}
-			else
-			{
-				OSStatus err = ::MPWaitOnSemaphore(pMutex->nSemaphoreID, kDurationMillisecond * nTimeoutMS);
-				if (err != noErr)
-					bResult = false;
-				else
-				{
-					bResult = true;
-					bool bBad = (pMutex->nRefCount != 0 || pMutex->nTaskID != 0);
-					GSTD_ASSERT(!bBad);
-					pMutex->nTaskID = MPCurrentTaskID();
-					pMutex->nRefCount++;
-				}
-			}
+			nCt++;
+			usleep(1000);	// sleep 1 millisecond.
+			if (nCt > nTimeoutMS)
+				break;
 		}
-	}
-	// add classic Thread mgr or POSIX thread support here
-	return bResult;
+
+	} while (nLockErr != 0);
+
+	return (nLockErr == 0);
 }
 
 bool GThread::OSUnlockMutex(OSMutex pOSMutex)
 {
-	bool bResult = false;
-	if (g_bUsingMPThreads)
-	{
-		MPMutex * pMutex = static_cast<MPMutex *>(pOSMutex);
-		if (pMutex != NULL)
-		{
-			if (pMutex->nTaskID == MPCurrentTaskID())
-			{
-				if (pMutex->nRefCount > 0)
-				{
-					pMutex->nRefCount--;
-					if (pMutex->nRefCount == 0)
-					{
-						pMutex->nTaskID = 0;
-						::MPSignalSemaphore(pMutex->nSemaphoreID);
-					}
-					bResult = true;
-				}
-				else
-					GSTD_ASSERT(0); // Unlocking a mutex that doesn't have any locks
-			}
-			else
-				GSTD_ASSERT(0); // attempt to unlock a mutex that is held by another thread
-		}
-	}
-	// add classic Thread mgr or POSIX thread support here
+	GSTD_ASSERT(pOSMutex != NULL);
+	pthread_mutex_t* pMutexRef = (pthread_mutex_t*) pOSMutex;
 
-	return bResult;	// REVISIT: What is unlock failed?  Need to return false...
+	return (pthread_mutex_unlock(pMutexRef) == 0);
 }
 
 void GThread::OSDestroyMutex(OSMutex pOSMutex)
 {
-	if(g_bUsingMPThreads)
-	{
-		MPMutex * pMutex = static_cast<MPMutex *>(pOSMutex);
-		if (pMutex != NULL)
-		{
-			::MPDeleteSemaphore(pMutex->nSemaphoreID);
-			delete pMutex;
-		}
-	}
-	// add classic Thread mgr or POSIX thread support here
+	GSTD_ASSERT(pOSMutex != NULL);
+	pthread_mutex_t* pMutexRef = (pthread_mutex_t*) pOSMutex;
+	pthread_mutex_destroy(pMutexRef);
+	delete pMutexRef;
 }
 
 void GThread::OSYield(void)
 {
-	// called to yield processing time
-	if(g_bUsingMPThreads)
-		::MPYield();
-	// add classic Thread mgr or POSIX thread support here
+	pthread_yield_np();
 }
 
 void GThread::OSProcessEvents(void)
 {
+	// NSSpam leftover from OS 9 - does nothing
 }
+
+OSSemaphore GThread::OSCreateSemaphore(void)
+{	// Re-Revisited: since it looks like the POSIX semaphore implementation spin-locks in sem_wait, I replaced with mach semaphores, 
+	// which are unnamed, do not spin, and work on 10.3.9.
+	// (#19641) JK 20080220.
+	semaphore_t sem = 0;
+	semaphore_create(mach_task_self(),&sem, SYNC_POLICY_FIFO, 0);
+	return (OSSemaphore) sem;
+}
+
+void GThread::OSDestroySemaphore(OSSemaphore pSemaphore)
+{ 
+	semaphore_destroy(mach_task_self(),(semaphore_t)pSemaphore);
+}
+
+bool GThread::OSSemPost(OSSemaphore pSemaphore)
+{
+	return semaphore_signal((semaphore_t)pSemaphore) == 0;
+}
+
+bool GThread::OSSemWait(OSSemaphore pSemaphore)
+{
+	return semaphore_wait((semaphore_t)pSemaphore) == 0;
+}
+
+bool GLiteThread::OSStartThread(EThreadPriority priority /* = kThreadPriority_Normal */)
+{
+	bool bResult = false;
+	pthread_t threadRef;
+	int nThreadErr = pthread_create(&threadRef,											// Thread ref out
+									NULL,												// NULL = use default attr.
+									(void* (*)(void*)) GLiteThread::Main,				// the thread entry function
+									this);												// and the context info / refcon.
+	if (nThreadErr == 0)
+	{	// Thread created successfully
+		if (local_SetThreadPriority(threadRef, priority))	// Set priority
+		{	// Priority succeeded
+			m_pThreadRef = static_cast<OSThreadReference>(threadRef);
+			bResult = true;
+			SetThreadAlive(true);
+		}
+	}
+	return bResult;
+}
+
+void GLiteThread::OSStopThread(void)
+{
+	if (m_pStopFunction)
+		m_pStopFunction(m_pThreadParam);
+
+	while (IsThreadAlive())	// spin until thread exits
+		GUtils::OSSleep(10);	// Give main process a chance to execute
+
+	m_pThreadRef = NULL;
+}
+
+void GLiteThread::OSSetPriority(EThreadPriority ePriority)
+{
+	local_SetThreadPriority((pthread_t)m_pThreadRef, ePriority);
+}
+
+EThreadPriority GLiteThread::OSGetPriority(void)
+{
+	return local_GetThreadPriority((pthread_t)m_pThreadRef);
+}
+
+

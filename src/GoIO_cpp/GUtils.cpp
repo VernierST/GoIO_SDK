@@ -19,6 +19,9 @@
 #include "GPlatformDebug.h" // for DEBUG_NEW definition
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
+int SUBSYS_TRACE_THRESH = TRACE_SEVERITY_LOW;
+#else
+int SUBSYS_TRACE_THRESH = TRACE_SEVERITY_HIGH;
 #endif
 
 /*
@@ -597,7 +600,7 @@ short GUtils::MakeDataChecksum(unsigned char * pBuffer,		// pointer to nSize uns
 	return nSum;
 }
 */
-void GUtils::Trace(void * pointer, gchar * psFile, int nLine)
+void GUtils::Trace(void * pointer, const gchar * psFile, int nLine)
 {
 	cppsstream ss;
 	ss << pointer;
@@ -605,11 +608,18 @@ void GUtils::Trace(void * pointer, gchar * psFile, int nLine)
 	GSTD_LOG(ss.str());
 }
 
-void GUtils::Trace(cppstring msg,
-				   gchar * psFile,
+void GUtils::Trace(int trace_severity, void * pointer, const gchar * psFile, int nLine)
+{
+	if (trace_severity >= SUBSYS_TRACE_THRESH)
+		Trace(pointer, psFile, nLine);
+}
+
+void GUtils::Trace(const cppstring msg,
+				   const gchar * psFile,
 				   int nLine)
 {
 	int nLen = 0;
+	cppsstream ss;
 	if (psFile != NULL)
 	{
 #ifdef _UNICODE
@@ -621,22 +631,37 @@ void GUtils::Trace(cppstring msg,
 	if ((nLen > 0) && 
 		(nLine != -1)	)
 	{ // Only print File and Line if we have something..
-		cppsstream ss;
-		ss << psFile << GSTD_S("(") << nLine << GSTD_S(") : ") << msg << kOSNewlineString;
-		OSTrace(ss.str().c_str());
+		ss << psFile << GSTD_S("(") << nLine << GSTD_S(") : ");
 	}
-	else
-	 	OSTrace(msg.c_str());
+	ss << msg << endl;
+	OSTrace(ss.str().c_str());
 
 	GSTD_LOG(msg);
 }
 
-void GUtils::Trace(gchar * msg,
-				   gchar * psFile,
+void GUtils::Trace(int trace_severity,
+				   const cppstring msg,
+				   const gchar * psFile,
+				   int nLine)
+{
+	if (trace_severity >= SUBSYS_TRACE_THRESH)
+		Trace(msg, psFile, nLine);
+}
+
+void GUtils::Trace(const gchar * msg,
+				   const gchar * psFile,
 				   int nLine)
 {
 	cppstring cppmsg = msg;
 	GUtils::Trace(cppmsg, psFile, nLine);
+}
+void GUtils::Trace(int trace_severity,
+				   const gchar * msg,
+				   const gchar * psFile,
+				   int nLine)
+{
+	if (trace_severity >= SUBSYS_TRACE_THRESH)
+		Trace(msg, psFile, nLine);
 }
 /*
 int GUtils::GetDecimalPlacesUsed(real fValue)
@@ -1055,11 +1080,7 @@ void GUtils::AssertDialog(const gchar * cFile, // Source (cpp) file where assert
 
 bool GUtils::IsLogOpen(void)
 { // RETURN true if the log file is open and can be written to
-#ifdef _GOIO_LOGGING_ENABLED_
-	return true;
-#else
-	return false;
-#endif
+	return true;	//Report the log as open to enable traces that are conditional on 'IsLogOpen'.
 }
 
 /*
@@ -1111,7 +1132,7 @@ void GUtils::WriteToLog(cppstring sText,	// The text to write
 						int nLine,			// line number of calling method
 						cppstring /*sFunction*/)	// Function name of calling	method (supported only on Mac)
 { // Write some passed-in text to the logfile
-	if (GUtils::pLogOStream != NULL)
+	if (GUtils::pLogOStream != NULL)	//Log is not actually supported.
 	{
 		// Strip the pathname from file
 //		cppstring sFile = GTextUtils::StripPath(sPath);

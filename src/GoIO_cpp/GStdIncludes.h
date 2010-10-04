@@ -87,11 +87,11 @@
 #include <cstdio>
 
 // put cstdlib in namespace std (VC++ bug):
-namespace std {
-#ifndef _CSTDLIB_
-#include <cstdlib>
-#endif
-}; // end namespace std
+//namespace std {
+//#ifndef _CSTDLIB_
+//#include <cstdlib>
+//#endif
+//}; // end namespace std
 
 #include <cmath>
 #include <cstring>

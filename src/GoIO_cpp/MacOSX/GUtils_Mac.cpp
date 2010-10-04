@@ -86,7 +86,7 @@ int GUtils::CustomMessageBox(cppstring /*sTitle*/, cppstring msg, StringVector *
 
 void GUtils::OSTrace(const char *pText)
 {
-	printf("%s\n", pText);
+	printf(pText);
 /* #ifndef OPUS_DDK
 	::GetMacApp()->Trace(pText);
 #else

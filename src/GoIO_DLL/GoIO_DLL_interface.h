@@ -40,12 +40,25 @@
 	#define GOIO_MAX_SIZE_DEVICE_NAME 260
 #endif
 
-typedef void *GOIO_SENSOR_HANDLE;
-typedef double gtype_real64;
-typedef float gtype_real32;
+#ifndef GTYPE_NUMS
+#define GTYPE_NUMS
 typedef short gtype_int16;
 typedef unsigned short gtype_uint16;
+#ifdef TARGET_OS_DAQ
+typedef long int gtype_int32;
+typedef unsigned long int gtype_uint32;
+#else
 typedef int gtype_int32;
+typedef unsigned int gtype_uint32;
+#endif
+typedef long long gtype_int64;
+typedef unsigned long long gtype_uint64;
+typedef unsigned char gtype_bool;
+typedef double gtype_real64;
+typedef float gtype_real32;
+#endif
+
+typedef void *GOIO_SENSOR_HANDLE;
 
 #define SKIP_TIMEOUT_MS_DEFAULT 2000
 #define SKIP_TIMEOUT_MS_READ_DDSMEMBLOCK 2000
@@ -79,6 +92,30 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init();
 
 ****************************************************************************************************************************/
 GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Uninit();
+
+/***************************************************************************************************************************
+	Function Name: GoIO_Diags_SetDebugTraceThreshold()
+	
+	Purpose:	GoIO lib generates a variety of debugging messages when it runs. Each message is assigned a severity
+				when it is generated. Only messages that are assigned a priority >= the debug trace threshold are actually
+				sent to the debug output. Call GoIO_Diags_SetDebugTraceThreshold(GOIO_TRACE_SEVERITY_LOWEST) for max
+				debug output.
+				
+				On windows systems, these messages are passed to the OutputDebugString() function.
+				On Mac and Linux systems, these messages are sent to STDOUT and/or STDERR.
+
+	Return:		0 iff successful, else -1.
+
+****************************************************************************************************************************/
+#define GOIO_TRACE_SEVERITY_LOWEST 1
+#define GOIO_TRACE_SEVERITY_LOW 10
+#define GOIO_TRACE_SEVERITY_MEDIUM 50
+#define GOIO_TRACE_SEVERITY_HIGH 100
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_SetDebugTraceThreshold(
+	gtype_int32 threshold);//[in] Only trace messages marked with a severity >= threshold are actually sent to the debug output.
+
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_GetDebugTraceThreshold(
+	gtype_int32 *pThreshold);//[out]
 
 /***************************************************************************************************************************
 	Function Name: GoIO_GetDLLVersion()
@@ -300,6 +337,28 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_SendCmdAndGetResponse(
 	gtype_int32 timeoutMs);	//[in] # of milliseconds to wait for a reply before giving up. Go! devices should reply to almost all the 
 							//currently defined commands within SKIP_TIMEOUT_MS_DEFAULT(1000) milliseconds. In fact, typical response
 							//times are less than 50 milliseconds. See SKIP_TIMEOUT_MS_* definitions.
+
+/***************************************************************************************************************************
+	Function Name: GoIO_Sensor_GetLastCmdResponseStatus()
+	
+	Purpose:	Get error information for the device. 
+	
+				In principle, any command sent to the device can result in an error. 
+				If GoIO_Sensor_SendCmdAndGetResponse() ever fails and returns a non-zero return code,
+				you can gather additional info about what went wrong by calling GoIO_Sensor_GetLastCmdResponseStatus().
+
+	Return:		0 if successful, else -1.
+
+****************************************************************************************************************************/
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_GetLastCmdResponseStatus(
+	GOIO_SENSOR_HANDLE hSensor,	//[in] handle to open sensor.
+	unsigned char *pLastCmd,	//[out] last cmd sent to the sensor
+	unsigned char *pLastCmdStatus,//[out] status of last command sent to the sensor.
+								  //If command ran successfully and the device reported good status, then this will be be SKIP_STATUS_SUCCESS(aka 0).
+								  //If no response has been reported back from the device, then this will be SKIP_STATUS_ERROR_COMMUNICATION.
+								  //If the device reported a failure, then this will be a cmd specific error, eg SKIP_STATUS_ERROR_...
+	unsigned char *pLastCmdWithErrorRespSentOvertheWire, //[out] last cmd sent that caused the device to report back an error.
+	unsigned char *pLastErrorSentOvertheWire);//[out] last error that came back from the device 'over the wire'.
 
 /***************************************************************************************************************************
 	Function Name: GoIO_Sensor_SendCmd()
@@ -721,6 +780,20 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_CalculateChecksum(
 	GOIO_SENSOR_HANDLE hSensor,	//[in] handle to open sensor.
 	unsigned char *pChecksum);	//[out] ptr to checksum calculated by XOR'ing the first 127 bytes of the SensorDDSRecord.
 
+/***************************************************************************************************************************
+	Function Name: GoIO_Sensor_DDSMem_ClearRecord()
+	
+	Purpose:	Clear the DDS record for the specified sensor. This puts default values in the record's fields.
+				The sensor name fields are set to blank. The sensor id is set to 0, and a single linear calibration is
+				set up with a gain of 1.0 and an offest of 0. The calibration units field is set to "volts".
+				The OperationType is set to imply a probe type of kProbeTypeAnalog5V.
+
+	Return:		0 if hSensor is valid, else -1.
+
+****************************************************************************************************************************/
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_ClearRecord(
+	GOIO_SENSOR_HANDLE hSensor);	//[in] handle to open sensor.
+
 /***************************************************************************************************************************/
 /***************************************************************************************************************************/
 /***************************************************************************************************************************
@@ -964,5 +1037,28 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_SetChecksum(
 GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_GetChecksum(
 	GOIO_SENSOR_HANDLE hSensor,
 	unsigned char *pChecksum);
+
+//Advanced API's:
+GOIO_DLL_INTERFACE_DECL void GoIO_Diags_SetIOTraceEnableFlag(
+	gtype_bool flag);
+
+GOIO_DLL_INTERFACE_DECL void GoIO_Diags_GetIOTraceEnableFlag(
+	gtype_bool *pFlag);			//[out] ptr to loc to store IO trace enable flag.
+
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_GetNumInputTraceBytesAvailable(	//returns # of bytes available.
+	GOIO_SENSOR_HANDLE hSensor);	//[in] handle to open sensor.
+
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_ReadInputTraceBytes(				//returns # of bytes copied.
+	GOIO_SENSOR_HANDLE hSensor,		//[in] handle to open sensor.
+	unsigned char *pInputTraceBuf,	//[out] ptr to loc to store trace info.
+	gtype_int32 maxCount);	//[in] maximum number of bytes to copy into pInputTraceBuf.
+
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_GetNumOutputTraceBytesAvailable(	//returns # of bytes available.
+	GOIO_SENSOR_HANDLE hSensor);	//[in] handle to open sensor.
+
+GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_ReadOutputTraceBytes(			//returns # of bytes copied.
+	GOIO_SENSOR_HANDLE hSensor,		//[in] handle to open sensor.
+	unsigned char *pOutputTraceBuf,	//[out] ptr to loc to store trace info.
+	gtype_int32 maxCount);	//[in] maximum number of bytes to copy into pOutputTraceBuf.
 
 #endif //_GOIO_DLL_INTERFACE_H_

@@ -48,9 +48,26 @@
 
 #include "GTypes.h"
 
+#ifdef TARGET_OS_LINUX
+#include <signal.h>
+#define NGIO_PRIVATE_SIGNAL1 (SIGRTMIN + 12)
+int NGIO_RegisterIOAbortSignalHandler(int signalNum);
+int NGIO_DeregisterIOAbortSignalHandler();
+#endif
+
 typedef long (*StdThreadFunctionPtr)(void *);
 typedef OSPtr OSThreadReference;
 typedef OSPtr OSMutex;
+typedef OSPtr OSSemaphore;
+
+typedef enum
+{
+	kThreadPriority_BelowNormal,		//lowest
+	kThreadPriority_Normal,
+	kThreadPriority_AboveNormal,
+	kThreadPriority_High,
+	kThreadPriority_TimeCritical		//highest
+} EThreadPriority;
 
 class GThread OS_STANDARD_BASE_CLASS
 {
@@ -65,8 +82,14 @@ public:
 									bool bOneShot = false);
 	virtual					~GThread();
 				
-	bool					OSStartThread(void);
+	bool					OSStartThread(EThreadPriority priority = kThreadPriority_Normal);
 	void					OSStopThread(void);
+
+	void					OSSetPriority(EThreadPriority priority);
+	EThreadPriority			OSGetPriority(void);
+
+static void					OSSetCurrentThreadPriority(EThreadPriority priority);
+static	EThreadPriority		OSGetCurrentThreadPriority(void);
 	
 	OSThreadReference		GetThreadRef(void) const { return m_pThreadRef; }
 
@@ -89,11 +112,18 @@ public:
 	bool					IsStop(void) { return m_bStop; }
 	void					SetStop(bool b) { m_bStop = b; }
 
+	bool					IsOneShot() const { return m_bOneShot; }
+
 	static OSMutex			OSCreateMutex(const cppstring &sMutexName);
 	static bool				OSLockMutex(OSMutex pMutex);
 	static bool				OSTryLockMutex(OSMutex pMutex, long nTimeoutMS);
 	static bool				OSUnlockMutex(OSMutex pMutex);
 	static void				OSDestroyMutex(OSMutex pMutex);
+
+	static OSSemaphore		OSCreateSemaphore(void);
+	static void				OSDestroySemaphore(OSSemaphore pSemaphore);
+	static bool				OSSemPost(OSSemaphore pSemaphore);
+	static bool				OSSemWait(OSSemaphore pSemaphore);
 	
 	static void				OSYield(void); // called to yield processing time (used on Mac)
 	
@@ -109,13 +139,105 @@ protected:
 
 	void *					m_pThreadParam;
 
-	OSThreadReference		m_pThreadRef;	// just used on Mac
+	OSThreadReference		m_pThreadRef;
 
-	bool					m_bKillThread;	// Check this flag to see if thread should die (Main App, or one-shot thread, should set this)
+	volatile bool			m_bKillThread;	// Check this flag to see if thread should die (Main App, or one-shot thread, should set this)
 	bool					m_bThreadAlive;	// Only set to false when thread is actually dead
 
 	bool					m_bStart;		// Use to pause and resume the collection (in repeat mode)
 	bool					m_bStop;
+	bool					m_bOneShot;
+};
+
+class GLiteThread OS_STANDARD_BASE_CLASS
+{
+public:
+							GLiteThread(StdThreadFunctionPtr pFunction, 
+									StdThreadFunctionPtr pStopFunction, 
+									void * pThreadParam);
+	virtual					~GLiteThread();
+				
+	bool					OSStartThread(EThreadPriority priority = kThreadPriority_Normal);
+	void					OSStopThread(void);
+
+	void					OSSetPriority(EThreadPriority priority);
+	EThreadPriority			OSGetPriority(void);
+
+	OSThreadReference		GetThreadRef(void) const { return m_pThreadRef; }
+
+	static int				Main(void *pGThreadObject);	// cross platform "main" for this thread
+	
+	// Access/change fields (e.g. to start & stop with a different param or function)
+	StdThreadFunctionPtr	GetThreadFunction(void) { return m_pFunction; }
+	StdThreadFunctionPtr	GetStopFunction(void) { return m_pStopFunction; }
+	void *					GetThreadParam(void) { return m_pThreadParam; }
+	void					SetThreadParam(void * pParam) { m_pThreadParam = pParam; }
+	void					SetThreadAlive(bool b) { m_bThreadAlive = b; }
+	bool					IsThreadAlive(void) { return m_bThreadAlive; }
+
+protected:
+	
+	StdThreadFunctionPtr	m_pFunction;
+	StdThreadFunctionPtr	m_pStopFunction;
+
+	void *					m_pThreadParam;
+
+	OSThreadReference		m_pThreadRef;
+
+	bool					m_bThreadAlive;	// Only set to false when thread is actually dead
+};
+
+//GPriorityMutex is a helper class designed to help avoid priority inversion that can occur when a low priority thread
+//blocks a high priority thread because it holds a mutex that the high priority thread is waiting on.
+//Use these objects with care: typical usage is to call TryLockMutex at the top of a function and call UnlockMutex at the
+//bottom of the function.
+//Nested lock/unlock calls on a mutex must follow a stack pattern: lock call A, lock call B, unlock call B, unlock call A is ok;
+//but lock call A, lock call B, unlock call A, unlock call B will cause priority errors.
+//Also do not attempt to hold locks to 2 different GPriorityMutexes at the same time!
+
+struct GPriorityMutex
+{
+	GPriorityMutex(EThreadPriority priority, const cppstring &sMutexName)
+	{
+		m_minimum_priority_while_locked = priority;
+		m_OSMutex = GThread::OSCreateMutex(sMutexName);
+//		GSTD_ASSERT(m_OSMutex != NULL);
+	}
+	~GPriorityMutex()
+	{
+		if (m_OSMutex != NULL)
+			GThread::OSDestroyMutex(m_OSMutex);
+		m_OSMutex = NULL;
+	}
+	bool TryLockMutex(long nTimeoutMS, EThreadPriority *pOldPriority)
+	{
+		bool bSuccess = false;
+		if (m_OSMutex != NULL)
+		{
+			(*pOldPriority) = GThread::OSGetCurrentThreadPriority();
+			if ((*pOldPriority) < m_minimum_priority_while_locked)
+				GThread::OSSetCurrentThreadPriority(m_minimum_priority_while_locked);
+			bSuccess = GThread::OSTryLockMutex(m_OSMutex, nTimeoutMS);
+			if (!bSuccess && ((*pOldPriority) < m_minimum_priority_while_locked))
+				GThread::OSSetCurrentThreadPriority(*pOldPriority);
+		}
+		return bSuccess;
+	}
+	bool UnlockMutex(EThreadPriority oldPriority)
+	{
+		bool bSuccess = false;
+		if (m_OSMutex != NULL)
+		{
+			bSuccess = GThread::OSUnlockMutex(m_OSMutex);
+			EThreadPriority currentPriority = GThread::OSGetCurrentThreadPriority();
+			if (currentPriority != oldPriority)
+				GThread::OSSetCurrentThreadPriority(oldPriority);
+		}
+		return bSuccess;
+	}
+
+	EThreadPriority m_minimum_priority_while_locked;
+	OSMutex m_OSMutex;
 };
 
 #endif // GThread.h

@@ -15,7 +15,22 @@
 // numerical utilities.
 
 #define GSTD_ASSERT(x) GUtils::Assert((x),WIDENMACRO(__FILE__),__LINE__)
-#define GSTD_TRACE(x) GUtils::Trace((x),WIDENMACRO(__FILE__),__LINE__)
+
+#define TRACE_SEVERITY_LOWEST 1
+#define TRACE_SEVERITY_LOW 10
+#define TRACE_SEVERITY_MEDIUM 50
+#define TRACE_SEVERITY_HIGH 100
+
+//We are defining the SUBSYS_TRACE_THRESH macro so that we can change the name from the build script.
+//GCC 3.x is prone to name collision, so we may want to override the default name in some situations.
+#ifndef SUBSYS_TRACE_THRESH 
+#define SUBSYS_TRACE_THRESH g_subsystemTraceThreshold
+#endif
+extern int SUBSYS_TRACE_THRESH ;
+
+#define GSTD_TRACE(x) GUtils::Trace(TRACE_SEVERITY_LOW,(x),WIDENMACRO(__FILE__),__LINE__)
+#define GSTD_TRACEX(severity, msgtext) GUtils::Trace(severity,(msgtext),WIDENMACRO(__FILE__),__LINE__)
+
 // macros for converting __FILE__ to wide 
 #define WIDENMACRO(macro) GSTD_S(macro) // widens a macro
 #define WIDEN(x) GTextUtils::ConvertNarrowStringToWide(x)
@@ -38,9 +53,12 @@ public:
 	// Debugging / diagnostic utilities
 	static bool 			Assert(bool bArgument, const gchar * sFile = GSTD_S(""), int nLine = -1); // ASSERTS if argument is false (also returns argument)
 	static void				AssertDialog(const gchar * sFile, int nLine, const cppstring &sStackTrace = GSTD_S("")); // Cross platform error dialog
-	static void 			Trace(cppstring msg, gchar * psFile = NULL, int nLine = -1); // output a string to trace output
-	static void 			Trace(gchar * pMsg, gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
-	static void 			Trace(void * pointer, gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
+	static void 			Trace(const cppstring msg, const gchar * psFile = NULL, int nLine = -1); // output a string to trace output
+	static void 			Trace(const gchar * pMsg, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
+	static void 			Trace(void * pointer, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
+	static void 			Trace(int trace_severity, const cppstring msg, const gchar * psFile = NULL, int nLine = -1); // output a string to trace output
+	static void 			Trace(int trace_severity, const gchar * pMsg, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
+	static void 			Trace(int trace_severity, void * pointer, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
 	static void 			OSTrace(const gchar * pMsg); // output a null-terminated string to trace output
 	static unsigned long 	TraceClock(void); // output the result of std::clock() to trace output; returns clock time
 	static void				OSFloatingPointExceptionReset(void);						
