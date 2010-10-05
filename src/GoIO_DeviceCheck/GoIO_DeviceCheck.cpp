@@ -8,6 +8,7 @@
 #ifdef TARGET_OS_WIN
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <windows.h>
+#pragma warning(disable: 4996)
 #endif
 #ifdef TARGET_OS_LINUX
 #include <sys/time.h>
@@ -42,7 +43,7 @@ int main(int argc, char* argv[])
 	gtype_int32 numMeasurements, i;
 	gtype_real64 averageCalbMeasurement;
 
-	printf("GoIO_DeviceCheck version 1.0\n");
+	printf("GoIO_DeviceCheck version 1.1\n");
 	
 	GoIO_Init();
 
@@ -85,15 +86,10 @@ int main(int argc, char* argv[])
 				averageCalbMeasurement = averageCalbMeasurement/numMeasurements;
 
 			GoIO_Sensor_DDSMem_GetCalibrationEquation(hDevice, &equationType);
-			if (equationType != kEquationType_Linear)
-				strcpy(units, "volts");
-			else
-			{
-				gtype_real32 a, b, c;
-				unsigned char activeCalPage = 0;
-				GoIO_Sensor_DDSMem_GetActiveCalPage(hDevice, &activeCalPage);
-				GoIO_Sensor_DDSMem_GetCalPage(hDevice, activeCalPage, &a, &b, &c, units, sizeof(units));
-			}
+			gtype_real32 a, b, c;
+			unsigned char activeCalPage = 0;
+			GoIO_Sensor_DDSMem_GetActiveCalPage(hDevice, &activeCalPage);
+			GoIO_Sensor_DDSMem_GetCalPage(hDevice, activeCalPage, &a, &b, &c, units, sizeof(units));
 			printf("Average measurement = %8.3f %s .\n", averageCalbMeasurement, units);
 
 			GoIO_Sensor_Close(hDevice);
