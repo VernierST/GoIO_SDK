@@ -255,11 +255,13 @@ private:
 };
 
 #ifdef TARGET_OS_WIN
-#ifdef _DEBUG
-#define OPUS_NEW DEBUG_NEW
+	#ifdef _DEBUG
+		#define OPUS_NEW DEBUG_NEW
+	#else
+		#define OPUS_NEW new
+	#endif
 #else
-#define OPUS_NEW new
-#endif
+	#define OPUS_NEW new
 #endif
 
 // global allocation macro

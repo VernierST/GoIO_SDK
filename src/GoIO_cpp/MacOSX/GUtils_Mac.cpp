@@ -33,8 +33,6 @@ bool GUtils::Assert(bool bArgument, const char * sFile, int nLine)
 {
 	if(!bArgument)
 	{
-		::SysBeep(1);
-		
 		char pBuffer[256];
 		printf("%s\n", local_makeAssertString(sFile, nLine, pBuffer));
 	}
@@ -51,8 +49,6 @@ void GUtils::OSAssertDialog(SAppError * pAppError)
 
 void GUtils::Beep(void)
 {
-	// Your basic beep.
-	SysBeep(1);
 }
 
 void GUtils::MessageBox(const cppstring &msg)
