@@ -5,7 +5,7 @@ The GoIO SDK is intended to provide software developers with the ability to acce
 The heart of the SDK is the GoIO_DLL library.
 The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_interface.h. The sequence of function calls into the library is best illustrated by the GoIO_DeviceCheck sample code.
 
-The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java.
+The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java. This code compiles in Visual Studio 2005.
 
 The Apple version of the GoIO_DLL library comes in two different flavors: libGoIO_DLL.dylib and libGoIO_DLL.framework. Both flavors of the library implement exactly the same API. They are just packaged differently as a convenience to users. These libraries can also be accessed from a variety of languages. GoIO_DLL requires Mac OS 10.3.9 or later. Note that libGoIO_DLL.framework is stored in \GoIO_SDK\redist\GoIO_DLL\MacOSX\libGoIO_DLL.framework.zip . You will have to unzip it before you can use it.
 
@@ -27,21 +27,22 @@ GoIO_DeviceCheck is a very simple command line sample application that opens the
 
 ====================================================================================================================
 
-GoIO_console2 is a sample application that is coded to the GoIO_DLL API. The Windows version source code was written in Microsoft Visual C++ version 6.0. The Apple version is a Cocoa application written in Objective C++ using the Xcode IDE.
+GoIO_Measure is a sample application that is coded to the GoIO_DLL API. The Windows version source code was written in Microsoft Visual C++ 2005. The Apple version is a Cocoa application written in Objective C++ using the Xcode IDE.
 
-To run this application, you need to plug in one or more Go! devices into USB ports, click on the GoIO_console2 Devices menu, and then click on one of the listed devices.
+To run this application, you need to plug in one or more Go! devices into USB ports, click on the GoIO_Measure Devices menu, and then click on one of the listed devices.
 
 Note that the Go! devices are HID USB devices which use standard device drivers that are automatically preinstalled on Windows ME, Win2000, and XP systems. The HID USB device drivers are present on Windows 98 installation CD's but they are not always preinstalled. You may be prompted to insert a Windows 98 installation CD when you plug in a Go! device for the first time.
 
 ====================================================================================================================
 
-GoIO_console is a sample application that basically acts as a low level USB HID packet logger for the Go devices. Because it logs almost all the data communication packets sent between the host computer and the Go devices, it is a useful diagnostic application when testing new devices and device drivers. This application is not coded to the GoIO_DLL API, so we do not recommend that you use it as a template for your applications.
-
-Currently, we only provide a Windows version of GoIO_console. It was written in Microsoft Visual C++ version 6.0.
-
-====================================================================================================================
-
 Release notes:
+
+Version 2.37
+Add sensor map data for non smart sensors so DDS records are descriptive for all known sensors.
+GoIO_Sensor_CalibrateData() supports non linear calibrations now, so stainless steel temperature is supported.
+The Windows version of GoIO DLL can be built as a 64 bit binary.
+.NET support has been added via GoIOdotNET.dll and VSTCoreDefsdotNET.dll.
+GoIO_Diags_SetDebugTraceThreshold() allows dynamic control of debug output.
 
 Version 2.30
 Tweak DDS memory marshalling logic to avoid memory alignment traps on CPU's that care about such things(eg. ARM).
