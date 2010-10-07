@@ -19,6 +19,15 @@ namespace GoIOdotNET
 		public const Int32 READ_DDSMEMBLOCK_TIMEOUT_MS = 2000;
 		public const Int32 WRITE_DDSMEMBLOCK_TIMEOUT_MS = 4000;
 
+        /// <summary>
+        /// GoIO_Diags_SetDebugTraceThreshold() threshold parameter value. Setting debug trace threshold to 
+        /// TRACE_SEVERITY_LOWEST causes the most messages to be sent to the debug console.
+        /// </summary>
+        public const byte TRACE_SEVERITY_LOWEST = 1;
+        public const byte TRACE_SEVERITY_LOW = 10;
+        public const byte TRACE_SEVERITY_MEDIUM = 50;
+        public const byte TRACE_SEVERITY_HIGH = 100;
+
 		/// <summary>
 		/// Call GoIO_Init() once before any other GoIO_ calls are made.
 		/// GoIO_Init() and GoIO_Uninit() should be called from the same thread.
@@ -793,6 +802,17 @@ namespace GoIOdotNET
 			IntPtr hSensor,
 			byte Checksum);
 
+        /// <summary>
+        /// GoIO_Diags_SetDebugTraceThreshold().
+        /// </summary>
+        /// <param name="threshold">Only trace messages marked with a severity >= threshold(GoIO.TRACE_SEVERITY_) are actually sent to the debug output.</param>
+        /// <returns></returns>
+        [DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Diags_SetDebugTraceThreshold", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Int32 Diags_SetDebugTraceThreshold(
+            Int32 threshold);
 
+        [DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Diags_GetDebugTraceThreshold", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Int32 Diags_GetDebugTraceThreshold(
+            out Int32 threshold);
 	}
 }

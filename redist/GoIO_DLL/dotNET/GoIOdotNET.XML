@@ -11,6 +11,12 @@
             of GoIO_DeviceSendCmdAndGetResponse() for most commands, which is about 50 milliseconds.
             </summary>
         </member>
+        <member name="F:GoIOdotNET.GoIO.TRACE_SEVERITY_LOWEST">
+            <summary>
+            GoIO_Diags_SetDebugTraceThreshold() threshold parameter value. Setting debug trace threshold to 
+            TRACE_SEVERITY_LOWEST causes the most messages to be sent to the debug console.
+            </summary>
+        </member>
         <member name="M:GoIOdotNET.GoIO.Init">
             <summary>
             Call GoIO_Init() once before any other GoIO_ calls are made.
@@ -245,6 +251,13 @@
             <param name="hSensor"></param>
             <param name="channel"></param>
             <param name="OperationType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GoIOdotNET.GoIO.Diags_SetDebugTraceThreshold(System.Int32)">
+            <summary>
+            GoIO_Diags_SetDebugTraceThreshold().
+            </summary>
+            <param name="threshold">Only trace messages marked with a severity >= threshold(GoIO.TRACE_SEVERITY_) are actually sent to the debug output.</param>
             <returns></returns>
         </member>
         <member name="T:GoIOdotNET.GoIO_ParmBlk">
