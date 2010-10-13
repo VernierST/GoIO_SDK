@@ -1,0 +1,803 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		C441FD4A125D2F9F00B734E6 /* Build All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C441FD57125D2FEC00B734E6 /* Build configuration list for PBXAggregateTarget "Build All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				C441FD52125D2FA900B734E6 /* PBXTargetDependency */,
+				C441FD50125D2FA700B734E6 /* PBXTargetDependency */,
+				C441FD4E125D2FA300B734E6 /* PBXTargetDependency */,
+			);
+			name = "Build All";
+			productName = "Build All";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		C4FCECCC125CE9CF00DA5A3A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCB125CE9CF00DA5A3A /* CoreFoundation.framework */; };
+		C4FCECCE125CE9CF00DA5A3A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCD125CE9CF00DA5A3A /* IOKit.framework */; };
+		C4FCEDDC125CEA6200DA5A3A /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDB8125CEA6200DA5A3A /* GoIO_DLL_interface.cpp */; };
+		C4FCEDDF125CEA6200DA5A3A /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDBC125CEA6200DA5A3A /* VST_USB.c */; };
+		C4FCEDE6125CEA6200DA5A3A /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC4125CEA6200DA5A3A /* GCyclopsDevice.cpp */; };
+		C4FCEDE8125CEA6200DA5A3A /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC6125CEA6200DA5A3A /* GDeviceIO.cpp */; };
+		C4FCEDEA125CEA6200DA5A3A /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC8125CEA6200DA5A3A /* GMBLSensor.cpp */; };
+		C4FCEDEB125CEA6200DA5A3A /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC9125CEA6200DA5A3A /* GPortRef.cpp */; };
+		C4FCEDED125CEA6200DA5A3A /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCB125CEA6200DA5A3A /* GSkipBaseDevice.cpp */; };
+		C4FCEDEF125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCD125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp */; };
+		C4FCEDF0125CEA6200DA5A3A /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCE125CEA6200DA5A3A /* GSkipDevice.cpp */; };
+		C4FCEDF1125CEA6200DA5A3A /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCF125CEA6200DA5A3A /* GTextUtils.cpp */; };
+		C4FCEDF3125CEA6200DA5A3A /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD1125CEA6200DA5A3A /* GThread.cpp */; };
+		C4FCEDF5125CEA6200DA5A3A /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD3125CEA6200DA5A3A /* GThread_Mac.cpp */; };
+		C4FCEDF7125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD5125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp */; };
+		C4FCEDF8125CEA6200DA5A3A /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD6125CEA6200DA5A3A /* GUtils.cpp */; };
+		C4FCEDFA125CEA6200DA5A3A /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD8125CEA6200DA5A3A /* GUtils_Mac.cpp */; };
+		C4FCEDFC125CEA6200DA5A3A /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDDA125CEA6200DA5A3A /* GMiniGCDevice.cpp */; };
+		C4FCEE46125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEE44125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp */; };
+		C4FCEE62125CF99F00DA5A3A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEE61125CF99F00DA5A3A /* AppKit.framework */; };
+		C4FCEF1F125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF1D125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp */; };
+		C4FCEF25125CF9E600DA5A3A /* GCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF23125CF9E600DA5A3A /* GCircularBuffer.cpp */; };
+		C4FCEF32125CFA2800DA5A3A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEF31125CFA2800DA5A3A /* Carbon.framework */; };
+		C4FCF01A125CFC0900DA5A3A /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC4125CEA6200DA5A3A /* GCyclopsDevice.cpp */; };
+		C4FCF01C125CFC0900DA5A3A /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC6125CEA6200DA5A3A /* GDeviceIO.cpp */; };
+		C4FCF01E125CFC0900DA5A3A /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC8125CEA6200DA5A3A /* GMBLSensor.cpp */; };
+		C4FCF01F125CFC0900DA5A3A /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC9125CEA6200DA5A3A /* GPortRef.cpp */; };
+		C4FCF021125CFC0900DA5A3A /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCB125CEA6200DA5A3A /* GSkipBaseDevice.cpp */; };
+		C4FCF023125CFC0900DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCD125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp */; };
+		C4FCF024125CFC0900DA5A3A /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCE125CEA6200DA5A3A /* GSkipDevice.cpp */; };
+		C4FCF025125CFC0900DA5A3A /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCF125CEA6200DA5A3A /* GTextUtils.cpp */; };
+		C4FCF027125CFC0900DA5A3A /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD1125CEA6200DA5A3A /* GThread.cpp */; };
+		C4FCF029125CFC0900DA5A3A /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD3125CEA6200DA5A3A /* GThread_Mac.cpp */; };
+		C4FCF02B125CFC0900DA5A3A /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD5125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp */; };
+		C4FCF02C125CFC0900DA5A3A /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD6125CEA6200DA5A3A /* GUtils.cpp */; };
+		C4FCF02E125CFC0900DA5A3A /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD8125CEA6200DA5A3A /* GUtils_Mac.cpp */; };
+		C4FCF030125CFC0900DA5A3A /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDDA125CEA6200DA5A3A /* GMiniGCDevice.cpp */; };
+		C4FCF032125CFC0900DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEE44125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp */; };
+		C4FCF034125CFC0900DA5A3A /* GCalibrateDataFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF1D125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp */; };
+		C4FCF036125CFC0900DA5A3A /* GCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF23125CF9E600DA5A3A /* GCircularBuffer.cpp */; };
+		C4FCF03A125CFC0900DA5A3A /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDBC125CEA6200DA5A3A /* VST_USB.c */; };
+		C4FCF03E125CFC0900DA5A3A /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDB8125CEA6200DA5A3A /* GoIO_DLL_interface.cpp */; };
+		C4FCF042125CFC0A00DA5A3A /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC4125CEA6200DA5A3A /* GCyclopsDevice.cpp */; };
+		C4FCF044125CFC0A00DA5A3A /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC6125CEA6200DA5A3A /* GDeviceIO.cpp */; };
+		C4FCF046125CFC0A00DA5A3A /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC8125CEA6200DA5A3A /* GMBLSensor.cpp */; };
+		C4FCF047125CFC0A00DA5A3A /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDC9125CEA6200DA5A3A /* GPortRef.cpp */; };
+		C4FCF049125CFC0A00DA5A3A /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCB125CEA6200DA5A3A /* GSkipBaseDevice.cpp */; };
+		C4FCF04B125CFC0A00DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCD125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp */; };
+		C4FCF04C125CFC0A00DA5A3A /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCE125CEA6200DA5A3A /* GSkipDevice.cpp */; };
+		C4FCF04D125CFC0A00DA5A3A /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDCF125CEA6200DA5A3A /* GTextUtils.cpp */; };
+		C4FCF04F125CFC0A00DA5A3A /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD1125CEA6200DA5A3A /* GThread.cpp */; };
+		C4FCF051125CFC0A00DA5A3A /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD3125CEA6200DA5A3A /* GThread_Mac.cpp */; };
+		C4FCF053125CFC0A00DA5A3A /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD5125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp */; };
+		C4FCF054125CFC0A00DA5A3A /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD6125CEA6200DA5A3A /* GUtils.cpp */; };
+		C4FCF056125CFC0A00DA5A3A /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDD8125CEA6200DA5A3A /* GUtils_Mac.cpp */; };
+		C4FCF058125CFC0A00DA5A3A /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDDA125CEA6200DA5A3A /* GMiniGCDevice.cpp */; };
+		C4FCF05A125CFC0A00DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEE44125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp */; };
+		C4FCF05C125CFC0A00DA5A3A /* GCalibrateDataFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF1D125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp */; };
+		C4FCF05E125CFC0A00DA5A3A /* GCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEF23125CF9E600DA5A3A /* GCircularBuffer.cpp */; };
+		C4FCF062125CFC0A00DA5A3A /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDBC125CEA6200DA5A3A /* VST_USB.c */; };
+		C4FCF066125CFC0A00DA5A3A /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4FCEDB8125CEA6200DA5A3A /* GoIO_DLL_interface.cpp */; };
+		C4FCF06B125CFC2B00DA5A3A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEF31125CFA2800DA5A3A /* Carbon.framework */; };
+		C4FCF06C125CFC2B00DA5A3A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEE61125CF99F00DA5A3A /* AppKit.framework */; };
+		C4FCF06D125CFC2B00DA5A3A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCB125CE9CF00DA5A3A /* CoreFoundation.framework */; };
+		C4FCF06E125CFC2B00DA5A3A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCD125CE9CF00DA5A3A /* IOKit.framework */; };
+		C4FCF06F125CFC2B00DA5A3A /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEF31125CFA2800DA5A3A /* Carbon.framework */; };
+		C4FCF070125CFC2B00DA5A3A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCEE61125CF99F00DA5A3A /* AppKit.framework */; };
+		C4FCF071125CFC2B00DA5A3A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCB125CE9CF00DA5A3A /* CoreFoundation.framework */; };
+		C4FCF072125CFC2B00DA5A3A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4FCECCD125CE9CF00DA5A3A /* IOKit.framework */; };
+		C4FCF07E125CFCC700DA5A3A /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB0125CEA4000DA5A3A /* GoIO_DLL_interface.h */; };
+		C4FCF07F125CFCC700DA5A3A /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB1125CEA4000DA5A3A /* GVernierUSB.h */; };
+		C4FCF080125CFCC700DA5A3A /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB2125CEA4000DA5A3A /* GSensorDDSMem.h */; };
+		C4FCF081125CFCC700DA5A3A /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB3125CEA4000DA5A3A /* GSkipCommExt.h */; };
+		C4FCF083125CFCD300DA5A3A /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB0125CEA4000DA5A3A /* GoIO_DLL_interface.h */; };
+		C4FCF084125CFCD300DA5A3A /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB1125CEA4000DA5A3A /* GVernierUSB.h */; };
+		C4FCF085125CFCD300DA5A3A /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB2125CEA4000DA5A3A /* GSensorDDSMem.h */; };
+		C4FCF086125CFCD300DA5A3A /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB3125CEA4000DA5A3A /* GSkipCommExt.h */; };
+		C4FCF087125CFCDE00DA5A3A /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB0125CEA4000DA5A3A /* GoIO_DLL_interface.h */; };
+		C4FCF088125CFCDE00DA5A3A /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB1125CEA4000DA5A3A /* GVernierUSB.h */; };
+		C4FCF089125CFCDE00DA5A3A /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB2125CEA4000DA5A3A /* GSensorDDSMem.h */; };
+		C4FCF08A125CFCDE00DA5A3A /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FCEDB3125CEA4000DA5A3A /* GSkipCommExt.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C441FD4D125D2FA300B734E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4FCF00A125CFB9200DA5A3A;
+			remoteInfo = "GoIO32 Static";
+		};
+		C441FD4F125D2FA700B734E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4FCEFFC125CFB5000DA5A3A;
+			remoteInfo = "GoIO32 Framework";
+		};
+		C441FD51125D2FA900B734E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC0620554660B00DB518D;
+			remoteInfo = "GoIO32 Dynamic";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C4FCECCB125CE9CF00DA5A3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C4FCECCD125CE9CF00DA5A3A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		C4FCEDB0125CEA4000DA5A3A /* GoIO_DLL_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoIO_DLL_interface.h; path = ../../GoIO_DLL_interface.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDB1125CEA4000DA5A3A /* GVernierUSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GVernierUSB.h; path = ../../../GoIO_cpp/GVernierUSB.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDB2125CEA4000DA5A3A /* GSensorDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSensorDDSMem.h; path = ../../../GoIO_cpp/GSensorDDSMem.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDB3125CEA4000DA5A3A /* GSkipCommExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSkipCommExt.h; path = ../../../GoIO_cpp/GSkipCommExt.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDB8125CEA6200DA5A3A /* GoIO_DLL_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GoIO_DLL_interface.cpp; path = ../../GoIO_DLL_interface.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDBA125CEA6200DA5A3A /* GDeviceToHostUSBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDeviceToHostUSBTypes.h; path = ../../../GoIO_cpp/MacOSX/VST_USB/GDeviceToHostUSBTypes.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDBB125CEA6200DA5A3A /* VST_USB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VST_USB.h; path = ../../../GoIO_cpp/MacOSX/VST_USB/VST_USB.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDBC125CEA6200DA5A3A /* VST_USB.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = VST_USB.c; path = ../../../GoIO_cpp/MacOSX/VST_USB/VST_USB.c; sourceTree = SOURCE_ROOT; };
+		C4FCEDBD125CEA6200DA5A3A /* VST_Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VST_Errors.h; path = ../../../GoIO_cpp/MacOSX/VST_USB/VST_Errors.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDBE125CEA6200DA5A3A /* VST_USBTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VST_USBTypes.h; path = ../../../GoIO_cpp/MacOSX/VST_USB/VST_USBTypes.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDBF125CEA6200DA5A3A /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = ../../../GoIO_cpp/MacOSX/stdafx.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC1125CEA6200DA5A3A /* GMBLSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMBLSensor.h; path = ../../../GoIO_cpp/GMBLSensor.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC2125CEA6200DA5A3A /* GSkipDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSkipDevice.h; path = ../../../GoIO_cpp/GSkipDevice.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC3125CEA6200DA5A3A /* GUSBDirectTempDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GUSBDirectTempDevice.h; path = ../../../GoIO_cpp/GUSBDirectTempDevice.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC4125CEA6200DA5A3A /* GCyclopsDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GCyclopsDevice.cpp; path = ../../../GoIO_cpp/GCyclopsDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDC5125CEA6200DA5A3A /* GCyclopsDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCyclopsDevice.h; path = ../../../GoIO_cpp/GCyclopsDevice.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC6125CEA6200DA5A3A /* GDeviceIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GDeviceIO.cpp; path = ../../../GoIO_cpp/GDeviceIO.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDC7125CEA6200DA5A3A /* GDeviceIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDeviceIO.h; path = ../../../GoIO_cpp/GDeviceIO.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDC8125CEA6200DA5A3A /* GMBLSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GMBLSensor.cpp; path = ../../../GoIO_cpp/GMBLSensor.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDC9125CEA6200DA5A3A /* GPortRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPortRef.cpp; path = ../../../GoIO_cpp/GPortRef.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDCA125CEA6200DA5A3A /* GPortRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPortRef.h; path = ../../../GoIO_cpp/GPortRef.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDCB125CEA6200DA5A3A /* GSkipBaseDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipBaseDevice.cpp; path = ../../../GoIO_cpp/GSkipBaseDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDCC125CEA6200DA5A3A /* GSkipBaseDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSkipBaseDevice.h; path = ../../../GoIO_cpp/GSkipBaseDevice.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDCD125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipBaseDevice_Mac.cpp; path = ../../../GoIO_cpp/MacOSX/GSkipBaseDevice_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDCE125CEA6200DA5A3A /* GSkipDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GSkipDevice.cpp; path = ../../../GoIO_cpp/GSkipDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDCF125CEA6200DA5A3A /* GTextUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GTextUtils.cpp; path = ../../../GoIO_cpp/GTextUtils.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD0125CEA6200DA5A3A /* GTextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTextUtils.h; path = ../../../GoIO_cpp/GTextUtils.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDD1125CEA6200DA5A3A /* GThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GThread.cpp; path = ../../../GoIO_cpp/GThread.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD2125CEA6200DA5A3A /* GThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GThread.h; path = ../../../GoIO_cpp/GThread.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDD3125CEA6200DA5A3A /* GThread_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GThread_Mac.cpp; path = ../../../GoIO_cpp/MacOSX/GThread_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD4125CEA6200DA5A3A /* GTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTypes.h; path = ../../../GoIO_cpp/GTypes.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDD5125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GUSBDirectTempDevice.cpp; path = ../../../GoIO_cpp/GUSBDirectTempDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD6125CEA6200DA5A3A /* GUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GUtils.cpp; path = ../../../GoIO_cpp/GUtils.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD7125CEA6200DA5A3A /* GUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GUtils.h; path = ../../../GoIO_cpp/GUtils.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDD8125CEA6200DA5A3A /* GUtils_Mac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GUtils_Mac.cpp; path = ../../../GoIO_cpp/MacOSX/GUtils_Mac.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDD9125CEA6200DA5A3A /* GMiniGCDDSMem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMiniGCDDSMem.h; path = ../../../GoIO_cpp/GMiniGCDDSMem.h; sourceTree = SOURCE_ROOT; };
+		C4FCEDDA125CEA6200DA5A3A /* GMiniGCDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GMiniGCDevice.cpp; path = ../../../GoIO_cpp/GMiniGCDevice.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEDDB125CEA6200DA5A3A /* GMiniGCDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMiniGCDevice.h; path = ../../../GoIO_cpp/GMiniGCDevice.h; sourceTree = SOURCE_ROOT; };
+		C4FCEE04125CEAB700DA5A3A /* exported_symbols */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = exported_symbols; path = ../exported_symbols; sourceTree = SOURCE_ROOT; };
+		C4FCEE05125CEAB700DA5A3A /* GoIO_SDK_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoIO_SDK_Prefix.pch; path = ../GoIO_SDK_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		C4FCEE44125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NonSmartSensorDDSRecs.cpp; path = ../../../GoIO_cpp/NonSmartSensorDDSRecs.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEE45125CF85300DA5A3A /* NonSmartSensorDDSRecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NonSmartSensorDDSRecs.h; path = ../../../GoIO_cpp/NonSmartSensorDDSRecs.h; sourceTree = SOURCE_ROOT; };
+		C4FCEE61125CF99F00DA5A3A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		C4FCEF1D125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GCalibrateDataFuncs.cpp; path = ../../../GoIO_cpp/GCalibrateDataFuncs.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEF1E125CF9DC00DA5A3A /* GCalibrateDataFuncs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCalibrateDataFuncs.h; path = ../../../GoIO_cpp/GCalibrateDataFuncs.h; sourceTree = SOURCE_ROOT; };
+		C4FCEF23125CF9E600DA5A3A /* GCircularBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GCircularBuffer.cpp; path = ../../../GoIO_cpp/GCircularBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		C4FCEF24125CF9E600DA5A3A /* GCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCircularBuffer.h; path = ../../../GoIO_cpp/GCircularBuffer.h; sourceTree = SOURCE_ROOT; };
+		C4FCEF31125CFA2800DA5A3A /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		C4FCEFFD125CFB5000DA5A3A /* libGoIO_DLL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libGoIO_DLL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4FCEFFE125CFB5000DA5A3A /* GoIO32 Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoIO32 Framework-Info.plist"; sourceTree = "<group>"; };
+		C4FCF00B125CFB9200DA5A3A /* libGoIO_DLL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGoIO_DLL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AAC0630554660B00DB518D /* libGoIO_DLL.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libGoIO_DLL.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4FCEFFB125CFB5000DA5A3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF06F125CFC2B00DA5A3A /* Carbon.framework in Frameworks */,
+				C4FCF070125CFC2B00DA5A3A /* AppKit.framework in Frameworks */,
+				C4FCF071125CFC2B00DA5A3A /* CoreFoundation.framework in Frameworks */,
+				C4FCF072125CFC2B00DA5A3A /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4FCF009125CFB9200DA5A3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF06B125CFC2B00DA5A3A /* Carbon.framework in Frameworks */,
+				C4FCF06C125CFC2B00DA5A3A /* AppKit.framework in Frameworks */,
+				C4FCF06D125CFC2B00DA5A3A /* CoreFoundation.framework in Frameworks */,
+				C4FCF06E125CFC2B00DA5A3A /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D289988505E68E00004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCECCC125CE9CF00DA5A3A /* CoreFoundation.framework in Frameworks */,
+				C4FCECCE125CE9CF00DA5A3A /* IOKit.framework in Frameworks */,
+				C4FCEE62125CF99F00DA5A3A /* AppKit.framework in Frameworks */,
+				C4FCEF32125CFA2800DA5A3A /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* GoIO32 */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEDAF125CEA2B00DA5A3A /* Public Includes */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C4FCECC8125CE98F00DA5A3A /* Frameworks */,
+				C4FCEE03125CEAA300DA5A3A /* Other Source */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				C4FCEFFE125CFB5000DA5A3A /* GoIO32 Framework-Info.plist */,
+			);
+			name = GoIO32;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEDC0125CEA6200DA5A3A /* Cross-Platform */,
+				C4FCEDB9125CEA6200DA5A3A /* MacOSX */,
+				C4FCEDB8125CEA6200DA5A3A /* GoIO_DLL_interface.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC0630554660B00DB518D /* libGoIO_DLL.dylib */,
+				C4FCEFFD125CFB5000DA5A3A /* libGoIO_DLL.framework */,
+				C4FCF00B125CFB9200DA5A3A /* libGoIO_DLL.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4FCECC8125CE98F00DA5A3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEF31125CFA2800DA5A3A /* Carbon.framework */,
+				C4FCEE61125CF99F00DA5A3A /* AppKit.framework */,
+				C4FCECCB125CE9CF00DA5A3A /* CoreFoundation.framework */,
+				C4FCECCD125CE9CF00DA5A3A /* IOKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4FCEDAF125CEA2B00DA5A3A /* Public Includes */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEDB0125CEA4000DA5A3A /* GoIO_DLL_interface.h */,
+				C4FCEDB1125CEA4000DA5A3A /* GVernierUSB.h */,
+				C4FCEDB2125CEA4000DA5A3A /* GSensorDDSMem.h */,
+				C4FCEDB3125CEA4000DA5A3A /* GSkipCommExt.h */,
+			);
+			name = "Public Includes";
+			sourceTree = "<group>";
+		};
+		C4FCEDB9125CEA6200DA5A3A /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEDBA125CEA6200DA5A3A /* GDeviceToHostUSBTypes.h */,
+				C4FCEDBB125CEA6200DA5A3A /* VST_USB.h */,
+				C4FCEDBC125CEA6200DA5A3A /* VST_USB.c */,
+				C4FCEDBD125CEA6200DA5A3A /* VST_Errors.h */,
+				C4FCEDBE125CEA6200DA5A3A /* VST_USBTypes.h */,
+				C4FCEDBF125CEA6200DA5A3A /* stdafx.h */,
+			);
+			name = MacOSX;
+			sourceTree = "<group>";
+		};
+		C4FCEDC0125CEA6200DA5A3A /* Cross-Platform */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEDC1125CEA6200DA5A3A /* GMBLSensor.h */,
+				C4FCEDC2125CEA6200DA5A3A /* GSkipDevice.h */,
+				C4FCEDC3125CEA6200DA5A3A /* GUSBDirectTempDevice.h */,
+				C4FCEDC4125CEA6200DA5A3A /* GCyclopsDevice.cpp */,
+				C4FCEDC5125CEA6200DA5A3A /* GCyclopsDevice.h */,
+				C4FCEDC6125CEA6200DA5A3A /* GDeviceIO.cpp */,
+				C4FCEDC7125CEA6200DA5A3A /* GDeviceIO.h */,
+				C4FCEDC8125CEA6200DA5A3A /* GMBLSensor.cpp */,
+				C4FCEDC9125CEA6200DA5A3A /* GPortRef.cpp */,
+				C4FCEDCA125CEA6200DA5A3A /* GPortRef.h */,
+				C4FCEDCB125CEA6200DA5A3A /* GSkipBaseDevice.cpp */,
+				C4FCEDCC125CEA6200DA5A3A /* GSkipBaseDevice.h */,
+				C4FCEDCD125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp */,
+				C4FCEDCE125CEA6200DA5A3A /* GSkipDevice.cpp */,
+				C4FCEDCF125CEA6200DA5A3A /* GTextUtils.cpp */,
+				C4FCEDD0125CEA6200DA5A3A /* GTextUtils.h */,
+				C4FCEDD1125CEA6200DA5A3A /* GThread.cpp */,
+				C4FCEDD2125CEA6200DA5A3A /* GThread.h */,
+				C4FCEDD3125CEA6200DA5A3A /* GThread_Mac.cpp */,
+				C4FCEDD4125CEA6200DA5A3A /* GTypes.h */,
+				C4FCEDD5125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp */,
+				C4FCEDD6125CEA6200DA5A3A /* GUtils.cpp */,
+				C4FCEDD7125CEA6200DA5A3A /* GUtils.h */,
+				C4FCEDD8125CEA6200DA5A3A /* GUtils_Mac.cpp */,
+				C4FCEDD9125CEA6200DA5A3A /* GMiniGCDDSMem.h */,
+				C4FCEDDA125CEA6200DA5A3A /* GMiniGCDevice.cpp */,
+				C4FCEDDB125CEA6200DA5A3A /* GMiniGCDevice.h */,
+				C4FCEE44125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp */,
+				C4FCEE45125CF85300DA5A3A /* NonSmartSensorDDSRecs.h */,
+				C4FCEF1D125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp */,
+				C4FCEF1E125CF9DC00DA5A3A /* GCalibrateDataFuncs.h */,
+				C4FCEF23125CF9E600DA5A3A /* GCircularBuffer.cpp */,
+				C4FCEF24125CF9E600DA5A3A /* GCircularBuffer.h */,
+			);
+			name = "Cross-Platform";
+			sourceTree = "<group>";
+		};
+		C4FCEE03125CEAA300DA5A3A /* Other Source */ = {
+			isa = PBXGroup;
+			children = (
+				C4FCEE04125CEAB700DA5A3A /* exported_symbols */,
+				C4FCEE05125CEAB700DA5A3A /* GoIO_SDK_Prefix.pch */,
+			);
+			name = "Other Source";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C4FCEFF8125CFB5000DA5A3A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF083125CFCD300DA5A3A /* GoIO_DLL_interface.h in Headers */,
+				C4FCF084125CFCD300DA5A3A /* GVernierUSB.h in Headers */,
+				C4FCF085125CFCD300DA5A3A /* GSensorDDSMem.h in Headers */,
+				C4FCF086125CFCD300DA5A3A /* GSkipCommExt.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4FCF007125CFB9200DA5A3A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF087125CFCDE00DA5A3A /* GoIO_DLL_interface.h in Headers */,
+				C4FCF088125CFCDE00DA5A3A /* GVernierUSB.h in Headers */,
+				C4FCF089125CFCDE00DA5A3A /* GSensorDDSMem.h in Headers */,
+				C4FCF08A125CFCDE00DA5A3A /* GSkipCommExt.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC0600554660B00DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF07E125CFCC700DA5A3A /* GoIO_DLL_interface.h in Headers */,
+				C4FCF07F125CFCC700DA5A3A /* GVernierUSB.h in Headers */,
+				C4FCF080125CFCC700DA5A3A /* GSensorDDSMem.h in Headers */,
+				C4FCF081125CFCC700DA5A3A /* GSkipCommExt.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C4FCEFFC125CFB5000DA5A3A /* GoIO32 Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4FCF001125CFB5000DA5A3A /* Build configuration list for PBXNativeTarget "GoIO32 Framework" */;
+			buildPhases = (
+				C4FCEFF8125CFB5000DA5A3A /* Headers */,
+				C4FCEFF9125CFB5000DA5A3A /* Resources */,
+				C4FCEFFA125CFB5000DA5A3A /* Sources */,
+				C4FCEFFB125CFB5000DA5A3A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoIO32 Framework";
+			productName = "GoIO32 Framework";
+			productReference = C4FCEFFD125CFB5000DA5A3A /* libGoIO_DLL.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C4FCF00A125CFB9200DA5A3A /* GoIO32 Static */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4FCF00E125CFBB000DA5A3A /* Build configuration list for PBXNativeTarget "GoIO32 Static" */;
+			buildPhases = (
+				C4FCF007125CFB9200DA5A3A /* Headers */,
+				C4FCF008125CFB9200DA5A3A /* Sources */,
+				C4FCF009125CFB9200DA5A3A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoIO32 Static";
+			productName = "GoIO32 Static";
+			productReference = C4FCF00B125CFB9200DA5A3A /* libGoIO_DLL.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D2AAC0620554660B00DB518D /* GoIO32 Dynamic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB914A08733D8E0010E9CD /* Build configuration list for PBXNativeTarget "GoIO32 Dynamic" */;
+			buildPhases = (
+				D2AAC0600554660B00DB518D /* Headers */,
+				D2AAC0610554660B00DB518D /* Sources */,
+				D289988505E68E00004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoIO32 Dynamic";
+			productName = GoIO32;
+			productReference = D2AAC0630554660B00DB518D /* libGoIO_DLL.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB914E08733D8E0010E9CD /* Build configuration list for PBXProject "GoIO32" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* GoIO32 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC0620554660B00DB518D /* GoIO32 Dynamic */,
+				C4FCEFFC125CFB5000DA5A3A /* GoIO32 Framework */,
+				C4FCF00A125CFB9200DA5A3A /* GoIO32 Static */,
+				C441FD4A125D2F9F00B734E6 /* Build All */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4FCEFF9125CFB5000DA5A3A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4FCEFFA125CFB5000DA5A3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF01A125CFC0900DA5A3A /* GCyclopsDevice.cpp in Sources */,
+				C4FCF01C125CFC0900DA5A3A /* GDeviceIO.cpp in Sources */,
+				C4FCF01E125CFC0900DA5A3A /* GMBLSensor.cpp in Sources */,
+				C4FCF01F125CFC0900DA5A3A /* GPortRef.cpp in Sources */,
+				C4FCF021125CFC0900DA5A3A /* GSkipBaseDevice.cpp in Sources */,
+				C4FCF023125CFC0900DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */,
+				C4FCF024125CFC0900DA5A3A /* GSkipDevice.cpp in Sources */,
+				C4FCF025125CFC0900DA5A3A /* GTextUtils.cpp in Sources */,
+				C4FCF027125CFC0900DA5A3A /* GThread.cpp in Sources */,
+				C4FCF029125CFC0900DA5A3A /* GThread_Mac.cpp in Sources */,
+				C4FCF02B125CFC0900DA5A3A /* GUSBDirectTempDevice.cpp in Sources */,
+				C4FCF02C125CFC0900DA5A3A /* GUtils.cpp in Sources */,
+				C4FCF02E125CFC0900DA5A3A /* GUtils_Mac.cpp in Sources */,
+				C4FCF030125CFC0900DA5A3A /* GMiniGCDevice.cpp in Sources */,
+				C4FCF032125CFC0900DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */,
+				C4FCF034125CFC0900DA5A3A /* GCalibrateDataFuncs.cpp in Sources */,
+				C4FCF036125CFC0900DA5A3A /* GCircularBuffer.cpp in Sources */,
+				C4FCF03A125CFC0900DA5A3A /* VST_USB.c in Sources */,
+				C4FCF03E125CFC0900DA5A3A /* GoIO_DLL_interface.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4FCF008125CFB9200DA5A3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCF042125CFC0A00DA5A3A /* GCyclopsDevice.cpp in Sources */,
+				C4FCF044125CFC0A00DA5A3A /* GDeviceIO.cpp in Sources */,
+				C4FCF046125CFC0A00DA5A3A /* GMBLSensor.cpp in Sources */,
+				C4FCF047125CFC0A00DA5A3A /* GPortRef.cpp in Sources */,
+				C4FCF049125CFC0A00DA5A3A /* GSkipBaseDevice.cpp in Sources */,
+				C4FCF04B125CFC0A00DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */,
+				C4FCF04C125CFC0A00DA5A3A /* GSkipDevice.cpp in Sources */,
+				C4FCF04D125CFC0A00DA5A3A /* GTextUtils.cpp in Sources */,
+				C4FCF04F125CFC0A00DA5A3A /* GThread.cpp in Sources */,
+				C4FCF051125CFC0A00DA5A3A /* GThread_Mac.cpp in Sources */,
+				C4FCF053125CFC0A00DA5A3A /* GUSBDirectTempDevice.cpp in Sources */,
+				C4FCF054125CFC0A00DA5A3A /* GUtils.cpp in Sources */,
+				C4FCF056125CFC0A00DA5A3A /* GUtils_Mac.cpp in Sources */,
+				C4FCF058125CFC0A00DA5A3A /* GMiniGCDevice.cpp in Sources */,
+				C4FCF05A125CFC0A00DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */,
+				C4FCF05C125CFC0A00DA5A3A /* GCalibrateDataFuncs.cpp in Sources */,
+				C4FCF05E125CFC0A00DA5A3A /* GCircularBuffer.cpp in Sources */,
+				C4FCF062125CFC0A00DA5A3A /* VST_USB.c in Sources */,
+				C4FCF066125CFC0A00DA5A3A /* GoIO_DLL_interface.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC0610554660B00DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FCEDDC125CEA6200DA5A3A /* GoIO_DLL_interface.cpp in Sources */,
+				C4FCEDDF125CEA6200DA5A3A /* VST_USB.c in Sources */,
+				C4FCEDE6125CEA6200DA5A3A /* GCyclopsDevice.cpp in Sources */,
+				C4FCEDE8125CEA6200DA5A3A /* GDeviceIO.cpp in Sources */,
+				C4FCEDEA125CEA6200DA5A3A /* GMBLSensor.cpp in Sources */,
+				C4FCEDEB125CEA6200DA5A3A /* GPortRef.cpp in Sources */,
+				C4FCEDED125CEA6200DA5A3A /* GSkipBaseDevice.cpp in Sources */,
+				C4FCEDEF125CEA6200DA5A3A /* GSkipBaseDevice_Mac.cpp in Sources */,
+				C4FCEDF0125CEA6200DA5A3A /* GSkipDevice.cpp in Sources */,
+				C4FCEDF1125CEA6200DA5A3A /* GTextUtils.cpp in Sources */,
+				C4FCEDF3125CEA6200DA5A3A /* GThread.cpp in Sources */,
+				C4FCEDF5125CEA6200DA5A3A /* GThread_Mac.cpp in Sources */,
+				C4FCEDF7125CEA6200DA5A3A /* GUSBDirectTempDevice.cpp in Sources */,
+				C4FCEDF8125CEA6200DA5A3A /* GUtils.cpp in Sources */,
+				C4FCEDFA125CEA6200DA5A3A /* GUtils_Mac.cpp in Sources */,
+				C4FCEDFC125CEA6200DA5A3A /* GMiniGCDevice.cpp in Sources */,
+				C4FCEE46125CF85300DA5A3A /* NonSmartSensorDDSRecs.cpp in Sources */,
+				C4FCEF1F125CF9DC00DA5A3A /* GCalibrateDataFuncs.cpp in Sources */,
+				C4FCEF25125CF9E600DA5A3A /* GCircularBuffer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C441FD4E125D2FA300B734E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4FCF00A125CFB9200DA5A3A /* GoIO32 Static */;
+			targetProxy = C441FD4D125D2FA300B734E6 /* PBXContainerItemProxy */;
+		};
+		C441FD50125D2FA700B734E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4FCEFFC125CFB5000DA5A3A /* GoIO32 Framework */;
+			targetProxy = C441FD4F125D2FA700B734E6 /* PBXContainerItemProxy */;
+		};
+		C441FD52125D2FA900B734E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC0620554660B00DB518D /* GoIO32 Dynamic */;
+			targetProxy = C441FD51125D2FA900B734E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB914B08733D8E0010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "@executable_path";
+				PRODUCT_NAME = GoIO_DLL;
+			};
+			name = Debug;
+		};
+		1DEB914C08733D8E0010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_PREFIX = lib;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "@executable_path";
+				PRODUCT_NAME = GoIO_DLL;
+			};
+			name = Release;
+		};
+		1DEB914F08733D8E0010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				EXPORTED_SYMBOLS_FILE = ../exported_symbols;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../GoIO_SDK_Prefix.pch;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.4;
+			};
+			name = Debug;
+		};
+		1DEB915008733D8E0010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				EXPORTED_SYMBOLS_FILE = ../exported_symbols;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ../GoIO_SDK_Prefix.pch;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.4;
+			};
+			name = Release;
+		};
+		C441FD4B125D2F9F00B734E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build All";
+			};
+			name = Debug;
+		};
+		C441FD4C125D2F9F00B734E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Build All";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C4FCEFFF125CFB5000DA5A3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "GoIO32 Framework-Info.plist";
+				INSTALL_PATH = "@executable_path";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = libGoIO_DLL;
+			};
+			name = Debug;
+		};
+		C4FCF000125CFB5000DA5A3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "GoIO32 Framework-Info.plist";
+				INSTALL_PATH = "@executable_path";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = libGoIO_DLL;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C4FCF00C125CFB9200DA5A3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "@executable_path";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GoIO_DLL;
+			};
+			name = Debug;
+		};
+		C4FCF00D125CFB9200DA5A3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = "@executable_path";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GoIO_DLL;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB914A08733D8E0010E9CD /* Build configuration list for PBXNativeTarget "GoIO32 Dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB914B08733D8E0010E9CD /* Debug */,
+				1DEB914C08733D8E0010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB914E08733D8E0010E9CD /* Build configuration list for PBXProject "GoIO32" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB914F08733D8E0010E9CD /* Debug */,
+				1DEB915008733D8E0010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C441FD57125D2FEC00B734E6 /* Build configuration list for PBXAggregateTarget "Build All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C441FD4B125D2F9F00B734E6 /* Debug */,
+				C441FD4C125D2F9F00B734E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4FCF001125CFB5000DA5A3A /* Build configuration list for PBXNativeTarget "GoIO32 Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4FCEFFF125CFB5000DA5A3A /* Debug */,
+				C4FCF000125CFB5000DA5A3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4FCF00E125CFBB000DA5A3A /* Build configuration list for PBXNativeTarget "GoIO32 Static" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4FCF00C125CFB9200DA5A3A /* Debug */,
+				C4FCF00D125CFB9200DA5A3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

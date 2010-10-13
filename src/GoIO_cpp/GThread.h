@@ -58,7 +58,12 @@ int NGIO_DeregisterIOAbortSignalHandler();
 typedef long (*StdThreadFunctionPtr)(void *);
 typedef OSPtr OSThreadReference;
 typedef OSPtr OSMutex;
+
+#ifdef TARGET_OS_MAC
+typedef int OSSemaphore;
+#else
 typedef OSPtr OSSemaphore;
+#endif
 
 typedef enum
 {
