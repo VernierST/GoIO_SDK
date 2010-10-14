@@ -25,66 +25,66 @@ public:
 	virtual int			GetVendorID(void) = 0;
 	virtual int			GetProductID(void) = 0;
 
-	long 				Open(GPortRef *pPortRef);// override from GDeviceIO
+	int 				Open(GPortRef *pPortRef);// override from GDeviceIO
 
 	// Platform specific routines:
 
 	// overrides from GDeviceIO:
 	bool				OSInitialize(void);
-	long 				OSOpen(GPortRef *pPortRef);
-	long				OSClose(void);
+	int 				OSOpen(GPortRef *pPortRef);
+	int					OSClose(void);
 	void				OSDestroy(void);
 
 	// Note that these are packet oriented, rather than byte oriented.
-	long				OSReadMeasurementPackets(void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets);
-	long				OSReadCmdRespPackets(void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets);
-	long 				OSWriteCmdPackets(void * pBuffer, long nNumPackets);
+	int					OSReadMeasurementPackets(void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets);
+	int					OSReadCmdRespPackets(void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets);
+	int 				OSWriteCmdPackets(void * pBuffer, int nNumPackets);
 
-	long				OSMeasurementPacketsAvailable(unsigned char *pNumMeasurementsInLastPacket = NULL);
-	long				OSCmdRespPacketsAvailable(void);
+	int					OSMeasurementPacketsAvailable(unsigned char *pNumMeasurementsInLastPacket = NULL);
+	int					OSCmdRespPacketsAvailable(void);
 
-	long 				OSClearIO(void);
-	long				OSClearMeasurementPacketQueue();
-	long				OSClearCmdRespPacketQueue();
+	int 				OSClearIO(void);
+	int					OSClearMeasurementPacketQueue();
+	int					OSClearCmdRespPacketQueue();
 
-	long 				OSBytesAvailable(void); //not used - will assert!
-	long 				OSRead(void * /*pBuffer*/, long * /*pIONumBytes*/, long /*nBufferSize*/); //not used - will assert!
-	long 				OSWrite(void * /*pBuffer*/, long * /*pIONumBytes*/); //not used - will assert!
+	int 				OSBytesAvailable(void); //not used - will assert!
+	int 				OSRead(void * /*pBuffer*/, int * /*pIONumBytes*/, int /*nBufferSize*/); //not used - will assert!
+	int 				OSWrite(void * /*pBuffer*/, int * /*pIONumBytes*/); //not used - will assert!
 
 	// End of platform specific routines.
 
-	long				SendCmd(unsigned char cmd, void *pParams, long nParamBytes);
-	long				GetNextResponse(void *pRespBuf, long *pnRespBytes, unsigned char *pCmd, bool *pErrRespFlag, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
-	virtual long		SendCmdAndGetResponse(unsigned char cmd, void *pParams, long nParamBytes, void *pRespBuf, long *pnRespBytes, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	int					SendCmd(unsigned char cmd, void *pParams, int nParamBytes);
+	int					GetNextResponse(void *pRespBuf, int *pnRespBytes, unsigned char *pCmd, bool *pErrRespFlag, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual int			SendCmdAndGetResponse(unsigned char cmd, void *pParams, int nParamBytes, void *pRespBuf, int *pnRespBytes, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
 	void				GetLastCmdResponseStatus(unsigned char *pLastCmd, unsigned char *pLastCmdStatus,
 							unsigned char *pLastCmdWithErrorRespSentOvertheWire, unsigned char *pLastErrorSentOvertheWire);
 
-	long				ReadNonVolatileMemory(bool bLocal, void *pBuf, unsigned long addr, unsigned long nBytesToRead,
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
-	long				WriteNonVolatileMemory(bool bLocal, void *pBuf, unsigned long addr, unsigned long nBytesToRead,
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	int					ReadNonVolatileMemory(bool bLocal, void *pBuf, unsigned int addr, unsigned int nBytesToRead,
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	int					WriteNonVolatileMemory(bool bLocal, void *pBuf, unsigned int addr, unsigned int nBytesToRead,
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
-	virtual unsigned long	GetMaxLocalNonVolatileMemAddr(void) = 0;
-	virtual unsigned long	GetMaxRemoteNonVolatileMemAddr(void) = 0;
+	virtual unsigned int	GetMaxLocalNonVolatileMemAddr(void) = 0;
+	virtual unsigned int	GetMaxRemoteNonVolatileMemAddr(void) = 0;
 
-	virtual	long		ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToRead*/, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL) = 0;
-	virtual	long		WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToWrites*/,
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL) = 0;
+	virtual	int			ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToRead*/, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL) = 0;
+	virtual	int			WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToWrites*/,
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL) = 0;
 
 	virtual real		GetMeasurementTickInSeconds(void) = 0; 
 	real				CalculateNearestLegalMeasurementPeriod(real fPeriodInSeconds);
-	long				SetMeasurementPeriod(real fPeriodInSeconds, long nTimeoutMs = 1000);
-	real				GetMeasurementPeriod(long nTimeoutMs = 1000);
+	int					SetMeasurementPeriod(real fPeriodInSeconds, int nTimeoutMs = 1000);
+	real				GetMeasurementPeriod(int nTimeoutMs = 1000);
 
 	virtual real		GetMinimumMeasurementPeriodInSeconds(void) = 0;
 	virtual real		GetMaximumMeasurementPeriodInSeconds(void) = 0;
 
-	long				MeasurementsAvailable(void);
-	virtual intVector	ReadRawMeasurements(long count = -1);
+	int					MeasurementsAvailable(void);
+	virtual intVector	ReadRawMeasurements(int count = -1);
     bool                AreMeasurementsEnabled() { return m_bIsMeasuring; }
 
 	int					GetLatestRawMeasurement(void);
@@ -101,7 +101,7 @@ public:
 	static StringVector OSGetAvailableDevicesOfType(int nVendorID, int nProductID);
 
 protected:
-	virtual long				GetInitCmdResponse(void *pRespBuf, long *pnRespBytes, long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual int			GetInitCmdResponse(void *pRespBuf, int *pnRespBytes, int nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
 	static real			kVoltsPerBit_ProbeTypeAnalog5V;
 	static real			kVoltsOffset_ProbeTypeAnalog5V;

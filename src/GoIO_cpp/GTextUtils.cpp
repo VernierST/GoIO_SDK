@@ -168,7 +168,7 @@ cppstring GTextUtils::RealToCPPStringRoundedToSigDigits(real rNum , int nSigDigi
 	ss << uppercase << setprecision(nSigDigits)  << rNum;
 	sResult = ss.str();
 
-	long nEPosition = sResult.find(GSTD_S("E")); // is it scientific notation ?
+	int nEPosition = sResult.find(GSTD_S("E")); // is it scientific notation ?
 
 	// massage sResult padding with zeros if needed to get required number of digits
 
@@ -185,7 +185,7 @@ cppstring GTextUtils::RealToCPPStringRoundedToSigDigits(real rNum , int nSigDigi
 	gchar cDecimalPoint = '.';
 	GMessenger::AppMessage(GMsg::kGetDecimalPointChar, static_cast<void *>(&cDecimalPoint));
 
-	long nFirstNonZero = sResult.find_first_of(GSTD_S("123456789"));
+	int nFirstNonZero = sResult.find_first_of(GSTD_S("123456789"));
 	// count the digits preceeding the E if there is an E or to the end otherwise
 	// but do not start counting until after the first non zero digit 
 	if (nFirstNonZero == cppstring::npos || nFirstNonZero < 0)
@@ -227,14 +227,14 @@ cppstring GTextUtils::RealToCPPStringRoundedToSigDigits(real rNum , int nSigDigi
 	return 	sResult;
 }
 */
-cppstring GTextUtils::LongToCPPString(long nNum) // REVISIT - add base-display arg
+cppstring GTextUtils::LongToCPPString(int nNum) // REVISIT - add base-display arg
 {
 	cppsstream ss;
 	ss << nNum;
 	return ss.str();
 }
 
-std::string GTextUtils::LongToString(long nNum) // REVISIT - add base-display arg
+std::string GTextUtils::LongToString(int nNum) // REVISIT - add base-display arg
 {
 	std::stringstream ss;
 	ss << nNum;
@@ -257,17 +257,17 @@ real GTextUtils::StringToReal(const narrowstring &sNumber)
 	return fValue;
 }
 */
-long GTextUtils::CPPStringToLong(const cppstring &sInteger)
+int GTextUtils::CPPStringToLong(const cppstring &sInteger)
 {
-	long nResult = 0L;
+	int nResult = 0L;
 	if (GTextUtils::IsStringLong(sInteger))
 		nResult = GTextUtils::Gstrtol(sInteger.c_str(), NULL, 10);
 	return nResult;
 }
 
-long GTextUtils::StringToLong(const narrowstring &sInteger)
+int GTextUtils::StringToLong(const narrowstring &sInteger)
 {
-	long nResult = 0L;
+	int nResult = 0L;
 	if (GTextUtils::IsNarrowStringLong(sInteger))
 		nResult = strtol(sInteger.c_str(), NULL, 10);
 	return nResult;
@@ -300,10 +300,10 @@ cppstring GTextUtils::ExtractBaseName(const cppstring & sFullName, int * p_nOutN
 	cppstring sBase;
 	cppstring sNum;
 	
-	unsigned long nLastSpacePos = sFullName.find_last_of(' ');
+	unsigned int nLastSpacePos = sFullName.find_last_of(' ');
 	if (nLastSpacePos != cppstring::npos)
 	{
-		unsigned long ix;
+		unsigned int ix;
 		for (ix = 0; ix < nLastSpacePos; ix++)
 			sBase += sFullName[ix];
 		
@@ -338,7 +338,7 @@ cppstring GTextUtils::MatchSubString(const cppstring & sFullName, const cppstrin
 	cppstring sSubString;
 	
 	// Find the starting character of the wildcard string (assume 0 if wildcard isn't found)
-	unsigned long nStartSub = sFormat.find(sSubName), nEndSub;
+	unsigned int nStartSub = sFormat.find(sSubName), nEndSub;
 	if (nStartSub != cppstring::npos)
 	{
 		nEndSub = nStartSub + sSubName.length();
@@ -348,7 +348,7 @@ cppstring GTextUtils::MatchSubString(const cppstring & sFullName, const cppstrin
 		cppstring sEndFormat = sFormat.substr(nEndSub, sFormat.length() - sSubName.length());
 		
 		// Now match the beginning and ending formats and extract the wildcard string
-		unsigned long nStartMatch = sFullName.find(sBeginFormat), nEndMatch;
+		unsigned int nStartMatch = sFullName.find(sBeginFormat), nEndMatch;
 		if (nStartMatch != cppstring::npos)
 		{
 			nStartMatch += sBeginFormat.length();
@@ -397,14 +397,14 @@ bool GTextUtils::IsStringRealNumber(cppstring sNumber,	// string to test
 }
 */
 bool GTextUtils::IsStringLong(const cppstring & sNumber,	// string to test
-							  long *pnValue)		// [out] if != NULL return valuid number here ONLY GOOD IF RETURN VALUE IS TRUE
-{ // RETURN true if string is a long
+							  int *pnValue)		// [out] if != NULL return valuid number here ONLY GOOD IF RETURN VALUE IS TRUE
+{ // RETURN true if string is a int
 	bool bOK = false;
 
 	// if sNumber is not a number, then ss >> will not change the value of either nValue0 or nValue1
 	// so, if they are different, then sNumber is not a number!
-	long nValue0 = 0;
-	long nValue1 = 1;
+	int nValue0 = 0;
+	int nValue1 = 1;
 	cppsstream ss0;
 	ss0 << sNumber;
 	ss0 >> nValue0;
@@ -420,14 +420,14 @@ bool GTextUtils::IsStringLong(const cppstring & sNumber,	// string to test
 	return bOK;
 }
 bool GTextUtils::IsNarrowStringLong(const narrowstring & sNumber,	// string to test
-							  long *pnValue)		// [out] if != NULL return valuid number here ONLY GOOD IF RETURN VALUE IS TRUE
-{ // RETURN true if string is a long
+							  int *pnValue)		// [out] if != NULL return valuid number here ONLY GOOD IF RETURN VALUE IS TRUE
+{ // RETURN true if string is a int
 	bool bOK = false;
 
 	// if sNumber is not a number, then ss >> will not change the value of either nValue0 or nValue1
 	// so, if they are different, then sNumber is not a number!
-	long nValue0 = 0;
-	long nValue1 = 1;
+	int nValue0 = 0;
+	int nValue1 = 1;
 	stringstream ss0;
 	ss0 << sNumber;
 	ss0 >> nValue0;
@@ -554,7 +554,7 @@ int	GTextUtils::GetWordsPerLine(std::stringstream * pInStream  )
 {// gets the first line in the stream and returns the number of tab delimited values on that line
 	int nWordCount = 0;
 #ifndef OPUS_DDK
-	long curPos = pInStream->tellg();
+	int curPos = pInStream->tellg();
 	// create a Tokenizer for lines and get the first line 
 	GStreamTokenizer lineTokenizer (pInStream);
 	lineTokenizer.SetDelimiters("\n\r");
@@ -1164,7 +1164,7 @@ unsigned short GTextUtils::GetValueFromCharacterEscape(cppstring sCharEscape)
 	const gchar * k_sSpace = GSTD_S(" ");
 	if ((sCharEscape.length() >= 4) && (sCharEscape[0] == GSTD_S('&')) && (sCharEscape[1] == GSTD_S('#')))
 	{
-		long nBase = 10;
+		int nBase = 10;
 	
 		sCharEscape[0] = GSTD_S(' ');
 		sCharEscape[1] = GSTD_S(' ');
@@ -1217,9 +1217,9 @@ gchar *	 GTextUtils::Gstrncpy(gchar *strDestination,const gchar * strSource, siz
 	return pstrReturn;
 }
 
-long	GTextUtils::Gstrtol(const gchar *nptr, gchar **endptr, int nbase)
+int	GTextUtils::Gstrtol(const gchar *nptr, gchar **endptr, int nbase)
 {
-	long nLong;
+	int nLong;
 #ifdef USE_WIDE_CHARS
 	nLong = wcstol(nptr,endptr,nbase);
 #else

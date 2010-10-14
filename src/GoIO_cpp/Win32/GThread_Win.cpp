@@ -140,7 +140,7 @@ bool GThread::OSLockMutex(OSMutex pMutex)
 }
 
 bool GThread::OSTryLockMutex(OSMutex pMutex, // Mutex Handle
-							 long nTimeoutMS) // timeout to wait for mutex (in milliseconds)
+							 int nTimeoutMS) // timeout to wait for mutex (in milliseconds)
 {
 	bool bResult = false;
 
@@ -191,7 +191,7 @@ void GThread::OSDestroySemaphore(OSSemaphore pSemaphore)
 
 bool GThread::OSSemPost(OSSemaphore pSemaphore)
 {
-	LONG oldCount;
+	long oldCount;
 	return (0 != ReleaseSemaphore((HANDLE) pSemaphore, 1, &oldCount));
 }
 

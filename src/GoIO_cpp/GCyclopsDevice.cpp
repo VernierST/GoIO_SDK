@@ -32,16 +32,16 @@ GCyclopsDevice::GCyclopsDevice(GPortRef *pPortRef)
 		GUtils::Trace(GSTD_S("Error - GCyclopsDevice constructor, OSInitialize() returned false."));
 }
 
-intVector GCyclopsDevice::ReadRawMeasurements(long desiredCount /*=-1*/) // Optional -- can limit the number that will be returned
+intVector GCyclopsDevice::ReadRawMeasurements(int desiredCount /*=-1*/) // Optional -- can limit the number that will be returned
 {
 	intVector result;
-	long count = desiredCount;
+	int count = desiredCount;
 	GCyclopsMeasurementPacket packets[NUM_PACKETS_IN_RETRIEVAL_BUFFER];
 
 	if (LockDevice(1) && IsOKToUse())
 	{ // Make sure we're the only thread that has acces to this device
-		long nNumMeasurementsInVec = 0;
-		long nNumPacketsJustRead, nNumPacketsToAskFor;
+		int nNumMeasurementsInVec = 0;
+		int nNumPacketsJustRead, nNumPacketsToAskFor;
 		int measurement;
 		if (count < 0)
 			count = MeasurementsAvailable();
@@ -61,7 +61,7 @@ intVector GCyclopsDevice::ReadRawMeasurements(long desiredCount /*=-1*/) // Opti
 				break;
 			else
 			{
-				long nPacket;
+				int nPacket;
 				for (nPacket = 0; nPacket < nNumPacketsJustRead; nPacket++)
 				{
                     GCyclopsMeasurementPacket *pPacket = &packets[nPacket];
@@ -87,18 +87,18 @@ intVector GCyclopsDevice::ReadRawMeasurements(long desiredCount /*=-1*/) // Opti
 	return result;
 }
 
-long GCyclopsDevice::SendCmdAndGetResponse(
+int GCyclopsDevice::SendCmdAndGetResponse(
 	unsigned char cmd,	//[in] command code
 	void *pParams,		//[in] ptr to cmd specific parameter block, may be NULL.
-	long nParamBytes,	//[in] # of bytes in (*pParams).
+	int nParamBytes,	//[in] # of bytes in (*pParams).
 	void *pRespBuf,		//[out] ptr to destination buffer, may be NULL.
-	long *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
-	long nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
+	int *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
+	int nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
 	bool *pExitFlag /* = NULL */)//[in] ptr to flag that another thread can set to force early exit. 
 						//		THIS FLAG MUST BE FALSE FOR THIS ROUTINE TO RUN.
 						//		Ignore this if NULL.
 {
-	long nResult = TBaseClass::SendCmdAndGetResponse(cmd, pParams, nParamBytes, pRespBuf, pnRespBytes, nTimeoutMs, pExitFlag);
+	int nResult = TBaseClass::SendCmdAndGetResponse(cmd, pParams, nParamBytes, pRespBuf, pnRespBytes, nTimeoutMs, pExitFlag);
 
     if (kResponse_OK == nResult)
     {
@@ -123,14 +123,14 @@ long GCyclopsDevice::SendCmdAndGetResponse(
 	return nResult;
 }
 
-long GCyclopsDevice::ReadSensorDDSMemory(
+int GCyclopsDevice::ReadSensorDDSMemory(
     unsigned char *pBuf, 
-    unsigned long ddsAddr, 
-    unsigned long nBytesToRead, 
-	long /* nTimeoutMs */, 
+    unsigned int ddsAddr, 
+    unsigned int nBytesToRead, 
+	int /* nTimeoutMs */, 
     bool * /* pExitFlag = NULL */)
 {
-    long nResult = -1;
+    int nResult = -1;
     if ((0 == ddsAddr) && (sizeof(GSensorDDSRec) == nBytesToRead))
     {
         nResult = 0;

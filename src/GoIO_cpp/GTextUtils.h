@@ -36,7 +36,7 @@ public:
 	static StringVector				GetRangeOfStrings(int nStartIndex, int nEndIndex);
 
 	static bool						OSTextDataToClipboard(const cppstring & sText, bool bClearClipboard=true);
-	static bool						OSIsTextClipDataAvailable(long * pOutLength = NULL);
+	static bool						OSIsTextClipDataAvailable(int * pOutLength = NULL);
 	static bool						OSGetTextClipData(cppstring * pOutString);
 //	static GDeviceRect				GetBestRectForText(cppstring sText, const GDeviceRect &maxRect, int kFontHeight, int nMinWidth = 450);
 	
@@ -47,17 +47,17 @@ public:
 	static cppstring				RealToDisplayCPPString(real rNum, int nDigits);
 	static cppstring				RealToCPPStringRoundedToSigDigits(real rNum, int nSigDigits);
 
-	static cppstring				LongToCPPString(long nNum);
-	static std::string				LongToString(long nNum);
+	static cppstring				LongToCPPString(int nNum);
+	static std::string				LongToString(int nNum);
 
 	static real						CPPStringToReal(const cppstring &sNumber);
 	static real						StringToReal(const narrowstring &sNumber);
-	static long						CPPStringToLong(const cppstring &sInteger);
-	static long						StringToLong(const narrowstring &sInteger);
+	static int						CPPStringToLong(const cppstring &sInteger);
+	static int						StringToLong(const narrowstring &sInteger);
 
 	static bool						IsStringRealNumber(cppstring sNumber, real *pfValue = NULL); // RETURN true if number is a real
-	static bool						IsStringLong(const cppstring & sNumber, long *pnValue = NULL); // RETURN true if number is a long
-	static bool						IsNarrowStringLong(const narrowstring & sNumber, long *pnValue = NULL); // RETURN true if number is a long
+	static bool						IsStringLong(const cppstring & sNumber, int *pnValue = NULL); // RETURN true if number is a int
+	static bool						IsNarrowStringLong(const narrowstring & sNumber, int *pnValue = NULL); // RETURN true if number is a int
 	static cppstring				StringReplace(cppstring sBase, const cppstring &sSearchFor, const cppstring &sReplaceWith); 
 	static std::string				AsciiStringReplace(std::string sBase, const std::string &sSearchFor, const std::string &sReplaceWith); 
 
@@ -88,7 +88,7 @@ public:
 	static gchar *					Gstrncpy(gchar *strDestination,const gchar * strSource, size_t nCount);
 	static int						Gstrcmp(const gchar *str1,const gchar *str2);
 	static int						Gstrncmp(const gchar *str1,const gchar *str2, size_t nCount);
-	static long						Gstrtol(const gchar *nptr, gchar **endptr, int base);
+	static int						Gstrtol(const gchar *nptr, gchar **endptr, int base);
 	static double					Gstrtod(const gchar *nptr, gchar **endptr);
 	static size_t					Gstrlen(const gchar * str );
 	static int						Gisspace(const gint c);

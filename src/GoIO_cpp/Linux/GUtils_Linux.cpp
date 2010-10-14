@@ -279,7 +279,7 @@ void GUtils::OSSetDefaultFolder(const GFileRef &)
 
 bool GUtils::OSIsQuickTimeAvailable(void)
 {
-	long version=false;
+	int version=false;
 
 
 	return version;
@@ -306,10 +306,10 @@ unsigned int GUtils::OSGetTimeStamp()
   return (unsigned int) timeMs;
 }
 
-void GUtils::OSSleep(unsigned long msToSleep)
+void GUtils::OSSleep(unsigned int msToSleep)
 {
   struct timeval tv;
-  unsigned long usToSleep = msToSleep*1000;
+  unsigned int usToSleep = msToSleep*1000;
   tv.tv_sec = usToSleep/1000000;
   tv.tv_usec = usToSleep % 1000000;
   select (0, NULL, NULL, NULL, &tv);

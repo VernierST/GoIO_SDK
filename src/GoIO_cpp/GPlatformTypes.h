@@ -80,8 +80,8 @@ typedef OSPtr		OSFontAttrPtr;		// some structure representing text font, size, w
 typedef OSPtr		OSSerialConfigPtr;	// some structure representing serial configuration (handshaking)
 typedef OSPtr		OSExceptionPtr;
 //
-typedef long		OSHandle;			// for any sort of handle
-typedef long		OSMessage;			// for framework-defined message or command value
+typedef int			OSHandle;			// for any sort of handle
+typedef int			OSMessage;			// for framework-defined message or command value
 //////////////////////////////////////////////////////////////
 
 #endif // _GPLATFORMTYPES_H_

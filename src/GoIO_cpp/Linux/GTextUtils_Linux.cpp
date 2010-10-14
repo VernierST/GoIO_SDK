@@ -72,7 +72,7 @@ bool GTextUtils::OSTextDataToClipboard(const cppstring & sText, bool bClearClipb
 
 
 
-bool GTextUtils::OSIsTextClipDataAvailable(long * pOutLength)
+bool GTextUtils::OSIsTextClipDataAvailable(int * pOutLength)
 
 {
 

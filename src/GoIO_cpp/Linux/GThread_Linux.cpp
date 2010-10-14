@@ -88,7 +88,7 @@ bool GThread::OSLockMutex(OSMutex pOSMutex)
 	return bResult;
 }
 
-bool GThread::OSTryLockMutex(OSMutex pOSMutex, long nTimeoutMS)
+bool GThread::OSTryLockMutex(OSMutex pOSMutex, int nTimeoutMS)
 {
 	bool bResult = false;
 

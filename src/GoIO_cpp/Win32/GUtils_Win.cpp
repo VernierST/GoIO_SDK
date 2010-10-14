@@ -541,7 +541,7 @@ real GUtils::OSGetSystemClockTime(void)
 	return ((real)clock() / (real)CLOCKS_PER_SEC);
 }
 */
-void GUtils::OSSleep(unsigned long msToSleep)
+void GUtils::OSSleep(unsigned int msToSleep)
 {
 	::Sleep(msToSleep);
 }

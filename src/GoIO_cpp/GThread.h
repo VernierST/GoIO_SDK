@@ -55,7 +55,7 @@ int NGIO_RegisterIOAbortSignalHandler(int signalNum);
 int NGIO_DeregisterIOAbortSignalHandler();
 #endif
 
-typedef long (*StdThreadFunctionPtr)(void *);
+typedef int (*StdThreadFunctionPtr)(void *);
 typedef OSPtr OSThreadReference;
 typedef OSPtr OSMutex;
 
@@ -121,7 +121,7 @@ static	EThreadPriority		OSGetCurrentThreadPriority(void);
 
 	static OSMutex			OSCreateMutex(const cppstring &sMutexName);
 	static bool				OSLockMutex(OSMutex pMutex);
-	static bool				OSTryLockMutex(OSMutex pMutex, long nTimeoutMS);
+	static bool				OSTryLockMutex(OSMutex pMutex, int nTimeoutMS);
 	static bool				OSUnlockMutex(OSMutex pMutex);
 	static void				OSDestroyMutex(OSMutex pMutex);
 
@@ -214,7 +214,7 @@ struct GPriorityMutex
 			GThread::OSDestroyMutex(m_OSMutex);
 		m_OSMutex = NULL;
 	}
-	bool TryLockMutex(long nTimeoutMS, EThreadPriority *pOldPriority)
+	bool TryLockMutex(int nTimeoutMS, EThreadPriority *pOldPriority)
 	{
 		bool bSuccess = false;
 		if (m_OSMutex != NULL)

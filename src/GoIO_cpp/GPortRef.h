@@ -63,8 +63,8 @@ public:
 	void		EncodeToString(cppstring * pOutString);
 	void		EncodeToStream(cppostream * pOutStream);
 	
-	long		DecodeFromString(const cppstring & sInString);
-	long		DecodeFromStream(cppistream * pInStream);
+	int			DecodeFromString(const cppstring & sInString);
+	int			DecodeFromStream(cppistream * pInStream);
 
 	unsigned int	GetUSBVendorID(void) const { return m_USBVendorID; }
 	void			SetUSBVendorID(unsigned int vendorID) { m_USBVendorID = vendorID; }

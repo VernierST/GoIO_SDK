@@ -129,7 +129,7 @@ StdIDList GUtils::ConvertIDVectorToList(const StdIDVector * pIDVector) // pointe
 char *_strtime(char *pBuffer);
 char *_strtime(char *pBuffer)
 {
-	unsigned long nSeconds;
+	unsigned int nSeconds;
 	GetDateTime(&nSeconds);
 
 	Str255 sDate;
@@ -358,7 +358,7 @@ StdIDVector GUtils::GetPrunedIDVector(StdIDVector *pvIDs)
 // Curve fitting helper functions
 // The following list contains all of the resources used for the curve fitting functions
 // LinearFit:: " An Introduction to Error Analysis", pages 156-157 - correlation is from page 180 of same book
-long GUtils::CalculateLinearFit(SRealPointVector const &vPoints,	// vector of points to fit line to
+int GUtils::CalculateLinearFit(SRealPointVector const &vPoints,	// vector of points to fit line to
 							    real *pfSlope,				// [out] slope of linear fit
 							    real *pfIntercept,			// [out] intercept of linear fit line
 							    real *pfCorrelation,			// [out] correlation of line to data; if NULL don't fill in
@@ -504,7 +504,7 @@ long GUtils::CalculateLinearFit(SRealPointVector const &vPoints,	// vector of po
 	return kResponse_OK;
 }
 
-long GUtils::CalculateLinearFit(realvector const & vX,	// x Values
+int GUtils::CalculateLinearFit(realvector const & vX,	// x Values
 							    realvector const & vY,	// y Values
 							    real *pfSlope,				// [out] slope of linear fit
 							    real *pfIntercept,			// [out] intercept of linear fit line
@@ -580,10 +580,10 @@ bool GUtils::IsMonotonic(realvector const &vReal)
 //#include <DriverServices.h>
 
 
-unsigned long GUtils::TraceClock(void)
+unsigned int GUtils::TraceClock(void)
 {
 	cppsstream ss;
-	unsigned long nClock = (unsigned long)clock();
+	unsigned int nClock = (unsigned int)clock();
 	ss << " clock: " << nClock << kOSNewlineChar;
 	GUtils::Trace(ss.str());
 	return nClock;

@@ -145,7 +145,7 @@ int WinEnumDevices(GUID *pClassGuid, unsigned int vendorId, unsigned int product
 						{
 							//ID strings match.
 							DWORD flags;
-							unsigned long testStatus = dynSetupDiGetDeviceRegistryProperty(devs, &dev_info, 
+							unsigned int testStatus = dynSetupDiGetDeviceRegistryProperty(devs, &dev_info, 
 									SPDRP_CONFIGFLAGS, NULL, (BYTE *) &flags, sizeof(flags), NULL);
 							if (testStatus != 0)
 							{

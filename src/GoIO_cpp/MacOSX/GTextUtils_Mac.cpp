@@ -157,7 +157,7 @@ bool GTextUtils::OSTextDataToClipboard(const cppstring & sText, bool bClearClipb
 	return bResult;
 }
 
-bool GTextUtils::OSIsTextClipDataAvailable(long * pOutLength)
+bool GTextUtils::OSIsTextClipDataAvailable(int * pOutLength)
 {
 	/* SInt32 nDataLength = UScrap::GetData(ResType_Text, NULL);
 	if(pOutLength)

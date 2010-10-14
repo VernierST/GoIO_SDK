@@ -7,10 +7,10 @@
 #import "GTextUtils.h"
 #import "GUtils.h"
 
-long local_ReadPackets(GSkipBaseDevice *pDevice, void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets, int nPipe);
-long local_PacketsAvailable(GSkipBaseDevice *pDevice, int nPipe);
-long local_ClearPacketQueue(GSkipBaseDevice *pDevice, int nPipe);
-long local_NumLastMeasurements(GSkipBaseDevice *pDevice);
+int local_ReadPackets(GSkipBaseDevice *pDevice, void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets, int nPipe);
+int local_PacketsAvailable(GSkipBaseDevice *pDevice, int nPipe);
+int local_ClearPacketQueue(GSkipBaseDevice *pDevice, int nPipe);
+int local_NumLastMeasurements(GSkipBaseDevice *pDevice);
 
 bool GSkipBaseDevice::OSInitialize(void)
 {
@@ -89,9 +89,9 @@ StringVector GSkipBaseDevice::OSGetAvailableDevicesOfType(int nVendorID, int nPr
 	return vPortNames;
 }
 
-long GSkipBaseDevice::OSOpen(GPortRef * /*pPortRef*/)
+int GSkipBaseDevice::OSOpen(GPortRef * /*pPortRef*/)
 {
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -132,7 +132,7 @@ long GSkipBaseDevice::OSOpen(GPortRef * /*pPortRef*/)
 	return nResult;
 }
 
-long GSkipBaseDevice::OSClose(void)
+int GSkipBaseDevice::OSClose(void)
 {	
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -147,9 +147,9 @@ long GSkipBaseDevice::OSClose(void)
 	return kResponse_OK;
 }
 
-long GSkipBaseDevice::OSClearIO(void)
+int GSkipBaseDevice::OSClearIO(void)
 {
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -180,12 +180,12 @@ void GSkipBaseDevice::OSDestroy(void)
 		GSTD_ASSERT(0);
 }
 
-long local_ReadPackets(GSkipBaseDevice *pDevice, void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets, int nPipe)
+int local_ReadPackets(GSkipBaseDevice *pDevice, void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets, int nPipe)
 {
 	unsigned int nSkipPacketSize = sizeof(GSkipPacket);
 	int nBufferSizeInBytes = nBufferSizeInPackets * nSkipPacketSize;
 	int nRequestBytes = *pIONumPackets * nSkipPacketSize;
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	
 	TUSBBulkDevice usbDevice = static_cast<TUSBBulkDevice>(pDevice->GetOSData());
 	if (usbDevice != NULL)
@@ -207,9 +207,9 @@ long local_ReadPackets(GSkipBaseDevice *pDevice, void * pBuffer, long * pIONumPa
 	return nResult;
 }
 
-long GSkipBaseDevice::OSReadMeasurementPackets(void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets)
+int GSkipBaseDevice::OSReadMeasurementPackets(void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets)
 {
-	long nReturn = 0;
+	int nReturn = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -222,9 +222,9 @@ long GSkipBaseDevice::OSReadMeasurementPackets(void * pBuffer, long * pIONumPack
 	return nReturn;
 }
 
-long GSkipBaseDevice::OSReadCmdRespPackets(void * pBuffer, long * pIONumPackets, long nBufferSizeInPackets)
+int GSkipBaseDevice::OSReadCmdRespPackets(void * pBuffer, int * pIONumPackets, int nBufferSizeInPackets)
 {
-	long nReturn = 0;
+	int nReturn = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -237,9 +237,9 @@ long GSkipBaseDevice::OSReadCmdRespPackets(void * pBuffer, long * pIONumPackets,
 	return nReturn;
 }
 
-long GSkipBaseDevice::OSWriteCmdPackets(void * pBuffer, long nNumPackets)
+int GSkipBaseDevice::OSWriteCmdPackets(void * pBuffer, int nNumPackets)
 {
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	UInt32 nIONumBytes = nNumPackets * sizeof(GSkipPacket);
 	
 	if (LockDevice(1) && IsOKToUse())
@@ -259,9 +259,9 @@ long GSkipBaseDevice::OSWriteCmdPackets(void * pBuffer, long nNumPackets)
 	return nResult;
 }
 
-long local_PacketsAvailable(GSkipBaseDevice *pDevice, int nPipe)
+int local_PacketsAvailable(GSkipBaseDevice *pDevice, int nPipe)
 {
-	long nResult = 0L;
+	int nResult = 0L;
 	
 	TUSBBulkDevice usbDevice = static_cast<TUSBBulkDevice>(pDevice->GetOSData());
 	if (usbDevice != NULL)
@@ -271,9 +271,9 @@ long local_PacketsAvailable(GSkipBaseDevice *pDevice, int nPipe)
 }
 
 
-long local_NumLastMeasurements(GSkipBaseDevice *pDevice)
+int local_NumLastMeasurements(GSkipBaseDevice *pDevice)
 {
-	long nResult = 0L;
+	int nResult = 0L;
 
 	TUSBBulkDevice usbDevice = static_cast<TUSBBulkDevice>(pDevice->GetOSData());
 	if (usbDevice != NULL)
@@ -282,9 +282,9 @@ long local_NumLastMeasurements(GSkipBaseDevice *pDevice)
 	return nResult;
 }
 
-long GSkipBaseDevice::OSMeasurementPacketsAvailable(unsigned char *pNumMeasurementsInLastPacket)
+int GSkipBaseDevice::OSMeasurementPacketsAvailable(unsigned char *pNumMeasurementsInLastPacket)
 {
-	long nReturn = 0;
+	int nReturn = 0;
 	
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -299,9 +299,9 @@ long GSkipBaseDevice::OSMeasurementPacketsAvailable(unsigned char *pNumMeasureme
 	return nReturn;
 }
 
-long GSkipBaseDevice::OSCmdRespPacketsAvailable(void)
+int GSkipBaseDevice::OSCmdRespPacketsAvailable(void)
 {
-	long nReturn = 0;
+	int nReturn = 0;
 	
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -314,7 +314,7 @@ long GSkipBaseDevice::OSCmdRespPacketsAvailable(void)
 	return nReturn;
 }
 
-long local_ClearPacketQueue(GSkipBaseDevice *pDevice, int nPipe)
+int local_ClearPacketQueue(GSkipBaseDevice *pDevice, int nPipe)
 {
 	TUSBBulkDevice usbDevice = static_cast<TUSBBulkDevice>(pDevice->GetOSData());
 	if (usbDevice != NULL)
@@ -322,9 +322,9 @@ long local_ClearPacketQueue(GSkipBaseDevice *pDevice, int nPipe)
 	
 	return kResponse_OK;
 }
-long GSkipBaseDevice::OSClearMeasurementPacketQueue()
+int GSkipBaseDevice::OSClearMeasurementPacketQueue()
 {
-	long nReturn = 0;
+	int nReturn = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -337,9 +337,9 @@ long GSkipBaseDevice::OSClearMeasurementPacketQueue()
 	return nReturn;
 }
 
-long GSkipBaseDevice::OSClearCmdRespPacketQueue()
+int GSkipBaseDevice::OSClearCmdRespPacketQueue()
 {
-	long nReturn = 0;
+	int nReturn = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{

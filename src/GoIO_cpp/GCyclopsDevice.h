@@ -15,24 +15,24 @@ public:
 	virtual int			GetVendorID(void) { return VERNIER_DEFAULT_VENDOR_ID; }
 	virtual int			GetProductID(void) { return CYCLOPS_DEFAULT_PRODUCT_ID; }
 
-	virtual unsigned long	GetMaxLocalNonVolatileMemAddr(void)
+	virtual unsigned int	GetMaxLocalNonVolatileMemAddr(void)
                                 { return 0; }
-	virtual unsigned long	GetMaxRemoteNonVolatileMemAddr(void)
+	virtual unsigned int	GetMaxRemoteNonVolatileMemAddr(void)
                                 { return 0; }
 
 	static StringVector GetAvailableDevices(void) { return TBaseClass::OSGetAvailableDevicesOfType(VERNIER_DEFAULT_VENDOR_ID, CYCLOPS_DEFAULT_PRODUCT_ID); }
 	static void			StoreSnapshotOfAvailableDevices(const StringVector &devices) { m_snapshotOfAvailableDevices = devices; }
 	static const StringVector &	GetSnapshotOfAvailableDevices(void) { return m_snapshotOfAvailableDevices; }
 
-	virtual long		SendCmdAndGetResponse(unsigned char cmd, void *pParams, long nParamBytes, void *pRespBuf, long *pnRespBytes, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual int		SendCmdAndGetResponse(unsigned char cmd, void *pParams, int nParamBytes, void *pRespBuf, int *pnRespBytes, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
-	virtual	long		ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToRead*/, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
-	virtual	long		WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToWrites*/,
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL) { nTimeoutMs = 1; pExitFlag = NULL; return -1; }
+	virtual	int		ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToRead*/, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual	int		WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToWrites*/,
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL) { nTimeoutMs = 1; pExitFlag = NULL; return -1; }
 
-	virtual intVector	ReadRawMeasurements(long count = -1);
+	virtual intVector	ReadRawMeasurements(int count = -1);
 
 	static real k_fCyclopsMaxDeltaT; //Const Min and max delta T
 	static real k_fCyclopsMinDeltaT;

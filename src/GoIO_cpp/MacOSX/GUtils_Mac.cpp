@@ -425,7 +425,7 @@ unsigned int GUtils::OSGetTimeStamp()
 	return (unsigned int)fmod(GetCurrentEventTime() * 1000.0, 0x10000000);
 }
 
-void GUtils::OSSleep(unsigned long msToSleep)
+void GUtils::OSSleep(unsigned int msToSleep)
 {
 	AbsoluteTime absTime = ::AddDurationToAbsolute(msToSleep * durationMillisecond, ::UpTime());
 	::MPDelayUntil(&absTime);

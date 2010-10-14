@@ -12,7 +12,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-const unsigned long kSkipMaxRemoteNonVolatileMemAddr = 127;
+const unsigned int kSkipMaxRemoteNonVolatileMemAddr = 127;
 
 real GSkipDevice::k_fSkipMaxDeltaT = ((unsigned int) 0xffff)*0.001;
 real GSkipDevice::k_fSkipMinDeltaT = 0.005;
@@ -31,28 +31,28 @@ GSkipDevice::~GSkipDevice()
 {
 }
 
-unsigned long GSkipDevice::GetMaxLocalNonVolatileMemAddr(void)
+unsigned int GSkipDevice::GetMaxLocalNonVolatileMemAddr(void)
 {
 	return (sizeof(m_flashRec) - 1);
 }
 
-unsigned long GSkipDevice::GetMaxRemoteNonVolatileMemAddr(void)
+unsigned int GSkipDevice::GetMaxRemoteNonVolatileMemAddr(void)
 {
 	return kSkipMaxRemoteNonVolatileMemAddr;
 }
 
-long GSkipDevice::SendCmdAndGetResponse(
+int GSkipDevice::SendCmdAndGetResponse(
 	unsigned char cmd,	//[in] command code
 	void *pParams,		//[in] ptr to cmd specific parameter block, may be NULL.
-	long nParamBytes,	//[in] # of bytes in (*pParams).
+	int nParamBytes,	//[in] # of bytes in (*pParams).
 	void *pRespBuf,		//[out] ptr to destination buffer, may be NULL.
-	long *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
-	long nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
+	int *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
+	int nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
 	bool *pExitFlag /* = NULL */)//[in] ptr to flag that another thread can set to force early exit. 
 						//		THIS FLAG MUST BE FALSE FOR THIS ROUTINE TO RUN.
 						//		Ignore this if NULL.
 {
-	long nResult;
+	int nResult;
 	if (SKIP_CMD_ID_INIT == cmd)
 		nResult = SendInitCmdAndGetResponse(pParams, nParamBytes, pRespBuf, pnRespBytes, nTimeoutMs, pExitFlag);
 	else
@@ -61,19 +61,19 @@ long GSkipDevice::SendCmdAndGetResponse(
 	return nResult;
 }
 
-long GSkipDevice::SendInitCmdAndGetResponse(
+int GSkipDevice::SendInitCmdAndGetResponse(
 	void *pParams,		//[in] ptr to cmd specific parameter block, may be NULL.
-	long nParamBytes,	//[in] # of bytes in (*pParams).
+	int nParamBytes,	//[in] # of bytes in (*pParams).
 	void *pRespBuf,		//[out] ptr to destination buffer, may be NULL.
-	long *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
-	long nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
+	int *pnRespBytes,  //[in, out] size of of dest buffer on input, size of response on output, may be NULL if pRespBuf is NULL.
+	int nTimeoutMs /* = 1000 */,//[in] # of milliseconds to wait before giving up.
 	bool *pExitFlag /* = NULL */)//[in] ptr to flag that another thread can set to force early exit. 
 						//		THIS FLAG MUST BE FALSE FOR THIS ROUTINE TO RUN.
 						//		Ignore this if NULL.
 {
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	unsigned char initStatus;
-	long initStatusLength = sizeof(initStatus);
+	int initStatusLength = sizeof(initStatus);
 
 	m_lastCmd = SKIP_CMD_ID_INIT;
 	m_lastCmdRespStatus = 0;
@@ -81,11 +81,11 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 	if (LockDevice(1) && IsOKToUse())
 	{
 		nResult = kResponse_OK; 
-		long maxNumRetries = (nTimeoutMs + SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS - 1)/SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS;
+		int maxNumRetries = (nTimeoutMs + SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS - 1)/SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS;
 		if (maxNumRetries > 1)
 			nTimeoutMs = SKIP_TIMEOUT_MS_CMD_ID_INIT_WITH_BUSY_STATUS;
 		bool bSuccess = false;
-		long numRetries;
+		int numRetries;
 		GSkipInitParams initParams;
 		initParams.reportErrorWhilePoweringUpFlag = 1;
 		if (pParams)
@@ -150,21 +150,21 @@ long GSkipDevice::SendInitCmdAndGetResponse(
 	return nResult;
 }
 
-long GSkipDevice::ReadSensorDDSMemory(
+int GSkipDevice::ReadSensorDDSMemory(
 	unsigned char *pBuf, 
-	unsigned long ddsAddr, 
-	unsigned long nBytesToRead, 
-	long nTimeoutMs /* = 1000 */, 
+	unsigned int ddsAddr, 
+	unsigned int nBytesToRead, 
+	int nTimeoutMs /* = 1000 */, 
 	bool *pExitFlag /* = NULL */)
 {
 	return ReadNonVolatileMemory(false, pBuf, ddsAddr, nBytesToRead, nTimeoutMs, pExitFlag);
 }
 
-long GSkipDevice::WriteSensorDDSMemory(
+int GSkipDevice::WriteSensorDDSMemory(
 	unsigned char *pBuf, 
-	unsigned long ddsAddr, 
-	unsigned long nBytesToWrite,
-	long nTimeoutMs /* = 1000 */, 
+	unsigned int ddsAddr, 
+	unsigned int nBytesToWrite,
+	int nTimeoutMs /* = 1000 */, 
 	bool *pExitFlag /* = NULL */)
 {
 	return WriteNonVolatileMemory(false, pBuf, ddsAddr, nBytesToWrite, nTimeoutMs, pExitFlag);
@@ -186,26 +186,26 @@ real GSkipDevice::ConvertToVoltage(int raw, EProbeType eProbeType, bool bCalibra
 		return (GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog5V*raw + GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog5V);
 }
 
-long GSkipDevice::ConvertVoltageToRaw(real fVoltage, EProbeType eProbeType)
+int GSkipDevice::ConvertVoltageToRaw(real fVoltage, EProbeType eProbeType)
 {// this routine will convert a voltage to the raw value
  // TODO jspam, probably need to add a reverse calibrate method as well to be consistent. but for now I don't
 	// need that as I'm calculating offsets.
-	long raw = 0;
+	int raw = 0;
 	if (kProbeTypeAnalog10V == eProbeType)
-		raw = (long) ((fVoltage - GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog10V)/GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog10V);
+		raw = (int) ((fVoltage - GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog10V)/GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog10V);
 	else
-		raw = (long) ((fVoltage - GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog5V)/GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog5V);
+		raw = (int) ((fVoltage - GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog5V)/GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog5V);
 	
 	return raw;
 }
 
-long GSkipDevice::ReadSkipFlashRecord(
+int GSkipDevice::ReadSkipFlashRecord(
 	GSkipFlashMemoryRecord *pFlashRec, //[o] ptr to loc to store flash record. The numeric fields in this record
 										//came from Skip in big endian format. This routine converts those fields to
 										//the endian format that is native to the CPU currently running.
-	long nTimeoutMs)
+	int nTimeoutMs)
 {
-	long nResult = ReadNonVolatileMemory(true, pFlashRec, 0, sizeof(GSkipFlashMemoryRecord), nTimeoutMs);
+	int nResult = ReadNonVolatileMemory(true, pFlashRec, 0, sizeof(GSkipFlashMemoryRecord), nTimeoutMs);
 	if (kResponse_OK != nResult)
 		pFlashRec->signature = 0;//flash rec is ignored until this = VALID_FLASH_SIGNATURE
 	else
@@ -240,12 +240,12 @@ long GSkipDevice::ReadSkipFlashRecord(
 	return nResult;
 }
 
-long GSkipDevice::WriteSkipFlashRecord(
+int GSkipDevice::WriteSkipFlashRecord(
 	const GSkipFlashMemoryRecord &flashRec, //[i] The numeric fields in this record are stored on Skip
 										//in big endian format. This routine converts the numbers from the
 										//endian format that is native to the current CPU into big endian
 										//before writing them to Skip.
-	long nTimeoutMs)
+	int nTimeoutMs)
 {
 	//Convert numeric fields in flashRec to big endian format.
 	GSkipFlashMemoryRecord bigEndianFlashRec = flashRec;
@@ -274,7 +274,7 @@ long GSkipDevice::WriteSkipFlashRecord(
 	pLSB = pLMidB + 1;
 	GUtils::OSConvertFloatToBytes(flashRec.vinLowSlope, pLSB, pLMidB, pMMidB, pMSB);
 
-	long nResult = WriteNonVolatileMemory(true, &bigEndianFlashRec, 0, sizeof(bigEndianFlashRec), nTimeoutMs);
+	int nResult = WriteNonVolatileMemory(true, &bigEndianFlashRec, 0, sizeof(bigEndianFlashRec), nTimeoutMs);
 
 	return nResult;
 }

@@ -47,9 +47,9 @@ GDeviceIO::~GDeviceIO()
 }
 
 /*
-long GDeviceIO::Message(StdMsg nMessage, void * pData)
+int GDeviceIO::Message(StdMsg nMessage, void * pData)
 {
-	long nResult = kResponse_OK;
+	int nResult = kResponse_OK;
 	
 	bool * pBool = NULL;
 	
@@ -107,12 +107,12 @@ long GDeviceIO::Message(StdMsg nMessage, void * pData)
 	return nResult;
 }
 
-long GDeviceIO::Write(const char * pString)
+int GDeviceIO::Write(const char * pString)
 {
-	long nRet = 0;
+	int nRet = 0;
 	if (LockDevice(1) && IsOKToUse())
 	{
-		long nBytes = strlen(pString);
+		int nBytes = strlen(pString);
 		nRet = Write((void *)pString, &nBytes);
 		if (!UnlockDevice())
 			GSTD_ASSERT(0);
@@ -123,9 +123,9 @@ long GDeviceIO::Write(const char * pString)
 	return nRet;
 }
 */
-long GDeviceIO::Open(GPortRef *pPortRef) 
+int GDeviceIO::Open(GPortRef *pPortRef) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -141,9 +141,9 @@ long GDeviceIO::Open(GPortRef *pPortRef)
 	return nRet;
 }
 
-long GDeviceIO::Close(void) 
+int GDeviceIO::Close(void) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -159,9 +159,9 @@ long GDeviceIO::Close(void)
 	return nRet;
 }
 /*
-long GDeviceIO::BytesAvailable(void) 
+int GDeviceIO::BytesAvailable(void) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -175,9 +175,9 @@ long GDeviceIO::BytesAvailable(void)
 	return nRet;
 }
 
-long GDeviceIO::Read(void * pBuffer, long * pIONumBytes, long nBufferSize) 
+int GDeviceIO::Read(void * pBuffer, int * pIONumBytes, int nBufferSize) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -191,9 +191,9 @@ long GDeviceIO::Read(void * pBuffer, long * pIONumBytes, long nBufferSize)
 	return nRet;
 }
 
-long GDeviceIO::Write(void * pBuffer, long * pIONumBytes) 
+int GDeviceIO::Write(void * pBuffer, int * pIONumBytes) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{
@@ -207,9 +207,9 @@ long GDeviceIO::Write(void * pBuffer, long * pIONumBytes)
 	return nRet;
 }
 */
-long GDeviceIO::ClearIO(void) 
+int GDeviceIO::ClearIO(void) 
 { 
-	long nRet = 0;
+	int nRet = 0;
 
 	if (LockDevice(1) && IsOKToUse())
 	{

@@ -29,18 +29,18 @@ public:
 						GDeviceIO(GPortRef *pPortRef);
 	virtual				~GDeviceIO();
 
-//	virtual long		Message(StdMsg nMessage, void * pData);
+//	virtual int		Message(StdMsg nMessage, void * pData);
 	
-	virtual long 		Open(GPortRef *pPortRef);
-	virtual long 		Close(void);
-//	virtual long 		BytesAvailable(void);
-//	virtual long 		Read(void * pBuffer, long * pIONumBytes, long nBufferSize);
-//	virtual long 		Write(void * pBuffer, long * pIONumBytes);
-//	virtual long		Write(const char * pString);
-	virtual long		ClearIO(void);
+	virtual int 		Open(GPortRef *pPortRef);
+	virtual int 		Close(void);
+//	virtual int 		BytesAvailable(void);
+//	virtual int 		Read(void * pBuffer, int * pIONumBytes, int nBufferSize);
+//	virtual int 		Write(void * pBuffer, int * pIONumBytes);
+//	virtual int		Write(const char * pString);
+	virtual int		ClearIO(void);
 
 	// Thread safety lock for this device
-	bool				LockDevice(long nTimeout_ms) { return GThread::OSTryLockMutex(m_pMutex, nTimeout_ms); }
+	bool				LockDevice(int nTimeout_ms) { return GThread::OSTryLockMutex(m_pMutex, nTimeout_ms); }
 	bool				UnlockDevice(void) { return GThread::OSUnlockMutex(m_pMutex); }
 
 	// accessors & setters
@@ -51,18 +51,18 @@ public:
 	bool				IsOpen(void) { return m_bOpen; }
 	void				SetOpen(bool b) { m_bOpen = b; }
 
-//	long				GetReadTimeout(void) { return m_nReadTimeout; }
-//	void				SetReadTimeout(long nTicks) { m_nReadTimeout = nTicks; }
+//	int				GetReadTimeout(void) { return m_nReadTimeout; }
+//	void				SetReadTimeout(int nTicks) { m_nReadTimeout = nTicks; }
 
 	virtual bool 		OSInitialize(void) { return true;}
 	virtual void		OSDestroy(void) {}
 
-	virtual long 		OSOpen(GPortRef * /*pPortRef*/) { return 0L;}
-	virtual long 		OSClose(void) { return 0L;}
-//	virtual long 		OSBytesAvailable(void) { return 0L; }
-//	virtual long 		OSRead(void * /*pBuffer*/, long * /*pIONumBytes*/, long /*nBufferSize*/) { return 0L; }
-//	virtual long 		OSWrite(void * /*pBuffer*/, long * /*pIONumBytes*/) { return 0L; }
-	virtual long		OSClearIO(void) { return kResponse_Error; }
+	virtual int 		OSOpen(GPortRef * /*pPortRef*/) { return 0L;}
+	virtual int 		OSClose(void) { return 0L;}
+//	virtual int 		OSBytesAvailable(void) { return 0L; }
+//	virtual int 		OSRead(void * /*pBuffer*/, int * /*pIONumBytes*/, int /*nBufferSize*/) { return 0L; }
+//	virtual int 		OSWrite(void * /*pBuffer*/, int * /*pIONumBytes*/) { return 0L; }
+	virtual int		OSClearIO(void) { return kResponse_Error; }
 
 	GPortRef *			GetPortRefPtr(void) { return &m_portRef; }
 	GPortRef			GetPortRef(void) { return m_portRef; }
@@ -85,13 +85,13 @@ public:
 	
 	virtual bool		OSIsUSBDevice(void) { return true; }
 	
-//	virtual long		OSExpectSubPackets(short) { return kResponse_OK;}
-//	virtual long		OSIgnoreSubPackets(void) { return kResponse_OK; }
-//	virtual long		OSSetModeText(bool) { return kResponse_OK; }									 
+//	virtual int		OSExpectSubPackets(short) { return kResponse_OK;}
+//	virtual int		OSIgnoreSubPackets(void) { return kResponse_OK; }
+//	virtual int		OSSetModeText(bool) { return kResponse_OK; }									 
 
 protected:
 	OSPtr				m_pOSData;
-	long				m_nReadTimeout; // use for calls to Read()
+	int					m_nReadTimeout; // use for calls to Read()
 	
 	GPortRef			m_portRef;
 
@@ -100,7 +100,7 @@ protected:
 						// wrinkle is GSerialDevice which is a generic serial port
 						// but -can- wrap a USB port in MacOS 9.
 //	bool				m_bModeText;
-//	long				m_nExpectBytes; // if not an even packet size, throw away leftovers
+//	int					m_nExpectBytes; // if not an even packet size, throw away leftovers
 //	int					m_nNumChannels;	// how many MBL channels we're using for collection'
 //	bool				m_bRealTime;
 

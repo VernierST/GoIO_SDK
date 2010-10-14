@@ -37,7 +37,7 @@ void local_AllPurposeMPThreadProc(void * pGThreadObject);
 
 bool local_SetThreadPriority(pthread_t t, EThreadPriority ePriority)	// Set priority ePriority on thread t. Return true if successful.
 {
-	long nResult = 0;
+	int nResult = 0;
 	struct sched_param stParam;
 	int nPolicy;
 	// Get the thread's scheduling info:
@@ -173,7 +173,7 @@ bool GThread::OSLockMutex(OSMutex pOSMutex)
 	return (pthread_mutex_lock(pMutexRef)==0);
 }
 
-bool GThread::OSTryLockMutex(OSMutex pOSMutex, long nTimeoutMS)
+bool GThread::OSTryLockMutex(OSMutex pOSMutex, int nTimeoutMS)
 {
 	GSTD_ASSERT(pOSMutex != NULL);
 	pthread_mutex_t* pMutexRef = (pthread_mutex_t*) pOSMutex;

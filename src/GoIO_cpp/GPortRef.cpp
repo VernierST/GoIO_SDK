@@ -78,9 +78,9 @@ void GPortRef::EncodeToStream(cppostream * pOutStream)
 	}
 }
 
-long GPortRef::DecodeFromString(const cppstring & sInString)
+int GPortRef::DecodeFromString(const cppstring & sInString)
 {
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	
 	cppstring::size_type nSearchStartPos = 0;
 	cppstring::size_type nCurrentPos = 0;
@@ -164,10 +164,10 @@ long GPortRef::DecodeFromString(const cppstring & sInString)
 	return nResult;
 }
 
-long GPortRef::DecodeFromStream(cppistream * pInStream)
+int GPortRef::DecodeFromStream(cppistream * pInStream)
 {
 	// REVISIT - use GXMLUtils to extract the element
-	long nResult = kResponse_Error;
+	int nResult = kResponse_Error;
 	if (pInStream != NULL)
 	{
 		// Get the text from the in-stream up until the next ">"...

@@ -11,8 +11,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static const unsigned long kUSBDirectTempMaxLocalNonVolatileMemAddr = 127;
-static const unsigned long kUSBDirectTempMaxRemoteNonVolatileMemAddr = 0;
+static const unsigned int kUSBDirectTempMaxLocalNonVolatileMemAddr = 127;
+static const unsigned int kUSBDirectTempMaxRemoteNonVolatileMemAddr = 0;
 
 StringVector GUSBDirectTempDevice::m_snapshotOfAvailableDevices;
 
@@ -29,31 +29,31 @@ GUSBDirectTempDevice::~GUSBDirectTempDevice()
 {
 }
 
-unsigned long GUSBDirectTempDevice::GetMaxLocalNonVolatileMemAddr(void)
+unsigned int GUSBDirectTempDevice::GetMaxLocalNonVolatileMemAddr(void)
 {
 	return kUSBDirectTempMaxLocalNonVolatileMemAddr;
 }
 
-unsigned long GUSBDirectTempDevice::GetMaxRemoteNonVolatileMemAddr(void)
+unsigned int GUSBDirectTempDevice::GetMaxRemoteNonVolatileMemAddr(void)
 {
 	return kUSBDirectTempMaxRemoteNonVolatileMemAddr;
 }
 
-long GUSBDirectTempDevice::ReadSensorDDSMemory(
+int GUSBDirectTempDevice::ReadSensorDDSMemory(
 	unsigned char *pBuf, 
-	unsigned long ddsAddr, 
-	unsigned long nBytesToRead, 
-	long nTimeoutMs /* = 1000 */, 
+	unsigned int ddsAddr, 
+	unsigned int nBytesToRead, 
+	int nTimeoutMs /* = 1000 */, 
 	bool *pExitFlag /* = NULL */)
 {
 	return ReadNonVolatileMemory(true, pBuf, ddsAddr, nBytesToRead, nTimeoutMs, pExitFlag);
 }
 
-long GUSBDirectTempDevice::WriteSensorDDSMemory(
+int GUSBDirectTempDevice::WriteSensorDDSMemory(
 	unsigned char *pBuf, 
-	unsigned long ddsAddr, 
-	unsigned long nBytesToWrite,
-	long nTimeoutMs /* = 1000 */, 
+	unsigned int ddsAddr, 
+	unsigned int nBytesToWrite,
+	int nTimeoutMs /* = 1000 */, 
 	bool *pExitFlag /* = NULL */)
 {
 	return WriteNonVolatileMemory(true, pBuf, ddsAddr, nBytesToWrite, nTimeoutMs, pExitFlag);

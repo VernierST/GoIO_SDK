@@ -60,7 +60,7 @@ public:
 	static void 			Trace(int trace_severity, const gchar * pMsg, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
 	static void 			Trace(int trace_severity, void * pointer, const gchar * psFile = NULL, int nLine = -1); // output a null-terminated string to trace output
 	static void 			OSTrace(const gchar * pMsg); // output a null-terminated string to trace output
-	static unsigned long 	TraceClock(void); // output the result of std::clock() to trace output; returns clock time
+	static unsigned int 	TraceClock(void); // output the result of std::clock() to trace output; returns clock time
 	static void				OSFloatingPointExceptionReset(void);						
 	static void				Beep(void);	// Your basic beep.
 
@@ -74,8 +74,8 @@ public:
 
 	static int				CustomMessageBox(cppstring sTitle, cppstring msg, StringVector * pvButtonTitles, int nDefaultButton = 0); // list of buttons, in order, default button first
 
-	static void Sleep(unsigned long msToSleep) { OSSleep(msToSleep); }
-	static void OSSleep(unsigned long msToSleep);
+	static void Sleep(unsigned int msToSleep) { OSSleep(msToSleep); }
+	static void OSSleep(unsigned int msToSleep);
 	
 	static bool			IsBetween(real range1, real value, real range2);	// RETURN true if value is between the ranges (inclusive)
 
@@ -183,8 +183,8 @@ public:
 	static EKeyboardEvent OSTranslateKeyboardEvent(void *pData);
 
 	// Curve Fitting functions and helper functions.
-	static long			CalculateLinearFit(SRealPointVector const &vPoints, real *pSlope, real *pIintercept, real *pCorrelation = NULL, real *pfStdDevSlope = NULL, real *pfStdDevIntercept = NULL); // RETURN kResponse_OK or IDSX error string ID
-	static long			CalculateLinearFit(realvector const &vX, realvector const &vY, real *pSlope, real *pIintercept, real *pCorrelation = NULL, real *pfStdDevSlope = NULL, real *pfStdDevIntercept = NULL); // RETURN kResponse_OK or IDSX error string ID
+	static int			CalculateLinearFit(SRealPointVector const &vPoints, real *pSlope, real *pIintercept, real *pCorrelation = NULL, real *pfStdDevSlope = NULL, real *pfStdDevIntercept = NULL); // RETURN kResponse_OK or IDSX error string ID
+	static int			CalculateLinearFit(realvector const &vX, realvector const &vY, real *pSlope, real *pIintercept, real *pCorrelation = NULL, real *pfStdDevSlope = NULL, real *pfStdDevIntercept = NULL); // RETURN kResponse_OK or IDSX error string ID
 
 	static bool			IsMonotonic(SRealPointVector const &vPoints);	// RETURN true if x component of points is monotonic (not both increasing and decreasing)
 	static bool			IsMonotonic(realvector const &vReal); // RETURN true if points are monotonic

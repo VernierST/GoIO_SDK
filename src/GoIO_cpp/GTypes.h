@@ -128,7 +128,7 @@ typedef std::vector<bool>		boolVector;
 typedef double 					real;
 typedef std::vector<real>		realvector;
 typedef std::vector<realvector> realmatrix;
-typedef std::vector<long> 		longvector;
+typedef std::vector<int> 		intvector;
 typedef std::list<real>			reallist;
 typedef std::list<real>::iterator reallistIterator;
 
@@ -198,10 +198,10 @@ typedef std::vector<SRealPoint> SRealPointVector;
 struct SDevicePoint
 {
 	SDevicePoint() { x = y = 0; }
-	SDevicePoint(long xx, long yy) { x = xx; y = yy; }
+	SDevicePoint(int xx, int yy) { x = xx; y = yy; }
 
-	long x;
-	long y;
+	int x;
+	int y;
 };
 // ooperators:
 extern bool operator==(const SDevicePoint & pt1, const SDevicePoint & pt2);

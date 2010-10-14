@@ -15,19 +15,19 @@ public:
 	virtual int			GetVendorID(void) { return VERNIER_DEFAULT_VENDOR_ID; }
 	virtual int			GetProductID(void) { return SKIP_DEFAULT_PRODUCT_ID; }
 
-	virtual unsigned long	GetMaxLocalNonVolatileMemAddr(void);
-	virtual unsigned long	GetMaxRemoteNonVolatileMemAddr(void);
+	virtual unsigned int	GetMaxLocalNonVolatileMemAddr(void);
+	virtual unsigned int	GetMaxRemoteNonVolatileMemAddr(void);
 
 	static StringVector GetAvailableDevices(void) { return TBaseClass::OSGetAvailableDevicesOfType(VERNIER_DEFAULT_VENDOR_ID, SKIP_DEFAULT_PRODUCT_ID); }
 	static void					StoreSnapshotOfAvailableDevices(const StringVector &devices) { m_snapshotOfAvailableDevices = devices; }
 	static const StringVector &	GetSnapshotOfAvailableDevices(void) { return m_snapshotOfAvailableDevices; }
 
-	virtual long		SendCmdAndGetResponse(unsigned char cmd, void *pParams, long nParamBytes, void *pRespBuf, long *pnRespBytes, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
-	virtual	long		ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToRead*/, 
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
-	virtual	long		WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned long /*ddsAddr*/, unsigned long /*nBytesToWrites*/,
-							long nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual int		SendCmdAndGetResponse(unsigned char cmd, void *pParams, int nParamBytes, void *pRespBuf, int *pnRespBytes, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual	int		ReadSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToRead*/, 
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
+	virtual	int		WriteSensorDDSMemory(unsigned char * /*pBuf*/, unsigned int /*ddsAddr*/, unsigned int /*nBytesToWrites*/,
+							int nTimeoutMs = 1000, bool *pExitFlag = NULL);
 
 	static real k_fSkipMaxDeltaT; //Const Min and max delta T
 	static real k_fSkipMinDeltaT;
@@ -37,19 +37,19 @@ public:
 	real				GetMaximumMeasurementPeriodInSeconds(void) { return k_fSkipMaxDeltaT; } 
 
 	virtual real		ConvertToVoltage(int raw, EProbeType eProbeType, bool bCalibrateADCReading = true);
-	long				ConvertVoltageToRaw(real fVoltage, EProbeType eProbeType);
+	int					ConvertVoltageToRaw(real fVoltage, EProbeType eProbeType);
 
 	void				SetSkipFlashRecord(const GSkipFlashMemoryRecord &rec) { m_flashRec = rec; }
 	void				GetSkipFlashRecord(GSkipFlashMemoryRecord *pRec) { *pRec = m_flashRec; }
 
-	long				WriteSkipFlashRecord(const GSkipFlashMemoryRecord &rec, long nTimeoutMs);
-	long				ReadSkipFlashRecord(GSkipFlashMemoryRecord *pRec, long nTimeoutMs);
+	int					WriteSkipFlashRecord(const GSkipFlashMemoryRecord &rec, int nTimeoutMs);
+	int					ReadSkipFlashRecord(GSkipFlashMemoryRecord *pRec, int nTimeoutMs);
 
 private:
 	typedef GSkipBaseDevice TBaseClass;
 
-	long				SendInitCmdAndGetResponse(void *pParams, long nParamBytes, void *pRespBuf, long *pnRespBytes, 
-							long nTimeoutMs, bool *pExitFlag = NULL);
+	int					SendInitCmdAndGetResponse(void *pParams, int nParamBytes, void *pRespBuf, int *pnRespBytes, 
+							int nTimeoutMs, bool *pExitFlag = NULL);
 
 	static StringVector	m_snapshotOfAvailableDevices;
 	GSkipFlashMemoryRecord m_flashRec;

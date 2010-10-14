@@ -481,7 +481,7 @@ typedef GSkipReadNVMemCmdResponsePacket GSkipGetMeasurementsCmdResponsePacket;
 //typedef struct
 //{
 //    unsigned char dataRunSignature; //This gets incremented every time a new set of measurements is triggered.
-//    long measurements[CYCLOPS_MAX_MEASUREMENT_COUNT]; Note that this structure is packed, so the measurements are not DWORD aligned.
+//    int measurements[CYCLOPS_MAX_MEASUREMENT_COUNT]; Note that this structure is packed, so the measurements are not DWORD aligned.
 //} GSkipGetNonRealTimeMeasurementsCmdResponsePayload; //This is the response payload returned by GetNextResponse() after sending SKIP_CMD_ID_GET_MEASUREMENTS(Cyclops only).
 //
 //
