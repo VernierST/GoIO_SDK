@@ -23,101 +23,53 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		C4D315B4126669BE00546243 /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31580126669BE00546243 /* GoIO_DLL_interface.h */; };
-		C4D315B5126669BE00546243 /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31581126669BE00546243 /* GVernierUSB.h */; };
-		C4D315B6126669BE00546243 /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31582126669BE00546243 /* GSensorDDSMem.h */; };
-		C4D315B7126669BE00546243 /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31583126669BE00546243 /* GSkipCommExt.h */; };
-		C4D315B8126669BE00546243 /* GMBLSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31586126669BE00546243 /* GMBLSensor.h */; };
-		C4D315B9126669BE00546243 /* GSkipDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31587126669BE00546243 /* GSkipDevice.h */; };
-		C4D315BA126669BE00546243 /* GUSBDirectTempDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31588126669BE00546243 /* GUSBDirectTempDevice.h */; };
 		C4D315BB126669BE00546243 /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31589126669BE00546243 /* GCyclopsDevice.cpp */; };
-		C4D315BC126669BE00546243 /* GCyclopsDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158A126669BE00546243 /* GCyclopsDevice.h */; };
 		C4D315BD126669BE00546243 /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158B126669BE00546243 /* GDeviceIO.cpp */; };
-		C4D315BE126669BE00546243 /* GDeviceIO.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158C126669BE00546243 /* GDeviceIO.h */; };
 		C4D315BF126669BE00546243 /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158D126669BE00546243 /* GMBLSensor.cpp */; };
 		C4D315C0126669BE00546243 /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158E126669BE00546243 /* GPortRef.cpp */; };
-		C4D315C1126669BE00546243 /* GPortRef.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158F126669BE00546243 /* GPortRef.h */; };
 		C4D315C2126669BE00546243 /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31590126669BE00546243 /* GSkipBaseDevice.cpp */; };
-		C4D315C3126669BE00546243 /* GSkipBaseDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31591126669BE00546243 /* GSkipBaseDevice.h */; };
 		C4D315C4126669BE00546243 /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31592126669BE00546243 /* GSkipBaseDevice_Mac.cpp */; };
 		C4D315C5126669BE00546243 /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31593126669BE00546243 /* GSkipDevice.cpp */; };
 		C4D315C6126669BE00546243 /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31594126669BE00546243 /* GTextUtils.cpp */; };
-		C4D315C7126669BE00546243 /* GTextUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31595126669BE00546243 /* GTextUtils.h */; };
 		C4D315C8126669BE00546243 /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31596126669BE00546243 /* GThread.cpp */; };
-		C4D315C9126669BE00546243 /* GThread.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31597126669BE00546243 /* GThread.h */; };
 		C4D315CA126669BE00546243 /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31598126669BE00546243 /* GThread_Mac.cpp */; };
-		C4D315CB126669BE00546243 /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31599126669BE00546243 /* GTypes.h */; };
 		C4D315CC126669BE00546243 /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159A126669BE00546243 /* GUSBDirectTempDevice.cpp */; };
 		C4D315CD126669BE00546243 /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159B126669BE00546243 /* GUtils.cpp */; };
-		C4D315CE126669BE00546243 /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3159C126669BE00546243 /* GUtils.h */; };
 		C4D315CF126669BE00546243 /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159D126669BE00546243 /* GUtils_Mac.cpp */; };
-		C4D315D0126669BE00546243 /* GMiniGCDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3159E126669BE00546243 /* GMiniGCDDSMem.h */; };
 		C4D315D1126669BE00546243 /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159F126669BE00546243 /* GMiniGCDevice.cpp */; };
-		C4D315D2126669BE00546243 /* GMiniGCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A0126669BE00546243 /* GMiniGCDevice.h */; };
 		C4D315D3126669BE00546243 /* NonSmartSensorDDSRecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A1126669BE00546243 /* NonSmartSensorDDSRecs.cpp */; };
-		C4D315D4126669BE00546243 /* NonSmartSensorDDSRecs.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A2126669BE00546243 /* NonSmartSensorDDSRecs.h */; };
 		C4D315D5126669BE00546243 /* GCalibrateDataFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A3126669BE00546243 /* GCalibrateDataFuncs.cpp */; };
-		C4D315D6126669BE00546243 /* GCalibrateDataFuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A4126669BE00546243 /* GCalibrateDataFuncs.h */; };
 		C4D315D7126669BE00546243 /* GCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A5126669BE00546243 /* GCircularBuffer.cpp */; };
-		C4D315D8126669BE00546243 /* GCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A6126669BE00546243 /* GCircularBuffer.h */; };
-		C4D315D9126669BE00546243 /* GDeviceToHostUSBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A8126669BE00546243 /* GDeviceToHostUSBTypes.h */; };
-		C4D315DA126669BE00546243 /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A9126669BE00546243 /* VST_USB.h */; };
 		C4D315DB126669BE00546243 /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C4D315AA126669BE00546243 /* VST_USB.c */; };
-		C4D315DC126669BE00546243 /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AB126669BE00546243 /* VST_Errors.h */; };
-		C4D315DD126669BE00546243 /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AC126669BE00546243 /* VST_USBTypes.h */; };
-		C4D315DE126669BE00546243 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AD126669BE00546243 /* stdafx.h */; };
 		C4D315DF126669BE00546243 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315AE126669BE00546243 /* GoIO_DLL_interface.cpp */; };
 		C4D315E0126669BE00546243 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B0126669BE00546243 /* Carbon.framework */; };
 		C4D315E1126669BE00546243 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B1126669BE00546243 /* AppKit.framework */; };
 		C4D315E2126669BE00546243 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B2126669BE00546243 /* CoreFoundation.framework */; };
 		C4D315E3126669BE00546243 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B3126669BE00546243 /* IOKit.framework */; };
-		C4D315EE126669E200546243 /* GoIO_SDK_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = C4D315ED126669E200546243 /* GoIO_SDK_Prefix.pch */; };
 		C4D316FD126674BC00546243 /* GoIO_DLL_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31580126669BE00546243 /* GoIO_DLL_interface.h */; };
 		C4D316FE126674BC00546243 /* GVernierUSB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31581126669BE00546243 /* GVernierUSB.h */; };
 		C4D316FF126674BC00546243 /* GSensorDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31582126669BE00546243 /* GSensorDDSMem.h */; };
 		C4D31700126674BC00546243 /* GSkipCommExt.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31583126669BE00546243 /* GSkipCommExt.h */; };
 		C4D31701126674BC00546243 /* GoIO_DLL_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315AE126669BE00546243 /* GoIO_DLL_interface.cpp */; };
-		C4D31702126674BC00546243 /* GDeviceToHostUSBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A8126669BE00546243 /* GDeviceToHostUSBTypes.h */; };
-		C4D31703126674BC00546243 /* VST_USB.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A9126669BE00546243 /* VST_USB.h */; };
 		C4D31704126674BC00546243 /* VST_USB.c in Sources */ = {isa = PBXBuildFile; fileRef = C4D315AA126669BE00546243 /* VST_USB.c */; };
-		C4D31705126674BC00546243 /* VST_Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AB126669BE00546243 /* VST_Errors.h */; };
-		C4D31706126674BC00546243 /* VST_USBTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AC126669BE00546243 /* VST_USBTypes.h */; };
-		C4D31707126674BC00546243 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315AD126669BE00546243 /* stdafx.h */; };
-		C4D31708126674BC00546243 /* GMBLSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31586126669BE00546243 /* GMBLSensor.h */; };
-		C4D31709126674BC00546243 /* GSkipDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31587126669BE00546243 /* GSkipDevice.h */; };
-		C4D3170A126674BC00546243 /* GUSBDirectTempDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31588126669BE00546243 /* GUSBDirectTempDevice.h */; };
 		C4D3170B126674BC00546243 /* GCyclopsDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31589126669BE00546243 /* GCyclopsDevice.cpp */; };
-		C4D3170C126674BC00546243 /* GCyclopsDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158A126669BE00546243 /* GCyclopsDevice.h */; };
 		C4D3170D126674BC00546243 /* GDeviceIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158B126669BE00546243 /* GDeviceIO.cpp */; };
-		C4D3170E126674BC00546243 /* GDeviceIO.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158C126669BE00546243 /* GDeviceIO.h */; };
 		C4D3170F126674BC00546243 /* GMBLSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158D126669BE00546243 /* GMBLSensor.cpp */; };
 		C4D31710126674BC00546243 /* GPortRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3158E126669BE00546243 /* GPortRef.cpp */; };
-		C4D31711126674BC00546243 /* GPortRef.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3158F126669BE00546243 /* GPortRef.h */; };
 		C4D31712126674BC00546243 /* GSkipBaseDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31590126669BE00546243 /* GSkipBaseDevice.cpp */; };
-		C4D31713126674BC00546243 /* GSkipBaseDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31591126669BE00546243 /* GSkipBaseDevice.h */; };
 		C4D31714126674BC00546243 /* GSkipBaseDevice_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31592126669BE00546243 /* GSkipBaseDevice_Mac.cpp */; };
 		C4D31715126674BC00546243 /* GSkipDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31593126669BE00546243 /* GSkipDevice.cpp */; };
 		C4D31716126674BC00546243 /* GTextUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31594126669BE00546243 /* GTextUtils.cpp */; };
-		C4D31717126674BC00546243 /* GTextUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31595126669BE00546243 /* GTextUtils.h */; };
 		C4D31718126674BC00546243 /* GThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31596126669BE00546243 /* GThread.cpp */; };
-		C4D31719126674BC00546243 /* GThread.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31597126669BE00546243 /* GThread.h */; };
 		C4D3171A126674BC00546243 /* GThread_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D31598126669BE00546243 /* GThread_Mac.cpp */; };
-		C4D3171B126674BC00546243 /* GTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D31599126669BE00546243 /* GTypes.h */; };
 		C4D3171C126674BC00546243 /* GUSBDirectTempDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159A126669BE00546243 /* GUSBDirectTempDevice.cpp */; };
 		C4D3171D126674BC00546243 /* GUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159B126669BE00546243 /* GUtils.cpp */; };
-		C4D3171E126674BC00546243 /* GUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3159C126669BE00546243 /* GUtils.h */; };
 		C4D3171F126674BC00546243 /* GUtils_Mac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159D126669BE00546243 /* GUtils_Mac.cpp */; };
-		C4D31720126674BC00546243 /* GMiniGCDDSMem.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D3159E126669BE00546243 /* GMiniGCDDSMem.h */; };
 		C4D31721126674BC00546243 /* GMiniGCDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D3159F126669BE00546243 /* GMiniGCDevice.cpp */; };
-		C4D31722126674BC00546243 /* GMiniGCDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A0126669BE00546243 /* GMiniGCDevice.h */; };
 		C4D31723126674BC00546243 /* NonSmartSensorDDSRecs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A1126669BE00546243 /* NonSmartSensorDDSRecs.cpp */; };
-		C4D31724126674BC00546243 /* NonSmartSensorDDSRecs.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A2126669BE00546243 /* NonSmartSensorDDSRecs.h */; };
 		C4D31725126674BC00546243 /* GCalibrateDataFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A3126669BE00546243 /* GCalibrateDataFuncs.cpp */; };
-		C4D31726126674BC00546243 /* GCalibrateDataFuncs.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A4126669BE00546243 /* GCalibrateDataFuncs.h */; };
 		C4D31727126674BC00546243 /* GCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4D315A5126669BE00546243 /* GCircularBuffer.cpp */; };
-		C4D31728126674BC00546243 /* GCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D315A6126669BE00546243 /* GCircularBuffer.h */; };
 		C4D31729126674BC00546243 /* exported_symbols in Resources */ = {isa = PBXBuildFile; fileRef = C4D315EC126669E200546243 /* exported_symbols */; };
-		C4D3172A126674BC00546243 /* GoIO_SDK_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = C4D315ED126669E200546243 /* GoIO_SDK_Prefix.pch */; };
 		C4D3172B126674BC00546243 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B0126669BE00546243 /* Carbon.framework */; };
 		C4D3172C126674BC00546243 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B1126669BE00546243 /* AppKit.framework */; };
 		C4D3172D126674BC00546243 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D315B2126669BE00546243 /* CoreFoundation.framework */; };
@@ -169,21 +121,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC0620554660B00DB518D /* GoIOUniversal */;
+			remoteGlobalIDString = D2AAC0620554660B00DB518D;
 			remoteInfo = GoIOUniversal;
 		};
 		C4D316DF1266735500546243 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C4D316B91266729200546243 /* GoIOUniversal Framework */;
+			remoteGlobalIDString = C4D316B91266729200546243;
 			remoteInfo = "GoIOUniversal Framework";
 		};
 		C4D316E11266735500546243 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C4D316CC126672E700546243 /* GoIOUniversal Static */;
+			remoteGlobalIDString = C4D316CC126672E700546243;
 			remoteInfo = "GoIOUniversal Static";
 		};
 /* End PBXContainerItemProxy section */
@@ -406,28 +358,6 @@
 				C4D316FE126674BC00546243 /* GVernierUSB.h in Headers */,
 				C4D316FF126674BC00546243 /* GSensorDDSMem.h in Headers */,
 				C4D31700126674BC00546243 /* GSkipCommExt.h in Headers */,
-				C4D31702126674BC00546243 /* GDeviceToHostUSBTypes.h in Headers */,
-				C4D31703126674BC00546243 /* VST_USB.h in Headers */,
-				C4D31705126674BC00546243 /* VST_Errors.h in Headers */,
-				C4D31706126674BC00546243 /* VST_USBTypes.h in Headers */,
-				C4D31707126674BC00546243 /* stdafx.h in Headers */,
-				C4D31708126674BC00546243 /* GMBLSensor.h in Headers */,
-				C4D31709126674BC00546243 /* GSkipDevice.h in Headers */,
-				C4D3170A126674BC00546243 /* GUSBDirectTempDevice.h in Headers */,
-				C4D3170C126674BC00546243 /* GCyclopsDevice.h in Headers */,
-				C4D3170E126674BC00546243 /* GDeviceIO.h in Headers */,
-				C4D31711126674BC00546243 /* GPortRef.h in Headers */,
-				C4D31713126674BC00546243 /* GSkipBaseDevice.h in Headers */,
-				C4D31717126674BC00546243 /* GTextUtils.h in Headers */,
-				C4D31719126674BC00546243 /* GThread.h in Headers */,
-				C4D3171B126674BC00546243 /* GTypes.h in Headers */,
-				C4D3171E126674BC00546243 /* GUtils.h in Headers */,
-				C4D31720126674BC00546243 /* GMiniGCDDSMem.h in Headers */,
-				C4D31722126674BC00546243 /* GMiniGCDevice.h in Headers */,
-				C4D31724126674BC00546243 /* NonSmartSensorDDSRecs.h in Headers */,
-				C4D31726126674BC00546243 /* GCalibrateDataFuncs.h in Headers */,
-				C4D31728126674BC00546243 /* GCircularBuffer.h in Headers */,
-				C4D3172A126674BC00546243 /* GoIO_SDK_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,39 +386,6 @@
 				C4D31754126674D800546243 /* NonSmartSensorDDSRecs.h in Headers */,
 				C4D31756126674D800546243 /* GCalibrateDataFuncs.h in Headers */,
 				C4D31758126674D800546243 /* GCircularBuffer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2AAC0600554660B00DB518D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C4D315B4126669BE00546243 /* GoIO_DLL_interface.h in Headers */,
-				C4D315B5126669BE00546243 /* GVernierUSB.h in Headers */,
-				C4D315B6126669BE00546243 /* GSensorDDSMem.h in Headers */,
-				C4D315B7126669BE00546243 /* GSkipCommExt.h in Headers */,
-				C4D315B8126669BE00546243 /* GMBLSensor.h in Headers */,
-				C4D315B9126669BE00546243 /* GSkipDevice.h in Headers */,
-				C4D315BA126669BE00546243 /* GUSBDirectTempDevice.h in Headers */,
-				C4D315BC126669BE00546243 /* GCyclopsDevice.h in Headers */,
-				C4D315BE126669BE00546243 /* GDeviceIO.h in Headers */,
-				C4D315C1126669BE00546243 /* GPortRef.h in Headers */,
-				C4D315C3126669BE00546243 /* GSkipBaseDevice.h in Headers */,
-				C4D315C7126669BE00546243 /* GTextUtils.h in Headers */,
-				C4D315C9126669BE00546243 /* GThread.h in Headers */,
-				C4D315CB126669BE00546243 /* GTypes.h in Headers */,
-				C4D315CE126669BE00546243 /* GUtils.h in Headers */,
-				C4D315D0126669BE00546243 /* GMiniGCDDSMem.h in Headers */,
-				C4D315D2126669BE00546243 /* GMiniGCDevice.h in Headers */,
-				C4D315D4126669BE00546243 /* NonSmartSensorDDSRecs.h in Headers */,
-				C4D315D6126669BE00546243 /* GCalibrateDataFuncs.h in Headers */,
-				C4D315D8126669BE00546243 /* GCircularBuffer.h in Headers */,
-				C4D315D9126669BE00546243 /* GDeviceToHostUSBTypes.h in Headers */,
-				C4D315DA126669BE00546243 /* VST_USB.h in Headers */,
-				C4D315DC126669BE00546243 /* VST_Errors.h in Headers */,
-				C4D315DD126669BE00546243 /* VST_USBTypes.h in Headers */,
-				C4D315DE126669BE00546243 /* stdafx.h in Headers */,
-				C4D315EE126669E200546243 /* GoIO_SDK_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,9 +431,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB914A08733D8E0010E9CD /* Build configuration list for PBXNativeTarget "GoIO Universal Dynamic" */;
 			buildPhases = (
-				D2AAC0600554660B00DB518D /* Headers */,
 				D2AAC0610554660B00DB518D /* Sources */,
 				D289988505E68E00004EDB86 /* Frameworks */,
+				C4EA1CA9126790A800134170 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -584,6 +481,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EA1CA9126790A800134170 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Copy the library to redist folder\n#\n\nif [ $CONFIGURATION == \"Release\" ]\nthen\n\techo \"*** This is a release build. I am going to copy the resulting executable to the redist folder if present.\"\n\tSRC_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\n\n\tif [ -f \"$SRC_PATH\" ]; then\n\t\techo \"I have found the built library. I will replace the redist version with it.\"\n\t\tDEST_DIR_PATH=\"$PROJECT_DIR/../../../../redist/GoIO_DLL/MacOSX\"\n\t\tDEST_FILE_PATH=\"$DEST_DIR_PATH/$EXECUTABLE_PATH\"\n\t\tif [ -f \"$DEST_FILE_PATH\" ]; then\n\t\t\techo \"Deleting exiting copy of library in redist folder\"\n\t\t\trm -f $DEST_FILE_PATH\n\t\tfi\n\t\techo \"Copying the library to redist now.\"\n\t\tcp -f \"$SRC_PATH\" \"$DEST_DIR_PATH\"\n\tfi\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4D316B71266729200546243 /* Sources */ = {
@@ -695,7 +608,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INSTALL_PATH = /usr/local/lib;
+				INSTALL_PATH = "@executable_path/";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/";
 				PRODUCT_NAME = GoIOUniversal;
 			};
@@ -708,8 +621,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_PREFIX = lib;
 				GCC_MODEL_TUNING = G5;
-				INSTALL_PATH = /usr/local/lib;
-				LD_DYLIB_INSTALL_NAME = "@executable_path/";
+				INSTALL_PATH = "@executable_path/";
 				PRODUCT_NAME = GoIOUniversal;
 			};
 			name = Release;
