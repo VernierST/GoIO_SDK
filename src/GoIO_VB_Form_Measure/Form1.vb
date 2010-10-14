@@ -594,6 +594,7 @@ Public Class Form1
             If depth <> measCirBuf.MaxNumElementsAvailable() Then
                 If (depth >= 10) And (depth <= 100000) Then
                     measCirBuf = New MeasurementTuplesCirBuf(depth)
+                    ClearGraph()
                 End If
             End If
         End If

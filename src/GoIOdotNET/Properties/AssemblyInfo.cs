@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GoIOdotNET")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Vernier, Inc.")]
+[assembly: AssemblyCompany("Vernier Software & Technology")]
 [assembly: AssemblyProduct("GoIOdotNET")]
-[assembly: AssemblyCopyright("Copyright Â© Vernier, Inc. 2010")]
+[assembly: AssemblyCopyright("Copyright (C) 2010 Vernier Software & Technology")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

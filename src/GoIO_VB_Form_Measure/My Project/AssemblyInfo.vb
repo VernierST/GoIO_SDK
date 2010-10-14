@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("NGIO_VB_Form_Measure")> 
+<Assembly: AssemblyTitle("GoIO_VB_Form_Measure")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Vernier, Inc.")> 
+<Assembly: AssemblyCompany("Vernier Software & Technology")> 
 <Assembly: AssemblyProduct("NGIO_VB_Form_Measure")> 
-<Assembly: AssemblyCopyright("Copyright Â© Vernier, Inc. 2010")> 
+<Assembly: AssemblyCopyright("Copyright Â© 2010 Vernier Software & Technology")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

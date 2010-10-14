@@ -251,7 +251,10 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init()
 		}
 
 		if ((!openSensorVectorMutex) || (!hWinSetupApiLibrary) || (!hWinHidDLibrary))
+		{
 			GoIO_Uninit();
+			GSTD_TRACEX(TRACE_SEVERITY_HIGH, "GoIO_Init() failed - another GoIO client may be already running.");
+		}
 	#endif
 
 	#if defined (TARGET_OS_MAC) || defined (TARGET_OS_LINUX)
@@ -259,7 +262,10 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init()
 			openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
 
 		if (!openSensorVectorMutex)
+		{
 			GoIO_Uninit();
+			GSTD_TRACEX(TRACE_SEVERITY_HIGH, "GoIO_Init() failed - another GoIO client may be already running.");
+		}
 	#endif
 
 	return (openSensorVectorMutex != NULL) ? 0 : -1;
