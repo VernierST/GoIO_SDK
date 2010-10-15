@@ -6,7 +6,20 @@ using VSTCoreDefsdotNET;
 
 namespace GoIOdotNET
 {
-	public class GoIO
+    /// <summary>
+    /// 	The GoIO class provides an application program with full access to the data acquisition capabilities built
+    /// 	into the Go family of devices, which include the Go! Link, Go! Temp, Go! Motion, and Vernier Mini GC devices. 
+    ///     This class is a very thin managed code wrapper around the unmanaged GoIO DLL library.
+    /// 	The GoIO class API is fairly broad, so knowing where to start is hard. The documentation for the 
+    /// 	GoIO_Sensor_Open() and the GoIO_Sensor_SendCmdAndGetResponse() functions are good starting places.
+    /// <para>
+    ///		Refer to the GoIO_ParmBlk class for the command and response data structures passed into GoIO_Sensor_SendCmdAndGetResponse().
+    /// </para>
+    /// <para>
+    /// The GoIOdotNet XML docs are a work in progress. More complete documentation can be found in the GoIO_DLL_interface.h file.
+    /// </para>
+    /// </summary>
+    public class GoIO
 	{
 		public const Int32 MAX_SIZE_SENSOR_NAME = 220;
 
@@ -32,9 +45,12 @@ namespace GoIOdotNET
 		/// Call GoIO_Init() once before any other GoIO_ calls are made.
 		/// GoIO_Init() and GoIO_Uninit() should be called from the same thread.
 		/// <para>
-		/// Currently, only one application at a time may successfully communicate with LabQuests.
+		/// Currently, only one application at a time may successfully communicate with Go devices.
 		/// If separate apps call GoIO_Init() before calling GoIO_Uninit(), generally only the first one to 
 		/// invoke GoIO_Init() will find devices when it calls GoIO_UpdateListOfAvailableDevices() and GoIO_GetNthAvailableDeviceName().
+        /// </para>
+        /// <para>
+        /// The GoIOdotNet XML docs are a work in progress. More complete documentation can be found in the GoIO_DLL_interface.h file.
 		/// </para>
 		/// </summary>
 		/// <returns> 0 iff successful, else -1.</returns>
@@ -49,23 +65,6 @@ namespace GoIOdotNET
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Uninit", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Uninit();
 
-/*
-		/// <summary>
-		/// GoIO_Diags_SetDebugTraceThreshold().
-		/// </summary>
-		/// <param name="hLIb"></param>
-		/// <param name="threshold">Only trace messages marked with a severity >= threshold(GoIO.TRACE_SEVERITY_) are actually sent to the debug output.</param>
-		/// <returns></returns>
-		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Diags_SetDebugTraceThreshold", CallingConvention = CallingConvention.Cdecl)]
-		public static extern Int32 Diags_SetDebugTraceThreshold(
-			IntPtr hLIb,
-			Int32 threshold);
-
-		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Diags_GetDebugTraceThreshold", CallingConvention = CallingConvention.Cdecl)]
-		public static extern Int32 Diags_GetDebugTraceThreshold(
-			IntPtr hLIb,
-			out Int32 threshold);
-*/
 		/// <summary>
 		/// This routine returns the major and minor version numbers for the instance of the GoIO library that is
 		/// currently running.
@@ -78,10 +77,10 @@ namespace GoIOdotNET
 		/// with a newer version and everything should still work without rebuilding your application.
 		/// 
 		/// Note that version major2.minor2 is later than version major1.minor1 
-		/// iff. ((major2 > major1) || ((major2 == major1) && (minor2 > minor1))).
+		/// iff. ((major2 > major1) OR ((major2 == major1) AND (minor2 > minor1))).
 		/// 
 		/// Backwards compatibility is definitely our intention, but we do not absolutely guarantee it. If you think
-		/// that you have detected a backwards compatibility bug, then please report it to Vernier Software & Technology.
+		/// that you have detected a backwards compatibility bug, then please report it to Vernier Software and Technology.
 		/// Calling GoIO_GetDLLVersion() from your application is a way to identify precisely which version of
 		/// the GoIO library you are actually using.
 		/// </summary>
@@ -131,10 +130,63 @@ namespace GoIOdotNET
 
 		/// <summary>
 		/// <para>
-		/// Open a device with the name returned by GoIO_GetNthAvailableDeviceName.
+		/// Open a specified Go! device with the name returned by GoIO_GetNthAvailableDeviceName.
+        /// If the device is already open, then this routine will fail.
+        /// </para>
+        /// <para>
+        /// In addition to establishing basic communication with the device, this routine will initialize the
+        /// device. Each GOIO_SENSOR_HANDLE sensor object has an associated DDS memory record. If the physical 
+        /// sensor being opened is a 'smart' sensor with its own physical DDS memory, then this routine will copy
+        /// the contents of the memory on the device to the sensor object's DDS memory record. If the physical 
+        /// sensor does not have DDS memory, then the associated DDS memory record is set to default values appropriate
+        /// for the type of sensor detected.
+        /// </para>
+        /// <para>
+        /// The following commands are sent to Go! Temp devices by GoIO_Sensor_Open():
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_INIT,
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_READ_LOCAL_NV_MEM. - read DDS record
+        /// </para>
+        /// <para>
+        /// The following commands are sent to Go! Link and Vernier Mini GC devices by GoIO_Sensor_Open():
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_INIT,
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_GET_SENSOR_ID,
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_READ_REMOTE_NV_MEM, - read DDS record if this is a 'smart' sensor
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL. - based on sensor EProbeType, which is either VSTSensorDDSMemRec.kProbeTypeAnalog5V
+        /// or kProbeTypeAnalog10V.
+        /// </para>
+        /// <para>
+        /// SKIP_CMD_ID_GET_SENSOR_ID is superfluous when sent to the Mini GC, but the Mini GC is implemented internally
+        /// as a Go! Link with a fixed sensor plugged in.
+        /// </para>
+        /// <para>
+        /// Only SKIP_CMD_ID_INIT is sent to Go! Motion by GoIO_Sensor_Open(). Go! Motion does not contain DDS memory, but this routine
+        /// initializes the sensor's associated DDS memory record with calibrations for both meters and feet.
+        /// </para>
+        /// <para>
+        /// Since the device stops sending measurements in response to SKIP_CMD_ID_INIT, an application must send
+        /// SKIP_CMD_ID_START_MEASUREMENTS to the device in order to receive measurements. See description of GoIO_Sensor_ReadRawMeasurements().
+        /// </para>
+        /// <para>
+        /// At any given time, a sensor is 'owned' by only one thread. The thread that calls this routine is the
+        /// initial owner of the sensor. If a GoIO() call is made from a thread that does not own the sensor object
+        /// that is passed in, then the call will generally fail. To allow another thread to access a sensor,
+        /// the owning thread should call GoIO_Sensor_Unlock(), and then the new thread must call GoIO_Sensor_Lock().
+        /// 
 		/// </para>
 		/// </summary>
-		/// <param name="deviceName"></param>
+        /// <param name="deviceName">[in]name returned by GoIO_GetNthAvailableDeviceName()</param>
 		/// <param name="vendorId">[in] USB vendor id</param>
 		/// <param name="productId">[in] USB product id</param>
 		/// <param name="strictDDSValidationFlag">[in] insist on exactly valid checksum if 1, else use a more lax validation test.</param>
@@ -171,7 +223,6 @@ namespace GoIOdotNET
 		/// GoIO_Sensor_ClearIO()
 		/// </summary>
 		/// <param name="hSensor"></param>
-		/// <param name="channel">-1 implies all channels</param>
 		/// <returns></returns>
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_ClearIO", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Sensor_ClearIO(
@@ -368,7 +419,6 @@ namespace GoIOdotNET
 		/// sending measurements to the host computer at the rate specified by GoIO_Sensor_SetMeasurementPeriod(). 
 		/// These measurements are stored in the GoIO Measurement Buffer. 
 		/// A separate GoIO Measurement Buffer is maintained for each open sensor. 
-		/// See the description of GoIO_Sensor_GetNumMeasurementsAvailable().
 		/// </para>
 		/// <para>
 		/// Note that for Go! Temp and Go! Link, raw measurements range from -32768 to 32767.
@@ -405,10 +455,8 @@ namespace GoIOdotNET
 		/// </summary>
 		/// <param name="hSensor">[in] Handle to open device.</param>
 		/// <param name="measurements">[out]Loc to store measurements.</param>
-		/// trigger. For normal real time mode, measurements are triggered when CMD_ID_START_MEASUREMENTS is 
-		/// received.</param>
-		/// <param name="maxCount">Maximum number of measurements to copy to measurements array. The measurements and timestamps 
-		/// arrays passed in as parameters must be allocated with a length of at least maxCount elements.
+		/// <param name="maxCount">Maximum number of measurements to copy to measurements array. The measurements 
+		/// array passed in must be allocated with a length of at least maxCount elements.
 		/// If you are taking measurements faster than 50 hertz from GoLink, then you MUST set maxCount to either a multiple of
 		/// 6, or to the value returned by GoIO_Sensor_GetNumMeasurementsAvailable().</param>
 		/// <returns>Number of measurements retrieved from the GoIO Measurement Buffer. This routine returns 
@@ -473,7 +521,6 @@ namespace GoIOdotNET
 		/// GoIO_Sensor_GetProbeType()
 		/// </summary>
 		/// <param name="hSensor"></param>
-		/// <param name="channel"></param>
 		/// <returns>VSTSensorDDSMemRec.kProbeType...</returns>
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_GetProbeType", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Sensor_GetProbeType(
@@ -488,7 +535,6 @@ namespace GoIOdotNET
 		/// GoIO_Sensor_DDSMem_ReadRecord().
 		/// </summary>
 		/// <param name="hSensor"></param>
-		/// <param name="channel"></param>
 		/// <param name="strictDDSValidationFlag">insist on exactly valid checksum if 1, else use a more lax validation test.</param>
 		/// <param name="timeoutMs"></param>
 		/// <returns></returns>
@@ -536,7 +582,6 @@ namespace GoIOdotNET
 		/// GoIO_Sensor_DDSMem_GetSensorNumber().
 		/// </summary>
 		/// <param name="hSensor"></param>
-		/// <param name="channel"></param>
 		/// <param name="SensorNumber"></param>
 		/// <param name="sendQueryToHardwareflag">If sendQueryToHardwareflag != 0, then send a CMD_ID_GET_SENSOR_ID to the sensor hardware.</param>
 		/// <param name="timeoutMs"># of milliseconds to wait for a reply before giving up. GoIO.TIMEOUT_MS_DEFAULT is recommended.</param>
@@ -700,7 +745,6 @@ namespace GoIOdotNET
 		/// GoIO_Sensor_DDSMem_SetOperationType() can change the probe type. See GoIO_Sensor_GetProbeType().
 		/// </summary>
 		/// <param name="hSensor"></param>
-		/// <param name="channel"></param>
 		/// <param name="OperationType"></param>
 		/// <returns></returns>
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_SetOperationType", CallingConvention = CallingConvention.Cdecl)]
