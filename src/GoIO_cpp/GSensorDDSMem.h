@@ -110,7 +110,14 @@ struct tagGSensorDDSRec
 	char			SensorLongName[20];
 	char			SensorShortName[12];
 	unsigned char	Uncertainty;
-	unsigned char	SignificantFigures;		//sig figs in high nibble, decimal precision in low nibble
+	unsigned char	SignificantFigures;		//Ignore this field - it is only properly understood by legacy TI calculators.
+											//GSensorDDSRec.SignificantFigures is not a reliable indicator of how many significant digits 
+											//of a measurement to display.
+											//An alternative criterion for determining this is the fact that for kProbeTypeAnalog5V
+											//sensors, the least significant bit of the analog to digital converter used to take measurements
+											//corresponds to a voltage measurement of 5.0/4096 = 0.00122 volts. Thus voltage measurements for 
+											//kProbeTypeAnalog5V sensors are accurate to within about 0.00122 volts.
+											//Note that almost all analog sensors are of type kProbeTypeAnalog5V.
 	unsigned char	CurrentRequirement;		//Number of mA(average) required to power sensor.
 	unsigned char	Averaging;
 	float			MinSamplePeriod;		//seconds

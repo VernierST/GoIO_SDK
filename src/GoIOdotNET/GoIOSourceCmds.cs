@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace GoIOdotNET
 {
 	/// <summary>
-	/// GoIO_ParmBlk defines the GoIO.Sensor_SendCmdAndGetResponse() protocol used with GoTemp, GoLink, and GoMotion devices.
+    /// GoIO_ParmBlk defines the GoIO.Sensor_SendCmdAndGetResponse() protocol used with GoTemp, GoLink, and GoMotion devices.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public class GoIO_ParmBlk
@@ -158,11 +158,10 @@ namespace GoIOdotNET
 		public const byte STATUS_ERROR_OP_BLOCKED_WHILE_COLLECTING = 0x39;
 		public const byte STATUS_ERROR_CALCULATOR_CANNOT_MEASURE_WITH_NO_BATTERIES = 0x3A;
 		/// <summary>
-		/// GoIO.GetErrorSentOverTheWire() returns GoIODefaultCmdResponse.NO_ERROR_SENT_OVER_THE_WIRE if the
-		/// most recent call to GoIO.SendCmdAndGetResponse() did not result in an error code being sent back from
-		/// the device.
+        /// GoIO.Sensor_GetLastCmdResponseStatus() reports LastCmdStatus as GoIODefaultCmdResponse.STATUS_ERROR_COMMUNICATION if the
+		/// most recent call to GoIO.SendCmdAndGetResponse() did not result in any response being sent back from the device.
 		/// </summary>
-		public const byte NO_ERROR_SENT_OVER_THE_WIRE = 0xFE;
+        public const byte STATUS_ERROR_COMMUNICATION = 0xF0;
 
 		/// <summary>
 		/// GoIODefaultCmdResponse.STATUS_...

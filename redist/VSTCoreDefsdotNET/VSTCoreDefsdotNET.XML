@@ -82,7 +82,20 @@
         </member>
         <member name="F:VSTCoreDefsdotNET.VSTSensorDDSMemRec.SignificantFigures">
             <summary>
-            sig figs in high nibble, decimal precision in low nibble.
+            Ignore this field - it is only properly understood by legacy TI calculators.
+            <para>
+            GSensorDDSRec.SignificantFigures is not a reliable indicator of how many significant digits 
+            of a measurement to display.
+            </para>
+            <para>
+            An alternative criterion for determining this is the fact that for kProbeTypeAnalog5V
+            sensors, the least significant bit of the analog to digital converter used to take measurements
+            corresponds to a voltage measurement of 5.0/4096 = 0.00122 volts. Thus voltage measurements for 
+            kProbeTypeAnalog5V sensors are accurate to within about 0.00122 volts.
+            </para>
+            <para>
+            Note that almost all analog sensors are of type kProbeTypeAnalog5V.
+            </para>
             </summary>
         </member>
         <member name="F:VSTCoreDefsdotNET.VSTSensorDDSMemRec.CurrentRequirement">

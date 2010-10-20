@@ -148,7 +148,7 @@ namespace GoIOdotNET
         /// SKIP_CMD_ID_INIT,
         /// </para>
         /// <para>
-        /// SKIP_CMD_ID_READ_LOCAL_NV_MEM. - read DDS record
+        /// SKIP_CMD_ID_READ_LOCAL_NV_MEM. - read DDS record(same as GoIO_Sensor_DDSMem_ReadRecord()).
         /// </para>
         /// <para>
         /// The following commands are sent to Go! Link and Vernier Mini GC devices by GoIO_Sensor_Open():
@@ -160,7 +160,7 @@ namespace GoIOdotNET
         /// SKIP_CMD_ID_GET_SENSOR_ID,
         /// </para>
         /// <para>
-        /// SKIP_CMD_ID_READ_REMOTE_NV_MEM, - read DDS record if this is a 'smart' sensor
+        /// SKIP_CMD_ID_READ_REMOTE_NV_MEM, - read DDS record if this is a 'smart' sensor(same as GoIO_Sensor_DDSMem_ReadRecord()).
         /// </para>
         /// <para>
         /// SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL. - based on sensor EProbeType, which is either VSTSensorDDSMemRec.kProbeTypeAnalog5V
@@ -253,9 +253,8 @@ namespace GoIOdotNET
 		/// <summary>
 		/// Send a command to the specified device hardware and wait for a response. 
 		/// <para>
-		/// Each device type has a command protocol that is unique to that device type. The command protocol used by
-		/// GoIO_DEVTYPE_LABQUEST_AUDIO devices is a subset of the protocol used by GoIO_DEVTYPE_LABQUEST devices. This
-		/// protocol is documented in the GoIOSourceCmds class. Additional documentation can be found in GoIOSourceCmds.h.
+        /// The protocol that is used to communicate with the Go devices via the GoIO_Sensor_SendCmdAndGetResponse() function is documented in the
+        /// GoIO_ParmBlk class.
 		/// </para>
 		/// <para>
 		/// Note that GoIO_Sensor_SendCmdAndGetResponse() will fail if you send a CMD_ID_START_MEASUREMENTS
@@ -268,7 +267,7 @@ namespace GoIOdotNET
 		/// <para>
 		/// Every command supported by GoIO_Sensor_SendCmdAndGetResponse() has an associated response. If no response
 		/// specific to a command is defined, then the format of the response is GoIODefaultCmdResponse. Some commands
-		/// have associated parameter blocks defined for them. 
+        /// have associated parameter blocks defined for them.  See GoIO_ParmBlk.
 		/// </para>
 		/// <para>
 		/// If GoIO_Sensor_SendCmdAndGetResponse() returns -1, additional information about a GoIO_Sensor_SendCmdAndGetResponse() 
@@ -383,6 +382,34 @@ namespace GoIOdotNET
 			Int32 status = Sensor_SendCmdAndGetResponse(hSensor, cmd, IntPtr.Zero, 0, IntPtr.Zero, ref respLen, timeoutMs);
 			return status;
 		}
+
+        /// <summary>
+        /// GoIO_Sensor_GetLastCmdResponseStatus().
+        /// </summary>
+        /// <param name="hSensor">[in] handle to open sensor.</param>
+        /// <param name="LastCmd">[out] last cmd sent to the sensor.</param>
+        /// <param name="LastCmdStatus">[out] status of last command sent to the sensor.
+		/// <para>
+        /// If command ran successfully and the device reported good status, then this will be be GoIODefaultCmdResponse.STATUS_SUCCESS(aka 0).
+		/// </para>
+		/// <para>
+        /// If no response was reported back from the device, then this will be GoIODefaultCmdResponse.STATUS_ERROR_COMMUNICATION.
+		/// </para>
+		/// <para>
+        /// If the device reported a failure, then this will be a cmd specific error, eg GoIODefaultCmdResponse.STATUS_ERROR_...
+		/// </para>
+        /// </param>
+        /// <param name="LastCmdWithErrorRespSentOvertheWire">[out] last cmd sent that caused the device to report back an error.</param>
+        /// <param name="LastErrorSentOvertheWire">[out] last error that came back from the device 'over the wire'.</param>
+        /// <returns>0 if hSensor is valid, else -1</returns>
+		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_GetLastCmdResponseStatus", CallingConvention = CallingConvention.Cdecl)]
+		public static extern Int32 Sensor_GetLastCmdResponseStatus(
+			IntPtr hSensor,
+			out byte LastCmd,
+			out byte LastCmdStatus,
+			out byte LastCmdWithErrorRespSentOvertheWire,
+			out byte LastErrorSentOvertheWire);
+
 
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_GetMeasurementTickInSeconds", CallingConvention = CallingConvention.Cdecl)]
 		public static extern double Sensor_GetMeasurementTickInSeconds(
@@ -526,23 +553,41 @@ namespace GoIOdotNET
 		public static extern Int32 Sensor_GetProbeType(
 			IntPtr hSensor);
 
-		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_WriteRecord", CallingConvention = CallingConvention.Cdecl)]
-		public static extern Int32 Sensor_DDSMem_WriteRecord(
-			IntPtr hSensor,
-			Int32 timeoutMs);
-
 		/// <summary>
 		/// GoIO_Sensor_DDSMem_ReadRecord().
-		/// </summary>
+        /// Read VSTSensorDDSMemRec from nonvolatile memory on the sensor into the local computer memory record associated with hSensor. This routine only
+        /// works on 'smart' sensors. If GoIO_Sensor_DDSMem_ReadRecord() succeeds, then individual fields in the DDS record can be retrieved using
+        /// the other GoIO_Sensor_DDSMem_Get... routines.
+        /// </summary>
 		/// <param name="hSensor"></param>
 		/// <param name="strictDDSValidationFlag">insist on exactly valid checksum if 1, else use a more lax validation test.</param>
-		/// <param name="timeoutMs"></param>
-		/// <returns></returns>
+		/// <param name="timeoutMs">READ_DDSMEMBLOCK_TIMEOUT_MS is recommended.</param>
+		/// <returns>0 iff successful, else -1</returns>
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_ReadRecord", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Sensor_DDSMem_ReadRecord(
 			IntPtr hSensor,
 			byte strictDDSValidationFlag,
 			Int32 timeoutMs);
+
+        /// <summary>
+        /// GoIO_Sensor_DDSMem_WriteRecord().
+        /// <para>
+        /// Write the data currently stored in the local computer memory copy of the VSTSensorDDSMemRec to the nonvolatile memory
+        /// physically located on the 'smart' sensor. The local computer copy of the VSTSensorDDSMemRec is usually initialized with a call to
+        /// GoIO_Sensor_DDSMem_ReadRecord() followed by calls to the GoIO_Sensor_DDSMem_Set... routines.
+        /// </para>
+        /// <para>
+        /// WARNING: Be careful about using this routine. Changing a smart sensor's DDS memory can cause the sensor
+        /// to stop working with Logger Pro.
+        /// </para>
+        /// </summary>
+        /// <param name="hSensor"></param>
+        /// <param name="timeoutMs">WRITE_DDSMEMBLOCK_TIMEOUT_MS is recommended.</param>
+        /// <returns>0 iff successful, else -1</returns>
+        [DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_WriteRecord", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Int32 Sensor_DDSMem_WriteRecord(
+            IntPtr hSensor,
+            Int32 timeoutMs);
 
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_SetRecord", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Sensor_DDSMem_SetRecord(
@@ -580,11 +625,20 @@ namespace GoIOdotNET
 
 		/// <summary>
 		/// GoIO_Sensor_DDSMem_GetSensorNumber().
-		/// </summary>
+        /// Retrieve the sensor number that identifies the sensor. In general, the combination of sensor number and probe type uniquely identify
+        /// the type of sensor. As it happens, when using Go interfaces, the sensor number provides enough info to uniquely id a sensor.
+        /// <para>
+        /// A reported SensorNumber == 0 indicates that no sensor is plugged into the interface.
+        /// </para>
+        /// </summary>
 		/// <param name="hSensor"></param>
 		/// <param name="SensorNumber"></param>
-		/// <param name="sendQueryToHardwareflag">If sendQueryToHardwareflag != 0, then send a CMD_ID_GET_SENSOR_ID to the sensor hardware.</param>
-		/// <param name="timeoutMs"># of milliseconds to wait for a reply before giving up. GoIO.TIMEOUT_MS_DEFAULT is recommended.</param>
+		/// <param name="sendQueryToHardwareflag">
+        /// If sendQueryToHardwareflag != 0, then send a CMD_ID_GET_SENSOR_ID to the sensor hardware. The sensor number is returned from the hardware
+        /// and stored in the local computer VSTSensorDDSMemRec.SensorNumber field associated with hSensor. This updated sensor number value is also
+        /// written to the SensorNumber output.
+        /// </param>
+        /// <param name="timeoutMs"># of milliseconds to wait for a reply before giving up. GoIO.TIMEOUT_MS_DEFAULT is recommended.</param>
 		/// <returns></returns>
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_GetSensorNumber", CallingConvention = CallingConvention.Cdecl)]
 		public static extern Int32 Sensor_DDSMem_GetSensorNumber(
