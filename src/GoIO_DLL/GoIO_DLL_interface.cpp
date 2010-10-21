@@ -1,3 +1,31 @@
+/*********************************************************************************
+
+Copyright (c) 2010, Vernier Software & Technology
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Vernier Software & Technology nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL VERNIER SOFTWARE & TECHNOLOGY BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+**********************************************************************************/
 // GoIO_DLL_interface.cpp : Defines the exported methods for the GoIO_DLL .
 //
 
@@ -208,7 +236,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 38;
+	*pMinorVersion = 39;
 	return 0;
 }
 
@@ -1410,30 +1438,39 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_WriteRecord(
 	{
 		CGoIOSensor *pGoIOSensor = (CGoIOSensor *) hSensor;
 
-		//Verify that we are dealing with a smart sensor.
-		//Do not try to write the SensorDDSRecord unless this is a smart sensor because old versions of Go! Link(ver. 1.5426)
-		//will hang if we try to write the SensorDDSRecord when no smart sensor is connected.
-		GSkipGetSensorIdCmdResponsePayload getSensorIdResponsePayload;
-		int nBytesRead = sizeof(GSkipGetSensorIdCmdResponsePayload);
-		nResult = pGoIOSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_GET_SENSOR_ID, NULL, 0, 
-			&getSensorIdResponsePayload, &nBytesRead);
-		if (0 == nResult)
+		if (SKIP_DEFAULT_PRODUCT_ID == pGoIOSensor->m_pInterface->GetProductID())
 		{
-			//Parse out sensor id.
-			int nSensorId;
-			GUtils::OSConvertBytesToInt(getSensorIdResponsePayload.lsbyteLswordSensorId, 
-				getSensorIdResponsePayload.msbyteLswordSensorId, getSensorIdResponsePayload.lsbyteMswordSensorId, 
-				getSensorIdResponsePayload.msbyteMswordSensorId, &nSensorId);
+			//Verify that we are dealing with a smart sensor.
+			//Do not try to write the SensorDDSRecord unless this is a smart sensor because old versions of Go! Link(ver. 1.5426)
+			//will hang if we try to write the SensorDDSRecord when no smart sensor is connected.
+			GSkipGetSensorIdCmdResponsePayload getSensorIdResponsePayload;
+			int nBytesRead = sizeof(GSkipGetSensorIdCmdResponsePayload);
+			nResult = pGoIOSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_GET_SENSOR_ID, NULL, 0, 
+				&getSensorIdResponsePayload, &nBytesRead);
+			if (0 == nResult)
+			{
+				//Parse out sensor id.
+				int nSensorId;
+				GUtils::OSConvertBytesToInt(getSensorIdResponsePayload.lsbyteLswordSensorId, 
+					getSensorIdResponsePayload.msbyteLswordSensorId, getSensorIdResponsePayload.lsbyteMswordSensorId, 
+					getSensorIdResponsePayload.msbyteMswordSensorId, &nSensorId);
 
-			if (nSensorId < 0)
-				nSensorId = 0;
-			else
-			if (nSensorId > 255)
-				nSensorId = 0;
+				if (nSensorId < 0)
+					nSensorId = 0;
+				else
+				if (nSensorId > 255)
+					nSensorId = 0;
 
-			if (nSensorId < kSensorIdNumber_FirstSmartSensor)
-				nResult = -1;
+				if (nSensorId < kSensorIdNumber_FirstSmartSensor)
+					nResult = -1;
+			}
 		}
+		else if (USB_DIRECT_TEMP_DEFAULT_PRODUCT_ID == pGoIOSensor->m_pInterface->GetProductID())
+			nResult = 0;
+		else if (MINI_GC_DEFAULT_PRODUCT_ID == pGoIOSensor->m_pInterface->GetProductID())
+			nResult = 0;
+		else
+			nResult = -1;
 
 		if (0 == nResult)
 		{
@@ -1482,30 +1519,35 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_ReadRecord(
 		CGoIOSensor *pGoIOSensor = (CGoIOSensor *) hSensor;
 		GSensorDDSRec littleEndianRec;
 
-		//Verify that we are dealing with a smart sensor.
-		//Do not try to read the SensorDDSRecord unless this is a smart sensor because old versions of Go! Link(ver. 1.5426)
-		//will hang if we try to read the SensorDDSRecord when no smart sensor is connected.
-		GSkipGetSensorIdCmdResponsePayload getSensorIdResponsePayload;
-		int nBytesRead = sizeof(GSkipGetSensorIdCmdResponsePayload);
-		nResult = pGoIOSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_GET_SENSOR_ID, NULL, 0, 
-			&getSensorIdResponsePayload, &nBytesRead);
-		if (0 == nResult)
+		if (SKIP_DEFAULT_PRODUCT_ID == pGoIOSensor->m_pInterface->GetProductID())
 		{
-			//Parse out sensor id.
-			int nSensorId;
-			GUtils::OSConvertBytesToInt(getSensorIdResponsePayload.lsbyteLswordSensorId, 
-				getSensorIdResponsePayload.msbyteLswordSensorId, getSensorIdResponsePayload.lsbyteMswordSensorId, 
-				getSensorIdResponsePayload.msbyteMswordSensorId, &nSensorId);
+			//Verify that we are dealing with a smart sensor.
+			//Do not try to read the SensorDDSRecord unless this is a smart sensor because old versions of Go! Link(ver. 1.5426)
+			//will hang if we try to read the SensorDDSRecord when no smart sensor is connected.
+			GSkipGetSensorIdCmdResponsePayload getSensorIdResponsePayload;
+			int nBytesRead = sizeof(GSkipGetSensorIdCmdResponsePayload);
+			nResult = pGoIOSensor->m_pInterface->SendCmdAndGetResponse(SKIP_CMD_ID_GET_SENSOR_ID, NULL, 0, 
+				&getSensorIdResponsePayload, &nBytesRead);
+			if (0 == nResult)
+			{
+				//Parse out sensor id.
+				int nSensorId;
+				GUtils::OSConvertBytesToInt(getSensorIdResponsePayload.lsbyteLswordSensorId, 
+					getSensorIdResponsePayload.msbyteLswordSensorId, getSensorIdResponsePayload.lsbyteMswordSensorId, 
+					getSensorIdResponsePayload.msbyteMswordSensorId, &nSensorId);
 
-			if (nSensorId < 0)
-				nSensorId = 0;
-			else
-			if (nSensorId > 255)
-				nSensorId = 0;
+				if (nSensorId < 0)
+					nSensorId = 0;
+				else
+				if (nSensorId > 255)
+					nSensorId = 0;
 
-			if (nSensorId < kSensorIdNumber_FirstSmartSensor)
-				nResult = -1;
+				if (nSensorId < kSensorIdNumber_FirstSmartSensor)
+					nResult = -1;
+			}
 		}
+		else
+			nResult = 0;	//Let the following code catch errors.
 
 		if (0 == nResult)
 		{

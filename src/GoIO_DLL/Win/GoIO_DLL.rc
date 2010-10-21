@@ -70,8 +70,8 @@ VS_VERSION_INFO$(WIN32) VERSIONINFO
 #else
 VS_VERSION_INFO VERSIONINFO
 #endif
- FILEVERSION 2,38,0,0
- PRODUCTVERSION 2,38,0,0
+ FILEVERSION 2,39,0,0
+ PRODUCTVERSION 2,39,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -88,12 +88,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Vernier Software & Technology"
             VALUE "FileDescription", "GoIO_DLL DLL (x86)"
-            VALUE "FileVersion", "2, 38, 0, 0"
+            VALUE "FileVersion", "2, 39, 0, 0"
             VALUE "InternalName", "GoIO_DLL"
-            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology"
+            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology. All rights reserved."
             VALUE "OriginalFilename", "GoIO_DLL.DLL"
             VALUE "ProductName", "GoIO_DLL Dynamic Link Library"
-            VALUE "ProductVersion", "2, 38, 0, 0"
+            VALUE "ProductVersion", "2, 39, 0, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -109,8 +109,8 @@ VS_VERSION_INFO$(WIN64) VERSIONINFO
 #else
 VS_VERSION_INFO VERSIONINFO
 #endif
- FILEVERSION 2,38,0,0
- PRODUCTVERSION 2,38,0,0
+ FILEVERSION 2,39,0,0
+ PRODUCTVERSION 2,39,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Vernier Software & Technology"
             VALUE "FileDescription", "GoIO_DLL DLL (x64)"
-            VALUE "FileVersion", "2, 38, 0, 0"
+            VALUE "FileVersion", "2, 39, 0, 0"
             VALUE "InternalName", "GoIO_DLL"
-            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology"
+            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology. All rights reserved."
             VALUE "OriginalFilename", "GoIO_DLL.DLL"
             VALUE "ProductName", "GoIO_DLL Dynamic Link Library"
-            VALUE "ProductVersion", "2, 38, 0, 0"
+            VALUE "ProductVersion", "2, 39, 0, 0"
         END
     END
     BLOCK "VarFileInfo"
