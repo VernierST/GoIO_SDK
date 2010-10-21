@@ -435,6 +435,9 @@ Public Class Form1
         Dim response As GoIOGetStatusCmdResponsePayload = New GoIOGetStatusCmdResponsePayload
         Dim nRespBytes As UInteger
         Dim status As Integer
+        Dim openSensorName As StringBuilder = New StringBuilder(CInt(GoIO.MAX_SIZE_SENSOR_NAME))
+        Dim vendorId As Integer
+        Dim productId As Integer
 
         If (IntPtr.Zero <> GoIO_sensor_handle) Then
             status = GoIO.Sensor_SendCmdAndGetResponse3(GoIO_sensor_handle, GoIO_ParmBlk.CMD_ID_GET_STATUS, response, nRespBytes, GoIO.TIMEOUT_MS_DEFAULT)
@@ -452,8 +455,23 @@ Public Class Form1
                 Dim sVersion As String = rVersion.ToString("F6")
                 Dim deviceStatus As UInteger = response.status
 
-                Dim msg As String = "Sensor status = " & deviceStatus.ToString("X") & " ; version = " & sVersion
-                MessageBox.Show(msg, "Get Sensor Status")
+                Dim msg As String = "Status = " & deviceStatus.ToString("X") & " ; version = " & sVersion
+                Dim title As String
+                GoIO.Sensor_GetOpenDeviceName(GoIO_sensor_handle, openSensorName, GoIO.MAX_SIZE_SENSOR_NAME, vendorId, productId)
+                Select Case productId
+                    Case VST_USB_defs.PRODUCT_ID_GO_LINK
+                        title = "Go Link Status"
+                    Case VST_USB_defs.PRODUCT_ID_GO_MOTION
+                        title = "Go Motion Status"
+                    Case VST_USB_defs.PRODUCT_ID_GO_TEMP
+                        title = "Go Temp Status"
+                    Case VST_USB_defs.PRODUCT_ID_MINI_GC
+                        title = "Mini GC Status"
+                    Case Else
+                        title = "Device Status"
+                End Select
+
+                MessageBox.Show(msg, title)
             End If
         End If
     End Sub

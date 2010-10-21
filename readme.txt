@@ -5,37 +5,67 @@ The GoIO SDK is intended to provide software developers with the ability to acce
 The heart of the SDK is the GoIO_DLL library.
 The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_interface.h. The sequence of function calls into the library is best illustrated by the GoIO_DeviceCheck sample code.
 
-The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java. This code compiles in Visual Studio 2005.
+The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java. This code compiles in Visual Studio 2005. We have also written a .NET wrapper for GoIO_DLL.dll called GoIOdotNET.dll. GoIOdotNET.dll allows .NET based applications to access the Go! devices.
 
 The Apple version of the GoIO_DLL library comes in two different flavors: libGoIO_DLL.dylib and libGoIO_DLL.framework. Both flavors of the library implement exactly the same API. They are just packaged differently as a convenience to users. These libraries can also be accessed from a variety of languages. GoIO_DLL requires Mac OS 10.3.9 or later. Note that libGoIO_DLL.framework is stored in \GoIO_SDK\redist\GoIO_DLL\MacOSX\libGoIO_DLL.framework.zip . You will have to unzip it before you can use it.
 
 libGoIO_DLL.dylib has the install directory set to "@executable_path/libGoIO_DLL.dylib", which means it will only work if it is located in the same directory as the executable: e.g. for an application, this would be in the bundle folder: MyApp.app/Contents/MacOS. The libGoIO_DLL.framework, likewise, is expected to reside in /Library/Frameworks. To change the install location, you need to run /usr/bin/install_name_tool on the library executable -- libGoIO_DLL.dylib or libGoIO_DLL.framework/Versions/A/libGoIO_DLL. For more info, see "man install_name_tool".
 
-The Linux version of the GoIO library just contains the source and one test program to test the library functions, for now.  Follow the INSTALL instructions to get started.  
+The Linux version of the GoIO SDK is packaged separately from the Windows/Mac version. Follow the INSTALL instructions to get started.  
+
+Note that the Go! devices are HID USB devices which use standard device drivers that are automatically preinstalled on Microsoft Windows systems.
 
 ====================================================================================================================
 
-The SDK includes complete source code in C++. You are free to use this code however you like. All the software included in this SDK was written by Vernier Software & Technology(VST), and VST places absolutely no legal restrictions on using the software. You can copy the code, modify it, embed it in your own products, etc.
+The GoIO SDK includes complete source code in C++.
+
+The GoIO SDK is currently distributed with a very permissive BSD style license. See the license.txt file located in the same folder as this readme.txt file.
+
+Basically we encourage everyone to use the SDK, and to freely redistribute the GoIO_DLL library. If the restrictions set out in the license.txt file discourage you from using the SDK, please contact VST at http://www.vernier.com/tech/supportform.html .
 
 VST does not guarantee that the code is bug free, but we try to make it so. If you find any bugs, please report them to http://www.vernier.com/tech/supportform.html .
 
-VST would prefer that you not modify GoIO_DLL.dll, libGoIO_DLL.dylib, or libGoIO_DLL.framework. If you do modify any of them, please give your modified version a different name, so we can easily distinguish your version from the VST version.
+====================================================================================================================
+
+GoIO_DeviceCheck is a very simple command line sample application that opens the first Go! device that it finds, takes some measurements and printf's the results to STDOUT. It is written in C++(really just C) and its source code runs on Windows, MacOSX, and Linux. Looking at the sample code in \src\GoIO_DeviceCheck\GoIO_DeviceCheck.cpp is the best place to start if you are new to GoIO. Even if you are programming in a different language, eg. Basic or Java, GoIO_DeviceCheck.cpp is probably the first thing that you should look at.
 
 ====================================================================================================================
 
-GoIO_DeviceCheck is a very simple command line sample application that opens the first Go device that it finds, takes some measurements and printf's the results to STDOUT. It is written in C++(really just C) and its source code runs on Windows, MacOSX, and Linux. Looking at the sample code in \src\GoIO_DeviceCheck\GoIO_DeviceCheck.cpp is the best place to start if you are new to GoIO. Even if you are programming in a different language, eg. Basic or Java, GoIO_DeviceCheck.cpp is probably the first thing that you should look at.
+GoIO_Measure is a sample application that is coded to the GoIO_DLL API. The Windows version source code was written in Microsoft Visual C++ 2005.
+
+GoIO_VB_Form_Measure is a Visual Basic .NET application that behaves very similarly to the GoIO_Measure sample application. This application is coded to the managed code API presented by GoIOdotNET.dll and VSTCoreDefsdotNET.dll. These .NET dll's provide a thin wrapper around the unmanaged code in GoIO_DLL.dll.
+
+To run these applications, you need to plug in one or more Go! devices into USB ports, click on the Devices menu, and then click on one of the listed devices.
 
 ====================================================================================================================
 
-GoIO_Measure is a sample application that is coded to the GoIO_DLL API. The Windows version source code was written in Microsoft Visual C++ 2005. The Apple version is a Cocoa application written in Objective C++ using the Xcode IDE.
+.NET discussion:
 
-To run this application, you need to plug in one or more Go! devices into USB ports, click on the GoIO_Measure Devices menu, and then click on one of the listed devices.
+GoIOdotNET.dll provides P/Invoke methods that access the public entry points to the unmanaged code in GoIO_DLL.dll.
+VSTCoreDefsdotNET.dll provides some additional structure and constant definitions needed to work with GoIO_DLL. The API's presented by these dll's show up in the .NET object browser in the GoIOdotNET and VSTCoreDefsdotNET namespaces.
 
-Note that the Go! devices are HID USB devices which use standard device drivers that are automatically preinstalled on Windows ME, Win2000, and XP systems. The HID USB device drivers are present on Windows 98 installation CD's but they are not always preinstalled. You may be prompted to insert a Windows 98 installation CD when you plug in a Go! device for the first time.
+The XML documentation files for the GoIOdotNET and VSTCoreDefsdotNET assemblies provide a fair amount of documentation for the GoIO library API's that is accessible in the Object browser, but they are not complete. The most complete reference to the GoIO library API is in GoIO_DLL_interface.h and its associated header files.
+
+The following files need to be distributed with .NET applications that reference GoIOdotNET:
+GoIOdotNET.dll
+VSTCoreDefsdotNET.dll
+GoIO_DLL.dll
+
+We generally recommend that you just place these files in the same folder as the .exe file for your application.
+
+GoIOdotNET.dll and VSTCoreDefsdotNET.dll are pure .NET assemblies that contain no unmanaged code, so the same instance of each file is used by both 32 bit and 64 bit applications. GoIO_DLL.dll is unmanaged code(aka native), so there are separate binary files for 32 bit apps versus 64 bit apps. When you click on Properties->Version in the Windows explorer for GoIO_DLL.dll, the description string is either "GoIO_DLL DLL (x86)" or "GoIO_DLL DLL (x64)". 
+
+If you build your .NET app for the x86 platform, then you should distribute the 32 bit version of GoIO_DLL.dll with your app. If you build your .NET app for the x64 platform, then you should distribute the 64 bit version of GoIO_DLL.dll with your app. If you build your .NET app for the 'Any CPU' platform, then the situation is more complex. Such apps run as 32 bit processes in 32 bit windows, and they run as 64 bit processes in 64 bit windows. This means your installer needs figure out what operating system is being used, and install the matching version of GoIO_DLL.
+
+For maximum simplicity and portability, we recommend that you just build your .NET app for the x86 platform. Note that 32 bit applications(x86) run fine on 64 bit Windows systems.
 
 ====================================================================================================================
 
 Release notes:
+
+version 2.39
+GoIO_DLL sources generally use int instead of long internally so that code behaves similarly for 32 and 64 bit builds.
+Released 64 bit version of GoIO DLL library for the Mac.
 
 Version 2.37
 Add sensor map data for non smart sensors so DDS records are descriptive for all known sensors.
