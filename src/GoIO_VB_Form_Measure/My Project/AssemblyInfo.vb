@@ -11,8 +11,8 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("GoIO_VB_Form_Measure")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Vernier Software & Technology")> 
-<Assembly: AssemblyProduct("NGIO_VB_Form_Measure")> 
-<Assembly: AssemblyCopyright("Copyright Â© 2010 Vernier Software & Technology")> 
+<Assembly: AssemblyProduct("GoIO_VB_Form_Measure")> 
+<Assembly: AssemblyCopyright("Copyright (C) 2010 Vernier Software & Technology. All rights reserved.")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
