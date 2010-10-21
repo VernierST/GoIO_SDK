@@ -182,7 +182,7 @@ CAPTION "About GoIO_Measure"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "GoIO_Measure Version 2.36",IDC_STATIC,40,13,119,8,SS_NOPREFIX
+    LTEXT           "GoIO_Measure Version 2.39",IDC_STATIC,40,13,119,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
     LTEXT           "lib version",IDC_LIB_VERSION,40,31,171,8
 END
@@ -232,8 +232,8 @@ VS_VERSION_INFO$(WIN32) VERSIONINFO
 #else
 VS_VERSION_INFO VERSIONINFO
 #endif
- FILEVERSION 1,0,0,0
- PRODUCTVERSION 1,0,0,0
+ FILEVERSION 2,39,0,0
+ PRODUCTVERSION 2,39,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -250,12 +250,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Vernier Software & Technology"
             VALUE "FileDescription", "GoIO_Measure (x86)"
-            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "FileVersion", "2, 39, 0, 0"
             VALUE "InternalName", "GoIO_Measure.exe"
-            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology"
+            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology. All rights reserved."
             VALUE "OriginalFilename", "GoIO_Measure.exe"
             VALUE "ProductName", "GoIO_Measure"
-            VALUE "ProductVersion", "1, 0, 0, 0"
+            VALUE "ProductVersion", "2, 39, 0, 0"
         END
     END
     BLOCK "VarFileInfo"
@@ -271,8 +271,8 @@ VS_VERSION_INFO$(WIN64) VERSIONINFO
 #else
 VS_VERSION_INFO VERSIONINFO
 #endif
- FILEVERSION 1,0,0,0
- PRODUCTVERSION 1,0,0,0
+ FILEVERSION 2,39,0,0
+ PRODUCTVERSION 2,39,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -289,12 +289,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Vernier Software & Technology"
             VALUE "FileDescription", "GoIO_Measure (x64)"
-            VALUE "FileVersion", "1, 0, 0, 0"
+            VALUE "FileVersion", "2, 39, 0, 0"
             VALUE "InternalName", "GoIO_Measure.exe"
-            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology"
+            VALUE "LegalCopyright", "Copyright (C) 2010 Vernier Software & Technology. All rights reserved."
             VALUE "OriginalFilename", "GoIO_Measure.exe"
             VALUE "ProductName", "GoIO_Measure"
-            VALUE "ProductVersion", "1, 0, 0, 0"
+            VALUE "ProductVersion", "2, 39, 0, 0"
         END
     END
     BLOCK "VarFileInfo"
