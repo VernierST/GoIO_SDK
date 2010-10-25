@@ -7,9 +7,17 @@ The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_inter
 
 The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java. This code compiles in Visual Studio 2005. We have also written a .NET wrapper for GoIO_DLL.dll called GoIOdotNET.dll. GoIOdotNET.dll allows .NET based applications to access the Go! devices.
 
-The Apple version of the GoIO_DLL library comes in two different flavors: libGoIO_DLL.dylib and libGoIO_DLL.framework. Both flavors of the library implement exactly the same API. They are just packaged differently as a convenience to users. These libraries can also be accessed from a variety of languages. GoIO_DLL requires Mac OS 10.3.9 or later. Note that libGoIO_DLL.framework is stored in \GoIO_SDK\redist\GoIO_DLL\MacOSX\libGoIO_DLL.framework.zip . You will have to unzip it before you can use it.
+For Mac OS, we provide two sets of libraries: Legacy and Universal. The Legacy libraries (libGoIO_DLL.a, libGoIO_DLL.dylib, and libGoIO_DLL.framework) have their base SDK set to 10.4; the current GoIO SDK no longer supports 10.3.9. Note that these can only be linked to 32 bit executables.
 
-libGoIO_DLL.dylib has the install directory set to "@executable_path/libGoIO_DLL.dylib", which means it will only work if it is located in the same directory as the executable: e.g. for an application, this would be in the bundle folder: MyApp.app/Contents/MacOS. The libGoIO_DLL.framework, likewise, is expected to reside in /Library/Frameworks. To change the install location, you need to run /usr/bin/install_name_tool on the library executable -- libGoIO_DLL.dylib or libGoIO_DLL.framework/Versions/A/libGoIO_DLL. For more info, see "man install_name_tool".
+The Universal versions of the library (libGoIOUniversal.a, libGoIOUniversal.dylib, and libGoIOUniversal.framework) are targeted for Mac OS 10.5 and higher, and may be incorporated into 32 or 64 bit executables.
+
+For each set of libraries, we provide 3 different flavors. The ".a" flavor is a static library which gets built directly into your executable at link time. The ".dylib" and ".framework" flavors are loaded dynamically each time your code is loaded for execution. Please note that the .dylib and .framework libraries are expected to be located at very specific places in the file system:
+
+* The ".dylib" libraries have their install directory set to "@executable_path/libGoIO_DLL.dylib", which means they will only work when they are located in the same directory as the executable: e.g. for an application, this would be in the bundle folder: MyApp.app/Contents/MacOS. 
+
+* The ".framework" libraries, likewise, are expected to reside in /Library/Frameworks. 
+
+To change the install location of either, you need to run /usr/bin/install_name_tool on the library executable -- e.g. libGoIOUniversal.dylib or libGoIO_DLL.framework/Versions/A/libGoIO_DLL. For more info, see "man install_name_tool".
 
 The Linux version of the GoIO SDK is packaged separately from the Windows/Mac version. Follow the INSTALL instructions to get started.  
 
