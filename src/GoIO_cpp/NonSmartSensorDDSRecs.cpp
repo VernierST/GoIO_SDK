@@ -47,7 +47,8 @@ Value
 1K		Ex heart rate		N/A						13
 1.5K	EKG 				N/A						15
 2.2K	Thermocouple °C		-200°C to 1400°C		1		
-3.3K	Resistance sensor	1KW to 100KW			4
+3.3K	Resistance sensor	1KW to 100KW			4 deprecated
+3.3K	Voltage sensor		-30 to +30 Volts		4
 4.7K	TI Light sensor		0 to 1					12 
 6.8K	Current sensor		-10 to +10 Amps			3
 10K		Temp sensor °C		-25°C to 125°C			10
@@ -129,7 +130,7 @@ GSensorDDSRec Voltage10_Sensor =
 	150,                                // TypNumberOfSamples
 	0,                                  // WarmUpTime
 	1,                                  // ExperimentType
-	kProbeTypeAnalog10V,                // OperationType       (EProbeType)
+	2,									// OperationType       (EProbeType)
 	kEquationType_Linear,               // CalibrationEquation (EEquationType)
 	-10.0,                              // YminValue
 	10.0,                               // YmaxValue
@@ -137,6 +138,39 @@ GSensorDDSRec Voltage10_Sensor =
 	0,                                  // HighestValidCalPageIndex
 	0,                                  // ActiveCalPage
 	{ { 0.0, 1.0, 0.0, "(V)" },         // CalibrationPage[0]
+	  { 0.0, 0.0, 0.0, "" },			// CalibrationPage[1]
+	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
+	},
+	0                                   // Checksum (0=not calculated.)
+};
+
+// Sensor Record for AUTO-ID value 3.3k : +/- 30V Voltage Sensor
+GSensorDDSRec Voltage30_Sensor = 
+{   // Auto-ID : 3.3k +/- 30v sensor
+	1,								    // MemMapVersion
+	4,									// SensorNumber
+	{ 0, 0, 0 },                        // SensorSerialNumber[3]				
+	{ 0, 0 },						    // SensorLotCode[2]
+	0,				       				// ManufacturerID
+	"Voltage (+/-30V)",    			    // SensorLongName
+	"Voltage",				    		// SensorShortName
+	0,							    	// Uncertainty
+	0x45,							    // SigFigs
+	1,							    	// CurrentRequirement
+	-1,									// Averaging
+	0.00002,                            // MinSamplePeriod
+	0.1,                                // TypSamplePeriod
+	150,                                // TypNumberOfSamples
+	0,                                  // WarmUpTime
+	1,                                  // ExperimentType
+	2,									// OperationType       (EProbeType)
+	kEquationType_Linear,               // CalibrationEquation (EEquationType)
+	-30.0,                              // YminValue
+	30.0,                               // YmaxValue
+	5,                                  // Yscale
+	0,                                  // HighestValidCalPageIndex
+	0,                                  // ActiveCalPage
+	{ { 0.0, 3.0, 0.0, "(V)" },         // CalibrationPage[0]
 	  { 0.0, 0.0, 0.0, "" },			// CalibrationPage[1]
 	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
 	},
@@ -162,7 +196,7 @@ GSensorDDSRec Current10_Sensor =
 	180,                                // TypNumberOfSamples
 	0,                                  // WarmUpTime
 	1,                                  // ExperimentType
-	3,                                  // OperationType       (EProbeType)
+	14,                                  // OperationType       (EProbeType)
 	kEquationType_Linear,               // CalibrationEquation (EEquationType)
 	-10.0,                              // YminValue
 	10.0,                               // YmaxValue
@@ -748,6 +782,9 @@ int InitSensorDefaultDDSRecs(void)
 
 	g_analogSensorDefaultDDSRecs[3] = Current10_Sensor;
 	g_analogSensorDefaultDDSRecs[3].Checksum = GMBLSensor::CalculateDDSDataChecksum(Current10_Sensor);
+
+	g_analogSensorDefaultDDSRecs[4] = Voltage30_Sensor;
+	g_analogSensorDefaultDDSRecs[4].Checksum = GMBLSensor::CalculateDDSDataChecksum(Voltage30_Sensor);
 
 	g_analogSensorDefaultDDSRecs[8] = CV_Voltage_Sensor;
 	g_analogSensorDefaultDDSRecs[8].Checksum = GMBLSensor::CalculateDDSDataChecksum(CV_Voltage_Sensor);
