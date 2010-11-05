@@ -1733,12 +1733,10 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_GetMemMapVersion(
 				you might want to use GoIO_Sensor_DDSMem_SetSensorNumber() to change it.
 
 				
-	SIDE EFFECTS(Go! Link only):	
-				If the new SensorDDSRecord.SensorNumber is set to kSensorIdNumber_Voltage10, then
-					SensorDDSRecord.OperationType is set = 2 to imply a probeType of kProbeTypeAnalog10V,
-				else
-					if SensorDDSRecord.OperationType is == 2, then
-						SensorDDSRecord.OperationType is set = 14 to imply a probeType of kProbeTypeAnalog5V.
+	SIDE EFFECTS:	
+				If the new SensorDDSRecord.SensorNumber is set to an (id < kSensorIdNumber_FirstSmartSensor) and (id > 0),
+				then the rest of the fields in the DDS record are  populated with default values appropriate for the
+				new sensor id.
 
 				If the GoIO_Sensor_DDSMem_SetSensorNumber() causes the probeType to change, then you should
 				send a SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL command to the sensor. See GoIO_Sensor_GetProbeType().
