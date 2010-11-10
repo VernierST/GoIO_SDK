@@ -654,8 +654,7 @@ GOIO_DLL_INTERFACE_DECL gtype_real64 GoIO_Sensor_ConvertToVoltage(
 				What units this routine produces can be determined by calling
 				GoIO_Sensor_DDSMem_GetCalPage(hSensor, GoIO_Sensor_DDSMem_GetActiveCalPage(),...) .
 
-	Return:		value in sensor specific units corresponding to a specified voltage. Just return input volts
-				unless GoIO_Sensor_DDSMem_GetCalibrationEquation() indicates kEquationType_Linear.
+	Return:		value in sensor specific units corresponding to a specified voltage.
 
 ****************************************************************************************************************************/
 GOIO_DLL_INTERFACE_DECL gtype_real64 GoIO_Sensor_CalibrateData(
@@ -849,14 +848,11 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_GetMemMapVersion(
 	Purpose:	Normally SensorDDSRecord.SensorNumber is automatically set inside GoIO_Sensor_Open().
 				However, if the current sensor is a legacy version, then SensorDDSRecord.SensorNumber = 0, so
 				you might want to use GoIO_Sensor_DDSMem_SetSensorNumber() to change it.
-
 				
-	SIDE EFFECTS(Go! Link only):	
-				If the new SensorDDSRecord.SensorNumber is set to kSensorIdNumber_Voltage10, then
-					SensorDDSRecord.OperationType is set = 2 to imply a probeType of kProbeTypeAnalog10V,
-				else
-					if SensorDDSRecord.OperationType is == 2, then
-						SensorDDSRecord.OperationType is set = 14 to imply a probeType of kProbeTypeAnalog5V.
+	SIDE EFFECTS:	
+				If the new SensorDDSRecord.SensorNumber is set to an (id < kSensorIdNumber_FirstSmartSensor) and (id > 0),
+				then the rest of the fields in the DDS record are  populated with default values appropriate for the
+				new sensor id.
 
 				If the GoIO_Sensor_DDSMem_SetSensorNumber() causes the probeType to change, then you should
 				send a SKIP_CMD_ID_SET_ANALOG_INPUT_CHANNEL command to the sensor. See GoIO_Sensor_GetProbeType().
@@ -873,8 +869,9 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_SetSensorNumber(
 	
 	Purpose:	Retrieve SensorDDSRecord.SensorNumber. 
 	
-				If sendQueryToHardwareflag != 0, then send a SKIP_CMD_ID_GET_SENSOR_ID to the sensor hardware
-				 - sendQueryToHardwareflag is ignored for Go! Temp.
+				If sendQueryToHardwareflag != 0, then send a SKIP_CMD_ID_GET_SENSOR_ID to the sensor hardware, and then call
+				GoIO_Sensor_DDSMem_SetSensorNumber(new sensor id).
+				SendQueryToHardwareflag is ignored for Go! Temp.
 
 				If the sensor hardware reports a new SensorNumber, then a user has probably changed what sensor is
 				plugged into a Go! Link. The simplest course of action in this case is to call
