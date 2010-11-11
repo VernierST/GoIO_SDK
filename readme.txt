@@ -71,6 +71,9 @@ For maximum simplicity and portability, we recommend that you just build your .N
 
 Release notes:
 
+Version 2.40
+Support the +/-30 volt sensor. Fixed bug associated with the +/-10 volt sensor that was introduced in version 2.37.
+
 version 2.39
 GoIO_DLL sources generally use int instead of long internally so that code behaves similarly for 32 and 64 bit builds.
 Released 64 bit version of GoIO DLL library for the Mac.
