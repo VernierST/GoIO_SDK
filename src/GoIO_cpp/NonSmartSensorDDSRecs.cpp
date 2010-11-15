@@ -834,8 +834,8 @@ int InitSensorDefaultDDSRecs(void)
 	g_digitalSensorDefaultDDSRecs[6] = RotaryMotion_Sensor;
 	g_digitalSensorDefaultDDSRecs[6].Checksum = GMBLSensor::CalculateDDSDataChecksum(RotaryMotion_Sensor);
 
-	g_digitalSensorDefaultDDSRecs[6] = Radiation_Sensor;
-	g_digitalSensorDefaultDDSRecs[6].Checksum = GMBLSensor::CalculateDDSDataChecksum(Radiation_Sensor);
+	g_digitalSensorDefaultDDSRecs[7] = Radiation_Sensor;
+	g_digitalSensorDefaultDDSRecs[7].Checksum = GMBLSensor::CalculateDDSDataChecksum(Radiation_Sensor);
 
 	return 0;
 }
