@@ -101,6 +101,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="xcopy ..\..\..\redist\GoIO_DLL\win32\GoIO_DLL.dll $(OutDir) /Y"
 			/>
 		</Configuration>
 		<Configuration
@@ -186,6 +187,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="xcopy ..\..\..\redist\GoIO_DLL\win64\GoIO_DLL.dll $(OutDir) /Y"
 			/>
 		</Configuration>
 		<Configuration
@@ -272,6 +274,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="xcopy ..\..\..\redist\GoIO_DLL\win32\GoIO_DLL.dll $(OutDir) /Y"
 			/>
 		</Configuration>
 		<Configuration
@@ -358,6 +361,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="xcopy ..\..\..\redist\GoIO_DLL\win64\GoIO_DLL.dll $(OutDir) /Y"
 			/>
 		</Configuration>
 	</Configurations>
