@@ -71,6 +71,9 @@ For maximum simplicity and portability, we recommend that you just build your .N
 
 Release notes:
 
+Version 2.41
+SensorId for +/-30 volt sensor changed from 4 to 11.
+
 Version 2.40
 Support the +/-30 volt sensor. Fixed bug associated with the +/-10 volt sensor that was introduced in version 2.37.
 

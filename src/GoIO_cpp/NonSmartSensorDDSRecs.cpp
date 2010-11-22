@@ -144,11 +144,11 @@ GSensorDDSRec Voltage10_Sensor =
 	0                                   // Checksum (0=not calculated.)
 };
 
-// Sensor Record for AUTO-ID value 3.3k : +/- 30V Voltage Sensor
+// Sensor Record for AUTO-ID value 15k : +/- 30V Voltage Sensor
 GSensorDDSRec Voltage30_Sensor = 
 {   // Auto-ID : 3.3k +/- 30v sensor
 	1,								    // MemMapVersion
-	4,									// SensorNumber
+	11,									// SensorNumber
 	{ 0, 0, 0 },                        // SensorSerialNumber[3]				
 	{ 0, 0 },						    // SensorLotCode[2]
 	0,				       				// ManufacturerID
@@ -303,39 +303,6 @@ GSensorDDSRec TemperatureC_Sensor =
 	0,                                  // HighestValidCalPageIndex
 	0,                                  // ActiveCalPage
 	{ { 1.02119e-3, 2.22468e-4, 1.33342e-7, "(C)" },  // CalibrationPage[0]
-	  { 0.0, 0.0, 0.0, "" },            // CalibrationPage[1]
-	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
-	},
-	0                                   // Checksum (0=not calculated.)
-};
-
-// Sensor Record for AUTO-ID value 15k : SS Temperature Sensor - degrees F (-13 to 257 F)
-GSensorDDSRec TemperatureF_Sensor = 
-{   // Auto-ID : 15k
-	1,								    // MemMapVersion
-	11,									// SensorNumber
-	{ 0, 0, 0 },                        // SensorSerialNumber[3]				
-	{ 0, 0 },						    // SensorLotCode[2]
-	0,				       				// ManufacturerID
-	"Stainless Temp",    				// SensorLongName
-	"Temp",			    	    		// SensorShortName
-	0,							    	// Uncertainty
-	0x33,							    // sig figs
-	1,							    	// CurrentRequirement
-	1,                                  // Averaging
-	0.5,								// MinSamplePeriod
-	0.5,                                // TypSamplePeriod
-	360,                                // TypNumberOfSamples
-	0,                                  // WarmUpTime
-	1,                                  // ExperimentType
-	14,                                 // OperationType       (EProbeType)
-	kEquationType_SteinhartHart,        // CalibrationEquation (EEquationType)
-	-15.0,                              // YminValue
-	260.0,                              // YmaxValue
-	10,                                 // Yscale
-	0,                                  // HighestValidCalPageIndex
-	0,                                  // ActiveCalPage
-	{ { 1.02119e-3, 2.22468e-4, 1.33342e-7, "(F)" },  // CalibrationPage[0]
 	  { 0.0, 0.0, 0.0, "" },            // CalibrationPage[1]
 	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
 	},
@@ -783,9 +750,6 @@ int InitSensorDefaultDDSRecs(void)
 	g_analogSensorDefaultDDSRecs[3] = Current10_Sensor;
 	g_analogSensorDefaultDDSRecs[3].Checksum = GMBLSensor::CalculateDDSDataChecksum(Current10_Sensor);
 
-	g_analogSensorDefaultDDSRecs[4] = Voltage30_Sensor;
-	g_analogSensorDefaultDDSRecs[4].Checksum = GMBLSensor::CalculateDDSDataChecksum(Voltage30_Sensor);
-
 	g_analogSensorDefaultDDSRecs[8] = CV_Voltage_Sensor;
 	g_analogSensorDefaultDDSRecs[8].Checksum = GMBLSensor::CalculateDDSDataChecksum(CV_Voltage_Sensor);
 
@@ -795,8 +759,8 @@ int InitSensorDefaultDDSRecs(void)
 	g_analogSensorDefaultDDSRecs[10] = TemperatureC_Sensor;
 	g_analogSensorDefaultDDSRecs[10].Checksum = GMBLSensor::CalculateDDSDataChecksum(TemperatureC_Sensor);
 
-	g_analogSensorDefaultDDSRecs[11] = TemperatureF_Sensor;
-	g_analogSensorDefaultDDSRecs[11].Checksum = GMBLSensor::CalculateDDSDataChecksum(TemperatureF_Sensor);
+	g_analogSensorDefaultDDSRecs[11] = Voltage30_Sensor;
+	g_analogSensorDefaultDDSRecs[11].Checksum = GMBLSensor::CalculateDDSDataChecksum(Voltage30_Sensor);
 
 	g_analogSensorDefaultDDSRecs[12] = Light_Sensor;
 	g_analogSensorDefaultDDSRecs[12].Checksum = GMBLSensor::CalculateDDSDataChecksum(Light_Sensor);
