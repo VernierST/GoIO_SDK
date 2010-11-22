@@ -37,12 +37,15 @@ enum { LABPRO_DEFAULT_PRODUCT_ID = 0x0001,
 		SKIP_DEFAULT_PRODUCT_ID = 0x0003,				//aka GoLink
 		CYCLOPS_DEFAULT_PRODUCT_ID = 0x0004,			//aka GoMotion
 		NGI_DEFAULT_PRODUCT_ID = 0x0005,				//aka LabQuest
-		LOWCOST_SPEC_DEFAULT_PRODUCT_ID = 0x0006,		//aka CK Spectrometer
+		LOWCOST_SPEC_DEFAULT_PRODUCT_ID = 0x0006,		//aka SpectroVis
 		MINI_GC_DEFAULT_PRODUCT_ID = 0x0007,			//aka Vernier Mini Gas Chromatograph
-		STANDALONE_DAQ_DEFAULT_PRODUCT_ID = 0x0008
+		STANDALONE_DAQ_DEFAULT_PRODUCT_ID = 0x0008,		//aka LabQuest Mini
+		LOWCOST_SPEC2_DEFAULT_PRODUCT_ID = 0x0009		//aka SpectroVis Plus
 };	
 
 #define LABQUEST_DEFAULT_PRODUCT_ID NGI_DEFAULT_PRODUCT_ID
+#define LABQUEST_MINI_PRODUCT_ID STANDALONE_DAQ_DEFAULT_PRODUCT_ID
+#define MINIGC_DEFAULT_PRODUCT_ID MINI_GC_DEFAULT_PRODUCT_ID
 
 /// @brief What we thought was the unique Ohaus Scout Pro VID/PID is actually the FTDI generic VID/PID, which is also used by Watt's Up devices. This throws a big doo-doo in how we go about identifying and enumerating new devices on the bus. 
 /// @see "GFTDIDevice.h"
