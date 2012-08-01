@@ -367,9 +367,10 @@ int CWinSkipMgr::Open(const cppstring &filename)
 		else
 		if (!bSharingViolationWarningDisplayed)
 		{
+			cppsstream ssSharing;
 			bSharingViolationWarningDisplayed = true;
-//			GUtils::MessageBox(GSTD_STRING(IDSX_SKIP_EXCLUSIVE_ACCESS_FAILURE_WARNING));
-			GUtils::MessageBox("Cannot obtain exclusive access to a Go! device.");
+			ssSharing << "Cannot obtain exclusive access to a Go! device.";
+			GSTD_TRACE(ssSharing.str());
 		}
 	}
 
