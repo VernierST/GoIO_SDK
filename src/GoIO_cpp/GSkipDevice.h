@@ -34,6 +34,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GSkipBaseDevice.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GSkipDevice : public GSkipBaseDevice
 {
 public:
@@ -82,5 +86,9 @@ private:
 	static StringVector	m_snapshotOfAvailableDevices;
 	GSkipFlashMemoryRecord m_flashRec;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GSKIPDEVICE_H_

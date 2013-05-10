@@ -34,6 +34,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GSkipDevice.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GMiniGCDevice : public GSkipDevice
 {
 public:
@@ -50,5 +54,9 @@ private:
 
 	static StringVector	m_snapshotOfAvailableMiniGCDevices;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GMINIGCDEVICE_H_

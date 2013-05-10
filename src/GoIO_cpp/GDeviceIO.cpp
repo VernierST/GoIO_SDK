@@ -42,6 +42,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 const cppstring kDeviceMutexName = "DeviceMutex";
 
 GDeviceIO::GDeviceIO(GPortRef *pPortRef)
@@ -250,3 +254,8 @@ int GDeviceIO::ClearIO(void)
 
 	return nRet;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif
+

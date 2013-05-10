@@ -39,6 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 static const unsigned int kUSBDirectTempMaxLocalNonVolatileMemAddr = 127;
 static const unsigned int kUSBDirectTempMaxRemoteNonVolatileMemAddr = 0;
 
@@ -92,4 +96,6 @@ real GUSBDirectTempDevice::ConvertToVoltage(int raw, EProbeType /* eProbeType */
 	return (GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog5V*raw + GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog5V);
 }
 
-
+#ifdef LIB_NAMESPACE
+}
+#endif

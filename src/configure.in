@@ -1,14 +1,14 @@
 AC_INIT(GoIO_DLL/GoIO_DLL_interface.cpp)
-AM_INIT_AUTOMAKE(GoIO,2.23.0)
+AM_INIT_AUTOMAKE(GoIO,2.53.0)
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
-GIO_EXTRA_CFLAGS=-fvisibility=hidden
+GIO_EXTRA_CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden"
 AC_SUBST(GIO_EXTRA_CFLAGS)
 
-GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -DTARGET_OS_LINUX"
+GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -DTARGET_OS_LINUX -DLIB_NAMESPACE=GoIO"
 
 AC_ARG_ENABLE(handheld,						      		    	       	    	#Feature
 	      AS_HELP_STRING([--enable-handheld],[Enabling the library for the handheld.]),		#Help Text
@@ -20,6 +20,10 @@ AC_ARG_ENABLE(log,						      		    	       	    	#Feature
   	      [enable_log=yes; GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -D_GOIO_LOGGING_ENABLED_"], 		#If Given
 	      [enable_log=no;])		 		      						#If Not Given
 
+AC_ARG_ENABLE(libusb,						      		    	       	    	#Feature
+	      AS_HELP_STRING([--enable-libusb],[Use lib usb driver.]), 					#Help Text
+  	      [enable_libusb=yes; GIO_EXTRA_CFLAGS="$GIO_EXTRA_CFLAGS -DUSE_LIB_USB"], 			#If Given
+	      [enable_libusb=no;])		 		      					#If Not Given
 
 AC_OUTPUT(Makefile
 	  GoIO_cpp/Makefile
@@ -36,4 +40,6 @@ echo "
         prefix:                  ${prefix}
         Enable for Handheld      ${enable_handheld}
         Enable for Log           ${enable_log}
+        Use lib usb              ${enable_libusb}
+
 "

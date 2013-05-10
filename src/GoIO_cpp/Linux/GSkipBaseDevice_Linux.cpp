@@ -1,3 +1,5 @@
+#ifndef USE_LIB_USB
+
 /*********************************************************************************
 
 Copyright (c) 2010, Vernier Software & Technology
@@ -35,7 +37,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <poll.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <errno.h>
 #include <unistd.h>
+
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
 
 struct LSkipPacketCircularBuffer
 {
@@ -286,49 +293,59 @@ int LSkipMgr::gListenForResponse(void *pParam)
 {
 	int nResult = kResponse_OK;
 	LSkipMgr *pMgr = (LSkipMgr *)pParam;
-
+  
 	if (pMgr)
-	{
-		unsigned char buf[8];  //jenhack
-		struct pollfd fds[1];
-		int timeout_msecs = 5;
-		int count = 0;
-
-		/* Open STREAMS device. */
-		fds[0].fd = pMgr->m_hDeviceID;
-		fds[0].events = POLLIN | POLLPRI;
-
-		while ((poll(fds, 1, timeout_msecs)>0) && (count < 20))
-		{
-		/*Jentodo - do we need to sync with the writes before doing this.  I don't think so but I want to check*/
-			int nNumberOfBytesRead = read (fds[0].fd,&buf,sizeof(buf));
-
-			if(nNumberOfBytesRead==sizeof(buf))
-			{
-				//Add packet to appropriate queue.
-				if ((buf[0] & SKIP_MASK_INPUT_PACKET_TYPE))
-				{
-					if (pMgr->m_pCmdBuf)
-						pMgr->m_pCmdBuf->AddRec((GSkipPacket *) (&buf[0]));
-				}
-				else
-				{
-					if (pMgr->m_pMesBuf)
-					{
-						pMgr->m_pMesBuf->AddRec((GSkipPacket *) (&buf[0]));
-						GSkipMeasurementPacket *pMeasRec = (GSkipMeasurementPacket *) (&buf[0]);
-						pMgr->m_lastNumMeasurementsInPacket = pMeasRec->nMeasurementsInPacket;
-					}
-				}
-			}
-			else
-			{
-				printf("Bad we did not get all the bytes. Dropped %d bytes.\n",nNumberOfBytesRead);
-			}
-			count++;
-		}
-	}
-	return nResult;
+    {
+      unsigned char buf[8];  //jenhack
+      struct pollfd fds[1];
+      int timeout_msecs = 5;
+      int count = 0;
+      static int err_count = 0;
+      
+      /* Open STREAMS device. */
+      fds[0].fd = pMgr->m_hDeviceID;
+      fds[0].events = POLLIN | POLLPRI;
+      
+      while ((poll(fds, 1, timeout_msecs)>0) && (count < 20))
+        {
+          /*Jentodo - do we need to sync with the writes before doing this.  I don't think so but I want to check*/
+          int nNumberOfBytesRead = read (fds[0].fd,&buf,sizeof(buf));
+          
+          if(nNumberOfBytesRead==sizeof(buf))
+            {
+              //Add packet to appropriate queue.
+              if ((buf[0] & SKIP_MASK_INPUT_PACKET_TYPE))
+                {
+                  if (pMgr->m_pCmdBuf)
+                    pMgr->m_pCmdBuf->AddRec((GSkipPacket *) (&buf[0]));
+                }
+              else
+                {
+                  if (pMgr->m_pMesBuf)
+                    {
+                      pMgr->m_pMesBuf->AddRec((GSkipPacket *) (&buf[0]));
+                      GSkipMeasurementPacket *pMeasRec = (GSkipMeasurementPacket *) (&buf[0]);
+                      pMgr->m_lastNumMeasurementsInPacket = pMeasRec->nMeasurementsInPacket;
+                    }
+                }
+              
+              /* Reset error on succesful read. */
+              err_count = 0;
+            }
+          else
+            {
+              if (5 > ++err_count)
+                {
+                  printf("Bad we did not get all the bytes. Dropped %d bytes. Error: %s\n", nNumberOfBytesRead, strerror(errno));                  
+                }
+              GUtils::OSSleep (1);
+            }
+          
+          count++;
+        }
+    }
+  
+  return nResult;
 }
 
 /*
@@ -615,3 +632,8 @@ int GSkipBaseDevice::OSClearIO(void)
 	return nResult;
 }
 
+#ifdef LIB_NAMESPACE
+}
+#endif
+
+#endif //ifndef USE_LIB_USB

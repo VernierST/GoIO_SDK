@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //We are defining the SUBSYS_TRACE_THRESH macro so that we can change the name from the build script.
 //GCC 3.x is prone to name collision, so we may want to override the default name in some situations.
 #ifndef SUBSYS_TRACE_THRESH 
-#define SUBSYS_TRACE_THRESH g_subsystemTraceThreshold
+#define SUBSYS_TRACE_THRESH g_GoIOTraceThreshold
 #endif
 extern int SUBSYS_TRACE_THRESH ;
 
@@ -71,6 +71,10 @@ extern int SUBSYS_TRACE_THRESH ;
 		extern long __isnand( double x );
 		extern long __isfinited( double x );
 	#endif
+#endif
+
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
 #endif
 
 class GFileRef;
@@ -303,5 +307,8 @@ private:
 
 #define GSTD_LOGADDRESS(x)if (GUtils::IsLogOpen()) GUtils::WriteAddressToLog((x), WIDENMACRO(__FILE__), __LINE__);	
 
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GUTILS_H_

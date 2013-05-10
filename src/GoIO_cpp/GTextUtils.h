@@ -39,6 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GTypes.h"  // for cppsstream
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 #ifndef USE_WIDE_CHARS
 	typedef  int gint;
 #else
@@ -198,5 +202,9 @@ private:
 #define GSTD_INDEXSTRING(x) GTextUtils::GetStringByIndex(x)
 #define GSTD_OSSTRING(x, p) GTextUtils::OSGetOSStringByKey(#x, p)
 #define GSTD_NARROWSTRING(x) GTextUtils::GetNarrowStringByKey(#x)
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GTEXTUTILS_H_

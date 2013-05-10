@@ -38,6 +38,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GSensorDDSMem.h"
 #include "NonSmartSensorDDSRecs.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GMBLSensor
 {
 public:
@@ -120,5 +124,9 @@ public:
 private:
 	GSensorDDSRec			m_sensorDDSRec;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GMBLSENSOR_H_

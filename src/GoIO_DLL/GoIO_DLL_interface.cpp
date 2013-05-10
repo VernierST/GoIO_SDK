@@ -37,6 +37,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	extern CGoIO_DLLApp theApp;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE
+{
+}
+
+using namespace LIB_NAMESPACE;
+/****************************************************************************************************************
+So what is this LIB_NAMESPACE nonsense all about??
+
+We discovered empirically that some Linux versions of gcc 4.x had an unbelievably heinous bug. A call to a local
+function Z in shared library A might actually jump to local function Z in shared library B! We tried various compiler
+options(eg -fvisibility=hidden -fvisibility-inlines-hidden) but we could not prevent namespace pollution across 
+libraries.
+
+So, on Linux builds only, we define LIB_NAMESPACE, and in so doing put the bulk of the code in each shared library 
+in its own C++ namespace. For libGoIO, we define LIB_NAMESPACE to be GoIO.
+****************************************************************************************************************/
+#endif
+
 #include "GSkipDevice.h"
 #include "GCyclopsDevice.h"
 #include "GMiniGCDevice.h"
@@ -46,16 +65,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "NonSmartSensorDDSRecs.h"
 #include "GoIO_DLL_interface.h"
 
+#ifdef USE_LIB_USB
+#include "libusb-1.0/libusb.h"
+libusb_context *pGoIO_libusbContext = NULL;   
+#endif
+
 #define SKIP_TIMEOUT_MS_READ_FLASH 2000
 #define SKIP_LIB_MNG_MUTEX_TIMEOUT_MS 500
 
-typedef std::vector<void *> GPtrVector;
-typedef GPtrVector::iterator GPtrVectorIterator;
 GPtrVector openSensorVector;//list of CGoIOSensors
 OSMutex openSensorVectorMutex = NULL;
 OSMutex multipleInstanceDeviceMutex = NULL;
 bool bMultipleInstanceDeviceMutexLocked = false;
-gtype_bool IOTraceEnableFlag = 0;
+gtype_bool GoIOTraceEnableFlag = 0;
 
 class CGoIOSensor
 {
@@ -236,7 +258,7 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_GetDLLVersion(
 	gtype_uint16 *pMinorVersion) //[o]
 {
 	*pMajorVersion = 2;
-	*pMinorVersion = 42;
+	*pMinorVersion = 53;
 	return 0;
 }
 
@@ -286,8 +308,27 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Init()
 	#endif
 
 	#if defined (TARGET_OS_MAC) || defined (TARGET_OS_LINUX)
-		if (!openSensorVectorMutex)
-			openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
+		int status = 0; 
+	#ifdef USE_LIB_USB
+		if (pGoIO_libusbContext != NULL)
+			status = -1;
+		else
+			status = libusb_init(&pGoIO_libusbContext);
+		if (0 != status)
+		{
+			cppsstream ss1;
+			ss1 << GSTD_S("failed to init libusb (error %d)") << status;
+			GSTD_TRACE(ss1.str());
+		}
+
+		// libusb_set_debug(pGoIO_libusbContext, 3);
+	#endif
+
+		if (0 == status)
+		{
+			if (!openSensorVectorMutex)
+				openSensorVectorMutex = GThread::OSCreateMutex(GSTD_S("GoIO_DLL_DeviceListMutex"));
+		}
 
 		if (!openSensorVectorMutex)
 		{
@@ -317,6 +358,15 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Uninit()
 	if (openSensorVectorMutex)
 		GThread::OSDestroyMutex(openSensorVectorMutex);
 	openSensorVectorMutex = NULL;
+
+	#ifdef TARGET_OS_LINUX
+	#ifdef USE_LIB_USB // Only use this on Linux desktop builds for now
+		// Cleanup libusb
+		if (pGoIO_libusbContext != NULL)
+			libusb_exit(pGoIO_libusbContext);
+		pGoIO_libusbContext = NULL;
+	#endif
+	#endif
 
 	#ifdef TARGET_OS_WIN
 		if (bMultipleInstanceDeviceMutexLocked)
@@ -545,7 +595,7 @@ GOIO_DLL_INTERFACE_DECL GOIO_SENSOR_HANDLE GoIO_Sensor_Open(
 	if (0 == nResult)
 	{
 		pNewSensor = new CGoIOSensor(&newPortRef);
-		pNewSensor->m_pInterface->SetDiagnosticsFlag(IOTraceEnableFlag != 0);
+		pNewSensor->m_pInterface->SetDiagnosticsFlag(GoIOTraceEnableFlag != 0);
 		nResult = pNewSensor->m_pInterface->Open(&newPortRef);
 	}
 
@@ -1585,6 +1635,8 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_SetRecord(
 {
 	gtype_int32 nResult = 0;
 	if (!OpenSensorVector_FindAndLockSensor(hSensor))
+
+
 		nResult = -1;
 	else
 	{
@@ -2677,13 +2729,13 @@ GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Sensor_DDSMem_GetChecksum(
 GOIO_DLL_INTERFACE_DECL void GoIO_Diags_SetIOTraceEnableFlag(
 	gtype_bool flag)
 {
-	IOTraceEnableFlag = flag;
+	GoIOTraceEnableFlag = flag;
 }
 
 GOIO_DLL_INTERFACE_DECL void GoIO_Diags_GetIOTraceEnableFlag(
 	gtype_bool *pFlag)			//[out] ptr to loc to store IO trace enable flag. Note that IO tracing is enabled by default.
 {
-	*pFlag = IOTraceEnableFlag;
+	*pFlag = GoIOTraceEnableFlag;
 }
 
 GOIO_DLL_INTERFACE_DECL gtype_int32 GoIO_Diags_GetNumInputTraceBytesAvailable(

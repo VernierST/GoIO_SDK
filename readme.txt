@@ -19,7 +19,7 @@ For each set of libraries, we provide 3 different flavors. The ".a" flavor is a 
 
 To change the install location of either, you need to run /usr/bin/install_name_tool on the library executable -- e.g. libGoIOUniversal.dylib or libGoIO_DLL.framework/Versions/A/libGoIO_DLL. For more info, see "man install_name_tool".
 
-The Linux version of the GoIO SDK is packaged separately from the Windows/Mac version. Follow the INSTALL instructions to get started.  
+The Linux version of the GoIO SDK is packaged separately from the Windows/Mac version. Follow the readme_first_on_linux.txt instructions to get started.  
 
 Note that the Go! devices are HID USB devices which use standard device drivers that are automatically preinstalled on Microsoft Windows systems.
 
@@ -70,6 +70,9 @@ For maximum simplicity and portability, we recommend that you just build your .N
 ====================================================================================================================
 
 Release notes:
+
+Version 2.53
+Support libusb in Linux.
 
 Version 2.41
 SensorId for +/-30 volt sensor changed from 4 to 11.

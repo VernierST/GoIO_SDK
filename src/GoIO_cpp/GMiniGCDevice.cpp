@@ -39,6 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 StringVector GMiniGCDevice::m_snapshotOfAvailableMiniGCDevices;
 
 GMiniGCDevice::GMiniGCDevice(GPortRef *pPortRef)
@@ -47,3 +51,6 @@ GMiniGCDevice::GMiniGCDevice(GPortRef *pPortRef)
 	//Do not call OSInitialize here because it is called in the GSkipDevice constructor.
 }
 
+#ifdef LIB_NAMESPACE
+}
+#endif

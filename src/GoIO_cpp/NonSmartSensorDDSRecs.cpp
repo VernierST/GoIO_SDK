@@ -31,6 +31,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GMBLSensor.h"
 #include "NonSmartSensorDDSRecs.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 #ifdef TARGET_OS_WIN
 #pragma warning(disable: 4996)
 #pragma warning(disable: 4305)
@@ -48,11 +52,10 @@ Value
 1.5K	EKG 				N/A						15
 2.2K	Thermocouple °C		-200°C to 1400°C		1		
 3.3K	Resistance sensor	1KW to 100KW			4 deprecated
-3.3K	Voltage sensor		-30 to +30 Volts		4
 4.7K	TI Light sensor		0 to 1					12 
 6.8K	Current sensor		-10 to +10 Amps			3
 10K		Temp sensor °C		-25°C to 125°C			10
-15K		Temp sensor °F		-13°F to 257°F			11
+15K		Voltage sensor		-30 to +30 Volts		11
 22K		Extra long temp°C	-50°C to 150°C			16
 33K		Voltage sensor		-10 to +10 Volts		2
 47K		Voltage sensor 		0 to 5 Volts			14
@@ -671,7 +674,7 @@ GSensorDDSRec Drop_Counter =
 	0                                   // Checksum (0=not calculated.)
 };
 
-// Sensor Record for AUTO-ID value 68k : Rotary Motion Sensor
+// Sensor Record for digital AUTO-ID value 68k : Rotary Motion Sensor
 GSensorDDSRec RotaryMotion_Sensor = 
 {   // Auto-ID : 68k Rotary Motion sensor
 	1,								    // MemMapVersion
@@ -695,10 +698,10 @@ GSensorDDSRec RotaryMotion_Sensor =
 	-1000.0,                            // YminValue
 	1000.0,                             // YmaxValue
 	10,                                 // Yscale
-	0,                                  // HighestValidCalPageIndex
+	1,                                  // HighestValidCalPageIndex
 	0,                                  // ActiveCalPage
-	{ { 0.0, 1.0, 0.0, "" },            // CalibrationPage[0]
-	  { 0.0, 0.0, 0.0, "" },            // CalibrationPage[1]
+	{ { 0.0, 1.0, 0.0, "(deg)" },       // CalibrationPage[0]
+	  { 0.0, 0.25, 0.0, "(deg)" },      // CalibrationPage[1]
 	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
 	},
 	0                                   // Checksum (0=not calculated.)
@@ -727,6 +730,72 @@ GSensorDDSRec Radiation_Sensor =
 	0.0,                                // YminValue
 	1000.0,                             // YmaxValue
 	10,                                 // Yscale
+	0,                                  // HighestValidCalPageIndex
+	0,                                  // ActiveCalPage
+	{ { 0.0, 1.0, 0.0, "" },            // CalibrationPage[0]
+	  { 0.0, 0.0, 0.0, "" },            // CalibrationPage[1]
+	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
+	},
+	0                                   // Checksum (0=not calculated.)
+};
+
+// Sensor Record for digital AUTO-ID value 6.8k : Linear Position Sensor
+GSensorDDSRec LinearPosition_Sensor = 
+{  
+	1,								    // MemMapVersion
+	8,									// SensorNumber
+	{ 0, 0, 0 },                        // SensorSerialNumber[3]				
+	{ 0, 0 },						    // SensorLotCode[2]
+	0,				       				// ManufacturerID
+	"Linear Position",                    // SensorLongName
+	"Pos",								// SensorShortName
+	0,							    	// Uncertainty
+	0x22,							    // SigFigs
+	21,							    	// CurrentRequirement
+	-1,                                 // Averaging
+	0.01,								// MinSamplePeriod
+	0.05,								// TypSamplePeriod
+	200,                                // TypNumberOfSamples
+	0,                                  // WarmUpTime
+	1,                                  // ExperimentType
+	kProbeTypeRotary,                   // OperationType       (EProbeType)
+	kEquationType_Linear,               // CalibrationEquation (EEquationType).
+	-1000.0,                            // YminValue
+	1000.0,                             // YmaxValue
+	10,                                 // Yscale
+	1,                                  // HighestValidCalPageIndex
+	0,                                  // ActiveCalPage
+	{ { 0.0, (float) (1.0/150.0), 0.0, "(in)" },      // CalibrationPage[0]
+	  { 0.0, (float) (1.0/600.0), 0.0, "(in)" },      // CalibrationPage[1]
+	  { 0.0, 0.0, 0.0, "" }             // CalibrationPage[2]
+	},
+	0                                   // Checksum (0=not calculated.)
+};
+
+// Sensor Record for digital AUTO-ID value 4.7k : Projectile Launcher
+GSensorDDSRec Projectile_Launcher = 
+{
+	1,								    // MemMapVersion
+	9,									// SensorNumber
+	{ 0, 0, 0 },                        // SensorSerialNumber[3]				
+	{ 0, 0 },						    // SensorLotCode[2]
+	0,				       				// ManufacturerID
+	"Projectile Launcher",				// SensorLongName
+	"Launcher",							// SensorShortName
+	0,							    	// Uncertainty
+	0x22,							    // SigFigs
+	30,							    	// CurrentRequirement
+	-1,                                 // Averaging
+	0.0001,                             // MinSamplePeriod
+	0.1,								// TypSamplePeriod
+	180,                                // TypNumberOfSamples
+	0,                                  // WarmUpTime
+	1,                                  // ExperimentType
+	kProbeTypePhotoGate,                // OperationType       (EProbeType)
+	kEquationType_Linear,               // CalibrationEquation (EEquationType).
+	0.0,                                // YminValue
+	1.0,								// YmaxValue
+	25,                                 // Yscale
 	0,                                  // HighestValidCalPageIndex
 	0,                                  // ActiveCalPage
 	{ { 0.0, 1.0, 0.0, "" },            // CalibrationPage[0]
@@ -801,8 +870,16 @@ int InitSensorDefaultDDSRecs(void)
 	g_digitalSensorDefaultDDSRecs[7] = Radiation_Sensor;
 	g_digitalSensorDefaultDDSRecs[7].Checksum = GMBLSensor::CalculateDDSDataChecksum(Radiation_Sensor);
 
+	g_digitalSensorDefaultDDSRecs[8] = LinearPosition_Sensor;
+	g_digitalSensorDefaultDDSRecs[8].Checksum = GMBLSensor::CalculateDDSDataChecksum(LinearPosition_Sensor);
+
+	g_digitalSensorDefaultDDSRecs[9] = Projectile_Launcher;
+	g_digitalSensorDefaultDDSRecs[9].Checksum = GMBLSensor::CalculateDDSDataChecksum(Projectile_Launcher);
+
 	return 0;
 }
 
-
+#ifdef LIB_NAMESPACE
+}
+#endif
 

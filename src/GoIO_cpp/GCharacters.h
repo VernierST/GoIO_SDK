@@ -31,6 +31,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef _GCHARACTERS_H_
 #define _GCHARACTERS_H_
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 namespace GUTF8CharCode
 {
 
@@ -176,5 +180,9 @@ const gchar kSuperScriptTwo = GSTD_S('²');
 
 #define kMacPathSeparatorString GSTD_S(":")
 #define kWinPathSeparatorString GSTD_S("\\")
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GCHARACTERS_H_ 

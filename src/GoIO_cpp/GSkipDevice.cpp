@@ -40,6 +40,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 const unsigned int kSkipMaxRemoteNonVolatileMemAddr = 127;
 
 real GSkipDevice::k_fSkipMaxDeltaT = ((unsigned int) 0xffff)*0.001;
@@ -306,3 +310,7 @@ int GSkipDevice::WriteSkipFlashRecord(
 
 	return nResult;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

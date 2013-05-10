@@ -32,6 +32,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GThread.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 #define SHARED_CIRCULAR_BUFFER_TIMEOUT_MS 2000
 
 class GCircularBuffer OS_STANDARD_BASE_CLASS
@@ -61,6 +65,10 @@ protected:
 };
 
 typedef std::vector<GCircularBuffer *>		GCircularBufferPtrVector;
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GCIRCULARBUFFER_H_
 

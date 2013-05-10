@@ -40,6 +40,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 real GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog5V = 2.5/0x8000;
 real GSkipBaseDevice::kVoltsOffset_ProbeTypeAnalog5V = 2.5;
 real GSkipBaseDevice::kVoltsPerBit_ProbeTypeAnalog10V = 10.0/0x8000;
@@ -712,3 +716,6 @@ real GSkipBaseDevice::CalculateNearestLegalMeasurementPeriod(real fPeriodInSecon
 	return fAdjustedPeriod;
 }
 
+#ifdef LIB_NAMESPACE
+}
+#endif

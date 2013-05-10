@@ -38,6 +38,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 namespace {
 
 const cppstring k_sPortRefCode = "PortRef";
@@ -209,3 +213,7 @@ int GPortRef::DecodeFromStream(cppistream * pInStream)
 	}
 	return nResult;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

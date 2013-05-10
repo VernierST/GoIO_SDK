@@ -39,6 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 GThread::GThread(StdThreadFunctionPtr pFunction, 
 				 StdThreadFunctionPtr pStopFunction,
 				 StdThreadFunctionPtr pStartFunction,
@@ -174,3 +178,7 @@ int GLiteThread::Main(void *pGLiteThreadObject) // pointer to this GLiteThread o
 
 	return nResult;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

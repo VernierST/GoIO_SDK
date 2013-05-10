@@ -56,6 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "stdafx.h"
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 #ifdef TARGET_OS_WIN
 #define OS_STANDARD_BASE_CLASS : public CObject
 #else
@@ -152,11 +156,13 @@ typedef enum
 } ECustomMessage;
 
 typedef std::vector<bool>		boolVector;
+typedef std::vector<void *> GPtrVector;
+typedef GPtrVector::iterator GPtrVectorIterator;
 
 typedef double 					real;
 typedef std::vector<real>		realvector;
 typedef std::vector<realvector> realmatrix;
-typedef std::vector<int> 		intvector;
+//typedef std::vector<int> 		intvector;
 typedef std::list<real>			reallist;
 typedef std::list<real>::iterator reallistIterator;
 
@@ -553,6 +559,10 @@ struct SAppError
 // Cross-platform exceptions base class:
 #ifndef _GEXCEPTION_H_
 //#include "GException.h"
+#endif
+
+#ifdef LIB_NAMESPACE
+}
 #endif
 
 #endif // _GTYPES_H_

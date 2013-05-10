@@ -34,6 +34,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GSkipBaseDevice.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GCyclopsDevice : public GSkipBaseDevice
 {
 public:
@@ -78,5 +82,9 @@ private:
 
 	static StringVector	m_snapshotOfAvailableDevices;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GCYCLOPSDEVICE_H_

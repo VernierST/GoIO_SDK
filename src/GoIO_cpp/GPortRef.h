@@ -57,6 +57,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "GTypes.h"
 #include "GTextUtils.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 typedef enum
 {
 	kPortType_Invalid = -1,
@@ -113,6 +117,10 @@ private:
 	unsigned int	m_USBVendorID;
 	unsigned int	m_USBProductID;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GPORTREF_H_
 

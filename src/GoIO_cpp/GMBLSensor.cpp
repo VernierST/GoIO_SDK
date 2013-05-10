@@ -56,6 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 GMBLSensor::GMBLSensor(void)
 {
 	memset(&m_sensorDDSRec, 0, sizeof(m_sensorDDSRec));
@@ -364,3 +368,7 @@ real GMBLSensor::CalibrateData(real fRawVolts)
 
 	return fCalibratedMeasurement;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

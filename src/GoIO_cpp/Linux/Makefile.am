@@ -7,4 +7,10 @@ noinst_LTLIBRARIES = libGoIOcppLinux.la
 
 EXTRA_DIST = libGoIOcppLinux.la
 
-libGoIOcppLinux_la_SOURCES  = GThread_Linux.cpp GTextUtils_Linux.cpp GSkipBaseDevice_Linux.cpp GUtils_Linux.cpp stdafx.h
+libGoIOcppLinux_la_SOURCES  = \
+	GThread_Linux.cpp \
+	GTextUtils_Linux.cpp \
+	GSkipBaseDevice_Linux.cpp \
+	GSkipBaseDevice_Linux_libusb.cpp \
+	GUtils_Linux.cpp \
+	stdafx.h

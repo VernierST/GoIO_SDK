@@ -61,6 +61,11 @@ real GUtils::kRealMax = 1.0e50;		// a very large number (1E26) -- the largest nu
 
 real GUtils::kfMetersPerFoot = 0.3048;
 */
+
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 cppofstream *	GUtils::pLogOStream = NULL;		// Used to output text to a logfile
 /*
 bool GUtils::IsBetween(real range1,		// one end of the range to test
@@ -1400,4 +1405,6 @@ StStopMBLActivity::~StStopMBLActivity()
 	}
 }
 */
-
+#ifdef LIB_NAMESPACE
+}
+#endif

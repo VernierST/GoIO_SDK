@@ -48,6 +48,10 @@ static char THIS_FILE[] = __FILE__;
 
 using namespace std;
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 int GTextUtils::kSmallestFontSize = 8;	// used in font size controls
 int GTextUtils::kLargestFontSize = 72;
 
@@ -1506,3 +1510,6 @@ GDeviceRect GTextUtils::GetBestRectForText( cppstring sText, const GDeviceRect &
 }
 */
 
+#ifdef LIB_NAMESPACE
+}
+#endif

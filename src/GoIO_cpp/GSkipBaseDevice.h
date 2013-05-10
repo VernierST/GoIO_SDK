@@ -43,6 +43,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define SKIP_HOST_IO_STATUS_TIMED_OUT	1
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GSkipBaseDevice : public GDeviceIO
 {
 public:
@@ -152,6 +156,10 @@ private:
 	typedef GDeviceIO TBaseClass;
 	
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GSKIPBASEDEVICE_H_
 

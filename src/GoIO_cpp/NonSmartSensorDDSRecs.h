@@ -31,8 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GSensorDDSMem.h"
 
-#ifdef __cplusplus
-extern "C" {
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
 #endif
 
 	extern GSensorDDSRec g_analogSensorDefaultDDSRecs[/* kSensorIdNumber_FirstSmartSensor */];
@@ -40,7 +40,7 @@ extern "C" {
 
 	int InitSensorDefaultDDSRecs(void);
 
-#ifdef __cplusplus
+#ifdef LIB_NAMESPACE
 }
 #endif
 

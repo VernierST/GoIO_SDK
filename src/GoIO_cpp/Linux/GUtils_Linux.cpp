@@ -36,6 +36,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using namespace std;
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 namespace { // local namespace
 const char * local_makeAssertString(const char * sFile, int nLine, char * pBuffer);
 const char * local_makeAssertString(const char * sFile, int nLine, char * pBuffer)
@@ -352,3 +356,7 @@ bool GUtils::OSIsMainThread(void)
 void GUtils::OSFloatingPointExceptionReset(void)
 { // stub
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

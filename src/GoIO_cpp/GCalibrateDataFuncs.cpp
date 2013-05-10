@@ -31,6 +31,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GCalibrateDataFuncs.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 double CalibrateData_Linear(
 	double fRawVolts,
 	double coeffA,
@@ -95,3 +99,7 @@ double CalibrateData_ModifiedPower(
 	double fCalibratedMeasurement = coeffA*pow(coeffB, fRawVolts);
 	return fCalibratedMeasurement;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

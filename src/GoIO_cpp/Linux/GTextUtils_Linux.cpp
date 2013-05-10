@@ -14,6 +14,9 @@
 
 using namespace std;
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
 
 
 void GTextUtils::OSInitResourceStrings(void)
@@ -394,6 +397,9 @@ unsigned short GTextUtils::OSGetUTF8CharCodeForNative(unsigned short nMacRomanCh
 
 }
 
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 
 

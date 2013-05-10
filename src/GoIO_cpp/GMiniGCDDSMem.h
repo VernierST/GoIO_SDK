@@ -81,11 +81,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 struct tagGMiniGCDDSRec
 {
-	unsigned char	MemMapVersion;			//Should be 2?	
+	unsigned char	MemMapVersion;			//3 => use TemperatureMin, TempertureMax, Gain.	
 	unsigned char	SensorNumber;			//Identifies type of sensor. For GC, this is 80.
-	unsigned char	SensorSerialNumber[3];	//SensorSerialNumber[0] is lsbyte of int16 serial number.
-											//SensorSerialNumber[1] is msbyte of int16 serial number.
-											//SensorSerialNumber[2] contains 2 BCD digits for GC firmware version(written by GC).
+	unsigned short	SensorSerialNumber;		
+	unsigned char	FirmwareVersion;		//2 BCD digits(FIRMWARE_VERSION_H << 4 | FIRMWARE_VERSION_L) for GC firmware version(written by GC).
 	unsigned char	SensorLotCode[2];		//Lot code as 2-byte BCD date, [0] = YY, [1] == WW.
 	unsigned char	ManufacturerID;
 	char			SensorLongName[20];
@@ -102,9 +101,9 @@ struct tagGMiniGCDDSRec
 	unsigned char	OperationType;			//This is a LabPro specific field.
 											//Go! devices use this field to infer probe type(5 volt or 10 volt). See EProbeType.
 	char			CalibrationEquation;	//See EEquationType.
-	float			YminValue;
-	float			YmaxValue;
-	unsigned char	Yscale;
+	float			TemperatureMin;			//Min temp in profile in deg C.
+	float			TemperatureMax;			//Max temp in profile in deg C.
+	unsigned char	ScalingFactor;			//Value used to set scaling factor in %. 100 = same as original units; 200 = high sensitivity mode.
 	unsigned char	HighestValidCalPageIndex;//First index is 0. This field MUST contain 2.
 	unsigned char	ActiveCalPage;
 

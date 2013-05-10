@@ -22,10 +22,13 @@ libGoIOcpp_la_SOURCES = \
 	GSkipDevice.cpp \
 	GSkipBaseDevice.cpp \
 	GPortRef.cpp \
-	GMiniGCDevice.cpp \
 	GMBLSensor.cpp \
 	GDeviceIO.cpp \
 	GCyclopsDevice.cpp \
+	GMiniGCDevice.cpp \
+	NonSmartSensorDDSRecs.cpp \
+	GCircularBuffer.cpp \
+	GCalibrateDataFuncs.cpp \
 	GCharacters.h \
 	GDeviceIO.h \
 	GPlatformTypes.h  \
@@ -36,18 +39,20 @@ libGoIOcpp_la_SOURCES = \
 	GCyclopsCommExt.h  \
 	GMBLSensor.h      \
 	GPortRef.h        \
-	GMiniGCDevice.h \
 	GSkipCommExt.h     \
 	GSkipErr.h      \
 	GThread.h     \
 	GUtils.h \
 	GCyclopsDevice.h   \
 	GPlatformDebug.h  \
+	GMiniGCDevice.h \
 	GSensorDDSMem.h \
-	GSkipComm.h        \
+	GSkipComm.h     \
 	GStdIncludes.h  \
 	GTypes.h      \
+	NonSmartSensorDDSRecs.h \
+	GCircularBuffer.h \
+	GCalibrateDataFuncs.h \
 	GVernierUSB.h
-
 
 

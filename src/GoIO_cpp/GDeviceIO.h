@@ -51,6 +51,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "GVernierUSB.h"
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
 class GDeviceIO OS_STANDARD_BASE_CLASS
 {
 public:
@@ -142,6 +146,9 @@ private:
 	bool				m_bOpen;
 };
 
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // _GDEVICEIO_H_
 

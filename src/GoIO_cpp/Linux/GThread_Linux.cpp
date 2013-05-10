@@ -36,7 +36,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <semaphore.h>
 #include <signal.h>
 
-static int g_IOAbortSignalId = 0;
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
+static int g_NGIO_IOAbortSignalId = 0;
 
 static void *start_thread(void *thread)
 {
@@ -95,7 +99,7 @@ OSMutex GThread::OSCreateMutex(const cppstring &/*sMutexName*/)
 		{
 #ifdef _NGIO_LOGGING_ENABLED_
 			char tmpstring[100];//spam
-			sprintf(tmpstring, "Creating mutex %p on thread %p.", mutex, pthread_self());
+			sprintf(tmpstring, "Creating mutex %p on thread %p in NGIO_lib.", mutex, pthread_self());
 			GSTD_TRACE(tmpstring);
 #endif
 		}
@@ -140,7 +144,7 @@ bool GThread::OSTryLockMutex(OSMutex pOSMutex, int nTimeoutMS)
 	if (!bResult)
 	{
 		char tmpstring[100];//spam
-		sprintf(tmpstring, "Trying to lock mutex %p on thread %p failed", pOSMutex, pthread_self());
+		sprintf(tmpstring, "Trying to lock mutex %p on thread %p in IO_lib failed", pOSMutex, pthread_self());
 		GSTD_TRACE(tmpstring);
 	}
 
@@ -277,7 +281,7 @@ int NGIO_RegisterIOAbortSignalHandler(int signalNum)
 	int result = 0;
 	if (signalNum <= 0)
 		result = -1;
-	else if (0 == g_IOAbortSignalId)
+	else if (0 == g_NGIO_IOAbortSignalId)
 	{
 		struct sigaction saio;
 		saio.sa_handler = abort_signal_handler;
@@ -287,7 +291,7 @@ int NGIO_RegisterIOAbortSignalHandler(int signalNum)
 
 		result = sigaction(signalNum, &saio, NULL);
 		if (0 == result)
-			g_IOAbortSignalId = signalNum;
+			g_NGIO_IOAbortSignalId = signalNum;
 		else
 			GSTD_TRACE(GSTD_S("Register IO Abort sigaction() failed"));
 
@@ -298,7 +302,7 @@ int NGIO_RegisterIOAbortSignalHandler(int signalNum)
 
 int NGIO_DeregisterIOAbortSignalHandler()
 {
-	if (g_IOAbortSignalId != 0)
+	if (g_NGIO_IOAbortSignalId != 0)
 	{
 		struct sigaction saio;
 		saio.sa_handler = SIG_DFL;
@@ -306,12 +310,16 @@ int NGIO_DeregisterIOAbortSignalHandler()
 		saio.sa_flags = 0;
 		saio.sa_restorer = NULL;
 
-		int status = sigaction(g_IOAbortSignalId, &saio, NULL);
+		int status = sigaction(g_NGIO_IOAbortSignalId, &saio, NULL);
 		if (0 != status)
 			GSTD_TRACE(GSTD_S("Deregister IO Abort sigaction() failed"));
 
-		g_IOAbortSignalId = 0;
+		g_NGIO_IOAbortSignalId = 0;
 	}
 
 	return 0;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif

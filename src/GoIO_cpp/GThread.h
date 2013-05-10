@@ -78,6 +78,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef TARGET_OS_LINUX
 #include <signal.h>
+#endif
+
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
+
+#ifdef TARGET_OS_LINUX
 #define NGIO_PRIVATE_SIGNAL1 (SIGRTMIN + 12)
 int NGIO_RegisterIOAbortSignalHandler(int signalNum);
 int NGIO_DeregisterIOAbortSignalHandler();
@@ -86,7 +93,6 @@ int NGIO_DeregisterIOAbortSignalHandler();
 typedef int (*StdThreadFunctionPtr)(void *);
 typedef OSPtr OSThreadReference;
 typedef OSPtr OSMutex;
-
 #ifdef TARGET_OS_MAC
 typedef int OSSemaphore;
 #else
@@ -272,6 +278,10 @@ struct GPriorityMutex
 	EThreadPriority m_minimum_priority_while_locked;
 	OSMutex m_OSMutex;
 };
+
+#ifdef LIB_NAMESPACE
+}
+#endif
 
 #endif // GThread.h
 

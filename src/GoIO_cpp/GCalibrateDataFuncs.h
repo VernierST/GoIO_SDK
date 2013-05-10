@@ -29,8 +29,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef _CALIBRATE_DATA_FUNCS_H_
 #define _CALIBRATE_DATA_FUNCS_H_
 
-#ifdef __cplusplus
-extern "C" {
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
 #endif
 
 	double CalibrateData_Linear(
@@ -58,7 +58,7 @@ extern "C" {
 		double coeffA,
 		double coeffB);
 
-#ifdef __cplusplus
+#ifdef LIB_NAMESPACE
 }
 #endif
 

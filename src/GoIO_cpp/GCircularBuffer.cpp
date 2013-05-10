@@ -37,6 +37,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifdef LIB_NAMESPACE
+namespace LIB_NAMESPACE {
+#endif
 
 GCircularBuffer::GCircularBuffer(
 	int numBytes)//number of bytes that buffer holds before it starts to 'roll over'.
@@ -308,3 +311,7 @@ unsigned int GCircularBuffer::GetTotalBytesAdded()//diagnostic
 	}
 	return nTotalBytesAdded;
 }
+
+#ifdef LIB_NAMESPACE
+}
+#endif
