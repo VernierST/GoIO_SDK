@@ -673,7 +673,7 @@ namespace GoIOdotNET
 		public static extern Int32 Sensor_DDSMem_GetSensorNumber(
 			IntPtr hSensor,
 			out byte SensorNumber,
-			byte sendQueryToHardwareflag,
+			Int32 sendQueryToHardwareflag,
 			Int32 timeoutMs);
 
 		[DllImport("GoIO_DLL.dll", EntryPoint = "GoIO_Sensor_DDSMem_SetSerialNumber", CallingConvention = CallingConvention.Cdecl)]

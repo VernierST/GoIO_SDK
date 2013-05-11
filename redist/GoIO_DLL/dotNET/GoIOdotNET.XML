@@ -415,7 +415,7 @@
             <param name="timeoutMs">WRITE_DDSMEMBLOCK_TIMEOUT_MS is recommended.</param>
             <returns>0 iff successful, else -1</returns>
         </member>
-        <member name="M:GoIOdotNET.GoIO.Sensor_DDSMem_GetSensorNumber(System.IntPtr,System.Byte@,System.Byte,System.Int32)">
+        <member name="M:GoIOdotNET.GoIO.Sensor_DDSMem_GetSensorNumber(System.IntPtr,System.Byte@,System.Int32,System.Int32)">
             <summary>
             GoIO_Sensor_DDSMem_GetSensorNumber().
             Retrieve the sensor number that identifies the sensor. In general, the combination of sensor number and probe type uniquely identify
