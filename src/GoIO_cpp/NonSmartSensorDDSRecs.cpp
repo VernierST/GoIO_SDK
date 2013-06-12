@@ -50,13 +50,13 @@ Value
 680		below this is no sensor						0
 1K		Ex heart rate		N/A						13
 1.5K	EKG 				N/A						15
-2.2K	Thermocouple Â°C		-200Â°C to 1400Â°C		1		
+2.2K	Thermocouple °C		-200°C to 1400°C		1		
 3.3K	Resistance sensor	1KW to 100KW			4 deprecated
 4.7K	TI Light sensor		0 to 1					12 
 6.8K	Current sensor		-10 to +10 Amps			3
-10K		Temp sensor Â°C		-25Â°C to 125Â°C			10
+10K		Temp sensor °C		-25°C to 125°C			10
 15K		Voltage sensor		-30 to +30 Volts		11
-22K		Extra long tempÂ°C	-50Â°C to 150Â°C			16
+22K		Extra long temp°C	-50°C to 150°C			16
 33K		Voltage sensor		-10 to +10 Volts		2
 47K		Voltage sensor 		0 to 5 Volts			14
 68K		CO2 gas sensor 		0 to 5000 ppm			17
@@ -72,8 +72,8 @@ Digital Signal Sensors (left hand BTC)
 IDENT 	Sensor Type			Range					ID Num
 Value			
 10K		DCU											3
-15K		Motion detector		Â½ meter to 6 meters		2
-22K		Motion detector		Â½ meter to 6 meters		2
+15K		Motion detector		½ meter to 6 meters		2
+22K		Motion detector		½ meter to 6 meters		2
 33K		Photogate			0 - 1					4
 47K	 	Drop Counter?		0 - 1					5
 68K		Rotary Motion	 	counts					6

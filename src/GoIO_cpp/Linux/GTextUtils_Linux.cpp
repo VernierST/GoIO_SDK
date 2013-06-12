@@ -267,43 +267,43 @@ cppstring  GTextUtils::OSGetNativeCharCodeForUTF8(unsigned short nUTF8Char)
 
 		case GUTF8CharCode::kCopyright:
 
-			nChar += 'Â©';
+			nChar += '©';
 
 			break;
 
 		case GUTF8CharCode::kRegistered:
 
-			nChar += 'Â¨';
+			nChar += '¨';
 
 			break;
 
 		case GUTF8CharCode::kDegree:
 
-			nChar += 'Â¡';
+			nChar += '¡';
 
 			break;
 
 		case GUTF8CharCode::kPlusOrMinus:
 
-			nChar += 'Â±';
+			nChar += '±';
 
 			break;
 
 		case GUTF8CharCode::kMu:
 
-			nChar += 'Âµ';
+			nChar += 'µ';
 
 			break;
 
 		case GUTF8CharCode::kBullet:
 
-			nChar += 'Â¥';
+			nChar += '¥';
 
 			break;
 
 		case GUTF8CharCode::kLowerCasePi:
 
-			nChar += 'Â¹';
+			nChar += '¹';
 
 			break;
 
@@ -343,43 +343,43 @@ unsigned short GTextUtils::OSGetUTF8CharCodeForNative(unsigned short nMacRomanCh
 
 			break;
 
-		case 'Â©':
+		case '©':
 
 		 	nChar = GUTF8CharCode::kCopyright;
 
 			break;
 
-		case 'Â¨':
+		case '¨':
 
 		 	nChar = GUTF8CharCode::kRegistered;
 
 			break;
 
-		case 'Â¡':
+		case '¡':
 
 		 	nChar = GUTF8CharCode::kDegree;
 
 			break;
 
-		case 'Â±':
+		case '±':
 
 		 	nChar = GUTF8CharCode::kPlusOrMinus;
 
 			break;
 
-		case 'Âµ':
+		case 'µ':
 
 		 	nChar = GUTF8CharCode::kMu;
 
 			break;
 
-		case 'Â¥':
+		case '¥':
 
 		 	nChar = GUTF8CharCode::kBullet;
 
 			break;
 
-		case 'Â¹':
+		case '¹':
 
 		 	nChar = GUTF8CharCode::kLowerCasePi;
 
