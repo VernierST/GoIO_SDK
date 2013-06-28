@@ -1,0 +1,16 @@
+#
+**/Debug/
+**/Release/
+*.obj
+*.sbr
+*.bsc
+*.pch
+*.pdb
+*.ncb
+*.opt
+*.plg
+*.ilk
+*.idb
+*.suo
+*.user
+*.aps
