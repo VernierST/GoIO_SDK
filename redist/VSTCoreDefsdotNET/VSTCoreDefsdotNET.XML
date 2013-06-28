@@ -4,6 +4,11 @@
         <name>VSTCoreDefsdotNET</name>
     </assembly>
     <members>
+        <member name="F:VSTCoreDefsdotNET.VST_USB_defs.VENDOR_ID">
+            <summary>
+            Vernier Software and Technology USB vendor id
+            </summary>
+        </member>
         <member name="F:VSTCoreDefsdotNET.VSTSensorDDSMemRec.kEquationType_Linear">
             <summary>
             linear, y = bx + a
@@ -136,11 +141,6 @@
         <member name="F:VSTCoreDefsdotNET.VSTSensorDDSMemRec.Checksum">
             <summary>
             Result of XORing bytes 0-126.
-            </summary>
-        </member>
-        <member name="F:VSTCoreDefsdotNET.VST_USB_defs.VENDOR_ID">
-            <summary>
-            Vernier Software and Technology USB vendor id
             </summary>
         </member>
     </members>
