@@ -7,7 +7,7 @@ The API to this library is documented in \GoIO_SDK\redist\include\GoIO_DLL_inter
 
 The Windows version of this library is GoIO_DLL.dll. Since GoIO_DLL.dll is a standard Microsoft Windows DLL, you can access the library from a variety of languages including C, C++, Basic, LabView, and Java. This code compiles in Visual Studio 2005. We have also written a .NET wrapper for GoIO_DLL.dll called GoIOdotNET.dll. GoIOdotNET.dll allows .NET based applications to access the Go! devices.
 
-For Mac OS, we provide two sets of libraries: Legacy and Universal. The Legacy libraries (libGoIO_DLL.a, libGoIO_DLL.dylib, and libGoIO_DLL.framework) have their base SDK set to 10.4; the current GoIO SDK no longer supports 10.3.9. Note that these can only be linked to 32 bit executables.
+For Mac OS, we provide two sets of libraries: Legacy and Universal. The Legacy libraries (libGoIO_DLL.a, libGoIO_DLL.dylib, and libGoIO_DLL.framework) have their deployment target set to 10.4; the current GoIO SDK no longer supports 10.3.9. Note that these can only be linked to 32 bit executables.
 
 The Universal versions of the library (libGoIOUniversal.a, libGoIOUniversal.dylib, and libGoIOUniversal.framework) are targeted for Mac OS 10.5 and higher, and may be incorporated into 32 or 64 bit executables.
 
