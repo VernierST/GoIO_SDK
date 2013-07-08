@@ -12,8 +12,7 @@ lib_LTLIBRARIES = libGoIO.la
 
 libGoIO_la_SOURCES = GoIO_DLL_interface.cpp
 
-libGoIO_la_LIBADD= $(top_srcdir)/GoIO_cpp/libGoIOcpp.la $(top_srcdir)/GoIO_cpp/Linux/libGoIOcppLinux.la
-#libGoIO_la_LIBADD= $(top_srcdir)/GoIO_cpp/libGoIOcpp.la $(top_srcdir)/GoIO_cpp/Linux/libGoIOcppLinux.la -lusb-1.0
+libGoIO_la_LIBADD= $(top_srcdir)/GoIO_cpp/libGoIOcpp.la $(top_srcdir)/GoIO_cpp/Linux/libGoIOcppLinux.la -lusb-1.0
 
 libGoIO_la_LDFLAGS = -version-info 2:53:0
 
