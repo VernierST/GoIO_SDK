@@ -142,7 +142,8 @@ int GSkipDevice::SendInitCmdAndGetResponse(
 				initStatus = SKIP_STATUS_CMD_NOT_SUPPORTED;
 				if (kResponse_OK == GetInitCmdResponse(&initStatus, &initStatusLength, nTimeoutMs, pExitFlag))
 					bSuccess = true;
-				else if ((sizeof(initStatus) == initStatusLength) && (SKIP_STATUS_ERROR_SLAVE_POWERUP_INIT == initStatus))
+				else if ((sizeof(initStatus) == initStatusLength) && 
+					((SKIP_STATUS_ERROR_SLAVE_POWERUP_INIT == initStatus) || (SKIP_STATUS_ERROR_SLAVE_POWERRESTORE_INIT == initStatus)))
 				{
 					unsigned int nTimeNow = GUtils::OSGetTimeStamp();
 					unsigned int nElapsedTimeMs = nTimeNow - nTimeCmdSent;

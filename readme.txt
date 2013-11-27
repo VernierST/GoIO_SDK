@@ -71,6 +71,9 @@ For maximum simplicity and portability, we recommend that you just build your .N
 
 Release notes:
 
+Version 2.54
+Fix bug introduced by Windows 8.1 that caused GoIO_Sensor_Open() to fail for Go Link after a USB suspend/resume cycle.
+
 Version 2.53
 Support libusb in Linux.
 
