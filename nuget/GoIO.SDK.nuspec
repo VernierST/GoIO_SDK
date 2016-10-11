@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>GoIO.SDK</id>
+        <version>1.0.6</version>
+        <title>GoIO Software Development Kit</title>
+        <authors>Vernier Software &amp; Technology</authors>
+        <licenseUrl>https://github.com/VernierSoftwareTechnology/GoIO_SDK/blob/master/license.txt</licenseUrl>
+        <projectUrl>https://github.com/VernierSoftwareTechnology/GoIO_SDK</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>The GoIO SDK is intended to provide software developers with the ability to access Vernier Software &amp; Technology Go! devices from their own applications. Supported devices include the Go! Motion detector, the Go! Temp thermometer, the Vernier Mini Gc, and the Go! Link sensor interface, which can connect to a variety of analog sensors.</description>
+        <summary>The GoIO SDK is intended to provide software developers with the ability to access Vernier Software &amp; Technology Go! devices from their own applications.</summary>
+        <copyright>Copyright (C) 2014 Vernier Software &amp; Technology. All rights reserved.</copyright>
+        <language>en-US</language>
+        <tags>GoIO Vernier</tags>
+    </metadata>
+    <files>
+        <file src="build\GoIO.SDK.targets" target="build\GoIO.SDK.targets" />
+        <file src="..\redist\GoIO_DLL\dotNet\GoIOdotNET.dll" target="lib\net20\GoIOdotNET.dll" />
+        <file src="..\redist\GoIO_DLL\dotNet\GoIOdotNET.pdb" target="lib\net20\GoIOdotNET.pdb" />
+        <file src="..\redist\GoIO_DLL\dotNet\GoIOdotNET.XML" target="lib\net20\GoIOdotNET.XML" />
+        <file src="..\redist\VSTCoreDefsdotNET\VSTCoreDefsdotNET.dll" target="lib\net20\VSTCoreDefsdotNET.dll" />
+        <file src="..\redist\VSTCoreDefsdotNET\VSTCoreDefsdotNET.pdb" target="lib\net20\VSTCoreDefsdotNET.pdb" />
+        <file src="..\redist\VSTCoreDefsdotNET\VSTCoreDefsdotNET.XML" target="lib\net20\VSTCoreDefsdotNET.XML" />
+        <file src="..\redist\GoIO_DLL\Win32\GoIO_DLL.dll" target="native\x86\GoIO_DLL.dll" />
+        <file src="..\redist\GoIO_DLL\Win64\GoIO_DLL.dll" target="native\x64\GoIO_DLL.dll" />
+    </files>
+</package>
