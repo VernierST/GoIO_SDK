@@ -4,7 +4,7 @@
 touch  NEWS README AUTHORS ChangeLog
 
 unset AUTOMAKE
-for am in automake-1.7 automake-1.8 automake-1.9 automake; do
+for am in automake-1.7 automake-1.8 automake-1.9 automake-1.11 automake; do
 	which $am > /dev/null || continue
 	ver=`$am --version | head -n 1 | sed -e s/^[^0-9]*//`
 	verint=`echo $ver | sed -e s/[^0-9]//g`
